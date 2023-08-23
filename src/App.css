@@ -1,0 +1,125 @@
+/* App container */
+.App {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  /* Filter section */
+  .QuestaoFiltro {
+    margin-bottom: 20px;
+  }
+  
+  /* Question container */
+  .Questao {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    width: 70%;
+    margin: 0 auto;
+  }
+  
+  .enunciado {
+    font-size: 14px;
+   
+  }
+  
+  .alternativa {
+    /* Estilos padrão */
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .alternativa.selected {
+    background-color: #f0f0f0;
+  }
+  
+    
+  
+  
+  .Questao p {
+    font-size: 25px;
+    margin: 5px 0;
+  }
+  
+  .Questao ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .Questao ul li {
+    font-size: 18px;
+    margin-left: 20px;
+  }
+  
+  /* Pagination */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+  }
+  
+  .pagination button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 5px;
+  }
+  
+  .pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .pagination span {
+    font-size: 14px;
+    margin: 0 10px;
+  }
+  
+  .cabecalho-disciplina {
+    display: flex;
+    align-items: flex-start;
+    font-size: 13px;
+    margin-bottom: 2px;
+    margin-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #1c525313;
+  }
+  
+  .cabecalho-disciplina p {
+    margin-right: 20px; /* Adiciona espaçamento de 5px entre os textos */
+  }
+  .cabecalho-orgao {
+    display: flex;
+    align-items: flex-start;
+    font-size: 13px;
+    
+    position: relative; /* Adicione essa propriedade para controlar a posição da linha */
+  }
+  
+  .cabecalho-orgao p {
+    margin-right: 20px; /* Adiciona espaçamento de 5px entre os textos */
+  }
+  .cabecalho-orgao::after {
+    content: ''; /* Cria o elemento da linha */
+    position: absolute;
+    left: 0;
+    bottom: -1px; /* Posiciona a linha abaixo do texto */
+    width: 100%; /* Define a largura da linha */
+    height: 2px; /* Define a espessura da linha */
+    background-color: #1c525331; /* Cor da linha cinza */
+  }
+  
+  
+  

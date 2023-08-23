@@ -1,0 +1,56 @@
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  
+  border-radius: 5px;
+  background-color: #1c525313;
+}
+
+.filter-group {
+  flex: 0 0 calc(33.33% - 10px); /* Define a largura dos filtros */
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 16px; /* Tamanho de fonte responsivo em pixels */
+}
+
+.custom-select {
+  width: 100%;
+  font-size: 19px; /* Tamanho de fonte responsivo em pixels */
+}
+
+.apply-button {
+  padding: 10px;
+  background-color: #267c7e;
+  color: white;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px; /* Tamanho de fonte responsivo em pixels */
+}
+
+.apply-button:hover {
+  background-color: #1C5253;
+}
+
+.clear-button {
+  padding: 10px;
+  background-color: #ff2833;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px; /* Tamanho de fonte responsivo em pixels */
+}
+
+.clear-button:hover {
+  background-color: rgb(179, 0, 45);
+}
