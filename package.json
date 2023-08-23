@@ -1,7 +1,8 @@
 {
-  "homepage": "https://leonardoalmeida31.github.io/sesoemconcursos-site2/",
+  
   "name": "sesoemconcursos-site2",
   "private": true,
+  "homepage": "https://leonardoalmeida31.github.io/sesoemconcursos-site2/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -10,7 +11,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "react": "^18.2.0",
