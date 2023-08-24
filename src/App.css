@@ -4,44 +4,199 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    justify-content: center;
+    padding-left: 50px;
+    padding-right: 50px;
+   
   }
+  @media (max-width: 768px) {
+    .App {
+        padding-left: 0.500em; /* Ajuste o valor conforme necessário */
+        padding-right: 0.500em; /* Ajuste o valor conforme necessário */
+    }
+}
+  
   
   /* Filter section */
   .QuestaoFiltro {
     margin-bottom: 20px;
   }
   
-  /* Question container */
-  .Questao {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 15px;
-    background-color: #fff;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    width: 70%;
-    margin: 0 auto;
-  }
   
   .enunciado {
-    font-size: 14px;
+    font-size: 0.875em; /* 14 px de font */
+    font-weight: 400;
+    margin-top: 2em;
    
   }
   
   .alternativa {
-    /* Estilos padrão */
     cursor: pointer;
+    padding-left: 20px; /* Adiciona espaço para a letra */
+    border-radius: 5px;
+    margin: 15px;
+    font-size: 0.875em;
+    font-weight: 400;
+  }
+  .letra-alternativa {
+    color: black;
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  .letra-alternativa-circle {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid black;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+    margin-right: 5px;
+    color: black;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .letra-alternativa-circle.selecionada {
+    background-color: black;
+    color: white;
+  }
+  ul {
+    list-style-type: none; /* Remove o ponto preto das listas não ordenadas */
+    padding-left: 0; /* Remove o recuo padrão das listas não ordenadas */
+  }
+   
+  .button-responder {
+    background-color: #1c5253;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: 600;
+  }
+  
+  .button-responder:hover {
+    background-color: #137979;
+  }
+  .feedback {
     font-size: 14px;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 20px;
+    margin-top: 30px;
+  }
+  .feedback.acerto {
+    color: #1c5253; /* Cor verde para acerto */
+    font-weight: 600;
+    align-items: center;
+    justify-content: space-between;
   }
   
-  .alternativa.selected {
-    background-color: #f0f0f0;
+  .feedback.erro {
+    color: #ff0800; /* Cor vermelha para erro */
+    font-weight: 500;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .button-feedback-container {
+    display: flex; /* Exibe os elementos em uma linha horizontal */
+     /* Espaça os elementos igualmente na linha */
+    align-items: center; /* Alinha os elementos verticalmente ao centro */
+   
   }
   
+  .linha-horizontal-comentario {
+    border-top: 2px solid #1c52533a;
+    margin-top: 20px;
+  }
+  
+  .button-comentario {
+    color:#1c5253;
+   
+    border: none;
+    margin: 0px;
+    background-color: #1c525309;
+    padding: 10px;
+    font-size: 14px;
     
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    font-weight: 550;
+    
+  }
+
+
+  .svg{
+    color: #1c525309;
+    align-items:center;
+    justify-content: center;
+
+  }
   
+  .button-comentario:hover {
+    background-color: #1c5253;
+    color:#ffffff;
+  }
+
+  .campo-comentario {
+    margin-top: 0px;
+    margin-bottom: 50px;
+    background-color: #1c525313;
+    display: flex;
+    flex-direction: column; /* Ajusta o layout para coluna */
+    align-items: flex-start; /* Alinha o conteúdo à esquerda */
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    
+  }
+     
+  .comentario {
+    display: none;
+    margin: 30px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.4;
+    
+    align-items: center;
+    justify-content: center;
+    
+  }
   
+  .comentario.visivel {
+    display: block;
+  }
+  
+  .comentario::before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px;
+    border-style: solid;
+   
+  }
+  
+  .comentario p {
+    background-color: white;
+    padding: 8px;
+    border-radius: 5px;
+    margin: 0;
+  }
+  .botao-comentario.ativo {
+  color: #45a049; /* Tonalidade mais escura do verde */
+}
+
+
+
+
+ 
   .Questao p {
     font-size: 25px;
     margin: 5px 0;
@@ -88,29 +243,80 @@
   
   .cabecalho-disciplina {
     display: flex;
-    align-items: flex-start;
-    font-size: 13px;
+    flex-direction: row; /* Disposição horizontal */
+    flex-wrap: wrap; /* Quebra de linha */
+    align-items: center;
+    font-size: 0.75em;
     margin-bottom: 2px;
     margin-top: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: #1c525313;
+    
+    background-color: #1c5253;
+    font-weight: 400;
+    border-radius: 5px;
   }
   
+  
   .cabecalho-disciplina p {
-    margin-right: 20px; /* Adiciona espaçamento de 5px entre os textos */
+    margin-right: 10px; /* Adiciona espaçamento de 5px entre os textos */
+    margin-left: 10px;
+    color: white; 
+    align-items: center;
+    justify-content: center;
+    
   }
   .cabecalho-orgao {
     display: flex;
     align-items: flex-start;
-    font-size: 13px;
+    font-size: 0.80em; /*12px font */
+    font-weight: 500;
     
     position: relative; /* Adicione essa propriedade para controlar a posição da linha */
   }
-  
+  @media (max-width: 768px) {
+    .cabecalho-orgao {
+        font-size: 0.80em;
+        display: flex;
+        flex-direction: row; /* Disposição horizontal */
+        flex-wrap: wrap; /* Quebra de linha */
+        align-items: start;
+       
+    }
+}
+@media (max-width: 768px) {
   .cabecalho-orgao p {
-    margin-right: 20px; /* Adiciona espaçamento de 5px entre os textos */
+      font-size: 0.85em;
+      display: flex;
+      flex-direction: row; /* Disposição horizontal */
+      flex-wrap: wrap; /* Quebra de linha */
+      align-items: start;
+      margin-bottom: 0em; /* Ajuste o valor conforme necessário */
+      line-height: 1; /* Ajuste o valor conforme necessário */
   }
+}
+
+.cabecalho-orgao p {
+  color:#1c5253;
+}
+.nome-home {
+  
+  color: #1c5253;
+  font-size: 1.5em;
+  text-align: center;
+}
+.campo-nome-home {
+  /*background-color: #1c5253;
+  display: flex;
+  width: 100%; /* Ocupa 100% da largura da tela */
+  /*text-align: center;
+  align-items: center;
+  justify-content: center;
+  border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    margin-bottom: 0.725em;
+  
+  /* Resto do seu estilo */
+}
+ 
   .cabecalho-orgao::after {
     content: ''; /* Cria o elemento da linha */
     position: absolute;
@@ -121,5 +327,22 @@
     background-color: #1c525331; /* Cor da linha cinza */
   }
   
-  
+  @media (max-width: 768px) {
+    .cabecalho-orgao::after {
+      content: ''; /* Cria o elemento da linha */
+      position: absolute;
+      left: 0;
+      bottom: -10px; /* Posiciona a linha abaixo do texto */
+      width: 100%; /* Define a largura da linha */
+      height: 2px; /* Define a espessura da linha */
+      background-color: #1c525331; /* Cor da linha cinza */
+    }
+  }
+
+
+
+
+
+
+
   

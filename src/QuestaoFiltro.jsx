@@ -10,7 +10,7 @@ function QuestaoFiltro({ onFilterChange, bancas, disciplinas, assuntos, anos, mo
   const [selectedModalidade, setSelectedModalidade] = useState('');
   const [selectedArea, setSelectedArea] = useState('');
   const [filtersCleared, setFiltersCleared] = useState(false);
-  const [assuntosPorDisciplina, setAssuntosPorDisciplina] = useState([]);
+
   const [selectedDisciplinaIndex, setSelectedDisciplinaIndex] = useState(-1);
 
  
@@ -28,7 +28,7 @@ function QuestaoFiltro({ onFilterChange, bancas, disciplinas, assuntos, anos, mo
   setSelectedAno('');
   setSelectedModalidade('');
   setSelectedArea('');
-  setAssuntosPorDisciplina([]);
+  
   setSelectedDisciplinaIndex(-1);
   setFiltersCleared(true);
 };
@@ -37,7 +37,7 @@ function QuestaoFiltro({ onFilterChange, bancas, disciplinas, assuntos, anos, mo
   return (
     <div className="filter-container">
       <div className="filter-group">
-        <Select
+        <Select className="custom-select"
           id="disciplinaFilter"
           options={disciplinas.map(disciplina => ({ value: disciplina, label: disciplina }))}
           onChange={selectedOption => setSelectedDisciplina(selectedOption.value)}
@@ -47,7 +47,7 @@ function QuestaoFiltro({ onFilterChange, bancas, disciplinas, assuntos, anos, mo
       </div>
 
       <div className="filter-group">
-      <Select
+      <Select className="custom-select"
   id="assuntoFilter"
   options={assuntos.map(assunto => ({ value: assunto, label: assunto }))}
   onChange={selectedOption => setSelectedAssunto(selectedOption.value)}
@@ -59,7 +59,7 @@ function QuestaoFiltro({ onFilterChange, bancas, disciplinas, assuntos, anos, mo
 
 
       <div className="filter-group">
-        <Select
+        <Select className="custom-select"
           id="bancaFilter"
           options={bancas.map(banca => ({ value: banca, label: banca }))}
           onChange={selectedOption => setSelectedBanca(selectedOption.value)}
@@ -69,7 +69,7 @@ function QuestaoFiltro({ onFilterChange, bancas, disciplinas, assuntos, anos, mo
       </div>
 
       <div className="filter-group">
-        <Select
+        <Select className="custom-select"
           id="anoFilter"
           options={anos.map(ano => ({ value: ano, label: ano }))}
           onChange={selectedOption => setSelectedAno(selectedOption.value)}
@@ -79,7 +79,7 @@ function QuestaoFiltro({ onFilterChange, bancas, disciplinas, assuntos, anos, mo
       </div>
 
       <div className="filter-group">
-        <Select
+        <Select className="custom-select"
           id="modalidadeFilter"
           options={modalidades.map(modalidade => ({ value: modalidade, label: modalidade }))}
           onChange={selectedOption => setSelectedModalidade(selectedOption.value)}
@@ -89,7 +89,7 @@ function QuestaoFiltro({ onFilterChange, bancas, disciplinas, assuntos, anos, mo
       </div>
 
       <div className="filter-group">
-        <Select
+        <Select className="custom-select"
           id="areaFilter"
           options={areas.map(area => ({ value: area, label: area }))}
           onChange={selectedOption => setSelectedArea(selectedOption.value)}

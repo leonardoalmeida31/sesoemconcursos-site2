@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import questoes from '../dados/questoes.json';
 import QuestaoFiltro from './QuestaoFiltro';
-import Select from 'react-select';
+import { CaretRight, ChatCenteredText } from "@phosphor-icons/react";
+
 import './App.css'; 
 
 function App() {
@@ -73,8 +74,54 @@ function App() {
   const assuntos = [...new Set(questoes.map((questao) => questao.assunto))];
 
 
+   const [alternativasSelecionadas, setAlternativasSelecionadas] = useState({});
+
+  const handleAlternativaClick = (questaoId, alternativaIndex) => {
+    setAlternativasSelecionadas((prevSelecionadas) => ({
+      ...prevSelecionadas,
+      [questaoId]: alternativaIndex,
+    }));
+  };
+
+  const [feedback, setFeedback] = useState({});
+  const verificarResposta = (questao) => {
+    const alternativaSelecionada = alternativasSelecionadas[questao.id];
+    const respostaCorreta = questao.resposta.charCodeAt(0) - 65;
+  
+    if (alternativaSelecionada === respostaCorreta) {
+      setFeedback((prevFeedback) => ({
+        ...prevFeedback,
+        [questao.id]: 'Você acertou!',
+      }));
+    } else {
+      setFeedback((prevFeedback) => ({
+        ...prevFeedback,
+        [questao.id]: 'Você errou!',
+      }));
+    }
+  };
+
+
+  const [comentariosVisiveis, setComentariosVisiveis] = useState({});
+
+  const toggleComentario = (questaoId) => {
+    console.log("Toggled comentario for questaoId:", questaoId);
+    setComentariosVisiveis((prevVisiveis) => ({
+      ...prevVisiveis,
+      [questaoId]: !prevVisiveis[questaoId],
+    }));
+  };
+
+
+  
+  
+  
   return (
+    
     <div className="App">
+<div className="campo-nome-home"><h2 className="nome-home">SESO em Concursos</h2></div>
+    
+      
       <QuestaoFiltro
         onFilterChange={handleFilterChange}
         bancas={bancas}
@@ -88,26 +135,68 @@ function App() {
 {questoesPagina.map((questao) => (
   <div key={questao.id} className="question-container">
     <div className="cabecalho-disciplina">
-      <p>ID: {questao.id}</p>
-      <p>{questao.disciplina}</p>
-      <p>{questao.assunto}</p>
+     
+    <p>ID: {questao.id}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{questao.disciplina}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{questao.assunto}</p>
+
+      
     </div>
     <div className="cabecalho-orgao">
-    <p>Banca: {questao.banca}</p>
-    <p>Ano: {questao.ano}</p>
+    <p>Banca: {questao.banca}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ano: {questao.ano}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cargo: {questao.cargo}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
     <p>Órgão: {questao.concurso}</p>
     </div>
     <p className="enunciado">{questao.enunciado}</p>
-    <ul >
-      {questao.alternativas.map((alternativa, index) => (
-        <li className="alternativa" key={index}>{alternativa}</li>
-      ))}
-    </ul>
-    <p>Resposta: {questao.resposta}</p>
-    <p>Comentário: {questao.comentario}</p>
-  </div>
-))}
+    <ul>
+  {questao.alternativas.map((alternativa, index) => {
+    const letraAlternativa = alternativa.match(/^\(([A-E])\)/)[1];
 
+
+    
+
+    return (
+      <li
+        className={`alternativa ${alternativasSelecionadas[questao.id] === index ? 'selecionada' : ''}`}
+        key={index}
+        onClick={() => handleAlternativaClick(questao.id, index)}
+      >
+        <span
+          className={`letra-alternativa-circle ${alternativasSelecionadas[questao.id] === index ? 'selecionada' : ''}`}
+        >
+          {letraAlternativa}
+        </span>
+        {alternativa.replace(/^\(([A-E])\)/, '')}
+      </li>
+    );
+  })}
+</ul>
+
+<div className="button-feedback-container">
+<button className="button-responder" onClick={() => verificarResposta(questao)}>
+  Responder
+</button>
+
+
+{feedback[questao.id] && (
+  <p className={`feedback ${feedback[questao.id] === 'Você acertou!' ? 'acerto' : 'erro'}`}>
+    {feedback[questao.id] === 'Você acertou!' ? 'Você acertou!' : `Você errou! A alternativa correta é: ${questao.resposta}`}
+  </p>
+)}
+</div>
+
+  
+
+<div className="linha-horizontal-comentario"></div>
+
+  <div className="campo-comentario">  
+<button className="button-comentario" onClick={() => toggleComentario(questao.id)}> <ChatCenteredText size={14}  />  Comentário do Professor
+      </button>
+
+      <p className={comentariosVisiveis[questao.id] ? "comentario visivel" : "comentario"}>
+        {questao.comentario}
+      </p>
+      </div>
+    </div>
+))}
+ 
 
       <div className="pagination">
         <button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
