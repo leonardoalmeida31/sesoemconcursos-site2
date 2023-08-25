@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './QuestaoFiltro.css'; // Importar arquivo CSS para estilização
 import Select from 'react-select';
+import questoes from '../dados/questoes.json';
 
 function QuestaoFiltro({ onFilterChange, bancas, disciplinas, assuntos, anos, modalidades, areas }) {
   const [selectedBanca, setSelectedBanca] = useState('');
@@ -14,8 +15,21 @@ function QuestaoFiltro({ onFilterChange, bancas, disciplinas, assuntos, anos, mo
   const [selectedDisciplinaIndex, setSelectedDisciplinaIndex] = useState(-1);
 
  
-
+ // Processar os dados para agrupar os assuntos por disciplina
+ const assuntosPorDisciplina = questoes.reduce((acc, questao) => {
+  if (!acc[questao.disciplina]) {
+    acc[questao.disciplina] = [];
+  }
+  if (!acc[questao.disciplina].includes(questao.assunto)) {
+    acc[questao.disciplina].push(questao.assunto);
+  }
+  return acc;
+}, {});
   
+const handleDisciplinaChange = selectedOption => {
+  setSelectedDisciplina(selectedOption.value);
+  setSelectedAssunto('');
+};
 
   const handleFilterChange = () => {
     onFilterChange(selectedBanca, selectedDisciplina, selectedAno, selectedModalidade, selectedArea, selectedAssunto);
@@ -37,10 +51,10 @@ function QuestaoFiltro({ onFilterChange, bancas, disciplinas, assuntos, anos, mo
   return (
     <div className="filter-container">
       <div className="filter-group">
-        <Select className="custom-select"
+      <Select className="custom-select"
           id="disciplinaFilter"
           options={disciplinas.map(disciplina => ({ value: disciplina, label: disciplina }))}
-          onChange={selectedOption => setSelectedDisciplina(selectedOption.value)}
+          onChange={handleDisciplinaChange}
           value={{ value: selectedDisciplina, label: selectedDisciplina || 'Disciplina' }}
           placeholder="Selecione uma disciplina"
         />
@@ -48,12 +62,17 @@ function QuestaoFiltro({ onFilterChange, bancas, disciplinas, assuntos, anos, mo
 
       <div className="filter-group">
       <Select className="custom-select"
-  id="assuntoFilter"
-  options={assuntos.map(assunto => ({ value: assunto, label: assunto }))}
-  onChange={selectedOption => setSelectedAssunto(selectedOption.value)}
-  value={{ value: selectedAssunto, label: selectedAssunto || 'Assunto' }}
-  placeholder="Selecione um assunto"
-/>
+          id="assuntoFilter"
+          options={selectedDisciplina
+            ? (assuntosPorDisciplina[selectedDisciplina] || []).map(assunto => ({ value: assunto, label: assunto }))
+            : []
+          }
+          onChange={selectedOption => setSelectedAssunto(selectedOption.value)}
+          value={{ value: selectedAssunto, label: selectedAssunto || 'Assunto' }}
+          placeholder="Selecione um assunto"
+          
+          isDisabled={!selectedDisciplina}
+        />
 
 </div>
 
