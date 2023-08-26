@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import questoes from '../dados/questoes.json';
 import QuestaoFiltro from './QuestaoFiltro';
+import FiltroMulti from './FiltroMulti';
 import { CaretRight, ChatCenteredText } from "@phosphor-icons/react";
 
 import './App.css'; 
@@ -8,6 +9,7 @@ import './App.css';
 function App() {
   const questoesPorPagina = 10;
   const [paginaAtual, setPaginaAtual] = useState(1);
+  const [questoesFiltradas, setQuestoesFiltradas] = useState(questoes); // Todas as questões como padrão
   const [filtroBanca, setFiltroBanca] = useState(null);
   const [filtroDisciplina, setFiltroDisciplina] = useState(null);
   const [filtroAssunto, setFiltroAssunto] = useState(null);
@@ -16,29 +18,9 @@ function App() {
   const [filtroArea, setFiltroArea] = useState(null);
 
   const indiceInicial = (paginaAtual - 1) * questoesPorPagina;
-
-  const questoesFiltradas = questoes.filter((questao) => {
-    if (filtroBanca && questao.banca !== filtroBanca) {
-      return false;
-    }
-    if (filtroDisciplina && questao.disciplina !== filtroDisciplina) {
-      return false;
-    }
-    if (filtroAno && questao.ano !== filtroAno) {
-      return false;
-    }
-    if (filtroModalidade && questao.modalidade !== filtroModalidade) {
-      return false;
-    }
-    if (filtroArea && questao.area !== filtroArea) {
-      return false;
-    }
-    if (filtroAssunto && questao.assunto !== filtroAssunto) { // Adicione esta linha
-      return false;
-    }
-    return true;
-  });
   
+ 
+
 
   const questoesPagina = questoesFiltradas.slice(indiceInicial, indiceInicial + questoesPorPagina);
   const totalPages = Math.ceil(questoesFiltradas.length / questoesPorPagina);
@@ -55,23 +37,10 @@ function App() {
     }
   };
 
-  const handleFilterChange = (banca, disciplina, ano, modalidade, area, assunto) => {
-    setFiltroBanca(banca);
-    setFiltroDisciplina(disciplina);
-    setFiltroAno(ano);
-    setFiltroModalidade(modalidade);
-    setFiltroArea(area);
-    setFiltroAssunto(assunto); // Adicione esta linha
-    setPaginaAtual(1);
-  };
+  
   
 
-  const bancas = [...new Set(questoes.map((questao) => questao.banca))];
-  const disciplinas = [...new Set(questoes.map((questao) => questao.disciplina))];
-  const anos = [...new Set(questoes.map((questao) => questao.ano))];
-  const modalidades = [...new Set(questoes.map((questao) => questao.modalidade))];
-  const areas = [...new Set(questoes.map((questao) => questao.area))];
-  const assuntos = [...new Set(questoes.map((questao) => questao.assunto))];
+ 
 
 
    const [alternativasSelecionadas, setAlternativasSelecionadas] = useState({});
@@ -113,6 +82,11 @@ function App() {
   };
 
 
+
+  const handleFilterChange = (filteredQuestoes) => {
+    setQuestoesFiltradas(filteredQuestoes);
+    setPaginaAtual(1);
+  };
   
   
   
@@ -121,16 +95,9 @@ function App() {
     <div className="App">
 <div className="campo-nome-home"><h2 className="nome-home">SESO em Concursos</h2></div>
     
+<FiltroMulti onFilterChange={handleFilterChange} />
+
       
-      <QuestaoFiltro
-        onFilterChange={handleFilterChange}
-        bancas={bancas}
-        disciplinas={disciplinas}
-        anos={anos}
-        modalidades={modalidades}
-        areas={areas}
-        assuntos={assuntos}
-      />
 
 {questoesPagina.map((questao) => (
   <div key={questao.id} className="question-container">

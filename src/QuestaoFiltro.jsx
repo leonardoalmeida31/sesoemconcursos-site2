@@ -6,7 +6,7 @@ import questoes from '../dados/questoes.json';
 function QuestaoFiltro({ onFilterChange, bancas, disciplinas, assuntos, anos, modalidades, areas }) {
   const [selectedBanca, setSelectedBanca] = useState('');
   const [selectedDisciplina, setSelectedDisciplina] = useState('');
-  const [selectedAssunto, setSelectedAssunto] = useState('');
+  const [selectedAssunto, setSelectedAssunto] = useState([]);
   const [selectedAno, setSelectedAno] = useState('');
   const [selectedModalidade, setSelectedModalidade] = useState('');
   const [selectedArea, setSelectedArea] = useState('');
@@ -63,7 +63,7 @@ const handleDisciplinaChange = selectedOption => {
       <div className="filter-group">
       <Select className="custom-select"
           id="assuntoFilter"
-          options={selectedDisciplina
+           options={selectedDisciplina
             ? (assuntosPorDisciplina[selectedDisciplina] || []).map(assunto => ({ value: assunto, label: assunto }))
             : []
           }
@@ -80,9 +80,10 @@ const handleDisciplinaChange = selectedOption => {
       <div className="filter-group">
         <Select className="custom-select"
           id="bancaFilter"
-          options={bancas.map(banca => ({ value: banca, label: banca }))}
+           options={bancas.map(banca => ({ value: banca, label: banca }))}
           onChange={selectedOption => setSelectedBanca(selectedOption.value)}
           value={{ value: selectedBanca, label: selectedBanca || 'Banca' }}
+          
           placeholder="Selecione uma banca"
         />
       </div>
@@ -116,14 +117,21 @@ const handleDisciplinaChange = selectedOption => {
           placeholder="Selecione uma área"
         />
       </div>
+      <div className="filter-container">
+  {/* Seus outros elementos de filtro */}
+  
+  <p>Total de Questões: {questoes.length}</p>
+  
+  {/* Seus botões de filtragem */}
+</div>
 
-      
-      <button className="apply-button" onClick={handleFilterChange}>
+      <div className="filtro-button"> <button className="apply-button" onClick={handleFilterChange}>
   Filtrar Questões
 </button>
 <button className="clear-button" onClick={handleClearFilters}>
   Limpar Filtros
-</button>
+</button></div>
+      
 
       
     </div>
