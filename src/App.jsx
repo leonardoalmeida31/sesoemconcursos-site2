@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import questoes from '../dados/questoes.json';
-import QuestaoFiltro from './QuestaoFiltro';
 import FiltroMulti from './FiltroMulti';
 import { CaretRight, ChatCenteredText } from "@phosphor-icons/react";
 
