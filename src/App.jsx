@@ -3,14 +3,15 @@ import FiltroMulti from "./FiltroMulti";
 import { CaretRight, ChatCenteredText } from "@phosphor-icons/react";
 import "./App.css";
 
+
+
 import { initializeApp } from "firebase/app";
 import { getDocs, getFirestore, collection } from "firebase/firestore";
 
- 
 const firebaseConfig = {
-  apiKey: "AIzaSyBssGj_y0d_q9vOFD3wivAKJkoGMBakEIU",
-  authDomain: "sesoemconcursosweb.firebaseapp.com",
-  projectId: "sesoemconcursosweb",
+  apiKey: import.meta.env.VITE_REACT_APP_API_KEY,
+  authDomain: import.meta.env.VITE_REACT_APP_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_REACT_APP_PROJECT_ID,
 };
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
   const db = getFirestore(firebaseApp);
   const questionsCollectionRef = collection(db, "questions");
 
-  const questoesPorPagina =  10;
+  const questoesPorPagina = 10;
 
   const [questions, setQuestions] = useState([]);
   const [paginaAtual, setPaginaAtual] = useState(1);
@@ -31,7 +32,6 @@ function App() {
   const [filtroArea, setFiltroArea] = useState(null);
   const indiceInicial = (paginaAtual - 1) * questoesPorPagina;
 
-
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -42,7 +42,9 @@ function App() {
   useEffect(() => {
     const getQuestions = async () => {
       const data = await getDocs(questionsCollectionRef);
-      setQuestions(shuffleArray(data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))));
+      setQuestions(
+        shuffleArray(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      );
     };
     getQuestions();
   }, []);
@@ -52,9 +54,9 @@ function App() {
       return (
         (!filtroBanca || question.banca === filtroBanca) &&
         (!filtroDisciplina || question.disciplina === filtroDisciplina) &&
-        (!filtroAno || question.ano === filtroAno) && 
+        (!filtroAno || question.ano === filtroAno) &&
         (!filtroAssunto || question.assunto === filtroAssunto) &&
-        (!filtroModalidade || question.modalidade === filtroModalidade) 
+        (!filtroModalidade || question.modalidade === filtroModalidade)
       );
     });
 
@@ -69,7 +71,6 @@ function App() {
     filtroArea,
     questions,
   ]);
-
 
   const questoesPagina = questoesFiltradas.slice(
     indiceInicial,
@@ -89,7 +90,6 @@ function App() {
       setPaginaAtual(paginaAtual + 1);
     }
   };
-
 
   const [alternativasSelecionadas, setAlternativasSelecionadas] = useState({});
 
@@ -134,8 +134,7 @@ function App() {
         <h2 className="nome-home">SESO em Concursos</h2>
       </div>
 
-      <FiltroMulti onFilterChange={setQuestoesFiltradas}  />
-      
+      <FiltroMulti onFilterChange={setQuestoesFiltradas} />
 
       {questoesPagina.map((question, index) => (
         <div key={question.id} className="question-container">
@@ -241,6 +240,6 @@ function App() {
       </div>
     </div>
   );
-            }
+}
 
 export default App;
