@@ -15,8 +15,47 @@
         padding-right: 0.500em; /* Ajuste o valor conforme necessário */
     }
 }
-  
-  
+
+.login {
+  text-align: center;
+}
+
+.login-button {
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login-button:hover {
+  background-color: #d32f2f;
+}
+
+.logout-button-container {
+  margin-left: auto; 
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 7px;
+}
+
+.logout-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.logout-button:hover {
+  background-color: #357ae8;
+}
+
+
   /* Filter section */
   .QuestaoFiltro {
     margin-bottom: 20px;
@@ -30,6 +69,7 @@
    
   }
   
+
   .alternativa {
     cursor: pointer;
     padding-left: 20px; /* Adiciona espaço para a letra */

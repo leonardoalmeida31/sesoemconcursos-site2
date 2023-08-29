@@ -3,10 +3,9 @@ import FiltroMulti from "./FiltroMulti";
 import { CaretRight, ChatCenteredText } from "@phosphor-icons/react";
 import "./App.css";
 
-
-
 import { initializeApp } from "firebase/app";
 import { getDocs, getFirestore, collection } from "firebase/firestore";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_REACT_APP_API_KEY,
@@ -17,10 +16,11 @@ const firebaseConfig = {
 function App() {
   const firebaseApp = initializeApp(firebaseConfig);
   const db = getFirestore(firebaseApp);
+  const auth = getAuth(firebaseApp);
   const questionsCollectionRef = collection(db, "questions");
+  const [user, setUser] = useState(null);
 
   const questoesPorPagina = 10;
-
   const [questions, setQuestions] = useState([]);
   const [paginaAtual, setPaginaAtual] = useState(1);
   const [questoesFiltradas, setQuestoesFiltradas] = useState([]);
@@ -31,6 +31,35 @@ function App() {
   const [filtroModalidade, setFiltroModalidade] = useState(null);
   const [filtroArea, setFiltroArea] = useState(null);
   const indiceInicial = (paginaAtual - 1) * questoesPorPagina;
+
+  const signInWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      await signInWithPopup(auth, provider);
+    } catch (error) {
+      console.error("Erro ao fazer login com o Google:", error);
+    }
+  };
+
+  const signOut = async () => {
+    try {
+      await auth.signOut();
+      setUser(null); 
+    } catch (error) {
+      console.error("Erro ao fazer logout:", error);
+    }
+  };
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user); 
+      } else {
+        setUser(null); 
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -133,111 +162,135 @@ function App() {
       <div className="campo-nome-home">
         <h2 className="nome-home">SESO em Concursos</h2>
       </div>
+      <div className="logout-button-container">
+        {user && (
+          <button onClick={signOut} className="logout-button">
+            Fazer logout
+          </button>
+        )}
+      </div>
 
-      <FiltroMulti onFilterChange={setQuestoesFiltradas} />
+      {user ? (
+        <div>
+          <FiltroMulti onFilterChange={setQuestoesFiltradas} />
 
-      {questoesPagina.map((question, index) => (
-        <div key={question.id} className="question-container">
-          <div className="cabecalho-disciplina">
-            <p>
-              ID: {question.ids}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              {question.disciplina}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              {question.assunto}
-            </p>
-          </div>
-          <div className="cabecalho-orgao">
-            <p>
-              Banca: {question.banca}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ano:{" "}
-              {question.ano}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cargo:{" "}
-              {question.cargo}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </p>
-            <p>Órgão: {questions.concurso}</p>
-          </div>
-          <p className="enunciado">{question.enunciado}</p>
-          <ul>
-            {question.alternativas.map((alternativa, index) => {
-              const letraAlternativa = alternativa.match(/^\(([A-E])\)/)[1];
+          {questoesPagina.map((question) => (
+            <div key={question.id} className="question-container">
+              <div className="cabecalho-disciplina">
+                <p>
+                  ID: {question.ids}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  {question.disciplina}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  {question.assunto}
+                </p>
+              </div>
+              <div className="cabecalho-orgao">
+                <p>
+                  Banca: {question.banca}
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ano: {question.ano}
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cargo: {question.cargo}
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </p>
+                <p>Órgão: {question.concurso}</p>
+              </div>
+              <p className="enunciado">{question.enunciado}</p>
+              <ul>
+                {question.alternativas.map((alternativa, index) => {
+                  const letraAlternativa = alternativa.match(/^\(([A-E])\)/)[1];
 
-              return (
-                <li
-                  className={`alternativa ${
-                    alternativasSelecionadas[question.id] === index
-                      ? "selecionada"
-                      : ""
-                  }`}
-                  key={index}
-                  onClick={() => handleAlternativaClick(question.id, index)}
+                  return (
+                    <li
+                      className={`alternativa ${
+                        alternativasSelecionadas[question.id] === index
+                          ? "selecionada"
+                          : ""
+                      }`}
+                      key={index}
+                      onClick={() => handleAlternativaClick(question.id, index)}
+                    >
+                      <span
+                        className={`letra-alternativa-circle ${
+                          alternativasSelecionadas[question.id] === index
+                            ? "selecionada"
+                            : ""
+                        }`}
+                      >
+                        {letraAlternativa}
+                      </span>
+                      {alternativa.replace(/^\(([A-E])\)/, "")}
+                    </li>
+                  );
+                })}
+              </ul>
+              <div className="button-feedback-container">
+                <button
+                  className="button-responder"
+                  onClick={() => verificarResposta(question)}
                 >
-                  <span
-                    className={`letra-alternativa-circle ${
-                      alternativasSelecionadas[question.id] === index
-                        ? "selecionada"
-                        : ""
+                  Responder
+                </button>
+
+                {feedback[question.id] && (
+                  <p
+                    className={`feedback ${
+                      feedback[question.id] === "Você acertou!"
+                        ? "acerto"
+                        : "erro"
                     }`}
                   >
-                    {letraAlternativa}
-                  </span>
-                  {alternativa.replace(/^\(([A-E])\)/, "")}
-                </li>
-              );
-            })}
-          </ul>
-          <div className="button-feedback-container">
-            <button
-              className="button-responder"
-              onClick={() => verificarResposta(question)}
-            >
-              Responder
+                    {feedback[question.id] === "Você acertou!"
+                      ? "Você acertou!"
+                      : `Você errou! A alternativa correta é: ${question.resposta}`}
+                  </p>
+                )}
+              </div>
+
+              <div className="linha-horizontal-comentario"></div>
+
+              <div className="campo-comentario">
+                <button
+                  className="button-comentario"
+                  onClick={() => toggleComentario(question.id)}
+                >
+                  {" "}
+                  <ChatCenteredText size={14} /> Comentário do Professor
+                </button>
+
+                <p
+                  className={
+                    comentariosVisiveis[question.id]
+                      ? "comentario visivel"
+                      : "comentario"
+                  }
+                >
+                  {question.comentario}
+                </p>
+              </div>
+            </div>
+          ))}
+
+          <div className="pagination">
+            <button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
+              Página Anterior
             </button>
-
-            {feedback[question.id] && (
-              <p
-                className={`feedback ${
-                  feedback[question.id] === "Você acertou!" ? "acerto" : "erro"
-                }`}
-              >
-                {feedback[question.id] === "Você acertou!"
-                  ? "Você acertou!"
-                  : `Você errou! A alternativa correta é: ${question.resposta}`}
-              </p>
-            )}
-          </div>
-
-          <div className="linha-horizontal-comentario"></div>
-
-          <div className="campo-comentario">
+            <span>
+              Página {paginaAtual} de {totalPages}
+            </span>
             <button
-              className="button-comentario"
-              onClick={() => toggleComentario(question.id)}
+              onClick={handleNextPage}
+              disabled={paginaAtual === totalPages}
             >
-              {" "}
-              <ChatCenteredText size={14} /> Comentário do Professor
+              Próxima Página
             </button>
-
-            <p
-              className={
-                comentariosVisiveis[question.id]
-                  ? "comentario visivel"
-                  : "comentario"
-              }
-            >
-              {question.comentario}
-            </p>
           </div>
         </div>
-      ))}
-
-      <div className="pagination">
-        <button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
-          Página Anterior
+      ) : (
+        <div className="login">
+          <p>Faça login para acessar a pagina</p>
+        <button onClick={signInWithGoogle} className="login-button">
+          Fazer login com o Google
         </button>
-        <span>
-          Página {paginaAtual} de {totalPages}
-        </span>
-        <button onClick={handleNextPage} disabled={paginaAtual === totalPages}>
-          Próxima Página
-        </button>
-      </div>
+        </div>
+      )}
     </div>
   );
 }
