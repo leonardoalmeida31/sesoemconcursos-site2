@@ -80,6 +80,7 @@ function App() {
     }
   };
 
+  const [paymentInfo, setPaymentInfo] = useState(null); 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
@@ -89,6 +90,12 @@ function App() {
         const userDoc = await getDoc(userRef);
 
         if (userDoc.exists()) {
+          const userData = userDoc.data();
+          const userPaymentInfo = userData.paymentInfo;
+
+          // Atualize o estado paymentInfo
+          setPaymentInfo(userPaymentInfo);
+
           const paymentInfo = userDoc.data().paymentInfo;
           let maxQuestionsToDisplay = 0;
           let accessDurationDays = 0;
@@ -143,8 +150,11 @@ function App() {
       }
     });
 
+    
     return () => unsubscribe();
-  }, [auth, maxQuestionsToDisplay]); // Adicione maxQuestionsToDisplay como uma dependência
+  }, [auth, maxQuestionsToDisplay]); 
+
+
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -158,7 +168,7 @@ function App() {
     const getQuestions = async () => {
       const data = await getDocs(questionsCollectionRef);
       setQuestions(
-        shuffleArray(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+        data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       );
     };
     getQuestions();
@@ -201,7 +211,7 @@ function App() {
   };
 
   const handleNextPage = () => {
-    if (paginaAtual < totalPages) {
+      if (paginaAtual < totalPages)  {
       setPaginaAtual(paginaAtual + 1);
     }
   };
@@ -536,11 +546,7 @@ function App() {
             </span>
             <button
               onClick={handleNextPage}
-              disabled={
-                paginaAtual === totalPages ||
-                questionsToShow.length < maxQuestionsToDisplay ||
-                maxQuestionsToDisplay === 15
-              }
+              disabled={paginaAtual >= totalPages || paymentInfo === 0 || paymentInfo === null}
             >
               Próxima Página
             </button>
