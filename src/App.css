@@ -312,6 +312,56 @@
     
     position: relative; /* Adicione essa propriedade para controlar a posição da linha */
   }
+
+ /* Estilos para o modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+/* Estilos para os botões */
+.open-button {
+  background-color: #008CBA;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+/* Estilos para o container dos elementos Stripe */
+.stripe-container {
+  display: flex;
+  flex-direction: column; /* Alinhar verticalmente os elementos */
+  align-items: center; /* Centralizar os elementos horizontalmente */
+}
+
+/* Estilos para os botões de pagamento dentro do container */
+.button-pagamento {
+  background-color: #008CBA;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+
   @media (max-width: 768px) {
     .cabecalho-orgao {
         font-size: 0.80em;

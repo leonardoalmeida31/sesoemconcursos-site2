@@ -4,8 +4,17 @@ import { CaretRight, ChatCenteredText } from "@phosphor-icons/react";
 import "./App.css";
 
 import { initializeApp } from "firebase/app";
-import { getDocs, getFirestore, collection } from "firebase/firestore";
+import {
+  getDocs,
+  getFirestore,
+  collection,
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import StripeCheckout from "react-stripe-checkout";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_REACT_APP_API_KEY,
@@ -20,7 +29,7 @@ function App() {
   const questionsCollectionRef = collection(db, "questions");
   const [user, setUser] = useState(null);
 
-  const questoesPorPagina = 10;
+  const questoesPorPagina = 15;
   const [questions, setQuestions] = useState([]);
   const [paginaAtual, setPaginaAtual] = useState(1);
   const [questoesFiltradas, setQuestoesFiltradas] = useState([]);
@@ -32,10 +41,30 @@ function App() {
   const [filtroArea, setFiltroArea] = useState(null);
   const indiceInicial = (paginaAtual - 1) * questoesPorPagina;
 
+  const [questionsToShow, setQuestionsToShow] = useState([]);
+  const [maxQuestionsToDisplay, setMaxQuestionsToDisplay] = useState(0);
+
   const signInWithGoogle = async () => {
-    const provider = new GoogleAuthProvider();
     try {
-      await signInWithPopup(auth, provider);
+      const auth = getAuth();
+      const provider = new GoogleAuthProvider();
+
+      const userCredential = await signInWithPopup(auth, provider);
+      const user = userCredential.user;
+
+      const uid = user.uid;
+      const email = user.email;
+      const userRef = doc(db, "users", uid);
+
+      // Verifica se o documento do usuário já existe
+      const userDoc = await getDoc(userRef);
+
+      if (!userDoc.exists()) {
+        // Se o documento não existir, crie-o com um valor inicial para paymentInfo
+        await setDoc(userRef, { email, paymentInfo: null });
+      }
+
+      // Resto do código...
     } catch (error) {
       console.error("Erro ao fazer login com o Google:", error);
     }
@@ -43,23 +72,79 @@ function App() {
 
   const signOut = async () => {
     try {
+      const auth = getAuth();
       await auth.signOut();
-      setUser(null); 
+      setUser(null);
     } catch (error) {
       console.error("Erro ao fazer logout:", error);
     }
   };
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
-        setUser(user); 
+        setUser(user);
+
+        const userRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userRef);
+
+        if (userDoc.exists()) {
+          const paymentInfo = userDoc.data().paymentInfo;
+          let maxQuestionsToDisplay = 0;
+          let accessDurationDays = 0;
+
+          // Defina maxQuestionsToDisplay com base no número máximo de questões disponíveis
+          if (paymentInfo === 0 || paymentInfo === null) {
+            maxQuestionsToDisplay = Math.min(15, questoesPagina.length);
+            accessDurationDays = 1;
+          } else if (paymentInfo === 1) {
+            maxQuestionsToDisplay = questoesPagina.length;
+            accessDurationDays = 30;
+          } else if (paymentInfo === 6500) {
+            maxQuestionsToDisplay = questoesPagina.length;
+            accessDurationDays = 180;
+          } else if (paymentInfo === 12000) {
+            maxQuestionsToDisplay = questoesPagina.length;
+            accessDurationDays = 365;
+          }
+
+          const totalPages = Math.ceil(
+            questoesPagina.length / maxQuestionsToDisplay
+          );
+
+          setMaxQuestionsToDisplay(maxQuestionsToDisplay);
+
+          const questionsToDisplay = questoesPagina.slice(
+            0,
+            maxQuestionsToDisplay
+          );
+          setQuestionsToShow(questionsToDisplay);
+
+          setPaginaAtual(1);
+
+          const currentDate = new Date();
+          const expirationDate = new Date(currentDate);
+
+          expirationDate.setDate(currentDate.getDate() + accessDurationDays);
+
+          await setDoc(userRef, { expirationDate }, { merge: true });
+
+          console.log(
+            `Acesso concedido por ${accessDurationDays} dias a partir de ${currentDate.toISOString()}`
+          );
+        } else {
+          // Se o documento do usuário não existir, crie-o com paymentInfo ausente
+          await setDoc(userRef, { expirationDate: null, paymentInfo: null });
+
+          console.log("Documento do usuário criado.");
+        }
       } else {
-        setUser(null); 
+        setUser(null);
       }
     });
+
     return () => unsubscribe();
-  }, []);
+  }, [auth, maxQuestionsToDisplay]); // Adicione maxQuestionsToDisplay como uma dependência
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -68,6 +153,7 @@ function App() {
     }
     return array;
   }
+
   useEffect(() => {
     const getQuestions = async () => {
       const data = await getDocs(questionsCollectionRef);
@@ -130,8 +216,10 @@ function App() {
   };
 
   const [feedback, setFeedback] = useState({});
+
   const verificarResposta = (question) => {
-    const alternativaSelecionada = alternativasSelecionadas[question.id];
+    const questionId = question.id;
+    const alternativaSelecionada = alternativasSelecionadas[questionId];
     const respostaCorreta = question.resposta.charCodeAt(0) - 65;
 
     if (alternativaSelecionada === respostaCorreta) {
@@ -157,6 +245,94 @@ function App() {
     }));
   };
 
+
+  const onToken = async (token, amount) => {
+    try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+
+      if (!user) {
+        console.error("Usuário não autenticado.");
+        return;
+      }
+
+      // Crie um objeto com informações de pagamento e outros detalhes relevantes
+      const paymentInfo = {
+        token: token.id,
+        amount: amount,
+        currency: "BRL",
+        // Adicione mais campos conforme necessário
+      };
+
+      const userRef = doc(db, "users", user.uid);
+
+      // Atualize as informações de pagamento no documento do usuário
+      await updateDoc(userRef, { paymentInfo });
+
+      // Chame a função para atualizar as informações de acesso (substitua 'amount' pelo valor correto)
+      await atualizarInformacoesDeAcesso(amount);
+
+      // Recarregue a página após o pagamento para obter as novas questões
+      window.location.reload();
+
+      alert("Pagamento realizado com sucesso.");
+    } catch (error) {
+      console.error("Erro ao adicionar informações de pagamento:", error);
+    }
+  };
+
+  const atualizarInformacoesDeAcesso = async (paymentInfo) => {
+    try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+
+      if (!user) {
+        console.error("Usuário não autenticado.");
+        return;
+      }
+
+      const userRef = doc(db, "users", user.uid);
+
+      // Defina a data de expiração com base no tipo de assinatura
+      const currentDate = new Date();
+      let expirationDate = new Date(currentDate);
+      let accessDurationDays = 0;
+
+      if (paymentInfo === 1) {
+        accessDurationDays = 30;
+      } else if (paymentInfo === 6500) {
+        accessDurationDays = 180;
+      } else if (paymentInfo === 12000) {
+        accessDurationDays = 365;
+      }
+
+      expirationDate.setDate(currentDate.getDate() + accessDurationDays);
+
+      // Atualize o documento do usuário com as informações de pagamento e expiração
+      await updateDoc(userRef, { paymentInfo, expirationDate });
+
+      console.log(
+        `Acesso concedido por ${accessDurationDays} dias a partir de ${currentDate.toISOString()}`
+      );
+    } catch (error) {
+      console.error("Erro ao atualizar informações de acesso:", error);
+    }
+  };
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const modalStyle = {
+    display: modalOpen ? "flex" : "none",
+  };
+
   return (
     <div className="App">
       <div className="campo-nome-home">
@@ -168,12 +344,95 @@ function App() {
             Fazer logout
           </button>
         )}
-      </div>
+        <div>
+          <button className="open-button" onClick={openModal}>
+            Realizar Assinatura
+          </button>
 
+          {modalOpen && (
+            <div className="modal" style={modalStyle}>
+              <div className="modal-content">
+                <h2>Opções de Assinatura</h2>
+                <p>Todas as assisnaturas são efetuados com cartão</p>
+
+                <div>
+                  <p>
+                    Assinatura Mensal: 17,99 <br></br>
+                    <span>Acesso por 30 dias!</span>
+                  </p>
+
+                  <StripeCheckout
+                    token={(token) => onToken(token, 1)} // Função chamada após a conclusão bem-sucedida do pagamento
+                    stripeKey={import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY} // Substitua pelo sua chave pública do Stripe
+                    name="Seso em Concursos"
+                    description="Questões para estudos"
+                    amount={1} // Substitua pelo valor correto em centavos
+                    currency="BRL" // Substitua pela moeda desejada (BRL para Real Brasileiro)
+                    label="Pagar com Cartão" // Texto exibido no botão
+                    billingAddress={true} // Habilitar informações de endereço
+                    shippingAddress={true} // Habilitar informações de envio
+                    zipCode={true} // Habilitar campo de CEP
+                  >
+                    <button className="button-pagamento">
+                      Realizar Assinatura com cartão
+                    </button>
+                  </StripeCheckout>
+                </div>
+                <div className="open">
+                  <p>
+                    Assinatura SEMESTREAL: 65,00 <br></br>
+                    <span>Acesso por 180 dias!</span>
+                  </p>
+                  <StripeCheckout
+                    token={(token) => onToken(token, 6500)} // Função chamada após a conclusão bem-sucedida do pagamento
+                    stripeKey={import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY} // Substitua pelo sua chave pública do Stripe
+                    name="Seso em Concursos"
+                    description="Questões para estudos"
+                    amount={6500} // Substitua pelo valor correto em centavos
+                    currency="BRL" // Substitua pela moeda desejada (BRL para Real Brasileiro)
+                    label="Pagar com Cartão" // Texto exibido no botão
+                    billingAddress={true} // Habilitar informações de endereço
+                    shippingAddress={true} // Habilitar informações de envio
+                    zipCode={true} // Habilitar campo de CEP
+                  >
+                    <button className="button-pagamento">
+                      Realizar Assinatura com cartão
+                    </button>
+                  </StripeCheckout>
+                </div>
+                <div className="open">
+                  <p>
+                    Assinatura Anual: 120,00 <br></br>
+                    <span>Acesso por 365 dias!</span>
+                  </p>
+                  <StripeCheckout
+                    token={(token) => onToken(token, 12000)} // Função chamada após a conclusão bem-sucedida do pagamento
+                    stripeKey={import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY} // Substitua pelo sua chave pública do Stripe
+                    name="Seso em Concursos"
+                    description="Questões para estudos"
+                    amount={12000} // Substitua pelo valor correto em centavos
+                    currency="BRL" // Substitua pela moeda desejada (BRL para Real Brasileiro)
+                    label="Pagar com Cartão" // Texto exibido no botão
+                    billingAddress={true} // Habilitar informações de endereço
+                    shippingAddress={true} // Habilitar informações de envio
+                    zipCode={true} // Habilitar campo de CEP
+                  >
+                    <button className="button-pagamento">
+                      Realizar Assinatura com cartão
+                    </button>
+                  </StripeCheckout>
+                </div>
+                <button className="open-button" onClick={closeModal}>
+                  Fechar
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
       {user ? (
         <div>
           <FiltroMulti onFilterChange={setQuestoesFiltradas} />
-
           {questoesPagina.map((question) => (
             <div key={question.id} className="question-container">
               <div className="cabecalho-disciplina">
@@ -277,7 +536,11 @@ function App() {
             </span>
             <button
               onClick={handleNextPage}
-              disabled={paginaAtual === totalPages}
+              disabled={
+                paginaAtual === totalPages ||
+                questionsToShow.length < maxQuestionsToDisplay ||
+                maxQuestionsToDisplay === 15
+              }
             >
               Próxima Página
             </button>
@@ -286,9 +549,9 @@ function App() {
       ) : (
         <div className="login">
           <p>Faça login para acessar a pagina</p>
-        <button onClick={signInWithGoogle} className="login-button">
-          Fazer login com o Google
-        </button>
+          <button onClick={signInWithGoogle} className="login-button">
+            Fazer login com o Google
+          </button>
         </div>
       )}
     </div>
@@ -296,3 +559,4 @@ function App() {
 }
 
 export default App;
+
