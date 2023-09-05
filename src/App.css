@@ -162,11 +162,9 @@
     background-color: #1c525309;
     padding: 10px;
     font-size: 14px;
-    
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
     font-weight: 550;
-    
   }
 
 
@@ -187,10 +185,58 @@
     margin-bottom: 50px;
     background-color: #1c525313;
     display: flex;
+    width: 50%;
     flex-direction: column; /* Ajusta o layout para coluna */
     align-items: flex-start; /* Alinha o conteúdo à esquerda */
-    border-bottom-right-radius: 7px;
+   
     border-bottom-left-radius: 7px;
+    
+  }
+  .campo-pai {
+    display: flex; /* Define o container pai como um container flexível */
+    justify-content: space-between; /* Alinha os elementos com espaçamento entre eles */
+  }
+  
+  .campo-estatistica {
+    margin-top: 0px;
+    margin-bottom: 50px;
+    background-color: #1c525313;
+    display: flex;
+    width: 50%;
+    flex-direction: column; /* Ajusta o layout para coluna */
+    align-items: flex-start; /* Alinha o conteúdo à esquerda */
+    border-bottom-right-radius: 7px; 
+    
+  }
+  .button-estatisticas {
+    color: #1c5253;
+    border: none;
+    margin: 0px;
+    background-color: #1c525309;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    font-weight: 550;
+    margin-left: auto; /* Alinha o botão à direita */
+  }
+  .button-estatisticas:hover {
+    background-color: #1c5253;
+    color:#ffffff;
+  }
+  
+  .desempenho-container {
+  
+    margin-bottom: 1em;
+    
+    padding: 1em;
+   
+    border-radius: 8px;
+    font-size: 0.865em;
+   
+    
+    align-items: center;
+    justify-content: center;
     
   }
      
@@ -199,6 +245,7 @@
     margin: 30px;
     background-color: #ffffff;
     padding: 20px;
+   
     border-radius: 8px;
     font-size: 14px;
     line-height: 1.4;

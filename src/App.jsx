@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import FiltroMulti from "./FiltroMulti";
 import { CaretRight, ChatCenteredText } from "@phosphor-icons/react";
 import "./App.css";
+import Chart from "react-google-charts";
+import DesempenhoNaDisciplina from "./DesempenhoNaDisciplina.jsx";
+
 
 import { initializeApp } from "firebase/app";
 import {
@@ -227,24 +230,77 @@ function App() {
 
   const [feedback, setFeedback] = useState({});
 
-  const verificarResposta = (question) => {
+  const verificarResposta = async (question) => {
     const questionId = question.id;
     const alternativaSelecionada = alternativasSelecionadas[questionId];
     const respostaCorreta = question.resposta.charCodeAt(0) - 65;
+  
+  
+    // Verificar se a disciplina já está no estado de desempenho
+    const disciplina = question.disciplina;
+    const desempenhoDisciplina = desempenho[disciplina] || { acertos: 0, erros: 0 };
 
+  
     if (alternativaSelecionada === respostaCorreta) {
+      // Atualizar o estado de desempenho para acerto
       setFeedback((prevFeedback) => ({
         ...prevFeedback,
         [question.id]: "Você acertou!",
       }));
+  
+      setDesempenho((prevDesempenho) => ({
+        ...prevDesempenho,
+        [disciplina]: {
+          acertos: desempenhoDisciplina.acertos + 1,
+          erros: desempenhoDisciplina.erros,
+        },
+      }));
     } else {
+      // Atualizar o estado de desempenho para erro
       setFeedback((prevFeedback) => ({
         ...prevFeedback,
         [question.id]: "Você errou!",
       }));
+  
+      setDesempenho((prevDesempenho) => ({
+        ...prevDesempenho,
+        [disciplina]: {
+          acertos: desempenhoDisciplina.acertos,
+          erros: desempenhoDisciplina.erros + 1,
+        },
+      }));
+    }
+  
+    // Agora, vamos salvar o desempenho atualizado no Firebase Firestore
+    try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+  
+      if (!user) {
+        console.error("Usuário não autenticado.");
+        return;
+      }
+  
+      const userId = user.uid;
+      const userRef = doc(db, "users", userId);
+  
+      // Crie um objeto que represente o novo desempenho do usuário
+      const novoDesempenho = {
+        ...desempenho,
+      };
+  
+      // Atualize o documento do usuário com o novo desempenho
+      await updateDoc(userRef, {
+        desempenho: novoDesempenho,
+      });
+  
+      console.log(`Desempenho atualizado para ${disciplina}`);
+    } catch (error) {
+      console.error("Erro ao atualizar desempenho:", error);
     }
   };
 
+  
   const [comentariosVisiveis, setComentariosVisiveis] = useState({});
 
   const toggleComentario = (questionId) => {
@@ -343,6 +399,47 @@ function App() {
     display: modalOpen ? "flex" : "none",
   };
 
+
+
+  const [desempenho, setDesempenho] = useState({}); // Inicialize o estado do desempenho com um objeto vazio
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        setUser(user);
+  
+        const userRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userRef);
+  
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          
+          // Recupere o desempenho do usuário do documento e atualize o estado
+          const userDesempenho = userData.desempenho || {};
+          setDesempenho(userDesempenho);
+  
+          // Resto do código...
+        } else {
+          // Se o documento do usuário não existir, crie-o com um desempenho vazio
+          await setDoc(userRef, { expirationDate: null, paymentInfo: null, desempenho: {} });
+  
+          console.log("Documento do usuário criado.");
+        }
+      } else {
+        setUser(null);
+      }
+    });
+  
+    return () => unsubscribe();
+  }, [auth]);
+
+  const [mostrarEstatisticas, setMostrarEstatisticas] = useState(false);
+  const toggleEstatisticas = () => {
+    setMostrarEstatisticas(!mostrarEstatisticas);
+  };
+  
+
+  
   return (
     <div className="App">
       <div className="campo-nome-home">
@@ -514,7 +611,8 @@ function App() {
               </div>
 
               <div className="linha-horizontal-comentario"></div>
-
+              
+              <div className="campo-pai">
               <div className="campo-comentario">
                 <button
                   className="button-comentario"
@@ -533,9 +631,33 @@ function App() {
                 >
                   {question.comentario}
                 </p>
+
+                
               </div>
-            </div>
+              
+              <div className="campo-estatistica">
+                        <button className="button-estatisticas" onClick={toggleEstatisticas}>Seu Desempenho</button>
+
+          {mostrarEstatisticas && (
+          <div className="desempenho-container">
+         
+          {Object.keys(desempenho).map((disciplina) => (
+          <DesempenhoNaDisciplina
+          key={disciplina}
+          disciplina={disciplina}
+          acertos={desempenho[disciplina].acertos}
+          erros={desempenho[disciplina].erros}
+          />
           ))}
+          </div>
+            )}
+            </div>
+            </div>
+            </div>
+
+          ))}
+          
+
 
           <div className="pagination">
             <button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
