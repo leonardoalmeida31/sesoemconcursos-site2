@@ -16,7 +16,7 @@ const DesempenhoNaDisciplina = ({ disciplina, acertos, erros }) => {
           ["Erros", erros],
         ]}
         options={{
-          title: "Desempenho por Disciplina",
+          title: "Seu Desempenho na Disciplina:",
           is3D: true,
           colors: ['#1c5253', '#B22222'],
         }}

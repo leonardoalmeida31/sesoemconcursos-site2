@@ -5,16 +5,21 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 3em;
+    padding-right: 3em;
    
   }
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     .App {
-        padding-left: 0.500em; /* Ajuste o valor conforme necessário */
-        padding-right: 0.500em; /* Ajuste o valor conforme necessário */
+      padding-left: 2em;
+      padding-right: 2em; /* Ajuste o valor conforme necessÃ¡rio */
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      
+      
     }
-}
+  }
 
 .login {
   text-align: center;
@@ -66,7 +71,8 @@
     font-size: 0.875em; /* 14 px de font */
     font-weight: 400;
     margin-top: 2em;
-   
+    white-space: pre-line; /* Adiciona quebras de linha */
+    width: 90%;
   }
   
 
@@ -182,19 +188,35 @@
 
   .campo-comentario {
     margin-top: 0px;
-    margin-bottom: 50px;
+    
     background-color: #1c525313;
     display: flex;
-    width: 50%;
+    width: 100%;
     flex-direction: column; /* Ajusta o layout para coluna */
     align-items: flex-start; /* Alinha o conteúdo à esquerda */
    
-    border-bottom-left-radius: 7px;
+   
     
   }
+  @media (max-width: 767px) {
+    .campo-comentario {
+    
+  
+      background-color: #1c525313;
+      display: flex;
+      flex-direction: column;
+      white-space: pre-line; /* Adiciona quebras de linha */
+      width: 100%;
+  
+      border-bottom-left-radius: 0; /* Remova o raio da borda inferior para um visual mais limpo em dispositivos móveis */
+    }
+  }
+  
   .campo-pai {
-    display: flex; /* Define o container pai como um container flexível */
-    justify-content: space-between; /* Alinha os elementos com espaçamento entre eles */
+    flex-direction: column; /* Ajusta o layout para coluna */
+    justify-content: flex-start; /* Alinha os elementos com espaçamento entre eles */
+    width: 100%;
+    white-space: pre-line; /* Adiciona quebras de linha */
   }
   
   .campo-estatistica {
@@ -202,7 +224,7 @@
     margin-bottom: 50px;
     background-color: #1c525313;
     display: flex;
-    width: 50%;
+    width: 100%;
     flex-direction: column; /* Ajusta o layout para coluna */
     align-items: flex-start; /* Alinha o conteúdo à esquerda */
     border-bottom-right-radius: 7px; 
@@ -219,6 +241,7 @@
     transition: background-color 0.3s ease-in-out;
     font-weight: 550;
     margin-left: auto; /* Alinha o botão à direita */
+    padding-left: 1em;
   }
   .button-estatisticas:hover {
     background-color: #1c5253;
@@ -242,21 +265,23 @@
      
   .comentario {
     display: none;
-    margin: 30px;
+    padding: 2em;
+    margin: 1em;
     background-color: #ffffff;
-    padding: 20px;
-   
-    border-radius: 8px;
-    font-size: 14px;
-    line-height: 1.4;
+    width: 50%;
     
-    align-items: center;
-    justify-content: center;
+    border-radius: 8px;
+    font-size: 0.865em;
+    line-height: 1.4;
+    white-space: pre-line; /* Adiciona quebras de linha */
+    align-self: flex-start;
+    
     
   }
   
   .comentario.visivel {
     display: block;
+    white-space: pre-line; /* Adiciona quebras de linha */
   }
   
   .comentario::before {
@@ -267,6 +292,7 @@
     transform: translateX(-50%);
     border-width: 8px;
     border-style: solid;
+    white-space: pre-line; /* Adiciona quebras de linha */
    
   }
   
@@ -274,10 +300,13 @@
     background-color: white;
     padding: 8px;
     border-radius: 5px;
+   
     margin: 0;
+    white-space: pre-line; /* Adiciona quebras de linha */
   }
   .botao-comentario.ativo {
   color: #45a049; /* Tonalidade mais escura do verde */
+  white-space: pre-line; /* Adiciona quebras de linha */
 }
 
 
@@ -336,7 +365,7 @@
     font-size: 0.75em;
     margin-bottom: 2px;
     margin-top: 20px;
-    
+    width: 100%;
     background-color: #1c5253;
     font-weight: 400;
     border-radius: 5px;
@@ -349,16 +378,17 @@
     color: white; 
     align-items: center;
     justify-content: center;
-    
+    width: 100%;
   }
   .cabecalho-orgao {
     display: flex;
     align-items: flex-start;
     font-size: 0.80em; /*12px font */
     font-weight: 500;
-    
+    width: 100%;
     position: relative; /* Adicione essa propriedade para controlar a posição da linha */
   }
+ 
 
  /* Estilos para o modal */
 .modal {
@@ -409,7 +439,7 @@
 }
 
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     .cabecalho-orgao {
         font-size: 0.80em;
         display: flex;
@@ -419,15 +449,15 @@
        
     }
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .cabecalho-orgao p {
-      font-size: 0.85em;
+      font-size: 0.850em;
       display: flex;
       flex-direction: row; /* Disposição horizontal */
       flex-wrap: wrap; /* Quebra de linha */
       align-items: start;
       margin-bottom: 0em; /* Ajuste o valor conforme necessário */
-      line-height: 1; /* Ajuste o valor conforme necessário */
+      line-height: 1.2; /* Ajuste o valor conforme necessário */
   }
 }
 
@@ -464,7 +494,7 @@
     background-color: #1c525331; /* Cor da linha cinza */
   }
   
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     .cabecalho-orgao::after {
       content: ''; /* Cria o elemento da linha */
       position: absolute;

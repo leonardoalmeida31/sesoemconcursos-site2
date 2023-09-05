@@ -544,19 +544,19 @@ function App() {
             <div key={question.id} className="question-container">
               <div className="cabecalho-disciplina">
                 <p>
-                  ID: {question.ids}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  {question.disciplina}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  ID: {question.ids}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  {question.disciplina}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   {question.assunto}
                 </p>
               </div>
               <div className="cabecalho-orgao">
                 <p>
                   Banca: {question.banca}
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ano: {question.ano}
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cargo: {question.cargo}
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ano: {question.ano}
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cargo: {question.cargo}
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Órgão: {question.concurso}
                 </p>
-                <p>Órgão: {question.concurso}</p>
+                
               </div>
               <p className="enunciado">{question.enunciado}</p>
               <ul>
@@ -614,14 +614,20 @@ function App() {
               
               <div className="campo-pai">
               <div className="campo-comentario">
-                <button
-                  className="button-comentario"
-                  onClick={() => toggleComentario(question.id)}
-                >
-                  {" "}
-                  <ChatCenteredText size={14} /> Comentário do Professor
-                </button>
+              
+              <div >
+           
+            <button
+              className="button-comentario"
+              onClick={() => toggleComentario(question.id)}
+            >
+              <ChatCenteredText size={14} /> Comentário do Professor
+            </button>
 
+            <button className="button-estatisticas" onClick={toggleEstatisticas}>
+              Seu Desempenho
+            </button>
+          </div>  
                 <p
                   className={
                     comentariosVisiveis[question.id]
@@ -636,7 +642,7 @@ function App() {
               </div>
               
               <div className="campo-estatistica">
-                        <button className="button-estatisticas" onClick={toggleEstatisticas}>Seu Desempenho</button>
+                        
 
           {mostrarEstatisticas && (
           <div className="desempenho-container">
