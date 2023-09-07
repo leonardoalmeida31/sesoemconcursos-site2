@@ -579,33 +579,7 @@ function App() {
       </div>
       {user ? (
         <div>
-<<<<<<< HEAD
          
-=======
-          <FiltroMulti onFilterChange={setQuestoesFiltradas} />
-          {questoesPagina.map((question) => (
-            <div key={question.id} className="question-container">
-              <div className="cabecalho-disciplina">
-                <p>
-                  ID: {question.ids}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  {question.disciplina}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  {question.assunto}
-                </p>
-              </div>
-              <div className="cabecalho-orgao">
-                <p>
-                  Banca: {question.banca}
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ano: {question.ano}
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cargo: {question.cargo}
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Órgão: {question.concurso}
-                </p>
-                
-              </div>
-              <p className="enunciado">{question.enunciado}</p>
-              <ul>
-                {question.alternativas.map((alternativa, index) => {
-                  const letraAlternativa = alternativa.match(/^\(([A-E])\)/)[1];
->>>>>>> 0b2acd2e39511386ba5935d64a20d523933222a6
 
           <FiltroMulti onFilterChange={setQuestoesFiltradas} db={db} />
 
@@ -730,62 +704,6 @@ function App() {
               </div>
             ))}
 
-<<<<<<< HEAD
-=======
-              <div className="linha-horizontal-comentario"></div>
-              
-              <div className="campo-pai">
-              <div className="campo-comentario">
-              
-              <div >
-           
-            <button
-              className="button-comentario"
-              onClick={() => toggleComentario(question.id)}
-            >
-              <ChatCenteredText size={14} /> Comentário do Professor
-            </button>
-
-            <button className="button-estatisticas" onClick={toggleEstatisticas}>
-              Seu Desempenho
-            </button>
-          </div>  
-                <p
-                  className={
-                    comentariosVisiveis[question.id]
-                      ? "comentario visivel"
-                      : "comentario"
-                  }
-                >
-                  {question.comentario}
-                </p>
-
-                
-              </div>
-              
-              <div className="campo-estatistica">
-                        
-
-          {mostrarEstatisticas && (
-          <div className="desempenho-container">
-         
-          {Object.keys(desempenho).map((disciplina) => (
-          <DesempenhoNaDisciplina
-          key={disciplina}
-          disciplina={disciplina}
-          acertos={desempenho[disciplina].acertos}
-          erros={desempenho[disciplina].erros}
-          />
-          ))}
-          </div>
-            )}
-            </div>
-            </div>
-            </div>
-
-          ))}
-          
->>>>>>> 0b2acd2e39511386ba5935d64a20d523933222a6
 
 
           <div className="pagination">
