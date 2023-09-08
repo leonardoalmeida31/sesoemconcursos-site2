@@ -135,18 +135,24 @@
     margin-left: 20px;
     margin-top: 30px;
   }
-  .feedback.acerto {
+  .resposta-correta {
     color: #1c5253; /* Cor verde para acerto */
     font-weight: 600;
     align-items: center;
     justify-content: space-between;
+    font-size: 14px;
+    margin-left: 20px;
+    margin-top: 30px;
   }
   
-  .feedback.erro {
-    color: #ff0800; /* Cor vermelha para erro */
-    font-weight: 500;
+  .resposta-incorreta {
+    color: #ff0000; /* Cor verde para acerto */
+    font-weight: 600;
     align-items: center;
     justify-content: space-between;
+    font-size: 14px;
+    margin-left: 20px;
+    margin-top: 30px;
   }
   .button-feedback-container {
     display: flex; /* Exibe os elementos em uma linha horizontal */

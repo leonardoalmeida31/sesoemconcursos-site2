@@ -3,7 +3,7 @@ import FiltroMulti from "./FiltroMulti";
 import { CaretRight, ChatCenteredText } from "@phosphor-icons/react";
 import "./App.css";
 import Chart from "react-google-charts";
-import DesempenhoNaDisciplina from "./DesempenhoNaDisciplina.jsx";
+import PieChart from "./PieChart";
 
 import { initializeApp } from "firebase/app";
 import {
@@ -50,7 +50,7 @@ function App() {
     new Date().toLocaleDateString()
   );
 
-  
+
   const signInWithGoogle = async () => {
     try {
       const auth = getAuth();
@@ -96,9 +96,17 @@ function App() {
         const userRef = doc(db, "users", user.uid);
         const userDoc = await getDoc(userRef);
 
+
+
         if (userDoc.exists()) {
           const userData = userDoc.data();
           const userPaymentInfo = userData.paymentInfo;
+
+          // Recupere as informações de desempenho do documento do usuário
+          const desempenhoSalvo = userData.desempenhoPorDisciplina;
+
+          // Atualize o estado desempenhoPorDisciplina com as informações recuperadas
+          setDesempenhoPorDisciplina(desempenhoSalvo);
 
           // Atualize o estado paymentInfo
           setPaymentInfo(userPaymentInfo);
@@ -151,6 +159,7 @@ function App() {
           await setDoc(userRef, { expirationDate: null, paymentInfo: null });
 
           console.log("Documento do usuário criado.");
+
         }
       } else {
         setUser(null);
@@ -221,16 +230,97 @@ function App() {
     }
   };
 
-  const [alternativasSelecionadas, setAlternativasSelecionadas] = useState({});
+  const [alternativaSelecionada, setAlternativaSelecionada] = useState({});
+
+
+
+
+
+  //  as respostas corretas ou incorretas são armazenadas aqui embaixo agora
+  const [resultados, setResultados] = useState({});
+
+
 
   const handleAlternativaClick = (questionId, alternativaIndex) => {
-    setAlternativasSelecionadas((prevSelecionadas) => ({
-      ...prevSelecionadas,
+    const newAlternativaSelecionada = {
       [questionId]: alternativaIndex,
-    }));
+    };
+    setAlternativaSelecionada(newAlternativaSelecionada);
   };
 
+
+  //criação de novo filtro de estatiscas por disciplina
+  const [respostaCorreta, setRespostaCorreta] = useState(null);
+  const [acertos, setAcertos] = useState(0);
+  const [erros, setErros] = useState(0);
+  const [desempenhoPorDisciplina, setDesempenhoPorDisciplina] = useState({});
+
+
   const handleRespostaClick = async (question) => {
+
+
+    // Verifique se a resposta do usuário está correta
+    const respostaUsuario = alternativaSelecionada[question.ids];
+    const respostaCorreta = question.resposta.charCodeAt(0) - 65;
+    const questaoId = question.ids;
+
+    const resultadoQuestao = respostaUsuario === respostaCorreta;
+
+    // Atualize o estado dos resultados com o resultado da questão
+    setResultados((prevResultados) => ({
+      ...prevResultados,
+      [questaoId]: resultadoQuestao,
+    }));
+
+    if (respostaUsuario === respostaCorreta) {
+      setRespostaCorreta(true); // A resposta do usuário está correta
+      setAcertos(acertos + 1); // Incrementa o número de acertos
+      setDesempenhoPorDisciplina((prevDesempenho) => {
+
+        const disciplina = question.disciplina;
+        return {
+          ...prevDesempenho,
+          [disciplina]: {
+            acertos: (prevDesempenho[disciplina]?.acertos || 0) + 1,
+            erros: prevDesempenho[disciplina]?.erros || 0,
+          },
+        };
+      });
+    } else {
+      setRespostaCorreta(false); // A resposta do usuário está incorreta
+      setErros(erros + 1); // Incrementa o número de erros
+      setDesempenhoPorDisciplina((prevDesempenho) => {
+        const disciplina = question.disciplina;
+        return {
+          ...prevDesempenho,
+          [disciplina]: {
+            acertos: prevDesempenho[disciplina]?.acertos || 0,
+            erros: (prevDesempenho[disciplina]?.erros || 0) + 1,
+          },
+        };
+      });
+    }
+    // Salvar as informações de desempenho no Firebase
+    if (user) {
+      const userRef = doc(db, "users", user.uid);
+
+      // Obtenha o documento do usuário
+      const userDoc = await getDoc(userRef);
+
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+
+        // Recupere as informações de desempenho do documento do usuário
+        const desempenhoSalvo = userData.desempenhoPorDisciplina;
+
+        // Atualize as informações de desempenho no documento do usuário
+        await setDoc(userRef, { desempenhoPorDisciplina }, { merge: true });
+      }
+    }
+
+
+
+
     if (!user) {
       // O usuário não está autenticado, redirecione para a página de login
       console.log("Usuário não autenticado.");
@@ -266,80 +356,29 @@ function App() {
     }
   };
 
-  const [feedback, setFeedback] = useState({});
+
 
   const verificarResposta = async (question) => {
-    const questionId = question.id;
-    const alternativaSelecionada = alternativasSelecionadas[questionId];
+    const questionId = question.ids;
+
     const respostaCorreta = question.resposta.charCodeAt(0) - 65;
-  
+
     // Verificar se a disciplina já está no estado de desempenho
     const disciplina = question.disciplina;
-    const desempenhoDisciplina = desempenho[disciplina] || {
-      acertos: 0,
-      erros: 0,
-    };
-  
+
+
     if (alternativaSelecionada === respostaCorreta) {
-      // Atualizar o estado de desempenho para acerto
-      setFeedback((prevFeedback) => ({
-        ...prevFeedback,
-        [questionId]: "Você acertou!",
-      }));
-  
-      setDesempenho((prevDesempenho) => ({
-        ...prevDesempenho,
-        [disciplina]: {
-          acertos: desempenhoDisciplina.acertos + 1,
-          erros: desempenhoDisciplina.erros,
-        },
-      }));
+
+
+
+
     } else {
-      // Atualizar o estado de desempenho para erro
-      setFeedback((prevFeedback) => ({
-        ...prevFeedback,
-        [questionId]: "Você errou!",
-      }));
-  
-      setDesempenho((prevDesempenho) => ({
-        ...prevDesempenho,
-        [disciplina]: {
-          acertos: desempenhoDisciplina.acertos,
-          erros: desempenhoDisciplina.erros + 1,
-        },
-      }));
+
     }
-  
-    // Agora, vamos salvar o desempenho atualizado no Firebase Firestore
-    try {
-      const auth = getAuth();
-      const user = auth.currentUser;
-  
-      if (!user) {
-        console.error("Usuário não autenticado.");
-        return;
-      }
-  
-      const userId = user.uid;
-      const userRef = doc(db, "users", userId);
-  
-      // Crie um objeto que represente o novo desempenho do usuário
-      const novoDesempenho = {
-        ...desempenho,
-      };
-  
-      // Atualize o documento do usuário com o novo desempenho
-      await updateDoc(userRef, {
-        desempenho: novoDesempenho,
-      });
-  
-      console.log(`Desempenho atualizado para ${disciplina}`);
-    } catch (error) {
-      console.error("Erro ao atualizar desempenho:", error);
-    }
+
   };
-  
-  
+
+
   const [comentariosVisiveis, setComentariosVisiveis] = useState({});
 
   const toggleComentario = (questionId) => {
@@ -437,54 +476,26 @@ function App() {
     display: modalOpen ? "flex" : "none",
   };
 
-  const [desempenho, setDesempenho] = useState({}); // Inicialize o estado do desempenho com um objeto vazio
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        setUser(user);
-
-        const userRef = doc(db, "users", user.uid);
-        const userDoc = await getDoc(userRef);
-
-        if (userDoc.exists()) {
-          const userData = userDoc.data();
-
-          // Recupere o desempenho do usuário do documento e atualize o estado
-          const userDesempenho = userData.desempenho || {};
-          setDesempenho(userDesempenho);
-
-          // Resto do código...
-        } else {
-          // Se o documento do usuário não existir, crie-o com um desempenho vazio
-          await setDoc(userRef, {
-            expirationDate: null,
-            paymentInfo: null,
-            desempenho: {},
-          });
-
-          console.log("Documento do usuário criado.");
-        }
-      } else {
-        setUser(null);
-      }
-    });
-
-    return () => unsubscribe();
-  }, [auth]);
 
   const [mostrarEstatisticas, setMostrarEstatisticas] = useState(false);
   const toggleEstatisticas = () => {
     setMostrarEstatisticas(!mostrarEstatisticas);
   };
 
-<FiltroMulti onFilterChange={setQuestoesFiltradas} db={db} />
+  <FiltroMulti onFilterChange={setQuestoesFiltradas} db={db} />
+
+
+
 
   return (
     <div className="App">
       <div className="campo-nome-home">
         <h2 className="nome-home">SESO em Concursos</h2>
+
       </div>
+
+
       <div className="logout-button-container">
         {user && (
           <button onClick={signOut} className="logout-button">
@@ -579,130 +590,113 @@ function App() {
       </div>
       {user ? (
         <div>
-         
+
 
           <FiltroMulti onFilterChange={setQuestoesFiltradas} db={db} />
 
-          {questoesPagina.map((question)  => (
-              <div key={question.id} className="question-container">
-                <div className="cabecalho-disciplina">
-                  <p>
-                    ID: {question.ids}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    {question.disciplina}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    {question.assunto}
+          {questoesPagina.map((question) => (
+            <div key={question.ids} className="question-container">
+              <div className="cabecalho-disciplina">
+                <p>
+                  ID: {question.ids}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  {question.disciplina}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  {question.assunto}
+                </p>
+              </div>
+              <div className="cabecalho-orgao">
+                <p>
+                  Banca: {question.banca}
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ano: {question.ano}
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cargo: {question.cargo}
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </p>
+                <p>Órgão: {question.concurso}</p>
+              </div>
+              <p className="enunciado">{question.enunciado}</p>
+              <ul>
+                {question.alternativas.map((alternativa, index) => {
+                  const letraAlternativa = alternativa.match(/^\(([A-E])\)/)[1];
+                  const isSelected = alternativaSelecionada[question.ids] === index; // Verifica se a alternativa está selecionada
+
+                  return (
+                    <li
+                      className={`alternativa ${isSelected ? "selecionada" : ""}`}
+                      key={index}
+                      onClick={() => handleAlternativaClick(question.ids, index)}
+                    >
+                      <span
+                        className={`letra-alternativa-circle ${isSelected ? "selecionada" : ""}`}
+                      >
+                        {letraAlternativa}
+                      </span>
+                      {alternativa.replace(/^\(([A-E])\)/, "")}
+                    </li>
+                  );
+                })}
+
+              </ul>
+              <div className="button-feedback-container">
+                <button
+                  className="button-responder"
+                  onClick={() => handleRespostaClick(question)}
+                >
+                  Responder
+                </button>
+
+                {resultados[question.ids] === true && <p className="resposta-correta">Parabéns! Você acertou!</p>}
+                {resultados[question.ids] === false && <p className="resposta-incorreta">Você Errou! Resposta: {question.resposta}</p>}
+              </div>
+
+              <div className="linha-horizontal-comentario"></div>
+
+              <div className="campo-pai">
+                <div className="campo-comentario">
+                  <button
+                    className="button-comentario"
+                    onClick={() => toggleComentario(question.ids)}
+                  >
+                    {" "}
+                    <ChatCenteredText size={14} /> Comentário do Professor
+                  </button>
+                  
+                  <button className="button-estatisticas" onClick={toggleEstatisticas}>
+              Seu Desempenho
+            </button>
+                  <p
+                    className={
+                      comentariosVisiveis[question.ids]
+                        ? "comentario visivel"
+                        : "comentario"
+                    }
+                  >
+                    {question.comentario}
                   </p>
                 </div>
-                <div className="cabecalho-orgao">
-                  <p>
-                    Banca: {question.banca}
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ano: {question.ano}
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cargo: {question.cargo}
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  </p>
-                  <p>Órgão: {question.concurso}</p>
-                </div>
-                <p className="enunciado">{question.enunciado}</p>
-                <ul>
-                  {question.alternativas.map((alternativa, index) => {
-                    const letraAlternativa =
-                      alternativa.match(/^\(([A-E])\)/)[1];
+
+                <div className="campo-estatistica">
+
+                      
+                  {Object.entries(desempenhoPorDisciplina).map(([disciplina, { acertos, erros }]) => {
+                    const data = [['Tipo', 'Quantidade'], ['Acertos', acertos], ['Erros', erros]];
+                    const options = {
+                      is3D: true,
+                    };
 
                     return (
-                      <li
-                        className={`alternativa ${
-                          alternativasSelecionadas[question.id] === index
-                            ? "selecionada"
-                            : ""
-                        }`}
-                        key={index}
-                        onClick={() =>
-                          handleAlternativaClick(question.id, index)
-                        }
-                      >
-                        <span
-                          className={`letra-alternativa-circle ${
-                            alternativasSelecionadas[question.id] === index
-                              ? "selecionada"
-                              : ""
-                          }`}
-                        >
-                          {letraAlternativa}
-                        </span>
-                        {alternativa.replace(/^\(([A-E])\)/, "")}
-                      </li>
+                      <PieChart
+                        key={disciplina}
+                        title={disciplina}
+                        data={data}
+                        options={options}
+                      />
                     );
                   })}
-                </ul>
-                <div className="button-feedback-container">
-                  <button
-                    className="button-responder"
-                    onClick={() => handleRespostaClick(question)}
-                  >
-                    Responder
-                  </button>
 
-                  {feedback[question.id] && (
-                    <p
-                      className={`feedback ${
-                        feedback[question.id] === "Você acertou!"
-                          ? "acerto"
-                          : "erro"
-                      }`}
-                    >
-                      {feedback[question.id] === "Você acertou!"
-                        ? "Você acertou!"
-                        : `Você errou! A alternativa correta é: ${question.resposta}`}
-                    </p>
-                  )}
-                </div>
 
-                <div className="linha-horizontal-comentario"></div>
-
-                <div className="campo-pai">
-                  <div className="campo-comentario">
-                    <button
-                      className="button-comentario"
-                      onClick={() => toggleComentario(question.id)}
-                    >
-                      {" "}
-                      <ChatCenteredText size={14} /> Comentário do Professor
-                    </button>
-
-                    <p
-                      className={
-                        comentariosVisiveis[question.id]
-                          ? "comentario visivel"
-                          : "comentario"
-                      }
-                    >
-                      {question.comentario}
-                    </p>
-                  </div>
-
-                  <div className="campo-estatistica">
-                    <button
-                      className="button-estatisticas"
-                      onClick={toggleEstatisticas}
-                    >
-                      Seu Desempenho
-                    </button>
-
-                    {mostrarEstatisticas && (
-                      <div className="desempenho-container">
-                        {Object.keys(desempenho).map((disciplina) => (
-                          <DesempenhoNaDisciplina
-                            key={disciplina}
-                            disciplina={disciplina}
-                            acertos={desempenho[disciplina].acertos}
-                            erros={desempenho[disciplina].erros}
-                          />
-                        ))}
-                      </div>
-                    )}
-                  </div>
                 </div>
               </div>
-            ))}
+            </div>
+          ))}
 
 
 
@@ -715,7 +709,7 @@ function App() {
             </span>
             <button
               onClick={handleNextPage}
-              // disabled={paginaAtual >= totalPages || paymentInfo === 0 || paymentInfo === null}
+            // disabled={paginaAtual >= totalPages || paymentInfo === 0 || paymentInfo === null}
             >
               Próxima Página
             </button>
