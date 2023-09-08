@@ -478,13 +478,11 @@ function App() {
 
 
 
-  const [mostrarEstatisticas, setMostrarEstatisticas] = useState(false);
-  const toggleEstatisticas = () => {
-    setMostrarEstatisticas(!mostrarEstatisticas);
-  };
+
 
   <FiltroMulti onFilterChange={setQuestoesFiltradas} db={db} />
 
+  const [estatisticasVisiveis, setEstatisticasVisiveis] = useState(false);
 
 
 
@@ -658,42 +656,49 @@ function App() {
                     {" "}
                     <ChatCenteredText size={14} /> Comentário do Professor
                   </button>
-                  
-                  <button className="button-estatisticas" onClick={toggleEstatisticas}>
-              Seu Desempenho
-            </button>
+
+                  <button
+                    className="button-estatisticas"
+                    onClick={() => setEstatisticasVisiveis(!estatisticasVisiveis)}
+                  >
+                    Seu Desempenho
+                  </button>
+
+                
                   <p
-                    className={
-                      comentariosVisiveis[question.ids]
-                        ? "comentario visivel"
-                        : "comentario"
+                    className={comentariosVisiveis[question.ids]
+                      ? "comentario visivel"
+                      : "comentario"
                     }
                   >
                     {question.comentario}
                   </p>
+             
                 </div>
 
-                <div className="campo-estatistica">
-
-                      
-                  {Object.entries(desempenhoPorDisciplina).map(([disciplina, { acertos, erros }]) => {
-                    const data = [['Tipo', 'Quantidade'], ['Acertos', acertos], ['Erros', erros]];
-                    const options = {
-                      is3D: true,
-                    };
-
-                    return (
-                      <PieChart
-                        key={disciplina}
-                        title={disciplina}
-                        data={data}
-                        options={options}
-                      />
-                    );
-                  })}
+                {estatisticasVisiveis && (
+                  <div className="campo-estatistica">
 
 
-                </div>
+                    {Object.entries(desempenhoPorDisciplina).map(([disciplina, { acertos, erros }]) => {
+                      const data = [['Tipo', 'Quantidade'], ['Acertos', acertos], ['Erros', erros]];
+                      const options = {
+                        is3D: true,
+                      };
+
+                      return (
+                        <PieChart
+                          key={disciplina}
+                          title={disciplina}
+                          data={data}
+                          options={options}
+                        />
+                      );
+                    })}
+
+
+                  </div>
+                )}
               </div>
             </div>
           ))}

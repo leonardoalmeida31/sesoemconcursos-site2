@@ -5,14 +5,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-left: 3em;
-    padding-right: 3em;
+    padding: 4em;
    
   }
   @media (max-width: 767px) {
     .App {
-      padding-left: 2em;
-      padding-right: 2em; /* Ajuste o valor conforme necessÃ¡rio */
+      padding: 2em;
       width: 100%;
       display: flex;
       justify-content: center;
@@ -168,15 +166,22 @@
   
   .button-comentario {
     color:#1c5253;
-   
+    flex-direction: column;
     border: none;
     margin: 0px;
     background-color: #1c525309;
-    padding: 10px;
+    padding: 0.500em;
     font-size: 14px;
+    width: 20%;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
-    font-weight: 550;
+    font-weight: 500;
+  }
+  @media screen and (max-width: 767px) {
+    .button-comentario {
+      width: 100%; /* Altere a largura para ocupar 100% da largura do container pai */
+     
+    }
   }
 
 
@@ -197,8 +202,9 @@
     
     background-color: #1c525313;
     display: flex;
-    width: 100%;
-    flex-direction: column; /* Ajusta o layout para coluna */
+    flex-direction: column;
+  
+   
     align-items: flex-start; /* Alinha o conteúdo à esquerda */
    
    
@@ -210,30 +216,24 @@
   
       background-color: #1c525313;
       display: flex;
-      flex-direction: column;
+      
       white-space: pre-line; /* Adiciona quebras de linha */
-      width: 100%;
+    
   
       border-bottom-left-radius: 0; /* Remova o raio da borda inferior para um visual mais limpo em dispositivos móveis */
     }
   }
   
-  .campo-pai {
-    flex-direction: column; /* Ajusta o layout para coluna */
-    justify-content: flex-start; /* Alinha os elementos com espaçamento entre eles */
-    width: 100%;
-    white-space: pre-line; /* Adiciona quebras de linha */
-  }
+ 
   
   .campo-estatistica {
     margin-top: 0px;
-    margin-bottom: 50px;
+    
     background-color: #1c525313;
-    display: flex;
+    
     width: 100%;
-    flex-direction: column; /* Ajusta o layout para coluna */
-    align-items: flex-start; /* Alinha o conteúdo à esquerda */
-    border-bottom-right-radius: 7px; 
+    
+   
     
   }
   .button-estatisticas {
@@ -241,13 +241,20 @@
     border: none;
     margin: 0px;
     background-color: #1c525309;
-    padding: 10px;
+    padding: 0.500em;
     font-size: 14px;
+    width: 20%;
+    flex-direction: column;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
-    font-weight: 550;
-    margin-left: auto; /* Alinha o botão à direita */
-    padding-left: 1em;
+    font-weight: 500;
+    
+  }
+  @media screen and (max-width: 767px) {
+    .button-estatisticas {
+      width: 100%; /* Altere a largura para ocupar 100% da largura do container pai */
+     
+    }
   }
   .button-estatisticas:hover {
     background-color: #1c5253;
@@ -263,7 +270,7 @@
     border-radius: 8px;
     font-size: 0.865em;
    
-    
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     
@@ -272,21 +279,22 @@
   .comentario {
     display: none;
     padding: 2em;
-    margin: 1em;
+    margin: 2em;
     background-color: #ffffff;
-    width: 50%;
-    
+   
+   align-items: center;
     border-radius: 8px;
     font-size: 0.865em;
     line-height: 1.4;
     white-space: pre-line; /* Adiciona quebras de linha */
-    align-self: flex-start;
+    
     
     
   }
   
   .comentario.visivel {
     display: block;
+   
     white-space: pre-line; /* Adiciona quebras de linha */
   }
   
@@ -302,13 +310,11 @@
    
   }
   
-  .comentario p {
-    background-color: white;
-    padding: 8px;
-    border-radius: 5px;
+
+  .campo-pai {
+  
+    flex-direction: column;
    
-    margin: 0;
-    white-space: pre-line; /* Adiciona quebras de linha */
   }
   .botao-comentario.ativo {
   color: #45a049; /* Tonalidade mais escura do verde */
@@ -476,19 +482,7 @@
   font-size: 1.5em;
   text-align: center;
 }
-.campo-nome-home {
-  /*background-color: #1c5253;
-  display: flex;
-  width: 100%; /* Ocupa 100% da largura da tela */
-  /*text-align: center;
-  align-items: center;
-  justify-content: center;
-  border-bottom-right-radius: 7px;
-    border-bottom-left-radius: 7px;
-    margin-bottom: 0.725em;
-  
-  /* Resto do seu estilo */
-}
+
  
   .cabecalho-orgao::after {
     content: ''; /* Cria o elemento da linha */
