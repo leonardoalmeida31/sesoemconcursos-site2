@@ -492,7 +492,7 @@ function Home() {
   
     <div className="Home">
       
-      {user && ( <FiltroMulti onFilterChange={setQuestoesFiltradas} db={db} /> )}
+      {user && (<FiltroMulti onFilterChange={setQuestoesFiltradas} db={db} /> )}
     <div className="fundo-Home"> 
 
           
@@ -740,7 +740,7 @@ function Home() {
            <img src={imagemSvg} alt="Descrição da imagem" width="40%" height="40%" />
 
           <p>Faça login com sua conta do Google para responder questões diariamente.</p>
-          <button onClick={signInWithGoogle} className="login-button">  
+          <button onClick={signInWithGoogle} className="login-button">
             Entrar com o Google
           </button>
         </div>
