@@ -5,11 +5,21 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 4em;
+   padding-left: 4em;
+   padding-right: 4em;
+   
+  }
+  .div-menu {
+    display: flex;
+    flex-direction: row;
+  
+    justify-content: center;
    
   }
   .Home {
     font-family: 'Poppins', sans-serif;
+    margin-top: 0;
+    padding: 0;
     
    
   }
@@ -32,6 +42,7 @@
   .login {
     align-items: center;
     justify-content: center;
+    align-items: center;
     border-radius: 0.300em;
     flex-wrap: wrap; /* Quebra de linha */
     text-align: center;
@@ -89,19 +100,18 @@
 }
 
 .logout-button {
-  background-color: #f44336;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
+  color: #14493c;
+  font-family: 'Poppins', sans-serif;
+ border: none;
+ font-weight: 500;
+ background: transparent;
   cursor: pointer;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
+  margin: 0 2em;
+
 }
 
 .logout-button:hover {
-  background-color: #357ae8;
+  color: #ff6600;
 }
 
 
@@ -255,7 +265,7 @@
   }
 
   .campo-comentario {
-    margin-top: 0px;
+    margin-bottom: 4em;
     
     background-color: #1c525313;
     display: flex;
@@ -270,7 +280,7 @@
   @media (max-width: 767px) {
     .campo-comentario {
     
-  
+      
       background-color: #1c525313;
       display: flex;
       
@@ -284,9 +294,10 @@
  
   
   .campo-estatistica {
-    margin-top: 0px;
+    margin-bottom: 2em;
     background-color: #1c525313;
     width: 100%;
+    
     
   }
  
@@ -303,6 +314,7 @@
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
     font-weight: 500;
+    
     
   }
   @media screen and (max-width: 767px) {
@@ -461,7 +473,7 @@
     align-items: center;
     justify-content: center;
     font-size: 0.75em;
-    margin-top: 2em;
+    margin-top: 1em;
     margin-bottom: 0.100em;
     width: 100%;
     background-color: #1c5253;
@@ -515,14 +527,17 @@
 
 /* Estilos para os botões */
 .open-button {
-  background-color: #008CBA;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin: 10px;
-  align-items: center;
-  justify-content: center;
+  color: #14493c;
+  font-family: 'Poppins', sans-serif;
+ border: none;
+ font-weight: 500;
+ margin: 0 2em;
+ margin: 0;
+ background: transparent;
   cursor: pointer;
+}
+.open-button:hover {
+  color: #ff6600;
 }
 
 /* Estilos para o container dos elementos Stripe */
@@ -600,6 +615,107 @@
 
 
 
+
+
+
+
+
+
+
+
+
+/* Só MENU ABAIXO:*/
+/* Menu.css */
+.menu {
+  background-color: white;
+  padding: 1.5em;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Adicionado para alinhar o botão de hambúrguer à direita */
+}
+
+.menu-toggle {
+  display: block; /* Mostra o botão de hambúrguer em todas as telas */
+  cursor: pointer;
+}
+
+.menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row; /* Alterado para uma coluna em telas pequenas */
+  align-items: center; /* Centraliza os itens em telas pequenas */
+}
+
+.menu-item {
+  margin: 0 1em;
+  text-align: center; /* Centraliza o texto em telas pequenas */
+}
+
+.menu-item a {
+  text-decoration: none;
+  color: #14493c;
+  font-weight: 500;
+  font-size: 0.865em;
+  transition: color 0.3s ease;
+}
+
+.menu-item a:hover {
+  color: #ff6600;
+}
+
+/* Adicione uma media query para telas pequenas (por exemplo, até 768px) */
+@media screen and (max-width: 768px) {
+  .menu {
+    flex-direction: column; /* Alterado para uma coluna em telas pequenas */
+    align-items: flex-start; /* Alinha o conteúdo à esquerda em telas pequenas */
+  }
+
+  .menu-list {
+    flex-direction: row; /* Alterado para uma linha em telas pequenas */
+    justify-content: center; /* Centraliza os itens em telas pequenas */
+  }
+
+  .menu-item {
+    margin: 0 1em; /* Volta ao espaçamento horizontal entre os itens em telas maiores */
+    text-align: left; /* Alinha o texto à esquerda em telas pequenas */
+  }
+
+  .menu-toggle {
+    display: block; /* Mostra o botão de hambúrguer em telas pequenas */
+  }
+}
+
+.mobile-menu-icon {
+  display: none; /* Oculta o ícone do menu em telas maiores */
+  cursor: pointer;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin: 4px 0;
+}
+
+@media (max-width: 768px) {
+  /* Mostra o ícone do menu em telas menores */
+  .mobile-menu-icon {
+    display: block;
+  }
+
+  /* Oculta o menu principal em telas menores */
+  .menu {
+    display: none;
+  }
+
+  /* Mostra o menu de sobreposição em telas menores */
+  .menu.mobile-open {
+    display: block;
+  }
+}
 
 
 

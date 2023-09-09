@@ -4,9 +4,8 @@ import { CaretRight, ChatCenteredText } from "@phosphor-icons/react";
 import "../App.css";
 import Chart from "react-google-charts";
 import PieChart from "../PieChart.jsx";
-import Menu from "../Menu.jsx";
 import imagemSvg from '../img/img-login-1.svg';
-
+import { Link } from 'react-router-dom';
 import { initializeApp } from "firebase/app";
 import {
   getDocs,
@@ -487,23 +486,52 @@ function Home() {
   const [estatisticasVisiveis, setEstatisticasVisiveis] = useState(false);
 
 
-
+  function toggleMobileMenu() {
+    var menu = document.querySelector('.menu');
+    menu.classList.toggle('mobile-open');
+  }
+  
   return (
   
     <div className="Home">
-      
-      {user && (<FiltroMulti onFilterChange={setQuestoesFiltradas} db={db} /> )}
+     
+     {user && (
+    <div className="div-menu">
+     <div className="mobile-menu-icon" onClick={toggleMobileMenu}>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+      <nav className="menu">
+        <ul className="menu-list">
+          <li className="menu-item"><Link to="/">Início</Link></li>
+          <li className="menu-item"><Link to="/">Questões</Link></li>
+          <li className="menu-item"><Link to="/">Conheça o Método</Link></li>
+          <li className="menu-item"><Link to="/Plano-Estudos">Planos de Estudos</Link></li>
+        </ul>
+      </nav>
+      <button className="open-button" onClick={openModal}>
+        Assine Agora
+      </button>
+      <button onClick={signOut} className="logout-button">
+        Sair/Entrar
+      </button>
+    </div>
+  )}
+       
+       {user && (<div>
+
+      <FiltroMulti onFilterChange={setQuestoesFiltradas} db={db} /> 
+          </div>)}
     <div className="fundo-Home"> 
 
-          
+   
+
+
 
 
           <div className="logout-button-container">
-        {user && (
-          <button onClick={signOut} className="logout-button">
-            Fazer logout
-          </button>
-        )}
+       
 
         
         <div>
@@ -598,8 +626,7 @@ function Home() {
         
        <div >
             <div>
-          <button className="open-button" onClick={openModal}>  Assine Agora
-          </button>
+          
           </div>
           {questoesPagina.map((question) => (
             <div key={question.ids} className="question-container">
@@ -737,7 +764,7 @@ function Home() {
         <div className="login">
           <p>SESO em Concursos</p>
 
-           <img src={imagemSvg} alt="Descrição da imagem" width="40%" height="40%" />
+           <img src={imagemSvg} alt="Descrição da imagem" width="50%" height="50%" />
 
           <p>Faça login com sua conta do Google para responder questões diariamente.</p>
           <button onClick={signInWithGoogle} className="login-button">
