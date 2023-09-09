@@ -6,6 +6,9 @@ import Chart from "react-google-charts";
 import PieChart from "../PieChart.jsx";
 import imagemSvg from '../img/img-login-1.svg';
 import { Link } from 'react-router-dom';
+import MenuMui from '../MenuMui.jsx';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 import { initializeApp } from "firebase/app";
 import {
   getDocs,
@@ -17,8 +20,11 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import StripeCheckout from "react-stripe-checkout";
 
+
+
+
+import StripeCheckout from "react-stripe-checkout";
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_REACT_APP_API_KEY,
   authDomain: import.meta.env.VITE_REACT_APP_AUTH_DOMAIN,
@@ -486,293 +492,278 @@ function Home() {
   const [estatisticasVisiveis, setEstatisticasVisiveis] = useState(false);
 
 
-  function toggleMobileMenu() {
-    var menu = document.querySelector('.menu');
-    menu.classList.toggle('mobile-open');
-  }
-  
+
   return (
-  
+
     <div className="Home">
-     
-     {user && (
-    <div className="div-menu">
-     <div className="mobile-menu-icon" onClick={toggleMobileMenu}>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
-      <nav className="menu">
-        <ul className="menu-list">
-          <li className="menu-item"><Link to="/">Início</Link></li>
-          <li className="menu-item"><Link to="/">Questões</Link></li>
-          <li className="menu-item"><Link to="/">Conheça o Método</Link></li>
-          <li className="menu-item"><Link to="/Plano-Estudos">Planos de Estudos</Link></li>
-        </ul>
-      </nav>
-      <button className="open-button" onClick={openModal}>
-        Assine Agora
-      </button>
-      <button onClick={signOut} className="logout-button">
-        Sair/Entrar
-      </button>
-    </div>
-  )}
-       
-       {user && (<div>
 
-      <FiltroMulti onFilterChange={setQuestoesFiltradas} db={db} /> 
-          </div>)}
-    <div className="fundo-Home"> 
-
-   
+      {user && (
+        <div className="div-menu">
 
 
-
-
-          <div className="logout-button-container">
-       
-
-        
-        <div>
-          
-          
-        
-          
-          {modalOpen && (
-            <div className="modal" style={modalStyle}>
-              <div className="modal-content">
-                <h2>Opções de Assinatura</h2>
-                <p>Todas as assisnaturas são efetuados com cartão</p>
-
-                <div>
-                  <p>
-                    Assinatura Mensal: 17,99 <br></br>
-                    <span>Acesso por 30 dias!</span>
-                  </p>
-
-                  <StripeCheckout
-                    token={(token) => onToken(token, 1)} // Função chamada após a conclusão bem-sucedida do pagamento
-                    stripeKey={import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY} // Substitua pelo sua chave pública do Stripe
-                    name="Seso em Concursos"
-                    description="Questões para estudos"
-                    amount={1} // Substitua pelo valor correto em centavos
-                    currency="BRL" // Substitua pela moeda desejada (BRL para Real Brasileiro)
-                    label="Pagar com Cartão" // Texto exibido no botão
-                    billingAddress={true} // Habilitar informações de endereço
-                    shippingAddress={true} // Habilitar informações de envio
-                    zipCode={true} // Habilitar campo de CEP
-                  >
-                    <button className="button-pagamento">
-                      Realizar Assinatura com cartão
-                    </button>
-                  </StripeCheckout>
-                </div>
-                <div className="open">
-                  <p>
-                    Assinatura SEMESTREAL: 65,00 <br></br>
-                    <span>Acesso por 180 dias!</span>
-                  </p>
-                  <StripeCheckout
-                    token={(token) => onToken(token, 6500)} // Função chamada após a conclusão bem-sucedida do pagamento
-                    stripeKey={import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY} // Substitua pelo sua chave pública do Stripe
-                    name="Seso em Concursos"
-                    description="Questões para estudos"
-                    amount={6500} // Substitua pelo valor correto em centavos
-                    currency="BRL" // Substitua pela moeda desejada (BRL para Real Brasileiro)
-                    label="Pagar com Cartão" // Texto exibido no botão
-                    billingAddress={true} // Habilitar informações de endereço
-                    shippingAddress={true} // Habilitar informações de envio
-                    zipCode={true} // Habilitar campo de CEP
-                  >
-                    <button className="button-pagamento">
-                      Realizar Assinatura com cartão
-                    </button>
-                  </StripeCheckout>
-                </div>
-                <div className="open">
-                  <p>
-                    Assinatura Anual: 120,00 <br></br>
-                    <span>Acesso por 365 dias!</span>
-                  </p>
-                  <StripeCheckout
-                    token={(token) => onToken(token, 12000)} // Função chamada após a conclusão bem-sucedida do pagamento
-                    stripeKey={import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY} // Substitua pelo sua chave pública do Stripe
-                    name="Seso em Concursos"
-                    description="Questões para estudos"
-                    amount={12000} // Substitua pelo valor correto em centavos
-                    currency="BRL" // Substitua pela moeda desejada (BRL para Real Brasileiro)
-                    label="Pagar com Cartão" // Texto exibido no botão
-                    billingAddress={true} // Habilitar informações de endereço
-                    shippingAddress={true} // Habilitar informações de envio
-                    zipCode={true} // Habilitar campo de CEP
-                  >
-                    <button className="button-pagamento">
-                      Realizar Assinatura com cartão
-                    </button>
-                  </StripeCheckout>
-                </div>
-                <button className="open-button" onClick={closeModal}>
-                  Fechar
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-      
-      {user ? (
-       
-        
-       <div >
-            <div>
-          
-          </div>
-          {questoesPagina.map((question) => (
-            <div key={question.ids} className="question-container">
-              <div className="cabecalho-disciplina">
-                <p>
-                  ID: {question.ids}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  {question.disciplina}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  {question.assunto}
-                </p>
-              </div>
-              <div className="cabecalho-orgao">
-                <p>
-                  Banca: {question.banca}
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ano: {question.ano}
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cargo: {question.cargo}
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </p>
-                <p>Órgão: {question.concurso}</p>
-              </div>
-              <p className="enunciado">{question.enunciado}</p>
-              <ul>
-                {question.alternativas.map((alternativa, index) => {
-                  const letraAlternativa = alternativa.match(/^\(([A-E])\)/)[1];
-                  const isSelected = alternativaSelecionada[question.ids] === index; // Verifica se a alternativa está selecionada
-
-                  return (
-                    <li
-                      className={`alternativa ${isSelected ? "selecionada" : ""}`}
-                      key={index}
-                      onClick={() => handleAlternativaClick(question.ids, index)}
-                    >
-                      <span
-                        className={`letra-alternativa-circle ${isSelected ? "selecionada" : ""}`}
-                      >
-                        {letraAlternativa}
-                      </span>
-                      {alternativa.replace(/^\(([A-E])\)/, "")}
-                    </li>
-                  );
-                })}
-
-              </ul>
-              <div className="button-feedback-container">
-                <button
-                  className="button-responder"
-                  onClick={() => handleRespostaClick(question)}
-                >
-                  Responder
-                </button>
-
-                {resultados[question.ids] === true && <p className="resposta-correta">Parabéns! Você acertou!</p>}
-                {resultados[question.ids] === false && <p className="resposta-incorreta">Você Errou! Resposta: {question.resposta}</p>}
-              </div>
-
-              <div className="linha-horizontal-comentario"></div>
-
-              <div className="campo-pai">
-                <div className="campo-comentario">
-                  <button
-                    className="button-comentario"
-                    onClick={() => toggleComentario(question.ids)}
-                  >
-                    {" "}
-                    <ChatCenteredText size={14} /> Comentário do Professor
-                  </button>
-
-                  <button
-                    className="button-estatisticas"
-                    onClick={() => setEstatisticasVisiveis(!estatisticasVisiveis)}
-                  >
-                    Seu Desempenho
-                  </button>
-
-                
-                  <p
-      className={comentariosVisiveis[question.ids] ? "comentario visivel" : "comentario"}
-      style={{
-        // Impede que o texto quebre para a próxima linha
-        overflowX: "auto",    // Adiciona a rolagem horizontal quando necessário
-        maxWidth: "100%",    // Defina a largura máxima para o elemento <p>
-        
-      }}
-    >
-      {question.comentario}
-    </p>
-             
-                </div>
-
-                {estatisticasVisiveis && (
-                  <div className="campo-estatistica">
-
-
-                    {Object.entries(desempenhoPorDisciplina).map(([disciplina, { acertos, erros }]) => {
-                      const data = [['Tipo', 'Quantidade'], ['Acertos', acertos], ['Erros', erros]];
-                      const options = {
-                        is3D: true,
-                       
-                       };
-
-                      return (
-                        <PieChart 
-                          key={disciplina}
-                          title={disciplina}
-                          data={data}
-                          options={options}
-                        />
-                      );
-                    })}
-
-
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
-
-
-
-          <div className="pagination">
-            <button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
-              Página Anterior
-            </button>
-            <span>
-              Página {paginaAtual} de {totalPages}
-            </span>
-            <button
-              onClick={handleNextPage}
-            // disabled={paginaAtual >= totalPages || paymentInfo === 0 || paymentInfo === null}
-            >
-              Próxima Página
-            </button>
-          </div>
-        </div>
-      ) : (
-        <div className="login">
-          <p>SESO em Concursos</p>
-
-           <img src={imagemSvg} alt="Descrição da imagem" width="50%" height="50%" />
-
-          <p>Faça login com sua conta do Google para responder questões diariamente.</p>
-          <button onClick={signInWithGoogle} className="login-button">
-            Entrar com o Google
+          <button className="open-button" onClick={openModal}>
+            Assine Agora
+          </button>
+          <button onClick={signOut} className="logout-button">
+            Sair/Entrar
           </button>
         </div>
       )}
-      </div>
+
+      {user && (<div>
+
+        <FiltroMulti onFilterChange={setQuestoesFiltradas} db={db} />
+      </div>)}
+      <Container className="fundo-Home">
+
+
+
+
+
+
+        <div className="logout-button-container">
+
+
+
+          <div>
+
+
+
+
+            {modalOpen && (
+              <div className="modal" style={modalStyle}>
+                <div className="modal-content">
+                  <h2>Opções de Assinatura</h2>
+                  <p>Todas as assisnaturas são efetuados com cartão</p>
+
+                  <div>
+                    <p>
+                      Assinatura Mensal: 17,99 <br></br>
+                      <span>Acesso por 30 dias!</span>
+                    </p>
+
+                    <StripeCheckout
+                      token={(token) => onToken(token, 1)} // Função chamada após a conclusão bem-sucedida do pagamento
+                      stripeKey={import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY} // Substitua pelo sua chave pública do Stripe
+                      name="Seso em Concursos"
+                      description="Questões para estudos"
+                      amount={1} // Substitua pelo valor correto em centavos
+                      currency="BRL" // Substitua pela moeda desejada (BRL para Real Brasileiro)
+                      label="Pagar com Cartão" // Texto exibido no botão
+                      billingAddress={true} // Habilitar informações de endereço
+                      shippingAddress={true} // Habilitar informações de envio
+                      zipCode={true} // Habilitar campo de CEP
+                    >
+                      <button className="button-pagamento">
+                        Realizar Assinatura com cartão
+                      </button>
+                    </StripeCheckout>
+                  </div>
+                  <div className="open">
+                    <p>
+                      Assinatura SEMESTREAL: 65,00 <br></br>
+                      <span>Acesso por 180 dias!</span>
+                    </p>
+                    <StripeCheckout
+                      token={(token) => onToken(token, 6500)} // Função chamada após a conclusão bem-sucedida do pagamento
+                      stripeKey={import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY} // Substitua pelo sua chave pública do Stripe
+                      name="Seso em Concursos"
+                      description="Questões para estudos"
+                      amount={6500} // Substitua pelo valor correto em centavos
+                      currency="BRL" // Substitua pela moeda desejada (BRL para Real Brasileiro)
+                      label="Pagar com Cartão" // Texto exibido no botão
+                      billingAddress={true} // Habilitar informações de endereço
+                      shippingAddress={true} // Habilitar informações de envio
+                      zipCode={true} // Habilitar campo de CEP
+                    >
+                      <button className="button-pagamento">
+                        Realizar Assinatura com cartão
+                      </button>
+                    </StripeCheckout>
+                  </div>
+                  <div className="open">
+                    <p>
+                      Assinatura Anual: 120,00 <br></br>
+                      <span>Acesso por 365 dias!</span>
+                    </p>
+                    <StripeCheckout
+                      token={(token) => onToken(token, 12000)} // Função chamada após a conclusão bem-sucedida do pagamento
+                      stripeKey={import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY} // Substitua pelo sua chave pública do Stripe
+                      name="Seso em Concursos"
+                      description="Questões para estudos"
+                      amount={12000} // Substitua pelo valor correto em centavos
+                      currency="BRL" // Substitua pela moeda desejada (BRL para Real Brasileiro)
+                      label="Pagar com Cartão" // Texto exibido no botão
+                      billingAddress={true} // Habilitar informações de endereço
+                      shippingAddress={true} // Habilitar informações de envio
+                      zipCode={true} // Habilitar campo de CEP
+                    >
+                      <button className="button-pagamento">
+                        Realizar Assinatura com cartão
+                      </button>
+                    </StripeCheckout>
+                  </div>
+                  <button className="open-button" onClick={closeModal}>
+                    Fechar
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {user ? (
+
+
+          <div >
+            <div>
+
+            </div>
+            {questoesPagina.map((question) => (
+              <div key={question.ids} className="question-container">
+                <div className="cabecalho-disciplina">
+                  <p>
+                    ID: {question.ids}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {question.disciplina}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {question.assunto}
+                  </p>
+                </div>
+                <div className="cabecalho-orgao">
+                  <p>
+                    Banca: {question.banca}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ano: {question.ano}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cargo: {question.cargo}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </p>
+                  <p>Órgão: {question.concurso}</p>
+                </div>
+                <p className="enunciado">{question.enunciado}</p>
+                <ul>
+                  {question.alternativas.map((alternativa, index) => {
+                    const letraAlternativa = alternativa.match(/^\(([A-E])\)/)[1];
+                    const isSelected = alternativaSelecionada[question.ids] === index; // Verifica se a alternativa está selecionada
+
+                    return (
+                      <li
+                        className={`alternativa ${isSelected ? "selecionada" : ""}`}
+                        key={index}
+                        onClick={() => handleAlternativaClick(question.ids, index)}
+                      >
+                        <span
+                          className={`letra-alternativa-circle ${isSelected ? "selecionada" : ""}`}
+                        >
+                          {letraAlternativa}
+                        </span>
+                        {alternativa.replace(/^\(([A-E])\)/, "")}
+                      </li>
+                    );
+                  })}
+
+                </ul>
+                <div className="button-feedback-container">
+                  <button
+                    className="button-responder"
+                    onClick={() => handleRespostaClick(question)}
+                  >
+                    Responder
+                  </button>
+
+                  {resultados[question.ids] === true && <p className="resposta-correta">Parabéns! Você acertou!</p>}
+                  {resultados[question.ids] === false && <p className="resposta-incorreta">Você Errou! Resposta: {question.resposta}</p>}
+                </div>
+
+                <div className="linha-horizontal-comentario"></div>
+
+                
+                  <Container className="campo-comentario">
+                    <button
+                      className="button-comentario"
+                      onClick={() => toggleComentario(question.ids)}
+                    >
+                      {" "}
+                      <ChatCenteredText size={14} /> Comentário do Professor
+                    </button>
+
+                    <button
+                      className="button-estatisticas"
+                      onClick={() => setEstatisticasVisiveis(!estatisticasVisiveis)}
+                    >
+                      Seu Desempenho
+                    </button>
+
+
+                    <p
+                      className={comentariosVisiveis[question.ids] ? "comentario visivel" : "comentario"}
+                      style={{
+                        // Impede que o texto quebre para a próxima linha
+                        overflowX: "auto",    // Adiciona a rolagem horizontal quando necessário
+                        maxWidth: "100%",    // Defina a largura máxima para o elemento <p>
+
+                      }}
+                    >
+                      {question.comentario}
+                    </p>
+
+                  </Container>
+
+                  {estatisticasVisiveis && (
+                    <div className="campo-estatistica">
+
+
+                      {Object.entries(desempenhoPorDisciplina).map(([disciplina, { acertos, erros }]) => {
+                        const data = [['Tipo', 'Quantidade'], ['Acertos', acertos], ['Erros', erros]];
+                        const options = {
+                          is3D: true,
+
+                        };
+
+                        return (
+                          <PieChart
+                            key={disciplina}
+                            title={disciplina}
+                            data={data}
+                            options={options}
+                          />
+                        );
+                      })}
+
+
+                    </div>
+                  )}
+              
+              </div>
+            ))}
+
+
+
+            <div className="pagination">
+              <button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
+                Página Anterior
+              </button>
+              <span>
+                Página {paginaAtual} de {totalPages}
+              </span>
+              <button
+                onClick={handleNextPage}
+              // disabled={paginaAtual >= totalPages || paymentInfo === 0 || paymentInfo === null}
+              >
+                Próxima Página
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="login">
+            <p>SESO em Concursos</p>
+
+            <img src={imagemSvg} alt="Descrição da imagem" width="50%" height="50%" />
+
+            <p>Faça login com sua conta do Google para responder questões diariamente.</p>
+            <button onClick={signInWithGoogle} className="login-button">
+              Entrar com o Google
+            </button>
+          </div>
+        )}
+      </Container>
     </div>
   );
 }

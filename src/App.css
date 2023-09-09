@@ -5,8 +5,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-   padding-left: 4em;
-   padding-right: 4em;
+   
    
   }
   .div-menu {
@@ -297,6 +296,7 @@
     margin-bottom: 2em;
     background-color: #1c525313;
     width: 100%;
+    margin-bottom: 2em;
     
     
   }
@@ -357,7 +357,7 @@
   .comentario {
     display: none;
     padding: 2em;
-    margin: 2em;
+    margin-bottom: 2em;
     background-color: #ffffff;
     font-family: Poppins;
      align-items: center;
@@ -372,13 +372,13 @@
   @media (max-width: 767px) {
     .comentario {
     display: none;
-    padding: 1em;
-    margin: 1em;
+   
+ 
     background-color: #ffffff;
     font-family: Poppins;
     border-radius: 8px;
     font-size: 0.865em;
-   
+    line-height: 1.4;
     white-space: pre-line; /* Adiciona quebras de linha */ 
     }
   }
