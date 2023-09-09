@@ -29,30 +29,63 @@
   }
   
 
-.login {
-  text-align: center;
+  .login {
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.300em;
+    flex-wrap: wrap; /* Quebra de linha */
+    text-align: center;
+    padding: 2em;
+    
+    background: radial-gradient(circle, #203f41, #0d1616 ); /* Substitua as cores conforme necessário */
+  }
+  
+.login p {
+ text-align: center;
+  font-weight: 400;
+  font-size: 0.800em;
+  color: white;
+  padding-left: 0.500em;
+  padding-right: 0.500em;
+  font-family: 'Poppins', sans-serif;
+  flex-wrap: wrap; /* Quebra de linha */
 }
 
 .login-button {
-  background-color: #4285f4;
   color: white;
-  border: none;
-  padding: 10px 20px;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  border: 2px solid transparent;
+  text-align: center;
+  padding: 0.500em 3em;
   border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.700em;
+  font-family: 'Poppins', sans-serif;
   cursor: pointer;
   font-size: 16px;
+  transition: background 0.3s ease, color 0.3s ease, border-image 0.3s ease;
+  background-image: linear-gradient(90deg, #ffffff 0%, #ffffff 100%);
+  border-image: linear-gradient(90deg, #ffffff 0%, rgb(212, 212, 212) 100%);
+  border-image-slice: 1;
 }
 
+
 .login-button:hover {
-  background-color: #d32f2f;
+  background: linear-gradient(90deg,  #203f41, #0d1616);
+  color: white;
+  border-radius: 4px;
 }
+
+
 
 .logout-button-container {
  
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 7px;
+ 
 }
 
 .logout-button {
@@ -72,10 +105,6 @@
 }
 
 
-  /* Filter section */
-  .QuestaoFiltro {
-    margin-bottom: 20px;
-  }
   
   
   .enunciado {
@@ -433,7 +462,6 @@
     justify-content: center;
     font-size: 0.75em;
     margin-bottom: 0.100em;
-    margin-top: 4em;
     width: 100%;
     background-color: #1c5253;
     font-weight: 400;

@@ -5,6 +5,8 @@ import "../App.css";
 import Chart from "react-google-charts";
 import PieChart from "../PieChart.jsx";
 import Menu from "../Menu.jsx";
+import imagemSvg from '../img/img-login-1.svg';
+
 import { initializeApp } from "firebase/app";
 import {
   getDocs,
@@ -489,7 +491,8 @@ function Home() {
   return (
   
     <div className="Home">
-      <FiltroMulti onFilterChange={setQuestoesFiltradas} db={db} />
+      
+      {user && ( <FiltroMulti onFilterChange={setQuestoesFiltradas} db={db} /> )}
     <div className="fundo-Home"> 
 
           
@@ -502,12 +505,12 @@ function Home() {
           </button>
         )}
 
-        <button className="open-button" onClick={openModal}>
-           Assine Agora
-          </button>
+        
         <div>
           
-
+          
+        
+          
           {modalOpen && (
             <div className="modal" style={modalStyle}>
               <div className="modal-content">
@@ -589,11 +592,15 @@ function Home() {
           )}
         </div>
       </div>
+      
       {user ? (
        
-       
+        
        <div >
-
+            <div>
+          <button className="open-button" onClick={openModal}>  Assine Agora
+          </button>
+          </div>
           {questoesPagina.map((question) => (
             <div key={question.ids} className="question-container">
               <div className="cabecalho-disciplina">
@@ -728,9 +735,13 @@ function Home() {
         </div>
       ) : (
         <div className="login">
-          <p>Faça login para acessar a pagina</p>
-          <button onClick={signInWithGoogle} className="login-button">
-            Fazer login com o Google
+          <p>SESO em Concursos</p>
+
+           <img src={imagemSvg} alt="Descrição da imagem" width="40%" height="40%" />
+
+          <p>Faça login com sua conta do Google para responder questões diariamente.</p>
+          <button onClick={signInWithGoogle} className="login-button">  
+            Entrar com o Google
           </button>
         </div>
       )}
