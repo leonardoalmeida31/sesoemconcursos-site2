@@ -8,6 +8,7 @@ import imagemSvg from '../img/img-login-1.svg';
 import { Link } from 'react-router-dom';
 import MenuMui from '../MenuMui.jsx';
 import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { initializeApp } from "firebase/app";
 import {
@@ -672,19 +673,24 @@ function Home() {
                   {resultados[question.ids] === false && <p className="resposta-incorreta">Você Errou! Resposta: {question.resposta}</p>}
                 </div>
 
-                <div className="linha-horizontal-comentario"></div>
+                <Container className="linha-horizontal-comentario"></Container>
 
                 
-                  <Container className="campo-comentario">
-                    <button
+                  <Container className="campo-comentario"  style={{
+                        // Impede que o texto quebre para a próxima linha
+                        overflowX: "auto",    // Adiciona a rolagem horizontal quando necessário
+                       
+
+                      }}>
+                    <button  
                       className="button-comentario"
                       onClick={() => toggleComentario(question.ids)}
                     >
                       {" "}
-                      <ChatCenteredText size={14} /> Comentário do Professor
+                      <ChatCenteredText size={14} /> Comentário 
                     </button>
 
-                    <button
+                    <button  
                       className="button-estatisticas"
                       onClick={() => setEstatisticasVisiveis(!estatisticasVisiveis)}
                     >
@@ -697,7 +703,7 @@ function Home() {
                       style={{
                         // Impede que o texto quebre para a próxima linha
                         overflowX: "auto",    // Adiciona a rolagem horizontal quando necessário
-                        maxWidth: "100%",    // Defina a largura máxima para o elemento <p>
+                       
 
                       }}
                     >
@@ -707,7 +713,7 @@ function Home() {
                   </Container>
 
                   {estatisticasVisiveis && (
-                    <div className="campo-estatistica">
+                    <Container className="campo-estatistica">
 
 
                       {Object.entries(desempenhoPorDisciplina).map(([disciplina, { acertos, erros }]) => {
@@ -728,7 +734,7 @@ function Home() {
                       })}
 
 
-                    </div>
+                    </Container>
                   )}
               
               </div>

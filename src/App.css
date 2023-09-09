@@ -220,14 +220,16 @@
   
   .button-comentario {
     color:#1c5253;
-    flex-direction: column;
+    flex-direction: row;
     border: none;
-    margin: 0px;
+    margin-right: 1em;
+    margin-left: 0;
+    justify-content: flex-start;
     background-color: #1c525309;
     padding: 0.500em;
     font-size: 14px;
     font-family: Poppins;
-    width: 40%;
+   
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
     font-weight: 500;
@@ -236,13 +238,13 @@
     .button-comentario {
       color: #1c5253;
     border: none;
-    margin: 0px;
+    margin-right: 1em;
     background-color: #1c525309;
     padding: 0.500em;
     font-size: 14px;
     font-family: Poppins;
-    width: 100%;
-    flex-direction: column;
+   
+    flex-direction: row;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
     font-weight: 500;
@@ -251,12 +253,7 @@
   }
 
 
-  .svg{
-    color: #1c525309;
-    align-items:center;
-    justify-content: center;
 
-  }
   
   .button-comentario:hover {
     background-color: #1c5253;
@@ -264,28 +261,19 @@
   }
 
   .campo-comentario {
-    margin-bottom: 4em;
-    
+    margin-bottom: 5em;
+    align-items: center;
     background-color: #1c525313;
     display: flex;
-    flex-direction: column;
-  
-   
-    align-items: flex-start; /* Alinha o conteúdo à esquerda */
-   
-   
-    
+    flex-direction: row;
   }
   @media (max-width: 767px) {
     .campo-comentario {
     
-      
+      flex-direction: row;
       background-color: #1c525313;
-      display: flex;
-      
-      white-space: pre-line; /* Adiciona quebras de linha */
-    
-  
+      display: flex;  
+      white-space: pre-line; /* Adiciona quebras de linha */ 
       border-bottom-left-radius: 0; /* Remova o raio da borda inferior para um visual mais limpo em dispositivos móveis */
     }
   }
@@ -293,10 +281,7 @@
  
   
   .campo-estatistica {
-    margin-bottom: 2em;
-    background-color: #1c525313;
-    width: 100%;
-    margin-bottom: 2em;
+   
     
     
   }
@@ -309,8 +294,8 @@
     padding: 0.500em;
     font-size: 14px;
     font-family: Poppins;
-    width: 40%;
-    flex-direction: column;
+
+    flex-direction: row;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
     font-weight: 500;
@@ -326,8 +311,8 @@
       padding: 0.500em;
       font-size: 14px;
       font-family: Poppins;
-      width: 100%;
-      flex-direction: column;
+   
+      flex-direction: row;
       cursor: pointer;
       transition: background-color 0.3s ease-in-out;
       font-weight: 500;
@@ -357,7 +342,7 @@
   .comentario {
     display: none;
     padding: 2em;
-    margin-bottom: 2em;
+    margin: 1em;
     background-color: #ffffff;
     font-family: Poppins;
      align-items: center;
@@ -370,10 +355,10 @@
   }
 
   @media (max-width: 767px) {
-    .comentario {
+    .comentario  {
     display: none;
-   
- 
+      align-items: center;
+    
     background-color: #ffffff;
     font-family: Poppins;
     border-radius: 8px;
