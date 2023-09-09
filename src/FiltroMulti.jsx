@@ -11,8 +11,11 @@ function FiltroMulti({ db, onFilterChange}) {
   const [selectedBancas, setSelectedBancas] = useState([]);
   const [selectedModalidades, setSelectedModalidades] = useState([]);
   const [selectedAnos, setSelectedAnos] = useState([]);
+  const [selectedAreas, setSelectedAreas] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [filteredQuestoes, setFilteredQuestoes] = useState([]);
+
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -86,6 +89,12 @@ function FiltroMulti({ db, onFilterChange}) {
     label: ano,
   }));
 
+  const uniqueAreas = Array.from(new Set(questions.map((item) => item.area)));
+  const areaOptions = uniqueAreas.map((area) => ({
+    value: area,
+    label: area,
+  }));
+
  
   const handleFilterClick = () => {
     const filteredQuestoes = questions
@@ -104,12 +113,15 @@ function FiltroMulti({ db, onFilterChange}) {
           selectedModalidades.some((selected) => selected.value === item.modalidade);
         const anoMatch =
           selectedAnos.length === 0 || selectedAnos.some((selected) => selected.value === item.ano);
+          const areaMatch =
+          selectedAreas.length === 0 || selectedAreas.some((selected) => selected.value === item.area);
 
         return (
           disciplinaMatch &&
           assuntoMatch &&
           bancaMatch &&
           modalidadeMatch &&
+          areaMatch &&
           anoMatch
         );
       });
@@ -174,8 +186,18 @@ function FiltroMulti({ db, onFilterChange}) {
           placeholder="Ano"
         />
       </div>
+      <div className="div-filter">
+        <Select
+          className="filter-select"
+          value={selectedAreas}
+          onChange={(selectedOptions) => setSelectedAreas(selectedOptions)}
+          options={areaOptions}
+          isMulti={true}
+          placeholder="Área"
+        />
+      </div>
       <div>
-        <div>
+        <div className="div-button">
           <button className="filter-button" onClick={handleFilterClick}>
             Filtrar Questões
           </button>

@@ -1,5 +1,5 @@
 /* App container */
-.App {
+.fundo-Home {
     font-family: 'Poppins', sans-serif;
     display: flex;
     flex-direction: column;
@@ -8,9 +8,14 @@
     padding: 4em;
    
   }
+  .Home {
+    font-family: 'Poppins', sans-serif;
+    
+   
+  }
   @media (max-width: 767px) {
-    .App {
-      padding: 2em;
+    .fundo-Home {
+      padding: 1em;
       width: 100%;
       display: flex;
       justify-content: center;
@@ -18,6 +23,11 @@
       
     }
   }
+  .menu {
+    padding: 0; /* Remova o padding */
+    width: 100%; /* Preencha a largura total da tela */
+  }
+  
 
 .login {
   text-align: center;
@@ -38,9 +48,10 @@
 }
 
 .logout-button-container {
-  margin-left: auto; 
+ 
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 7px;
 }
 
@@ -51,6 +62,8 @@
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
+  justify-content: center;
+  align-items: center;
   font-size: 16px;
 }
 
@@ -68,15 +81,17 @@
   .enunciado {
     font-size: 0.875em; /* 14 px de font */
     font-weight: 400;
+    font-family: Poppins;
     margin-top: 2em;
     white-space: pre-line; /* Adiciona quebras de linha */
-    width: 90%;
+    justify-content: flex-start;
+    padding: 0.300em;
   }
   
 
   .alternativa {
     cursor: pointer;
-    padding-left: 20px; /* Adiciona espaço para a letra */
+    padding-left: 1em; /* Adiciona espaço para a letra */
     border-radius: 5px;
     margin: 15px;
     font-size: 0.875em;
@@ -117,6 +132,7 @@
     padding: 10px 20px;
     cursor: pointer;
     margin-top: 20px;
+    font-family: Poppins;
     border-radius: 5px;
     font-size: 16px;
     transition: background-color 0.3s, color 0.3s;
@@ -172,14 +188,26 @@
     background-color: #1c525309;
     padding: 0.500em;
     font-size: 14px;
-    width: 20%;
+    font-family: Poppins;
+    width: 40%;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
     font-weight: 500;
   }
   @media screen and (max-width: 767px) {
     .button-comentario {
-      width: 100%; /* Altere a largura para ocupar 100% da largura do container pai */
+      color: #1c5253;
+    border: none;
+    margin: 0px;
+    background-color: #1c525309;
+    padding: 0.500em;
+    font-size: 14px;
+    font-family: Poppins;
+    width: 100%;
+    flex-direction: column;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    font-weight: 500;
      
     }
   }
@@ -228,14 +256,11 @@
   
   .campo-estatistica {
     margin-top: 0px;
-    
     background-color: #1c525313;
-    
     width: 100%;
     
-   
-    
   }
+ 
   .button-estatisticas {
     color: #1c5253;
     border: none;
@@ -243,7 +268,8 @@
     background-color: #1c525309;
     padding: 0.500em;
     font-size: 14px;
-    width: 20%;
+    font-family: Poppins;
+    width: 40%;
     flex-direction: column;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
@@ -252,7 +278,18 @@
   }
   @media screen and (max-width: 767px) {
     .button-estatisticas {
-      width: 100%; /* Altere a largura para ocupar 100% da largura do container pai */
+      color: #1c5253;
+      border: none;
+      margin: 0px;
+      background-color: #1c525309;
+      padding: 0.500em;
+      font-size: 14px;
+      font-family: Poppins;
+      width: 100%;
+      flex-direction: column;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+      font-weight: 500;
      
     }
   }
@@ -281,15 +318,28 @@
     padding: 2em;
     margin: 2em;
     background-color: #ffffff;
-   
-   align-items: center;
+    font-family: Poppins;
+     align-items: center;
     border-radius: 8px;
     font-size: 0.865em;
     line-height: 1.4;
-    white-space: pre-line; /* Adiciona quebras de linha */
-    
-    
-    
+    white-space: pre-line; /* Adiciona quebras de linha */ 
+
+   
+  }
+
+  @media (max-width: 767px) {
+    .comentario {
+    display: none;
+    padding: 1em;
+    margin: 1em;
+    background-color: #ffffff;
+    font-family: Poppins;
+    border-radius: 8px;
+    font-size: 0.865em;
+   
+    white-space: pre-line; /* Adiciona quebras de linha */ 
+    }
   }
   
   .comentario.visivel {
@@ -314,6 +364,12 @@
   .campo-pai {
   
     flex-direction: column;
+   
+  }
+
+  .campo-questao {
+  
+  width: 100%;
    
   }
   .botao-comentario.ativo {
@@ -374,13 +430,15 @@
     flex-direction: row; /* Disposição horizontal */
     flex-wrap: wrap; /* Quebra de linha */
     align-items: center;
+    justify-content: center;
     font-size: 0.75em;
-    margin-bottom: 2px;
-    margin-top: 20px;
+    margin-bottom: 0.100em;
+    margin-top: 4em;
     width: 100%;
     background-color: #1c5253;
     font-weight: 400;
     border-radius: 5px;
+    
   }
   
   
@@ -391,11 +449,14 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+
+    
+   
   }
   .cabecalho-orgao {
     display: flex;
     align-items: flex-start;
-    font-size: 0.80em; /*12px font */
+    font-size: 0.800em; /*12px font */
     font-weight: 500;
     width: 100%;
     position: relative; /* Adicione essa propriedade para controlar a posição da linha */
@@ -430,6 +491,8 @@
   border: none;
   padding: 10px 20px;
   margin: 10px;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
 }
 

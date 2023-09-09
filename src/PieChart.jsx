@@ -5,7 +5,7 @@ const PieChart = ({ data, options, title }) => {
   return (
     <div className="grafico-pizza">
       
-      <Chart
+      <Chart className="piechart"
         width={'100%'}
         height={250}
         chartType="PieChart"
@@ -14,6 +14,7 @@ const PieChart = ({ data, options, title }) => {
         title,
           is3D: true,
           colors: ['#1c5253', '#B22222'],
+        
           ...options, // Você pode passar opções adicionais como props
         }}
         rootProps={{ 'data-testid': '1' }}
