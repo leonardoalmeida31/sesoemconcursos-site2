@@ -83,15 +83,15 @@ function Home() {
       }
 
       // Adicione um listener para atualizações do perfil do usuário
-  auth.onAuthStateChanged(async (user) => {
-    if (user) {
-      const updatedUser = auth.currentUser;
-      const updatedDisplayName = updatedUser.displayName;
+      auth.onAuthStateChanged(async (user) => {
+        if (user) {
+          const updatedUser = auth.currentUser;
+          const updatedDisplayName = updatedUser.displayName;
 
-      // Atualize o nome do usuário no documento Firestore
-      await updateDoc(userRef, { displayName: updatedDisplayName });
-    }
-  });
+          // Atualize o nome do usuário no documento Firestore
+          await updateDoc(userRef, { displayName: updatedDisplayName });
+        }
+      });
       // Resto do código...
     } catch (error) {
       console.error("Erro ao fazer login com o Google:", error);
@@ -125,9 +125,9 @@ function Home() {
           const userData = userDoc.data();
           const userDisplayName = userData.displayName;
 
-         setDisplayName(userDisplayName); // Atualize o estado com o nome do usuário
-          
-         const userPaymentInfo = userData.paymentInfo;
+          setDisplayName(userDisplayName); // Atualize o estado com o nome do usuário
+
+          const userPaymentInfo = userData.paymentInfo;
 
           // Recupere as informações de desempenho do documento do usuário
           const desempenhoSalvo = userData.desempenhoPorDisciplina;
@@ -519,17 +519,19 @@ function Home() {
 
       {user && (
         <Box className="div-menu">
-
-
           <button className="open-button" onClick={openModal}>
             Assine Agora
           </button>
           <button onClick={signOut} className="logout-button">
             Sair/Entrar
           </button>
-          <p className="nome-user">Bem-vindo(a), {displayName}</p>
+          <Link to="/MeuPerfil" className="nome-user">
+             Bem-vindo(a), {displayName}
+          </Link>
+          
         </Box>
       )}
+
 
       {user && (<div>
 
@@ -694,69 +696,70 @@ function Home() {
                 </div>
 
 
-                <button  
-                      className="button-comentario"
-                      onClick={() => toggleComentario(question.ids)}
-                    >
-                      {" "}
-                    Comentário 
-                    </button>
+                <button
+                  className="button-comentario"
+                  onClick={() => toggleComentario(question.ids)}
+                >
+                  {" "}
+                  Comentário
+                </button>
 
-                     <button  
-                      className="button-estatisticas"
-                      onClick={() => setEstatisticasVisiveis(!estatisticasVisiveis)}
-                    > Meu Desempenho
-                    </button>
+              
+        <Link to="/MeuPerfil" className="button-estatisticas"> 
+        
+          Meu Desempenho
+       
+        </Link>
                 <Container className="linha-horizontal-comentario"></Container>
 
-                  <Container className="campo-comentario"  style={{
-                        // Impede que o texto quebre para a próxima linha
-                        overflowX: "auto",    // Adiciona a rolagem horizontal quando necessário
-                       
-
-                      }}>
-                    
+                <Container className="campo-comentario" style={{
+                  // Impede que o texto quebre para a próxima linha
+                  overflowX: "auto",    // Adiciona a rolagem horizontal quando necessário
 
 
-                    <p
-                      className={comentariosVisiveis[question.ids] ? "comentario visivel" : "comentario"}
-                      style={{
-                        // Impede que o texto quebre para a próxima linha
-                        overflowX: "auto",    // Adiciona a rolagem horizontal quando necessário
-                       
+                }}>
 
-                      }}
-                    >
-                      {question.comentario}
-                    </p>
+
+
+                  <p
+                    className={comentariosVisiveis[question.ids] ? "comentario visivel" : "comentario"}
+                    style={{
+                      // Impede que o texto quebre para a próxima linha
+                      overflowX: "auto",    // Adiciona a rolagem horizontal quando necessário
+
+
+                    }}
+                  >
+                    {question.comentario}
+                  </p>
+
+                </Container>
+
+                {estatisticasVisiveis && (
+                  <Container className="campo-estatistica">
+
+
+                    {Object.entries(desempenhoPorDisciplina).map(([disciplina, { acertos, erros }]) => {
+                      const data = [['Tipo', 'Quantidade'], ['Acertos', acertos], ['Erros', erros]];
+                      const options = {
+                        is3D: true,
+
+                      };
+
+                      return (
+                        <PieChart
+                          key={disciplina}
+                          title={disciplina}
+                          data={data}
+                          options={options}
+                        />
+                      );
+                    })}
+
 
                   </Container>
+                )}
 
-                  {estatisticasVisiveis && (
-                    <Container className="campo-estatistica">
-
-
-                      {Object.entries(desempenhoPorDisciplina).map(([disciplina, { acertos, erros }]) => {
-                        const data = [['Tipo', 'Quantidade'], ['Acertos', acertos], ['Erros', erros]];
-                        const options = {
-                          is3D: true,
-
-                        };
-
-                        return (
-                          <PieChart
-                            key={disciplina}
-                            title={disciplina}
-                            data={data}
-                            options={options}
-                          />
-                        );
-                      })}
-
-
-                    </Container>
-                  )}
-              
               </div>
             ))}
 
@@ -767,7 +770,7 @@ function Home() {
                 Questão Anterior
               </button>
               <span>
-               {paginaAtual} de {totalPages}
+                {paginaAtual} de {totalPages}
               </span>
               <button
                 onClick={handleNextPage}
