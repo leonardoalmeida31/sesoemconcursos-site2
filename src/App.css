@@ -414,6 +414,7 @@
   /* Pagination */
   .pagination {
     display: flex;
+  
     justify-content: center;
     align-items: center;
     margin-top: 1em;
@@ -423,7 +424,7 @@
     background-color:  #1c5253;
     color: #fff;
     border: none;
-    padding: 0.500em;
+    padding: 0.600em;
     font-family: Poppins;
     font-weight: 400;
     font-size: 0.750em;

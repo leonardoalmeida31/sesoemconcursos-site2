@@ -749,7 +749,7 @@ function Home() {
                 Questão Anterior
               </button>
               <span>
-                Questão {paginaAtual} de {totalPages}
+               {paginaAtual} de {totalPages}
               </span>
               <button
                 onClick={handleNextPage}
