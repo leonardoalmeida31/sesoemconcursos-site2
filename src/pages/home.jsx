@@ -39,7 +39,7 @@ function Home() {
   const questionsCollectionRef = collection(db, "questions");
   const [user, setUser] = useState(null);
 
-  const questoesPorPagina = 15;
+  const questoesPorPagina = 1;
   const [questions, setQuestions] = useState([]);
   const [paginaAtual, setPaginaAtual] = useState(1);
   const [questoesFiltradas, setQuestoesFiltradas] = useState([]);
@@ -499,7 +499,7 @@ function Home() {
     <div className="Home">
 
       {user && (
-        <div className="div-menu">
+        <Container className="div-menu">
 
 
           <button className="open-button" onClick={openModal}>
@@ -508,7 +508,7 @@ function Home() {
           <button onClick={signOut} className="logout-button">
             Sair/Entrar
           </button>
-        </div>
+        </Container>
       )}
 
       {user && (<div>
@@ -742,7 +742,7 @@ function Home() {
 
 
 
-            <div className="pagination">
+            <Box className="pagination">
               <button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
                 Página Anterior
               </button>
@@ -755,19 +755,19 @@ function Home() {
               >
                 Próxima Página
               </button>
-            </div>
+            </Box>
           </div>
         ) : (
-          <div className="login">
+          <Box className="login">
             <p>SESO em Concursos</p>
 
-            <img src={imagemSvg} alt="Descrição da imagem" width="50%" height="50%" />
+            <img src={imagemSvg} alt="Descrição da imagem" width="40%" height="40%" />
 
             <p>Faça login com sua conta do Google para responder questões diariamente.</p>
             <button onClick={signInWithGoogle} className="login-button">
               Entrar com o Google
             </button>
-          </div>
+          </Box>
         )}
       </Container>
     </div>
