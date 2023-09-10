@@ -71,6 +71,7 @@ function Home() {
 
       const uid = user.uid;
       const email = user.email;
+      const displayName = user.displayName; // Obtenha o nome de exibição do usuário
       const userRef = doc(db, "users", uid);
 
       // Verifica se o documento do usuário já existe
@@ -81,6 +82,16 @@ function Home() {
         await setDoc(userRef, { email, paymentInfo: null });
       }
 
+      // Adicione um listener para atualizações do perfil do usuário
+  auth.onAuthStateChanged(async (user) => {
+    if (user) {
+      const updatedUser = auth.currentUser;
+      const updatedDisplayName = updatedUser.displayName;
+
+      // Atualize o nome do usuário no documento Firestore
+      await updateDoc(userRef, { displayName: updatedDisplayName });
+    }
+  });
       // Resto do código...
     } catch (error) {
       console.error("Erro ao fazer login com o Google:", error);
@@ -97,6 +108,9 @@ function Home() {
     }
   };
 
+
+  const [displayName, setDisplayName] = useState(null); //guarda pra exibe nome do usuario pra tela
+
   const [paymentInfo, setPaymentInfo] = useState(null);
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -107,10 +121,13 @@ function Home() {
         const userDoc = await getDoc(userRef);
 
 
-
         if (userDoc.exists()) {
           const userData = userDoc.data();
-          const userPaymentInfo = userData.paymentInfo;
+          const userDisplayName = userData.displayName;
+
+         setDisplayName(userDisplayName); // Atualize o estado com o nome do usuário
+          
+         const userPaymentInfo = userData.paymentInfo;
 
           // Recupere as informações de desempenho do documento do usuário
           const desempenhoSalvo = userData.desempenhoPorDisciplina;
@@ -501,7 +518,7 @@ function Home() {
     <div className="Home">
 
       {user && (
-        <Container className="div-menu">
+        <Box className="div-menu">
 
 
           <button className="open-button" onClick={openModal}>
@@ -510,7 +527,8 @@ function Home() {
           <button onClick={signOut} className="logout-button">
             Sair/Entrar
           </button>
-        </Container>
+          <p className="nome-user">Bem-vindo(a), {displayName}</p>
+        </Box>
       )}
 
       {user && (<div>
