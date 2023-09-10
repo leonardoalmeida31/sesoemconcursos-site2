@@ -83,7 +83,7 @@
   }
   
   .filter-button {
-    padding: 10px;
+    padding: 0.700em;
     flex-direction: column;
     background-color: #1C5253;
     color: white;
@@ -92,7 +92,9 @@
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 14px; /* Tamanho de fonte responsivo em pixels */
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 0.875em; /* Tamanho de fonte responsivo em pixels */
   }
   .div-button {
    

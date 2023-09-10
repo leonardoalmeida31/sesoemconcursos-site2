@@ -119,7 +119,7 @@
     font-size: 0.875em; /* 14 px de font */
     font-weight: 400;
     font-family: Poppins;
-    margin-top: 2em;
+    margin-top: 1.5em;
     white-space: pre-line; /* Adiciona quebras de linha */
     justify-content: flex-start;
     padding: 0.300em;
@@ -131,7 +131,7 @@
     padding-left: 1em; /* Adiciona espaço para a letra */
     border-radius: 5px;
     margin: 15px;
-    font-size: 0.875em;
+    font-size: 0.865em;
     font-weight: 400;
   }
   .letra-alternativa {
@@ -143,9 +143,10 @@
     display: inline-block;
     width: 20px;
     height: 20px;
-    border: 2px solid black;
-    border-radius: 50%;
+    border: 0.100em solid black;
+    border-radius: 100%;
     text-align: center;
+    align-items: center;
     line-height: 20px;
     font-weight: bold;
     margin-right: 5px;
@@ -166,14 +167,14 @@
     background-color: #1c5253;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 0.450em 1em;
     cursor: pointer;
     margin-top: 20px;
     font-family: Poppins;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 0.900em;
     transition: background-color 0.3s, color 0.3s;
-    font-weight: 600;
+    font-weight: 500;
   }
   
   .button-responder:hover {
@@ -209,12 +210,13 @@
     display: flex; /* Exibe os elementos em uma linha horizontal */
      /* Espaça os elementos igualmente na linha */
     align-items: center; /* Alinha os elementos verticalmente ao centro */
+    margin-bottom: 2em;
    
   }
   
   .linha-horizontal-comentario {
     border-top: 2px solid #1c52533a;
-    margin-top: 20px;
+    margin-bottom: 0px;
   }
   
   .button-comentario {
@@ -281,7 +283,7 @@
   
   .campo-estatistica {
    
-    
+    padding: 0;
     
   }
  
@@ -293,7 +295,7 @@
     padding: 0.500em;
     font-size: 14px;
     font-family: Poppins;
-
+    align-items: center;
     flex-direction: row;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
@@ -301,6 +303,9 @@
     
     
   }
+
+
+
   @media screen and (max-width: 767px) {
     .button-estatisticas {
       color: #1c5253;
@@ -310,7 +315,7 @@
       padding: 0.500em;
       font-size: 14px;
       font-family: Poppins;
-   
+      
       flex-direction: row;
       cursor: pointer;
       transition: background-color 0.3s ease-in-out;
@@ -322,26 +327,11 @@
     background-color: #1c5253;
     color:#ffffff;
   }
-  
-  .desempenho-container {
-  
-    margin-bottom: 1em;
-    
-    padding: 1em;
-   
-    border-radius: 8px;
-    font-size: 0.865em;
-   
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    
-  }
+
      
   .comentario {
     display: none;
-    padding: 2em;
-    margin: 1em;
+    padding: 1em;
     background-color: #ffffff;
     font-family: Poppins;
      align-items: center;
@@ -356,12 +346,11 @@
   @media (max-width: 767px) {
     .comentario  {
     display: none;
-      align-items: center;
-    
+    align-items: center;
     background-color: #ffffff;
     font-family: Poppins;
     border-radius: 8px;
-    font-size: 0.865em;
+    font-size: 0.850em;
     line-height: 1.4;
     white-space: pre-line; /* Adiciona quebras de linha */ 
     }
@@ -434,9 +423,10 @@
     background-color:  #1c5253;
     color: #fff;
     border: none;
-    padding: 0.500em 1em;
+    padding: 0.500em;
     font-family: Poppins;
     font-weight: 400;
+    font-size: 0.750em;
     border-radius: 5px;
     cursor: pointer;
     margin: 0 5px;

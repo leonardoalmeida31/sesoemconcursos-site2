@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FiltroMulti from "../FiltroMulti.jsx";
-import { CaretRight, ChatCenteredText } from "@phosphor-icons/react";
+import { CaretRight, ChatCenteredText, ChartPie } from "@phosphor-icons/react";
 import "../App.css";
 import Chart from "react-google-charts";
 import PieChart from "../PieChart.jsx";
@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 import MenuMui from '../MenuMui.jsx';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+
+import AutoGraphOutlinedIcon from '@mui/icons-material/AutoGraphOutlined';
 import Container from '@mui/material/Container';
 import { initializeApp } from "firebase/app";
 import {
@@ -673,29 +675,29 @@ function Home() {
                   {resultados[question.ids] === false && <p className="resposta-incorreta">Você Errou! Resposta: {question.resposta}</p>}
                 </div>
 
+
+                <button  
+                      className="button-comentario"
+                      onClick={() => toggleComentario(question.ids)}
+                    >
+                      {" "}
+                    Comentário 
+                    </button>
+
+                     <button  
+                      className="button-estatisticas"
+                      onClick={() => setEstatisticasVisiveis(!estatisticasVisiveis)}
+                    > Meu Desempenho
+                    </button>
                 <Container className="linha-horizontal-comentario"></Container>
 
-                
                   <Container className="campo-comentario"  style={{
                         // Impede que o texto quebre para a próxima linha
                         overflowX: "auto",    // Adiciona a rolagem horizontal quando necessário
                        
 
                       }}>
-                    <button  
-                      className="button-comentario"
-                      onClick={() => toggleComentario(question.ids)}
-                    >
-                      {" "}
-                      <ChatCenteredText size={14} /> Comentário 
-                    </button>
-
-                    <button  
-                      className="button-estatisticas"
-                      onClick={() => setEstatisticasVisiveis(!estatisticasVisiveis)}
-                    >
-                      Seu Desempenho
-                    </button>
+                    
 
 
                     <p
@@ -744,16 +746,16 @@ function Home() {
 
             <Box className="pagination">
               <button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
-                Página Anterior
+                Questão Anterior
               </button>
               <span>
-                Página {paginaAtual} de {totalPages}
+                Questão {paginaAtual} de {totalPages}
               </span>
               <button
                 onClick={handleNextPage}
               // disabled={paginaAtual >= totalPages || paymentInfo === 0 || paymentInfo === null}
               >
-                Próxima Página
+                Próxima Questão
               </button>
             </Box>
           </div>
