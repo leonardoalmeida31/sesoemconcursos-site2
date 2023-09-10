@@ -9,7 +9,9 @@ import { Link } from 'react-router-dom';
 import MenuMui from '../MenuMui.jsx';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Select from "react-select";
+
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 
 import AutoGraphOutlinedIcon from '@mui/icons-material/AutoGraphOutlined';
@@ -484,7 +486,7 @@ function MeuPerfil() {
     disciplinaSelecionada && desempenhoPorDisciplina[disciplinaSelecionada];
 
   return (
-    <div className="ContainerTotal">
+
     <Container className="ContainerTotal">
       <h1 className="nome-user">Olá, {displayName}</h1>
 
@@ -493,39 +495,45 @@ function MeuPerfil() {
       )}
 
 
-      <Box className="FundoGrafico">
-       
 
 
 
-        
-      <select
+
+
+      <Box className="Box-select">
+      <p className="disciplinaSelecionada"> Filtre seu Desempenho por Disciplina:</p>
+        <Select className="Select-Desempenho"
           value={disciplinaSelecionada}
           onChange={(e) => setDisciplinaSelecionada(e.target.value)}
         >
-          <option value={null}>Selecione uma disciplina</option>
+          <MenuItem value={null}>Selecione uma disciplina</MenuItem>
           {Object.keys(desempenhoPorDisciplina).map((disciplina) => (
-            <option key={disciplina} value={disciplina}>
+            <MenuItem key={disciplina} value={disciplina}>
               {disciplina}
-            </option>
+            </MenuItem>
           ))}
-        </select>
-        {disciplinaSelecionadaData ? (
-          <Box className="disciplina-grafico">
-             <p>Meu Desempenho por Disciplina:</p>
-             
-             
-        
-            <h3>{disciplinaSelecionada}</h3>
-            <ul>
-              <li>Acertos: {disciplinaSelecionadaData.acertos || 0}    Erros: {disciplinaSelecionadaData.erros || 0}</li>
-             
-            </ul>
+        </Select>
+      </Box>
+
+
+
+      {disciplinaSelecionadaData ? (
+        <Container className="disciplina-grafico">
+          
+
+
+
+
+          <ul>
+            <li className="acertos">Acertos: {disciplinaSelecionadaData.acertos || 0}    Erros: {disciplinaSelecionadaData.erros || 0}</li>
+
+          </ul>
+          <div style={{ borderRadius: '10px', overflow: 'hidden' }}>
             <Chart
               width={'100%'}
-              height={300}
+              height={'100%'}
               chartType="PieChart"
-              loader={<Box>Carregando gráfico...</Box>}
+              loader={<Container>Carregando gráfico...</Container>}
               data={[
                 ['Desempenho', 'Quantidade'],
                 ['Acertos', disciplinaSelecionadaData.acertos || 0],
@@ -533,16 +541,26 @@ function MeuPerfil() {
               ]}
               options={{
                 title: `Desempenho em ${disciplinaSelecionada}`,
+                titleTextStyle: {
+                  fontSize: 12, // Tamanho da fonte do título
+                  bold: true,   // Texto em negrito
+                  alignment: 'center', // Alinhamento ao centro
+                },
                 colors: ['#1c5253', '#B22222'],
+                backgroundColor: 'white', // Tornar o fundo do gráfico transparente
               }}
             />
-          </Box>
-        ) : (
-          <p>Selecione uma disciplina para exibir os dados.</p>
-        )}
-      </Box>
+          </div>
+
+
+
+        </Container>
+      ) : (
+        <p className="disciplinaSelecionada"></p>
+      )}
+
     </Container>
-    </div>
+
 
   );
 

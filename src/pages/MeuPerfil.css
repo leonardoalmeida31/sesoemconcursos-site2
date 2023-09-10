@@ -5,7 +5,7 @@
   }
 .ContainerTotal {
     align-items: center;
-   
+   background-color: #56a5a73a;
     justify-content: center;
     display: flex; 
     flex-direction: column;
@@ -16,10 +16,44 @@
    align-items: center;
    justify-content: center;
   }
-
+  .Box-select {
+    flex-direction: column;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+    }
   .disciplina-grafico {
-    margin: 1em;
-    padding: 1em;
-    align-items: center;
-    justify-content: center;
+    padding: 2em;
+
+   
    }
+   .Select-Desempenho {
+    width: 50%; /* Defina a largura desejada aqui */
+    justify-content: center;
+    align-items: center;
+  }
+  @media (max-width: 767px) {
+    .Select-Desempenho { 
+      width: 90%; /* Defina a largura desejada aqui */
+      justify-content: center;
+      align-items: center;
+        
+    }
+  }
+  .disciplinaSelecionada {
+   font-weight: 500;
+   font-size: 0.825em;
+   text-align: center;
+   font-family: Poppins;
+    justify-content: center;
+    align-items: center;
+  }
+  .acertos {
+    font-weight: 400;
+    font-size: 0.750em;
+    text-align: center;
+    font-family: Poppins;
+     justify-content: center;
+     align-items: center;
+   }
+ 
