@@ -72,6 +72,7 @@ function Home() {
       const uid = user.uid;
       const email = user.email;
       const displayName = user.displayName; // Obtenha o nome de exibição do usuário
+      setDisplayName(displayName); // Atualize o estado displayName com o valor do usuário
       const userRef = doc(db, "users", uid);
 
       // Verifica se o documento do usuário já existe
@@ -92,6 +93,7 @@ function Home() {
           await updateDoc(userRef, { displayName: updatedDisplayName });
         }
       });
+
       // Resto do código...
     } catch (error) {
       console.error("Erro ao fazer login com o Google:", error);
@@ -108,9 +110,7 @@ function Home() {
     }
   };
 
-
   const [displayName, setDisplayName] = useState(null); //guarda pra exibe nome do usuario pra tela
-
   const [paymentInfo, setPaymentInfo] = useState(null);
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -121,12 +121,10 @@ function Home() {
         const userDoc = await getDoc(userRef);
 
 
+
         if (userDoc.exists()) {
           const userData = userDoc.data();
           const userDisplayName = userData.displayName;
-
-          setDisplayName(userDisplayName); // Atualize o estado com o nome do usuário
-
           const userPaymentInfo = userData.paymentInfo;
 
           // Recupere as informações de desempenho do documento do usuário
@@ -134,6 +132,15 @@ function Home() {
 
           // Atualize o estado desempenhoPorDisciplina com as informações recuperadas
           setDesempenhoPorDisciplina(desempenhoSalvo);
+
+          // Recupere as informações de desempenho total do documento do usuário
+        const desempenhoTotalSalvo = userData.desempenhoTotal || {
+          acertos: 0,
+          erros: 0,
+        };
+
+        // Atualize o estado desempenhoTotal com as informações recuperadas
+        setDesempenhoTotal(desempenhoTotalSalvo);
 
           // Atualize o estado paymentInfo
           setPaymentInfo(userPaymentInfo);
@@ -182,8 +189,15 @@ function Home() {
             `Acesso concedido por ${accessDurationDays} dias a partir de ${currentDate.toISOString()}`
           );
         } else {
-          // Se o documento do usuário não existir, crie-o com paymentInfo ausente
-          await setDoc(userRef, { expirationDate: null, paymentInfo: null });
+           // Se o documento do usuário não existir, crie-o com paymentInfo ausente
+        await setDoc(userRef, {
+          expirationDate: null,
+          paymentInfo: null,
+          desempenhoTotal: {
+            acertos: 0,
+            erros: 0,
+          },
+        });
 
           console.log("Documento do usuário criado.");
 
@@ -282,6 +296,11 @@ function Home() {
   const [erros, setErros] = useState(0);
   const [desempenhoPorDisciplina, setDesempenhoPorDisciplina] = useState({});
 
+  const [desempenhoTotal, setDesempenhoTotal] = useState({
+    acertos: 0,
+    erros: 0,
+  });
+  
 
   const handleRespostaClick = async (question) => {
 
@@ -302,7 +321,12 @@ function Home() {
     if (respostaUsuario === respostaCorreta) {
       setRespostaCorreta(true); // A resposta do usuário está correta
       setAcertos(acertos + 1); // Incrementa o número de acertos
+      setDesempenhoTotal((prevDesempenhoTotal) => ({
+        ...prevDesempenhoTotal,
+        acertos: prevDesempenhoTotal.acertos + 1,
+      }));
       setDesempenhoPorDisciplina((prevDesempenho) => {
+
 
         const disciplina = question.disciplina;
         return {
@@ -316,6 +340,11 @@ function Home() {
     } else {
       setRespostaCorreta(false); // A resposta do usuário está incorreta
       setErros(erros + 1); // Incrementa o número de erros
+      setDesempenhoTotal((prevDesempenhoTotal) => ({
+        ...prevDesempenhoTotal,
+        erros: prevDesempenhoTotal.erros + 1,
+      }));
+
       setDesempenhoPorDisciplina((prevDesempenho) => {
         const disciplina = question.disciplina;
         return {
@@ -342,6 +371,8 @@ function Home() {
 
         // Atualize as informações de desempenho no documento do usuário
         await setDoc(userRef, { desempenhoPorDisciplina }, { merge: true });
+        await updateDoc(userRef, { desempenhoTotal });
+      
       }
     }
 
@@ -518,7 +549,9 @@ function Home() {
     <div className="Home">
 
       {user && (
-        <Box className="div-menu">
+        <Container className="div-menu">
+
+
           <button className="open-button" onClick={openModal}>
             Assine Agora
           </button>
@@ -528,10 +561,8 @@ function Home() {
           <Link to="/MeuPerfil" className="nome-user">
              Bem-vindo(a), {displayName}
           </Link>
-          
-        </Box>
+        </Container>
       )}
-
 
       {user && (<div>
 
@@ -696,70 +727,69 @@ function Home() {
                 </div>
 
 
-                <button
-                  className="button-comentario"
-                  onClick={() => toggleComentario(question.ids)}
-                >
-                  {" "}
-                  Comentário
-                </button>
+                <button  
+                      className="button-comentario"
+                      onClick={() => toggleComentario(question.ids)}
+                    >
+                      {" "}
+                    Comentário 
+                    </button>
 
-              
-        <Link to="/MeuPerfil" className="button-estatisticas"> 
-        
-          Meu Desempenho
-       
-        </Link>
+                     <button  
+                      className="button-estatisticas"
+                      onClick={() => setEstatisticasVisiveis(!estatisticasVisiveis)}
+                    > Meu Desempenho
+                    </button>
                 <Container className="linha-horizontal-comentario"></Container>
 
-                <Container className="campo-comentario" style={{
-                  // Impede que o texto quebre para a próxima linha
-                  overflowX: "auto",    // Adiciona a rolagem horizontal quando necessário
+                  <Container className="campo-comentario"  style={{
+                        // Impede que o texto quebre para a próxima linha
+                        overflowX: "auto",    // Adiciona a rolagem horizontal quando necessário
+                       
+
+                      }}>
+                    
 
 
-                }}>
+                    <p
+                      className={comentariosVisiveis[question.ids] ? "comentario visivel" : "comentario"}
+                      style={{
+                        // Impede que o texto quebre para a próxima linha
+                        overflowX: "auto",    // Adiciona a rolagem horizontal quando necessário
+                       
 
-
-
-                  <p
-                    className={comentariosVisiveis[question.ids] ? "comentario visivel" : "comentario"}
-                    style={{
-                      // Impede que o texto quebre para a próxima linha
-                      overflowX: "auto",    // Adiciona a rolagem horizontal quando necessário
-
-
-                    }}
-                  >
-                    {question.comentario}
-                  </p>
-
-                </Container>
-
-                {estatisticasVisiveis && (
-                  <Container className="campo-estatistica">
-
-
-                    {Object.entries(desempenhoPorDisciplina).map(([disciplina, { acertos, erros }]) => {
-                      const data = [['Tipo', 'Quantidade'], ['Acertos', acertos], ['Erros', erros]];
-                      const options = {
-                        is3D: true,
-
-                      };
-
-                      return (
-                        <PieChart
-                          key={disciplina}
-                          title={disciplina}
-                          data={data}
-                          options={options}
-                        />
-                      );
-                    })}
-
+                      }}
+                    >
+                      {question.comentario}
+                    </p>
 
                   </Container>
-                )}
 
+                  {estatisticasVisiveis && (
+                    <Container className="campo-estatistica">
+
+
+                      {Object.entries(desempenhoPorDisciplina).map(([disciplina, { acertos, erros }]) => {
+                        const data = [['Tipo', 'Quantidade'], ['Acertos', acertos], ['Erros', erros]];
+                        const options = {
+                          is3D: true,
+
+                        };
+
+                        return (
+                          <PieChart
+                            key={disciplina}
+                            title={disciplina}
+                            data={data}
+                            options={options}
+                          />
+                        );
+                      })}
+
+
+                    </Container>
+                  )}
+              
               </div>
             ))}
 
@@ -770,7 +800,7 @@ function Home() {
                 Questão Anterior
               </button>
               <span>
-                {paginaAtual} de {totalPages}
+               {paginaAtual} de {totalPages}
               </span>
               <button
                 onClick={handleNextPage}

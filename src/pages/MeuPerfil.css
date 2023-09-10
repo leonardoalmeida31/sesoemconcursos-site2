@@ -1,14 +1,16 @@
 .divTotal {
     
-   
+   margin: 0;
+
     
   }
 .ContainerTotal {
     align-items: center;
-   background-color: #56a5a73a;
+   background-color: #1c525317;
     justify-content: center;
     display: flex; 
     flex-direction: column;
+    border-radius: 0.500em;
   }
   .FundoGrafico {
   display: flex;  
@@ -27,6 +29,26 @@
 
    
    }
+   .box-user {
+   
+    font-family: 'Poppins', sans-serif;
+    padding: 1em;
+    justify-content: center;
+    align-items: center;
+   border: none;
+   
+  
+  }
+  .nome-user {
+   text-align: center;
+    
+  }
+   .box-grafico-geral {
+  
+    padding: 1em;
+
+   
+   }
    .Select-Desempenho {
     width: 50%; /* Defina a largura desejada aqui */
     justify-content: center;
@@ -41,6 +63,7 @@
     }
   }
   .disciplinaSelecionada {
+    margin-top: 3em;
    font-weight: 500;
    font-size: 0.825em;
    text-align: center;
@@ -48,9 +71,17 @@
     justify-content: center;
     align-items: center;
   }
+  .p-desempenho-geral {
+    font-weight: 600;
+    font-size: 0.875em;
+    text-align: center;
+    font-family: Poppins;
+     justify-content: center;
+     align-items: center;
+   }
   .acertos {
-    font-weight: 400;
-    font-size: 0.800em;
+    font-weight: 500;
+    font-size: 0.865em;
     text-align: center;
     font-family: Poppins;
      justify-content: center;

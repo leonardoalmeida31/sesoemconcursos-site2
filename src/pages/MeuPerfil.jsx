@@ -112,6 +112,39 @@ function MeuPerfil() {
     }
   };
 
+  const [desempenhoTotal, setDesempenhoTotal] = useState(null);
+
+  const fetchDesempenhoTotal = async (userId) => {
+    try {
+      const userRef = doc(db, "users", userId);
+      const userDoc = await getDoc(userRef);
+
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        const desempenhoTotal = userData.desempenhoTotal;
+        return desempenhoTotal;
+      } else {
+        return null; // Retorne null se o documento do usuário não existir
+      }
+    } catch (error) {
+      console.error("Erro ao buscar desempenhoTotal:", error);
+      return null;
+    }
+  };
+  useEffect(() => {
+    const fetchData = async () => {
+      if (user) {
+        const userId = user.uid;
+        const desempenhoTotal = await fetchDesempenhoTotal(userId);
+        if (desempenhoTotal !== null) {
+          setDesempenhoTotal(desempenhoTotal);
+        }
+      }
+    };
+
+    fetchData();
+  }, [user]);
+
 
   const [displayName, setDisplayName] = useState(null); //guarda pra exibe nome do usuario pra tela
 
@@ -482,26 +515,68 @@ function MeuPerfil() {
 
   const [disciplinaSelecionada, setDisciplinaSelecionada] = useState("");
 
+  useEffect(() => {
+    if (desempenhoPorDisciplina) {
+      const disciplinas = Object.keys(desempenhoPorDisciplina);
+      if (disciplinas.length > 0) {
+        setDisciplinaSelecionada(disciplinas[0]); // Defina a primeira disciplina como selecionada por padrão
+      }
+    }
+  }, [desempenhoPorDisciplina]);
+
+
   const disciplinaSelecionadaData =
     disciplinaSelecionada && desempenhoPorDisciplina[disciplinaSelecionada];
+
+  // Calcular o número total de questões respondidas
+  const totalQuestoesRespondidas =
+    (desempenhoTotal?.acertos || 0) + (desempenhoTotal?.erros || 0);
+
 
   return (
 
     <Container className="ContainerTotal">
-      <h1 className="nome-user">Olá, {displayName}</h1>
 
-      {email && (
-        <p className="email-user">Email: {email}</p>
-      )}
+      <Box className="box-user"> <h1 className="nome-user">Olá, {displayName}</h1> </Box>
 
-
+      <p className="p-desempenho-geral">DESEMPENHO GERAL</p>
+      <Box className="box-grafico-geral">
+        <div style={{ borderRadius: '10px', overflow: 'hidden' }}>
+          <Chart
+            width={'100%'}
+            height={'300px'} // Defina a altura desejada para o gráfico
+            chartType="PieChart"
+            loader={<div>Carregando gráfico...</div>}
+            data={[
+              ['Desempenho', 'Quantidade'],
+              ['Acertos', desempenhoTotal?.acertos || 0],
+              ['Erros', desempenhoTotal?.erros || 0],
+            ]}
+            options={{
+              title: 'Desempenho Geral',
+              titleTextStyle: {
+                fontSize: 12,
+                bold: true,
+                alignment: 'center',
+              },
+              colors: ['#1c5253', '#B22222'],
+              backgroundColor: 'white',
+              pieHole: 0.4, // Defina o tamanho do buraco no gráfico (valores de 0 a 1)
+            }}
+          />
+        </div>
+        {/* Legenda personalizada */}
+        <div style={{ textAlign: 'center' }}>
+          <p className="acertos">{totalQuestoesRespondidas} Questões Resolvidas</p>
+        </div>
+      </Box>
 
 
 
 
 
       <Box className="Box-select">
-      <p className="disciplinaSelecionada"> Filtre seu Desempenho por Disciplina:</p>
+        <p className="disciplinaSelecionada"> Filtre seu Desempenho por Disciplina:</p>
         <Select className="Select-Desempenho"
           value={disciplinaSelecionada}
           onChange={(e) => setDisciplinaSelecionada(e.target.value)}
@@ -519,39 +594,41 @@ function MeuPerfil() {
 
       {disciplinaSelecionadaData ? (
         <Container className="disciplina-grafico">
-          
 
 
 
 
-          <ul>
-            <li className="acertos">Acertos: {disciplinaSelecionadaData.acertos || 0}    Erros: {disciplinaSelecionadaData.erros || 0}</li>
 
-          </ul>
+
           <div style={{ borderRadius: '10px', overflow: 'hidden' }}>
             <Chart
               width={'100%'}
               height={'100%'}
-              chartType="PieChart"
+              chartType="BarChart"
               loader={<Container>Carregando gráfico...</Container>}
               data={[
-                ['Desempenho', 'Quantidade'],
-                ['Acertos', disciplinaSelecionadaData.acertos || 0],
-                ['Erros', disciplinaSelecionadaData.erros || 0],
+                ['Desempenho', 'Quantidade', { role: 'style' }],
+                ['Acertos', disciplinaSelecionadaData.acertos || 0, '#1c5253'],
+                ['Erros', disciplinaSelecionadaData.erros || 0, '#B22222'],
               ]}
               options={{
                 title: `Desempenho em ${disciplinaSelecionada}`,
                 titleTextStyle: {
-                  fontSize: 12, // Tamanho da fonte do título
-                  bold: true,   // Texto em negrito
-                  alignment: 'center', // Alinhamento ao centro
+                  fontSize: 12,
+                  bold: true,
+                  alignment: 'center',
                 },
-                colors: ['#1c5253', '#B22222'],
-                backgroundColor: 'white', // Tornar o fundo do gráfico transparente
+                backgroundColor: 'white',
+                bars: 'horizontal',
+                bar: { groupWidth: '30%' }, // Ajuste a largura das barras aqui (por exemplo, 50%)
               }}
             />
           </div>
 
+          <ul>
+            <li className="acertos">Acertos: {disciplinaSelecionadaData.acertos || 0} &nbsp;&nbsp;&nbsp;&nbsp;Erros: {disciplinaSelecionadaData.erros || 0}</li>
+
+          </ul>
 
 
         </Container>
