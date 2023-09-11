@@ -1,3 +1,5 @@
+
+
 .divTotal {
     
    margin: 0;
@@ -6,7 +8,8 @@
   }
 .ContainerTotal {
     align-items: center;
-   background-color: #1c525317;
+   /*background-color: #1c525317;*/
+   background: radial-gradient(circle, #203f41, #203f41, #203f41, #0d1616 );
     justify-content: center;
     display: flex; 
     flex-direction: column;
@@ -39,9 +42,19 @@
    
   
   }
-  .nome-user {
+  .nome-user2 {
    text-align: center;
-    
+   color: white;
+   font-family: 'Poppins', sans-serif;
+   font-size: 0.875em;
+   font-weight: 500;
+  border: none;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  }
+  .nome-user2:hover {
+    color: #ff6600;
   }
    .box-grafico-geral {
   
@@ -53,6 +66,8 @@
     width: 50%; /* Defina a largura desejada aqui */
     justify-content: center;
     align-items: center;
+    color: white;
+    background-color: white
   }
   @media (max-width: 767px) {
     .Select-Desempenho { 
@@ -70,6 +85,7 @@
    font-family: Poppins;
     justify-content: center;
     align-items: center;
+    color: white;
   }
   .p-desempenho-geral {
     font-weight: 600;
@@ -78,6 +94,7 @@
     font-family: Poppins;
      justify-content: center;
      align-items: center;
+     color: white;
    }
   .acertos {
     font-weight: 500;
@@ -86,5 +103,6 @@
     font-family: Poppins;
      justify-content: center;
      align-items: center;
+     color: white;
    }
  

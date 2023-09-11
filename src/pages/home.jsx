@@ -134,13 +134,13 @@ function Home() {
           setDesempenhoPorDisciplina(desempenhoSalvo);
 
           // Recupere as informações de desempenho total do documento do usuário
-        const desempenhoTotalSalvo = userData.desempenhoTotal || {
-          acertos: 0,
-          erros: 0,
-        };
+          const desempenhoTotalSalvo = userData.desempenhoTotal || {
+            acertos: 0,
+            erros: 0,
+          };
 
-        // Atualize o estado desempenhoTotal com as informações recuperadas
-        setDesempenhoTotal(desempenhoTotalSalvo);
+          // Atualize o estado desempenhoTotal com as informações recuperadas
+          setDesempenhoTotal(desempenhoTotalSalvo);
 
           // Atualize o estado paymentInfo
           setPaymentInfo(userPaymentInfo);
@@ -189,15 +189,15 @@ function Home() {
             `Acesso concedido por ${accessDurationDays} dias a partir de ${currentDate.toISOString()}`
           );
         } else {
-           // Se o documento do usuário não existir, crie-o com paymentInfo ausente
-        await setDoc(userRef, {
-          expirationDate: null,
-          paymentInfo: null,
-          desempenhoTotal: {
-            acertos: 0,
-            erros: 0,
-          },
-        });
+          // Se o documento do usuário não existir, crie-o com paymentInfo ausente
+          await setDoc(userRef, {
+            expirationDate: null,
+            paymentInfo: null,
+            desempenhoTotal: {
+              acertos: 0,
+              erros: 0,
+            },
+          });
 
           console.log("Documento do usuário criado.");
 
@@ -300,7 +300,7 @@ function Home() {
     acertos: 0,
     erros: 0,
   });
-  
+
 
   const handleRespostaClick = async (question) => {
 
@@ -372,7 +372,7 @@ function Home() {
         // Atualize as informações de desempenho no documento do usuário
         await setDoc(userRef, { desempenhoPorDisciplina }, { merge: true });
         await updateDoc(userRef, { desempenhoTotal });
-      
+
       }
     }
 
@@ -559,7 +559,7 @@ function Home() {
             Sair/Entrar
           </button>
           <Link to="/MeuPerfil" className="nome-user">
-             Bem-vindo(a), {displayName}
+            Bem-vindo(a), {displayName}
           </Link>
         </Container>
       )}
@@ -727,69 +727,68 @@ function Home() {
                 </div>
 
 
-                <button  
-                      className="button-comentario"
-                      onClick={() => toggleComentario(question.ids)}
-                    >
-                      {" "}
-                    Comentário 
-                    </button>
+                <button
+                  className="button-comentario"
+                  onClick={() => toggleComentario(question.ids)}
+                >
+                  {" "}
+                  Comentário
+                </button>
 
-                     <button  
-                      className="button-estatisticas"
-                      onClick={() => setEstatisticasVisiveis(!estatisticasVisiveis)}
-                    > Meu Desempenho
-                    </button>
+                <Link to="/MeuPerfil" className="button-estatisticas" target="_blank">
+                  Meu Desempenho
+                </Link>
+
                 <Container className="linha-horizontal-comentario"></Container>
 
-                  <Container className="campo-comentario"  style={{
-                        // Impede que o texto quebre para a próxima linha
-                        overflowX: "auto",    // Adiciona a rolagem horizontal quando necessário
-                       
-
-                      }}>
-                    
+                <Container className="campo-comentario" style={{
+                  // Impede que o texto quebre para a próxima linha
+                  overflowX: "auto",    // Adiciona a rolagem horizontal quando necessário
 
 
-                    <p
-                      className={comentariosVisiveis[question.ids] ? "comentario visivel" : "comentario"}
-                      style={{
-                        // Impede que o texto quebre para a próxima linha
-                        overflowX: "auto",    // Adiciona a rolagem horizontal quando necessário
-                       
+                }}>
 
-                      }}
-                    >
-                      {question.comentario}
-                    </p>
+
+
+                  <p
+                    className={comentariosVisiveis[question.ids] ? "comentario visivel" : "comentario"}
+                    style={{
+                      // Impede que o texto quebre para a próxima linha
+                      overflowX: "auto",    // Adiciona a rolagem horizontal quando necessário
+
+
+                    }}
+                  >
+                    {question.comentario}
+                  </p>
+
+                </Container>
+
+                {estatisticasVisiveis && (
+                  <Container className="campo-estatistica">
+
+
+                    {Object.entries(desempenhoPorDisciplina).map(([disciplina, { acertos, erros }]) => {
+                      const data = [['Tipo', 'Quantidade'], ['Acertos', acertos], ['Erros', erros]];
+                      const options = {
+                        is3D: true,
+
+                      };
+
+                      return (
+                        <PieChart
+                          key={disciplina}
+                          title={disciplina}
+                          data={data}
+                          options={options}
+                        />
+                      );
+                    })}
+
 
                   </Container>
+                )}
 
-                  {estatisticasVisiveis && (
-                    <Container className="campo-estatistica">
-
-
-                      {Object.entries(desempenhoPorDisciplina).map(([disciplina, { acertos, erros }]) => {
-                        const data = [['Tipo', 'Quantidade'], ['Acertos', acertos], ['Erros', erros]];
-                        const options = {
-                          is3D: true,
-
-                        };
-
-                        return (
-                          <PieChart
-                            key={disciplina}
-                            title={disciplina}
-                            data={data}
-                            options={options}
-                          />
-                        );
-                      })}
-
-
-                    </Container>
-                  )}
-              
               </div>
             ))}
 
@@ -800,7 +799,7 @@ function Home() {
                 Questão Anterior
               </button>
               <span>
-               {paginaAtual} de {totalPages}
+                {paginaAtual} de {totalPages}
               </span>
               <button
                 onClick={handleNextPage}

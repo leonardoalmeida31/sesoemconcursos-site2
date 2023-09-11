@@ -38,6 +38,8 @@ const firebaseConfig = {
   projectId: import.meta.env.VITE_REACT_APP_PROJECT_ID,
 };
 
+
+
 function MeuPerfil() {
   const firebaseApp = initializeApp(firebaseConfig);
   const db = getFirestore(firebaseApp);
@@ -537,9 +539,9 @@ function MeuPerfil() {
 
     <Container className="ContainerTotal">
 
-      <Box className="box-user"> <h1 className="nome-user">Olá, {displayName}</h1> </Box>
+      <Box className="box-user"> <p className="nome-user2">Olá, {displayName}</p> </Box>
 
-      <p className="p-desempenho-geral">DESEMPENHO GERAL</p>
+      <p className="p-desempenho-geral">CONFIRA SEU DESEMPENHO GERAL</p>
       <Box className="box-grafico-geral">
         <div style={{ borderRadius: '10px', overflow: 'hidden' }}>
           <Chart
