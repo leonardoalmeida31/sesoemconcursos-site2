@@ -83,8 +83,8 @@ function Home() {
         await setDoc(userRef, { email, paymentInfo: null });
       }
 
-      // Adicione um listener para atualizações do perfil do usuário
-      auth.onAuthStateChanged(async (user) => {
+       // Adicione um listener para atualizações do perfil do usuário
+       auth.onAuthStateChanged(async (user) => {
         if (user) {
           const updatedUser = auth.currentUser;
           const updatedDisplayName = updatedUser.displayName;
