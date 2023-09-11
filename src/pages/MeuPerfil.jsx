@@ -67,52 +67,52 @@ function MeuPerfil() {
   );
 
 
-  const signInWithGoogle = async () => {
-    try {
-      const auth = getAuth();
-      const provider = new GoogleAuthProvider();
+  // const signInWithGoogle = async () => {
+  //   try {
+  //     const auth = getAuth();
+  //     const provider = new GoogleAuthProvider();
 
-      const userCredential = await signInWithPopup(auth, provider);
-      const user = userCredential.user;
+  //     const userCredential = await signInWithPopup(auth, provider);
+  //     const user = userCredential.user;
 
-      const uid = user.uid;
-      const email = user.email;
-      const displayName = user.displayName; // Obtenha o nome de exibição do usuário
-      const userRef = doc(db, "users", uid);
+  //     const uid = user.uid;
+  //     const email = user.email;
+  //     const displayName = user.displayName; // Obtenha o nome de exibição do usuário
+  //     const userRef = doc(db, "users", uid);
 
-      // Verifica se o documento do usuário já existe
-      const userDoc = await getDoc(userRef);
+  //     // Verifica se o documento do usuário já existe
+  //     const userDoc = await getDoc(userRef);
 
-      if (!userDoc.exists()) {
-        // Se o documento não existir, crie-o com um valor inicial para paymentInfo
-        await setDoc(userRef, { email, paymentInfo: null });
-      }
+  //     if (!userDoc.exists()) {
+  //       // Se o documento não existir, crie-o com um valor inicial para paymentInfo
+  //       await setDoc(userRef, { email, paymentInfo: null });
+  //     }
 
-      // Adicione um listener para atualizações do perfil do usuário
-      auth.onAuthStateChanged(async (user) => {
-        if (user) {
-          const updatedUser = auth.currentUser;
-          const updatedDisplayName = updatedUser.displayName;
+  //     // Adicione um listener para atualizações do perfil do usuário
+  //     auth.onAuthStateChanged(async (user) => {
+  //       if (user) {
+  //         const updatedUser = auth.currentUser;
+  //         const updatedDisplayName = updatedUser.displayName;
 
-          // Atualize o nome do usuário no documento Firestore
-          await updateDoc(userRef, { displayName: updatedDisplayName });
-        }
-      });
-      // Resto do código...
-    } catch (error) {
-      console.error("Erro ao fazer login com o Google:", error);
-    }
-  };
+  //         // Atualize o nome do usuário no documento Firestore
+  //         await updateDoc(userRef, { displayName: updatedDisplayName });
+  //       }
+  //     });
+  //     // Resto do código...
+  //   } catch (error) {
+  //     console.error("Erro ao fazer login com o Google:", error);
+  //   }
+  // };
 
-  const signOut = async () => {
-    try {
-      const auth = getAuth();
-      await auth.signOut();
-      setUser(null);
-    } catch (error) {
-      console.error("Erro ao fazer logout:", error);
-    }
-  };
+  // const signOut = async () => {
+  //   try {
+  //     const auth = getAuth();
+  //     await auth.signOut();
+  //     setUser(null);
+  //   } catch (error) {
+  //     console.error("Erro ao fazer logout:", error);
+  //   }
+  // };
 
   const [desempenhoTotal, setDesempenhoTotal] = useState(null);
 
@@ -252,12 +252,12 @@ function MeuPerfil() {
 
 
 
-  const handleAlternativaClick = (questionId, alternativaIndex) => {
-    const newAlternativaSelecionada = {
-      [questionId]: alternativaIndex,
-    };
-    setAlternativaSelecionada(newAlternativaSelecionada);
-  };
+  // const handleAlternativaClick = (questionId, alternativaIndex) => {
+  //   const newAlternativaSelecionada = {
+  //     [questionId]: alternativaIndex,
+  //   };
+  //   setAlternativaSelecionada(newAlternativaSelecionada);
+  // };
 
 
   //criação de novo filtro de estatiscas por disciplina
@@ -267,105 +267,105 @@ function MeuPerfil() {
   const [desempenhoPorDisciplina, setDesempenhoPorDisciplina] = useState({});
 
 
-  const handleRespostaClick = async (question) => {
+  // const handleRespostaClick = async (question) => {
 
 
-    // Verifique se a resposta do usuário está correta
-    const respostaUsuario = alternativaSelecionada[question.ids];
-    const respostaCorreta = question.resposta.charCodeAt(0) - 65;
-    const questaoId = question.ids;
+  //   // Verifique se a resposta do usuário está correta
+  //   const respostaUsuario = alternativaSelecionada[question.ids];
+  //   const respostaCorreta = question.resposta.charCodeAt(0) - 65;
+  //   const questaoId = question.ids;
 
-    const resultadoQuestao = respostaUsuario === respostaCorreta;
+  //   const resultadoQuestao = respostaUsuario === respostaCorreta;
 
-    // Atualize o estado dos resultados com o resultado da questão
-    setResultados((prevResultados) => ({
-      ...prevResultados,
-      [questaoId]: resultadoQuestao,
-    }));
+  //   // Atualize o estado dos resultados com o resultado da questão
+  //   setResultados((prevResultados) => ({
+  //     ...prevResultados,
+  //     [questaoId]: resultadoQuestao,
+  //   }));
 
-    if (respostaUsuario === respostaCorreta) {
-      setRespostaCorreta(true); // A resposta do usuário está correta
-      setAcertos(acertos + 1); // Incrementa o número de acertos
-      setDesempenhoPorDisciplina((prevDesempenho) => {
+  //   if (respostaUsuario === respostaCorreta) {
+  //     setRespostaCorreta(true); // A resposta do usuário está correta
+  //     setAcertos(acertos + 1); // Incrementa o número de acertos
+  //     setDesempenhoPorDisciplina((prevDesempenho) => {
 
-        const disciplina = question.disciplina;
-        return {
-          ...prevDesempenho,
-          [disciplina]: {
-            acertos: (prevDesempenho[disciplina]?.acertos || 0) + 1,
-            erros: prevDesempenho[disciplina]?.erros || 0,
-          },
-        };
-      });
-    } else {
-      setRespostaCorreta(false); // A resposta do usuário está incorreta
-      setErros(erros + 1); // Incrementa o número de erros
-      setDesempenhoPorDisciplina((prevDesempenho) => {
-        const disciplina = question.disciplina;
-        return {
-          ...prevDesempenho,
-          [disciplina]: {
-            acertos: prevDesempenho[disciplina]?.acertos || 0,
-            erros: (prevDesempenho[disciplina]?.erros || 0) + 1,
-          },
-        };
-      });
-    }
-    // Salvar as informações de desempenho no Firebase
-    if (user) {
-      const userRef = doc(db, "users", user.uid);
+  //       const disciplina = question.disciplina;
+  //       return {
+  //         ...prevDesempenho,
+  //         [disciplina]: {
+  //           acertos: (prevDesempenho[disciplina]?.acertos || 0) + 1,
+  //           erros: prevDesempenho[disciplina]?.erros || 0,
+  //         },
+  //       };
+  //     });
+  //   } else {
+  //     setRespostaCorreta(false); // A resposta do usuário está incorreta
+  //     setErros(erros + 1); // Incrementa o número de erros
+  //     setDesempenhoPorDisciplina((prevDesempenho) => {
+  //       const disciplina = question.disciplina;
+  //       return {
+  //         ...prevDesempenho,
+  //         [disciplina]: {
+  //           acertos: prevDesempenho[disciplina]?.acertos || 0,
+  //           erros: (prevDesempenho[disciplina]?.erros || 0) + 1,
+  //         },
+  //       };
+  //     });
+  //   }
+  //   // Salvar as informações de desempenho no Firebase
+  //   if (user) {
+  //     const userRef = doc(db, "users", user.uid);
 
-      // Obtenha o documento do usuário
-      const userDoc = await getDoc(userRef);
+  //     // Obtenha o documento do usuário
+  //     const userDoc = await getDoc(userRef);
 
-      if (userDoc.exists()) {
-        const userData = userDoc.data();
+  //     if (userDoc.exists()) {
+  //       const userData = userDoc.data();
 
-        // Recupere as informações de desempenho do documento do usuário
-        const desempenhoSalvo = userData.desempenhoPorDisciplina;
+  //       // Recupere as informações de desempenho do documento do usuário
+  //       const desempenhoSalvo = userData.desempenhoPorDisciplina;
 
-        // Atualize as informações de desempenho no documento do usuário
-        await setDoc(userRef, { desempenhoPorDisciplina }, { merge: true });
-      }
-    }
-
-
+  //       // Atualize as informações de desempenho no documento do usuário
+  //       await setDoc(userRef, { desempenhoPorDisciplina }, { merge: true });
+  //     }
+  //   }
 
 
-    if (!user) {
-      // O usuário não está autenticado, redirecione para a página de login
-      console.log("Usuário não autenticado.");
-      // Redirecionar para a página de login ou mostrar uma mensagem
-      return;
-    }
 
-    // Verifique se a assinatura é igual a zero ou null
-    if (paymentInfo === null || paymentInfo === 0) {
-      // O usuário não tem uma assinatura
 
-      // Verifique se é um novo dia
-      const newDate = new Date().toLocaleDateString();
-      if (newDate !== currentDate) {
-        // Reinicie a contagem para o novo dia
-        setCurrentDate(newDate);
-        setAnsweredCount(0);
-      }
+  //   if (!user) {
+  //     // O usuário não está autenticado, redirecione para a página de login
+  //     console.log("Usuário não autenticado.");
+  //     // Redirecionar para a página de login ou mostrar uma mensagem
+  //     return;
+  //   }
 
-      // Verifique se o usuário atingiu o limite de 15 respostas hoje
-      if (answeredCount >= 15) {
-        console.log("Você atingiu o limite de 15 respostas hoje.");
-        // Exiba uma mensagem informando que o usuário atingiu o limite
-        return;
-      }
+  //   // Verifique se a assinatura é igual a zero ou null
+  //   if (paymentInfo === null || paymentInfo === 0) {
+  //     // O usuário não tem uma assinatura
 
-      // Permita que o usuário responda à questão e atualize a contagem
-      verificarResposta(question);
-      setAnsweredCount(answeredCount + 1);
-    } else {
-      // O usuário tem uma assinatura válida, permita que ele responda à questão
-      verificarResposta(question);
-    }
-  };
+  //     // Verifique se é um novo dia
+  //     const newDate = new Date().toLocaleDateString();
+  //     if (newDate !== currentDate) {
+  //       // Reinicie a contagem para o novo dia
+  //       setCurrentDate(newDate);
+  //       setAnsweredCount(0);
+  //     }
+
+  //     // Verifique se o usuário atingiu o limite de 15 respostas hoje
+  //     if (answeredCount >= 15) {
+  //       console.log("Você atingiu o limite de 15 respostas hoje.");
+  //       // Exiba uma mensagem informando que o usuário atingiu o limite
+  //       return;
+  //     }
+
+  //     // Permita que o usuário responda à questão e atualize a contagem
+  //     verificarResposta(question);
+  //     setAnsweredCount(answeredCount + 1);
+  //   } else {
+  //     // O usuário tem uma assinatura válida, permita que ele responda à questão
+  //     verificarResposta(question);
+  //   }
+  // };
 
 
 
@@ -399,97 +399,6 @@ function MeuPerfil() {
       [questionId]: !prevVisiveis[questionId],
     }));
   };
-
-  const onToken = async (token, amount) => {
-    try {
-      const auth = getAuth();
-      const user = auth.currentUser;
-
-      if (!user) {
-        console.error("Usuário não autenticado.");
-        return;
-      }
-
-      // Crie um objeto com informações de pagamento e outros detalhes relevantes
-      const paymentInfo = {
-        token: token.id,
-        amount: amount,
-        currency: "BRL",
-        // Adicione mais campos conforme necessário
-      };
-
-      const userRef = doc(db, "users", user.uid);
-
-      // Atualize as informações de pagamento no documento do usuário
-      await updateDoc(userRef, { paymentInfo });
-
-      // Chame a função para atualizar as informações de acesso (substitua 'amount' pelo valor correto)
-      await atualizarInformacoesDeAcesso(amount);
-
-      // Recarregue a página após o pagamento para obter as novas questões
-      window.location.reload();
-
-      alert("Pagamento realizado com sucesso.");
-    } catch (error) {
-      console.error("Erro ao adicionar informações de pagamento:", error);
-    }
-  };
-
-  const atualizarInformacoesDeAcesso = async (paymentInfo) => {
-    try {
-      const auth = getAuth();
-      const user = auth.currentUser;
-
-      if (!user) {
-        console.error("Usuário não autenticado.");
-        return;
-      }
-
-      const userRef = doc(db, "users", user.uid);
-
-      // Defina a data de expiração com base no tipo de assinatura
-      const currentDate = new Date();
-      let expirationDate = new Date(currentDate);
-      let accessDurationDays = 0;
-
-      if (paymentInfo === 1) {
-        accessDurationDays = 30;
-      } else if (paymentInfo === 6500) {
-        accessDurationDays = 180;
-      } else if (paymentInfo === 12000) {
-        accessDurationDays = 365;
-      }
-
-      expirationDate.setDate(currentDate.getDate() + accessDurationDays);
-
-      // Atualize o documento do usuário com as informações de pagamento e expiração
-      await updateDoc(userRef, { paymentInfo, expirationDate });
-
-      console.log(
-        `Acesso concedido por ${accessDurationDays} dias a partir de ${currentDate.toISOString()}`
-      );
-    } catch (error) {
-      console.error("Erro ao atualizar informações de acesso:", error);
-    }
-  };
-
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const openModal = () => {
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-  };
-
-  const modalStyle = {
-    display: modalOpen ? "flex" : "none",
-  };
-
-
-
-
 
 
   const [estatisticasVisiveis, setEstatisticasVisiveis] = useState(false);

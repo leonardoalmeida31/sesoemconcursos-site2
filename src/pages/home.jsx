@@ -60,6 +60,8 @@ function Home() {
   const [currentDate, setCurrentDate] = useState(
     new Date().toLocaleDateString()
   );
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
 
 
   const signInWithGoogle = async () => {
@@ -113,6 +115,9 @@ function Home() {
 
   const [displayName, setDisplayName] = useState(null); //guarda pra exibe nome do usuario pra tela
   const [paymentInfo, setPaymentInfo] = useState(null);
+  
+
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
@@ -145,6 +150,14 @@ function Home() {
 
           // Atualize o estado paymentInfo
           setPaymentInfo(userPaymentInfo);
+
+          // Recupere a data de expiração do documento do usuário
+        const expirationDate = userData.expirationDate;
+
+        // Se expirationDate existir e não for nulo, atualize o estado
+        if (expirationDate) {
+          setCurrentDate(expirationDate.toDate().toLocaleDateString());
+        }
 
           const paymentInfo = userDoc.data().paymentInfo;
           let maxQuestionsToDisplay = 0;
@@ -179,16 +192,16 @@ function Home() {
 
           setPaginaAtual(1);
 
-          const currentDate = new Date();
-          const expirationDate = new Date(currentDate);
+          // const currentDate = new Date();
+         
 
-          expirationDate.setDate(currentDate.getDate() + accessDurationDays);
+          // expirationDate.setDate(currentDate.getDate() + accessDurationDays);
 
-          await setDoc(userRef, { expirationDate }, { merge: true });
+          // await setDoc(userRef, { expirationDate }, { merge: true });
 
-          console.log(
-            `Acesso concedido por ${accessDurationDays} dias a partir de ${currentDate.toISOString()}`
-          );
+          // console.log(
+          //   `Acesso concedido por ${accessDurationDays} dias a partir de ${currentDate.toISOString()}`
+          // );
         } else {
           // Se o documento do usuário não existir, crie-o com paymentInfo ausente
           await setDoc(userRef, {
@@ -210,6 +223,7 @@ function Home() {
 
     return () => unsubscribe();
   }, [auth, maxQuestionsToDisplay]);
+
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -275,9 +289,6 @@ function Home() {
   const [alternativaSelecionada, setAlternativaSelecionada] = useState({});
 
 
-
-
-
   //  as respostas corretas ou incorretas são armazenadas aqui embaixo agora
   const [resultados, setResultados] = useState({});
 
@@ -290,8 +301,6 @@ function Home() {
     setAlternativaSelecionada(newAlternativaSelecionada);
   };
 
-
-  //criação de novo filtro de estatiscas por disciplina
   const [respostaCorreta, setRespostaCorreta] = useState(null);
   const [acertos, setAcertos] = useState(0);
   const [erros, setErros] = useState(0);
@@ -301,6 +310,29 @@ function Home() {
     acertos: 0,
     erros: 0,
   });
+
+
+  useEffect(() => {
+    // Verificar o Local Storage para a contagem de respostas
+    const localStorageAnsweredCount =
+      parseInt(localStorage.getItem("answeredCount"), 10) || 0;
+
+    // Verificar se a data atual é diferente da data armazenada no Local Storage
+    const newDate = new Date().toLocaleDateString();
+    if (newDate !== localStorage.getItem("currentDate")) {
+      // Reiniciar a contagem para o novo dia
+      localStorage.setItem("currentDate", newDate);
+      localStorage.setItem("answeredCount", "0");
+      setAnsweredCount(0);
+      setIsButtonDisabled(false); // Garantir que o botão esteja habilitado no novo dia
+    } else {
+      // Verificar se o limite de respostas foi atingido
+      if (localStorageAnsweredCount >= 15) {
+        setIsButtonDisabled(true);
+      }
+      setAnsweredCount(localStorageAnsweredCount);
+    }
+  }, []);
 
 
   const handleRespostaClick = async (question) => {
@@ -378,44 +410,38 @@ function Home() {
     }
 
 
-
-
     if (!user) {
-      // O usuário não está autenticado, redirecione para a página de login
+      // O usuário não está autenticado, redirecione para a página de login ou mostre uma mensagem
       console.log("Usuário não autenticado.");
-      // Redirecionar para a página de login ou mostrar uma mensagem
       return;
     }
 
-    // Verifique se a assinatura é igual a zero ou null
+    // Verifique se a assinatura é igual a zero ou nula
     if (paymentInfo === null || paymentInfo === 0) {
-      // O usuário não tem uma assinatura
+     
+    // Verificar se o usuário atingiu o limite
+    if (answeredCount >= 15) {
+      console.log("Você atingiu o limite de 15 respostas hoje.");
+      return;
+    }
 
-      // Verifique se é um novo dia
-      const newDate = new Date().toLocaleDateString();
-      if (newDate !== currentDate) {
-        // Reinicie a contagem para o novo dia
-        setCurrentDate(newDate);
-        setAnsweredCount(0);
-      }
+    // Sua lógica de processamento da resposta aqui
 
-      // Verifique se o usuário atingiu o limite de 15 respostas hoje
-      if (answeredCount >= 15) {
-        console.log("Você atingiu o limite de 15 respostas hoje.");
-        // Exiba uma mensagem informando que o usuário atingiu o limite
-        return;
-      }
+    // Atualizar a contagem e armazenar no Local Storage
+    const newAnsweredCount = answeredCount + 1;
+    localStorage.setItem("answeredCount", newAnsweredCount.toString());
+    setAnsweredCount(newAnsweredCount);
 
-      // Permita que o usuário responda à questão e atualize a contagem
-      verificarResposta(question);
-      setAnsweredCount(answeredCount + 1);
+    // Verificar se atingiu o limite após esta resposta
+    if (newAnsweredCount >= 15) {
+      setIsButtonDisabled(true);
+    }
     } else {
       // O usuário tem uma assinatura válida, permita que ele responda à questão
       verificarResposta(question);
     }
-  };
 
-
+}
 
   const verificarResposta = async (question) => {
     const questionId = question.ids;
@@ -429,13 +455,12 @@ function Home() {
     if (alternativaSelecionada === respostaCorreta) {
 
 
-
-
     } else {
 
     }
 
   };
+
 
 
   const [comentariosVisiveis, setComentariosVisiveis] = useState({});
@@ -495,7 +520,7 @@ function Home() {
 
       const userRef = doc(db, "users", user.uid);
 
-      // Defina a data de expiração com base no tipo de assinatura
+      
       const currentDate = new Date();
       let expirationDate = new Date(currentDate);
       let accessDurationDays = 0;
@@ -510,7 +535,7 @@ function Home() {
 
       expirationDate.setDate(currentDate.getDate() + accessDurationDays);
 
-      // Atualize o documento do usuário com as informações de pagamento e expiração
+
       await updateDoc(userRef, { paymentInfo, expirationDate });
 
       console.log(
@@ -520,6 +545,7 @@ function Home() {
       console.error("Erro ao atualizar informações de acesso:", error);
     }
   };
+
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -554,8 +580,6 @@ function Home() {
       },
     }));
   };
-  
-  
   
   
 
@@ -754,6 +778,7 @@ function Home() {
                   <button
                     className="button-responder"
                     onClick={() => handleRespostaClick(question)}
+                    disabled={isButtonDisabled}
                   >
                     Responder
                   </button>
