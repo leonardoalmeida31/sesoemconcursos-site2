@@ -139,15 +139,26 @@
     font-weight: bold;
     margin-right: 5px;
   }
+  .icon-container {
+    background-color: #1c525323;
+    /*border: 0.030em solid black;*/
+    border-radius: 100%; /* Isso cria um círculo arredondado */
+    padding: 0.300em; /* Ajuste o valor de acordo com o tamanho desejado */
+    display: inline-block; /* Isso garante que o contêiner se ajuste ao tamanho do ícone */
+    align-items: center;
+    justify-content: center;
+    margin-right: 1em;
+  }
+  
   .letra-alternativa-circle {
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     border: 0.100em solid black;
     border-radius: 100%;
     text-align: center;
     align-items: center;
-    line-height: 20px;
+    line-height: 22px;
     font-weight: bold;
     margin-right: 5px;
     color: black;
@@ -721,4 +732,7 @@
 
 
 
-  
+.riscado {
+  text-decoration: line-through;
+  opacity: 0.5;
+}

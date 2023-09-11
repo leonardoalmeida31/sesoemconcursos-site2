@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import MenuMui from '../MenuMui.jsx';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import { IoMdCut } from 'react-icons/io';
 
 import AutoGraphOutlinedIcon from '@mui/icons-material/AutoGraphOutlined';
 import Container from '@mui/material/Container';
@@ -542,7 +543,21 @@ function Home() {
 
   const [estatisticasVisiveis, setEstatisticasVisiveis] = useState(false);
 
+  const [alternativasRiscadasPorQuestao, setAlternativasRiscadasPorQuestao] = useState({});
 
+  const handleRiscarAlternativa = (questionId, index) => {
+    setAlternativasRiscadasPorQuestao((prev) => ({
+      ...prev,
+      [questionId]: {
+        ...prev[questionId],
+        [index]: !prev[questionId]?.[index], // Inverte o valor atual (riscado ou não)
+      },
+    }));
+  };
+  
+  
+  
+  
 
   return (
 
@@ -693,27 +708,48 @@ function Home() {
                 </div>
                 <p className="enunciado">{question.enunciado}</p>
                 <ul>
-                  {question.alternativas.map((alternativa, index) => {
-                    const letraAlternativa = alternativa.match(/^\(([A-E])\)/)[1];
-                    const isSelected = alternativaSelecionada[question.ids] === index; // Verifica se a alternativa está selecionada
+                {question.alternativas.map((alternativa, index) => {
+  const letraAlternativa = alternativa.match(/^\(([A-E])\)/)[1];
+  const isSelected = alternativaSelecionada[question.ids] === index;
+  const isRiscada =
+    alternativasRiscadasPorQuestao[question.ids]?.[index] || false;
 
-                    return (
-                      <li
-                        className={`alternativa ${isSelected ? "selecionada" : ""}`}
-                        key={index}
-                        onClick={() => handleAlternativaClick(question.ids, index)}
-                      >
-                        <span
-                          className={`letra-alternativa-circle ${isSelected ? "selecionada" : ""}`}
-                        >
-                          {letraAlternativa}
-                        </span>
-                        {alternativa.replace(/^\(([A-E])\)/, "")}
-                      </li>
-                    );
-                  })}
+  return (
+    <li
+      className={`alternativa ${isSelected ? 'selecionada' : ''} ${
+        isRiscada ? 'riscado' : ''
+      }`}
+      key={index}
+      onClick={() => handleAlternativaClick(question.ids, index)}
+    >
+      
+      <Box className={`icon-container ${isRiscada ? 'riscado' : ''}`}>
+  <IoMdCut
+    className={`tesoura-icon ${isRiscada ? 'riscado' : ''}`}
+    size={14} // Defina o tamanho desejado em pixels
+    color={isRiscada ? '#1c5253' : 'black'} // Defina a cor desejada
+    onClick={(e) => {
+      e.stopPropagation();
+      handleRiscarAlternativa(question.ids, index);
+    }}
+  />
+</Box>
 
-                </ul>
+      
+      <span
+        className={`letra-alternativa-circle ${
+          isSelected ? 'selecionada' : ''
+        }`}
+      >
+        {letraAlternativa}
+      </span>
+      {alternativa.replace(/^\(([A-E])\)/, '')}
+    </li>
+  );
+})}
+
+
+</ul>
                 <div className="button-feedback-container">
                   <button
                     className="button-responder"
