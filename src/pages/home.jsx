@@ -4,15 +4,15 @@ import { CaretRight, ChatCenteredText, ChartPie } from "@phosphor-icons/react";
 import "../App.css";
 import Chart from "react-google-charts";
 import PieChart from "../PieChart.jsx";
-import imagemSvg from '../img/img-login-1.svg';
-import { Link } from 'react-router-dom';
-import MenuMui from '../MenuMui.jsx';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import { IoMdCut } from 'react-icons/io';
+import imagemSvg from "../img/img-login-1.svg";
+import { Link } from "react-router-dom";
+import MenuMui from "../MenuMui.jsx";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import { IoMdCut } from "react-icons/io";
 
-import AutoGraphOutlinedIcon from '@mui/icons-material/AutoGraphOutlined';
-import Container from '@mui/material/Container';
+import AutoGraphOutlinedIcon from "@mui/icons-material/AutoGraphOutlined";
+import Container from "@mui/material/Container";
 import { initializeApp } from "firebase/app";
 import {
   getDocs,
@@ -24,9 +24,6 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-
-
-
 
 import StripeCheckout from "react-stripe-checkout";
 const firebaseConfig = {
@@ -62,8 +59,6 @@ function Home() {
   );
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
-
-
   const signInWithGoogle = async () => {
     try {
       const auth = getAuth();
@@ -86,8 +81,8 @@ function Home() {
         await setDoc(userRef, { email, paymentInfo: null });
       }
 
-       // Adicione um listener para atualizações do perfil do usuário
-       auth.onAuthStateChanged(async (user) => {
+      // Adicione um listener para atualizações do perfil do usuário
+      auth.onAuthStateChanged(async (user) => {
         if (user) {
           const updatedUser = auth.currentUser;
           const updatedDisplayName = updatedUser.displayName;
@@ -115,8 +110,108 @@ function Home() {
 
   const [displayName, setDisplayName] = useState(null); //guarda pra exibe nome do usuario pra tela
   const [paymentInfo, setPaymentInfo] = useState(null);
-  
 
+  // useEffect(() => {
+  //   const unsubscribe = auth.onAuthStateChanged(async (user) => {
+  //     if (user) {
+  //       setUser(user);
+
+  //       const userRef = doc(db, "users", user.uid);
+  //       const userDoc = await getDoc(userRef);
+
+  //       if (userDoc.exists()) {
+  //         const userData = userDoc.data();
+  //         const userDisplayName = userData.displayName;
+  //         const userPaymentInfo = userData.paymentInfo;
+
+  //         // Recupere as informações de desempenho do documento do usuário
+  //         const desempenhoSalvo = userData.desempenhoPorDisciplina;
+
+  //         // Atualize o estado desempenhoPorDisciplina com as informações recuperadas
+  //         setDesempenhoPorDisciplina(desempenhoSalvo);
+
+  //         // Recupere as informações de desempenho total do documento do usuário
+  //         const desempenhoTotalSalvo = userData.desempenhoTotal || {
+  //           acertos: 0,
+  //           erros: 0,
+  //         };
+
+  //         // Atualize o estado desempenhoTotal com as informações recuperadas
+  //         setDesempenhoTotal(desempenhoTotalSalvo);
+
+  //         // Atualize o estado paymentInfo
+  //         setPaymentInfo(userPaymentInfo);
+
+  //         // Recupere a data de expiração do documento do usuário
+  //         const expirationDate = userData.expirationDate;
+
+  //         // Se expirationDate existir e não for nulo, atualize o estado
+  //         if (expirationDate) {
+  //           setCurrentDate(expirationDate.toDate().toLocaleDateString());
+  //         }
+
+  //         const paymentInfo = userDoc.data().paymentInfo;
+  //         let maxQuestionsToDisplay = 0;
+  //         let accessDurationDays = 0;
+
+  //         // Defina maxQuestionsToDisplay com base no número máximo de questões disponíveis
+  //         if (paymentInfo === 0 || paymentInfo === null) {
+  //           maxQuestionsToDisplay = Math.min(15, questoesPagina.length);
+  //           accessDurationDays = 1;
+  //         } else if (paymentInfo === 1) {
+  //           maxQuestionsToDisplay = questoesPagina.length;
+  //           accessDurationDays = 30;
+  //         } else if (paymentInfo === 6500) {
+  //           maxQuestionsToDisplay = questoesPagina.length;
+  //           accessDurationDays = 180;
+  //         } else if (paymentInfo === 12000) {
+  //           maxQuestionsToDisplay = questoesPagina.length;
+  //           accessDurationDays = 365;
+  //         }
+
+  //         const totalPages = Math.ceil(
+  //           questoesPagina.length / maxQuestionsToDisplay
+  //         );
+
+  //         setMaxQuestionsToDisplay(maxQuestionsToDisplay);
+
+  //         const questionsToDisplay = questoesPagina.slice(
+  //           0,
+  //           maxQuestionsToDisplay
+  //         );
+  //         setQuestionsToShow(questionsToDisplay);
+
+  //         setPaginaAtual(1);
+
+  //         // const currentDate = new Date();
+
+  //         // expirationDate.setDate(currentDate.getDate() + accessDurationDays);
+
+  //         // await setDoc(userRef, { expirationDate }, { merge: true });
+
+  //         // console.log(
+  //         //   `Acesso concedido por ${accessDurationDays} dias a partir de ${currentDate.toISOString()}`
+  //         // );
+  //       } else {
+  //         // Se o documento do usuário não existir, crie-o com paymentInfo ausente
+  //         await setDoc(userRef, {
+  //           expirationDate: null,
+  //           paymentInfo: null,
+  //           desempenhoTotal: {
+  //             acertos: 0,
+  //             erros: 0,
+  //           },
+  //         });
+
+  //         console.log("Documento do usuário criado.");
+  //       }
+  //     } else {
+  //       setUser(null);
+  //     }
+  //   });
+
+  //   return () => unsubscribe();
+  // }, [auth, maxQuestionsToDisplay]);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -125,8 +220,6 @@ function Home() {
 
         const userRef = doc(db, "users", user.uid);
         const userDoc = await getDoc(userRef);
-
-
 
         if (userDoc.exists()) {
           const userData = userDoc.data();
@@ -150,14 +243,6 @@ function Home() {
 
           // Atualize o estado paymentInfo
           setPaymentInfo(userPaymentInfo);
-
-          // Recupere a data de expiração do documento do usuário
-        const expirationDate = userData.expirationDate;
-
-        // Se expirationDate existir e não for nulo, atualize o estado
-        if (expirationDate) {
-          setCurrentDate(expirationDate.toDate().toLocaleDateString());
-        }
 
           const paymentInfo = userDoc.data().paymentInfo;
           let maxQuestionsToDisplay = 0;
@@ -192,16 +277,18 @@ function Home() {
 
           setPaginaAtual(1);
 
-          // const currentDate = new Date();
-         
+          // Se expirationDate não existir no documento do usuário, ou se paymentInfo mudou, atualize a data de expiração
+          if (!userData.expirationDate || userPaymentInfo !== paymentInfo) {
+            const currentDate = new Date();
+            const expirationDate = new Date(currentDate);
+            expirationDate.setDate(currentDate.getDate() + accessDurationDays);
 
-          // expirationDate.setDate(currentDate.getDate() + accessDurationDays);
+            await setDoc(userRef, { expirationDate }, { merge: true });
 
-          // await setDoc(userRef, { expirationDate }, { merge: true });
-
-          // console.log(
-          //   `Acesso concedido por ${accessDurationDays} dias a partir de ${currentDate.toISOString()}`
-          // );
+            console.log(
+              `Acesso concedido por ${accessDurationDays} dias a partir de ${currentDate.toISOString()}`
+            );
+          }
         } else {
           // Se o documento do usuário não existir, crie-o com paymentInfo ausente
           await setDoc(userRef, {
@@ -211,10 +298,11 @@ function Home() {
               acertos: 0,
               erros: 0,
             },
+            desempenhoPorDisciplina: {}, // Defina um objeto vazio como valor padrão
+            cliques: 0,
           });
 
           console.log("Documento do usuário criado.");
-
         }
       } else {
         setUser(null);
@@ -223,7 +311,6 @@ function Home() {
 
     return () => unsubscribe();
   }, [auth, maxQuestionsToDisplay]);
-
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -288,11 +375,8 @@ function Home() {
 
   const [alternativaSelecionada, setAlternativaSelecionada] = useState({});
 
-
   //  as respostas corretas ou incorretas são armazenadas aqui embaixo agora
   const [resultados, setResultados] = useState({});
-
-
 
   const handleAlternativaClick = (questionId, alternativaIndex) => {
     const newAlternativaSelecionada = {
@@ -311,33 +395,9 @@ function Home() {
     erros: 0,
   });
 
-
-  useEffect(() => {
-    // Verificar o Local Storage para a contagem de respostas
-    const localStorageAnsweredCount =
-      parseInt(localStorage.getItem("answeredCount"), 10) || 0;
-
-    // Verificar se a data atual é diferente da data armazenada no Local Storage
-    const newDate = new Date().toLocaleDateString();
-    if (newDate !== localStorage.getItem("currentDate")) {
-      // Reiniciar a contagem para o novo dia
-      localStorage.setItem("currentDate", newDate);
-      localStorage.setItem("answeredCount", "0");
-      setAnsweredCount(0);
-      setIsButtonDisabled(false); // Garantir que o botão esteja habilitado no novo dia
-    } else {
-      // Verificar se o limite de respostas foi atingido
-      if (localStorageAnsweredCount >= 15) {
-        setIsButtonDisabled(true);
-      }
-      setAnsweredCount(localStorageAnsweredCount);
-    }
-  }, []);
-
-
+  
+  const [cliques, setCliques] = useState(null);
   const handleRespostaClick = async (question) => {
-
-
     // Verifique se a resposta do usuário está correta
     const respostaUsuario = alternativaSelecionada[question.ids];
     const respostaCorreta = question.resposta.charCodeAt(0) - 65;
@@ -359,8 +419,6 @@ function Home() {
         acertos: prevDesempenhoTotal.acertos + 1,
       }));
       setDesempenhoPorDisciplina((prevDesempenho) => {
-
-
         const disciplina = question.disciplina;
         return {
           ...prevDesempenho,
@@ -398,6 +456,8 @@ function Home() {
 
       if (userDoc.exists()) {
         const userData = userDoc.data();
+        const expirationDate = userData.expirationDate;
+        const cliquesDoUsuario = userData.cliques || 0;
 
         // Recupere as informações de desempenho do documento do usuário
         const desempenhoSalvo = userData.desempenhoPorDisciplina;
@@ -406,42 +466,49 @@ function Home() {
         await setDoc(userRef, { desempenhoPorDisciplina }, { merge: true });
         await updateDoc(userRef, { desempenhoTotal });
 
+        if (!user) {
+          // O usuário não está autenticado, redirecione para a página de login ou mostre uma mensagem
+          console.log("Usuário não autenticado.");
+          return;
+        }
+
+        // Verificar se a assinatura é igual a zero ou nula
+        if (paymentInfo === null || paymentInfo === 0 || cliques < 15) {
+          // Sua lógica de processamento da resposta aqui
+          verificarResposta(question);
+
+          // Atualize os cliques no Firebase Firestore
+          const newCliques = cliques + 1;
+          await updateDoc(userRef, { cliques: newCliques });
+
+          // Atualize o estado local com os cliques atualizados
+          setCliques(newCliques);
+        } else {
+          verificarResposta(question);
+        }
       }
     }
+  };
 
+  const inicializarCliques = async () => {
+    const userRef = doc(db, "users", user.uid);
+    const userDoc = await getDoc(userRef);
 
-    if (!user) {
-      // O usuário não está autenticado, redirecione para a página de login ou mostre uma mensagem
-      console.log("Usuário não autenticado.");
-      return;
+    if (userDoc.exists()) {
+      const userData = userDoc.data();
+      const cliquesDoUsuario = userData.cliques || 0;
+
+      // Atualize o estado local com os cliques armazenados no Firebase Firestore
+      setCliques(cliquesDoUsuario);
     }
+  };
 
-    // Verifique se a assinatura é igual a zero ou nula
-    if (paymentInfo === null || paymentInfo === 0) {
-     
-    // Verificar se o usuário atingiu o limite
-    if (answeredCount >= 15) {
-      console.log("Você atingiu o limite de 15 respostas hoje.");
-      return;
+  // Chame a função de inicialização dos cliques ao fazer login
+  useEffect(() => {
+    if (user) {
+      inicializarCliques();
     }
-
-    // Sua lógica de processamento da resposta aqui
-
-    // Atualizar a contagem e armazenar no Local Storage
-    const newAnsweredCount = answeredCount + 1;
-    localStorage.setItem("answeredCount", newAnsweredCount.toString());
-    setAnsweredCount(newAnsweredCount);
-
-    // Verificar se atingiu o limite após esta resposta
-    if (newAnsweredCount >= 15) {
-      setIsButtonDisabled(true);
-    }
-    } else {
-      // O usuário tem uma assinatura válida, permita que ele responda à questão
-      verificarResposta(question);
-    }
-
-}
+  }, [user]);
 
   const verificarResposta = async (question) => {
     const questionId = question.ids;
@@ -451,17 +518,10 @@ function Home() {
     // Verificar se a disciplina já está no estado de desempenho
     const disciplina = question.disciplina;
 
-
     if (alternativaSelecionada === respostaCorreta) {
-
-
     } else {
-
     }
-
   };
-
-
 
   const [comentariosVisiveis, setComentariosVisiveis] = useState({});
 
@@ -520,7 +580,6 @@ function Home() {
 
       const userRef = doc(db, "users", user.uid);
 
-      
       const currentDate = new Date();
       let expirationDate = new Date(currentDate);
       let accessDurationDays = 0;
@@ -535,7 +594,6 @@ function Home() {
 
       expirationDate.setDate(currentDate.getDate() + accessDurationDays);
 
-
       await updateDoc(userRef, { paymentInfo, expirationDate });
 
       console.log(
@@ -545,7 +603,6 @@ function Home() {
       console.error("Erro ao atualizar informações de acesso:", error);
     }
   };
-
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -561,15 +618,12 @@ function Home() {
     display: modalOpen ? "flex" : "none",
   };
 
-
-
-
-
-  <FiltroMulti onFilterChange={setQuestoesFiltradas} db={db} />
+  <FiltroMulti onFilterChange={setQuestoesFiltradas} db={db} />;
 
   const [estatisticasVisiveis, setEstatisticasVisiveis] = useState(false);
 
-  const [alternativasRiscadasPorQuestao, setAlternativasRiscadasPorQuestao] = useState({});
+  const [alternativasRiscadasPorQuestao, setAlternativasRiscadasPorQuestao] =
+    useState({});
 
   const handleRiscarAlternativa = (questionId, index) => {
     setAlternativasRiscadasPorQuestao((prev) => ({
@@ -580,17 +634,11 @@ function Home() {
       },
     }));
   };
-  
-  
 
   return (
-
     <div className="Home">
-
       {user && (
         <Container className="div-menu">
-
-
           <button className="open-button" onClick={openModal}>
             Assine Agora
           </button>
@@ -603,26 +651,14 @@ function Home() {
         </Container>
       )}
 
-      {user && (<div>
-
-        <FiltroMulti onFilterChange={setQuestoesFiltradas} db={db} />
-      </div>)}
+      {user && (
+        <div>
+          <FiltroMulti onFilterChange={setQuestoesFiltradas} db={db} />
+        </div>
+      )}
       <Container className="fundo-Home">
-
-
-
-
-
-
         <div className="logout-button-container">
-
-
-
           <div>
-
-
-
-
             {modalOpen && (
               <div className="modal" style={modalStyle}>
                 <div className="modal-content">
@@ -637,7 +673,9 @@ function Home() {
 
                     <StripeCheckout
                       token={(token) => onToken(token, 1)} // Função chamada após a conclusão bem-sucedida do pagamento
-                      stripeKey={import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY} // Substitua pelo sua chave pública do Stripe
+                      stripeKey={
+                        import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY
+                      } // Substitua pelo sua chave pública do Stripe
                       name="Seso em Concursos"
                       description="Questões para estudos"
                       amount={1} // Substitua pelo valor correto em centavos
@@ -659,7 +697,9 @@ function Home() {
                     </p>
                     <StripeCheckout
                       token={(token) => onToken(token, 6500)} // Função chamada após a conclusão bem-sucedida do pagamento
-                      stripeKey={import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY} // Substitua pelo sua chave pública do Stripe
+                      stripeKey={
+                        import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY
+                      } // Substitua pelo sua chave pública do Stripe
                       name="Seso em Concursos"
                       description="Questões para estudos"
                       amount={6500} // Substitua pelo valor correto em centavos
@@ -681,7 +721,9 @@ function Home() {
                     </p>
                     <StripeCheckout
                       token={(token) => onToken(token, 12000)} // Função chamada após a conclusão bem-sucedida do pagamento
-                      stripeKey={import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY} // Substitua pelo sua chave pública do Stripe
+                      stripeKey={
+                        import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY
+                      } // Substitua pelo sua chave pública do Stripe
                       name="Seso em Concursos"
                       description="Questões para estudos"
                       amount={12000} // Substitua pelo valor correto em centavos
@@ -706,12 +748,8 @@ function Home() {
         </div>
 
         {user ? (
-
-
-          <div >
-            <div>
-
-            </div>
+          <div>
+            <div></div>
             {questoesPagina.map((question) => (
               <div key={question.ids} className="question-container">
                 <div className="cabecalho-disciplina">
@@ -732,61 +770,76 @@ function Home() {
                 </div>
                 <p className="enunciado">{question.enunciado}</p>
                 <ul>
-                {question.alternativas.map((alternativa, index) => {
-  const letraAlternativa = alternativa.match(/^\(([A-E])\)/)[1];
-  const isSelected = alternativaSelecionada[question.ids] === index;
-  const isRiscada =
-    alternativasRiscadasPorQuestao[question.ids]?.[index] || false;
+                  {question.alternativas.map((alternativa, index) => {
+                    const letraAlternativa =
+                      alternativa.match(/^\(([A-E])\)/)[1];
+                    const isSelected =
+                      alternativaSelecionada[question.ids] === index;
+                    const isRiscada =
+                      alternativasRiscadasPorQuestao[question.ids]?.[index] ||
+                      false;
 
-  return (
-    <li
-      className={`alternativa ${isSelected ? 'selecionada' : ''} ${
-        isRiscada ? 'riscado' : ''
-      }`}
-      key={index}
-      onClick={() => handleAlternativaClick(question.ids, index)}
-    >
-      
-      <Box className={`icon-container ${isRiscada ? 'riscado' : ''}`}>
-  <IoMdCut
-    className={`tesoura-icon ${isRiscada ? 'riscado' : ''}`}
-    size={14} // Defina o tamanho desejado em pixels
-    color={isRiscada ? '#1c5253' : 'black'} // Defina a cor desejada
-    onClick={(e) => {
-      e.stopPropagation();
-      handleRiscarAlternativa(question.ids, index);
-    }}
-  />
-</Box>
+                    return (
+                      <li
+                        className={`alternativa ${
+                          isSelected ? "selecionada" : ""
+                        } ${isRiscada ? "riscado" : ""}`}
+                        key={index}
+                        onClick={() =>
+                          handleAlternativaClick(question.ids, index)
+                        }
+                      >
+                        <Box
+                          className={`icon-container ${
+                            isRiscada ? "riscado" : ""
+                          }`}
+                        >
+                          <IoMdCut
+                            className={`tesoura-icon ${
+                              isRiscada ? "riscado" : ""
+                            }`}
+                            size={14} // Defina o tamanho desejado em pixels
+                            color={isRiscada ? "#1c5253" : "black"} // Defina a cor desejada
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleRiscarAlternativa(question.ids, index);
+                            }}
+                          />
+                        </Box>
 
-      
-      <span
-        className={`letra-alternativa-circle ${
-          isSelected ? 'selecionada' : ''
-        }`}
-      >
-        {letraAlternativa}
-      </span>
-      {alternativa.replace(/^\(([A-E])\)/, '')}
-    </li>
-  );
-})}
-
-
-</ul>
+                        <span
+                          className={`letra-alternativa-circle ${
+                            isSelected ? "selecionada" : ""
+                          }`}
+                        >
+                          {letraAlternativa}
+                        </span>
+                        {alternativa.replace(/^\(([A-E])\)/, "")}
+                      </li>
+                    );
+                  })}
+                </ul>
                 <div className="button-feedback-container">
                   <button
                     className="button-responder"
                     onClick={() => handleRespostaClick(question)}
-                    disabled={isButtonDisabled}
+                    disabled={
+                      (paymentInfo === null || paymentInfo === 0) &&
+                      cliques >= 15
+                    }
                   >
                     Responder
                   </button>
 
-                  {resultados[question.ids] === true && <p className="resposta-correta">Parabéns! Você acertou!</p>}
-                  {resultados[question.ids] === false && <p className="resposta-incorreta">Você Errou! Resposta: {question.resposta}</p>}
+                  {resultados[question.ids] === true && (
+                    <p className="resposta-correta">Parabéns! Você acertou!</p>
+                  )}
+                  {resultados[question.ids] === false && (
+                    <p className="resposta-incorreta">
+                      Você Errou! Resposta: {question.resposta}
+                    </p>
+                  )}
                 </div>
-
 
                 <button
                   className="button-comentario"
@@ -796,64 +849,65 @@ function Home() {
                   Comentário
                 </button>
 
-                <Link to="/MeuPerfil" className="button-estatisticas" target="_blank">
+                <Link
+                  to="/MeuPerfil"
+                  className="button-estatisticas"
+                  target="_blank"
+                >
                   Meu Desempenho
                 </Link>
 
                 <Container className="linha-horizontal-comentario"></Container>
 
-                <Container className="campo-comentario" style={{
-                  // Impede que o texto quebre para a próxima linha
-                  overflowX: "auto",    // Adiciona a rolagem horizontal quando necessário
-
-
-                }}>
-
-
-
+                <Container
+                  className="campo-comentario"
+                  style={{
+                    // Impede que o texto quebre para a próxima linha
+                    overflowX: "auto", // Adiciona a rolagem horizontal quando necessário
+                  }}
+                >
                   <p
-                    className={comentariosVisiveis[question.ids] ? "comentario visivel" : "comentario"}
+                    className={
+                      comentariosVisiveis[question.ids]
+                        ? "comentario visivel"
+                        : "comentario"
+                    }
                     style={{
                       // Impede que o texto quebre para a próxima linha
-                      overflowX: "auto",    // Adiciona a rolagem horizontal quando necessário
-
-
+                      overflowX: "auto", // Adiciona a rolagem horizontal quando necessário
                     }}
                   >
                     {question.comentario}
                   </p>
-
                 </Container>
 
                 {estatisticasVisiveis && (
                   <Container className="campo-estatistica">
+                    {Object.entries(desempenhoPorDisciplina).map(
+                      ([disciplina, { acertos, erros }]) => {
+                        const data = [
+                          ["Tipo", "Quantidade"],
+                          ["Acertos", acertos],
+                          ["Erros", erros],
+                        ];
+                        const options = {
+                          is3D: true,
+                        };
 
-
-                    {Object.entries(desempenhoPorDisciplina).map(([disciplina, { acertos, erros }]) => {
-                      const data = [['Tipo', 'Quantidade'], ['Acertos', acertos], ['Erros', erros]];
-                      const options = {
-                        is3D: true,
-
-                      };
-
-                      return (
-                        <PieChart
-                          key={disciplina}
-                          title={disciplina}
-                          data={data}
-                          options={options}
-                        />
-                      );
-                    })}
-
-
+                        return (
+                          <PieChart
+                            key={disciplina}
+                            title={disciplina}
+                            data={data}
+                            options={options}
+                          />
+                        );
+                      }
+                    )}
                   </Container>
                 )}
-
               </div>
             ))}
-
-
 
             <Box className="pagination">
               <button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
@@ -864,7 +918,7 @@ function Home() {
               </span>
               <button
                 onClick={handleNextPage}
-              // disabled={paginaAtual >= totalPages || paymentInfo === 0 || paymentInfo === null}
+                // disabled={paginaAtual >= totalPages || paymentInfo === 0 || paymentInfo === null}
               >
                 Próxima Questão
               </button>
@@ -874,9 +928,17 @@ function Home() {
           <Box className="login">
             <p>SESO em Concursos</p>
 
-            <img src={imagemSvg} alt="Descrição da imagem" width="40%" height="40%" />
+            <img
+              src={imagemSvg}
+              alt="Descrição da imagem"
+              width="40%"
+              height="40%"
+            />
 
-            <p>Faça login com sua conta do Google para responder questões diariamente.</p>
+            <p>
+              Faça login com sua conta do Google para responder questões
+              diariamente.
+            </p>
             <button onClick={signInWithGoogle} className="login-button">
               Entrar com o Google
             </button>
