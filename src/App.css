@@ -736,3 +736,45 @@
   text-decoration: line-through;
   opacity: 0.5;
 }
+
+
+
+/* Estilos para o contêiner do rodapé */
+.Rodapé {
+  background: radial-gradient(circle, #203f41, #203f41, #203f41, #0d1616 );
+  color: #fff; /* Cor do texto do rodapé */
+  padding-top: 5em; /* Espaçamento interno do rodapé */
+  padding-bottom: 2em; /* Espaçamento interno do rodapé */
+  text-align: center; /* Alinhamento de texto centralizado */
+  margin-top: 3em;
+ 
+}
+
+/* Estilos para as caixas do rodapé */
+.Box-Rodapé {
+  display: inline-block; /* Coloca as caixas lado a lado */
+  margin-right: 5em; /* Espaçamento entre as caixas */
+ 
+ 
+}
+
+.Box-Rodapé1 {
+ justify-content: center;
+  align-items: center;
+  
+}
+.Texto-Rodapé1 {
+  margin: 0.500em 0; /* Espaçamento vertical entre os links */
+  text-align: center;
+  margin-top: 5em;
+  font-size: 0.865em;
+  font-weight: 300;
+}
+
+/* Estilos para o texto do rodapé */
+.Texto-Rodapé {
+  margin: 0.500em 0; /* Espaçamento vertical entre os links */
+  text-align: start;
+  font-size: 0.865em;
+  font-weight: 300;
+}

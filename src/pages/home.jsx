@@ -504,11 +504,28 @@ function Home() {
   };
 
   // Chame a função de inicialização dos cliques ao fazer login
-  useEffect(() => {
-    if (user) {
-      inicializarCliques();
-    }
-  }, [user]);
+useEffect(() => {
+  if (user) {
+    inicializarCliques();
+
+    // Crie um intervalo para reiniciar os cliques a cada 2 minutos
+    const resetCliquesInterval = setInterval(() => {
+      const userRef = doc(db, "users", user.uid);
+
+      // Defina o valor de "cliques" como 0
+      updateDoc(userRef, { cliques: 0 })
+        .then(() => {
+          console.log("Campo 'cliques' reiniciado para 0.");
+        })
+        .catch((error) => {
+          console.error("Erro ao reiniciar o campo 'cliques':", error);
+        });
+      }, 12 * 60 * 60 * 1000); // 12 horas em milissegundos
+
+    // Retorne uma função de limpeza para cancelar o intervalo quando o componente for desmontado
+    return () => clearInterval(resetCliquesInterval);
+  }
+}, [user]);
 
   const verificarResposta = async (question) => {
     const questionId = question.ids;
@@ -676,8 +693,8 @@ function Home() {
                       stripeKey={
                         import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY
                       } // Substitua pelo sua chave pública do Stripe
-                      name="Seso em Concursos"
-                      description="Questões para estudos"
+                      name="SESO em Concursos"
+                      description="Planos de Assinatura"
                       amount={1} // Substitua pelo valor correto em centavos
                       currency="BRL" // Substitua pela moeda desejada (BRL para Real Brasileiro)
                       label="Pagar com Cartão" // Texto exibido no botão
@@ -944,7 +961,37 @@ function Home() {
             </button>
           </Box>
         )}
-      </Container>
+        
+     
+
+      <Box className="Rodapé">
+  <Box className="Box-Rodapé">
+    <p className="Texto-Rodapé">SESOEMCONCURSOS.COM.BR</p>
+    <p className="Texto-Rodapé">Atendimento ao Cliente</p>
+    <p className="Texto-Rodapé">Preços</p>
+    <p className="Texto-Rodapé">Quem Somos</p>
+   
+  </Box>
+
+  <Box className="Box-Rodapé">
+    <p className="Texto-Rodapé">Meu Desempenho</p>
+    <p className="Texto-Rodapé">Aulas</p>
+    <p className="Texto-Rodapé">Planos de Estudos</p>
+    <p className="Texto-Rodapé">Como usar o SESO em Concursos</p>
+  </Box>
+
+  <Box className="Box-Rodapé"> 
+    <p className="Texto-Rodapé">Instagram</p>
+    <p className="Texto-Rodapé">Aulas</p>
+    <p className="Texto-Rodapé">Planos de Estudos</p>
+    <p className="Texto-Rodapé">Como usar o SESO em Concursos</p>
+  </Box>
+
+  <Box className="Box-Rodapé1">
+    <p className="Texto-Rodapé1">© 2023 - SESO em Concursos</p>
+  </Box>
+</Box>
+</Container>
     </div>
   );
 }
