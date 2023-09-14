@@ -38,7 +38,6 @@ function Home() {
   const auth = getAuth(firebaseApp);
   const questionsCollectionRef = collection(db, "questions");
   const [user, setUser] = useState(null);
-
   const questoesPorPagina = 1;
   const [questions, setQuestions] = useState([]);
   const [paginaAtual, setPaginaAtual] = useState(1);
@@ -508,7 +507,7 @@ useEffect(() => {
   if (user) {
     inicializarCliques();
 
-    // Crie um intervalo para reiniciar os cliques a cada 2 minutos
+    // Crie um intervalo para reiniciar os cliques a 
     const resetCliquesInterval = setInterval(() => {
       const userRef = doc(db, "users", user.uid);
 
@@ -520,12 +519,14 @@ useEffect(() => {
         .catch((error) => {
           console.error("Erro ao reiniciar o campo 'cliques':", error);
         });
-      }, 12 * 60 * 60 * 1000); // 12 horas em milissegundos
+      }, 12 * 60 * 60 * 1000); // tempo
 
     // Retorne uma função de limpeza para cancelar o intervalo quando o componente for desmontado
     return () => clearInterval(resetCliquesInterval);
   }
 }, [user]);
+
+
 
   const verificarResposta = async (question) => {
     const questionId = question.ids;
@@ -964,13 +965,13 @@ useEffect(() => {
         
      
 
-      <Box className="Rodapé">
+      {/* 
+<Box className="Rodapé">
   <Box className="Box-Rodapé">
     <p className="Texto-Rodapé">SESOEMCONCURSOS.COM.BR</p>
     <p className="Texto-Rodapé">Atendimento ao Cliente</p>
     <p className="Texto-Rodapé">Preços</p>
     <p className="Texto-Rodapé">Quem Somos</p>
-   
   </Box>
 
   <Box className="Box-Rodapé">
@@ -991,6 +992,8 @@ useEffect(() => {
     <p className="Texto-Rodapé1">© 2023 - SESO em Concursos</p>
   </Box>
 </Box>
+*/}
+
 </Container>
     </div>
   );
