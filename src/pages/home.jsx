@@ -10,7 +10,7 @@ import MenuMui from "../MenuMui.jsx";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { IoMdCut } from "react-icons/io";
-
+import { loadStripe } from "@stripe/stripe-js";
 import AutoGraphOutlinedIcon from "@mui/icons-material/AutoGraphOutlined";
 import Container from "@mui/material/Container";
 import { initializeApp } from "firebase/app";
@@ -25,7 +25,7 @@ import {
 } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
-import StripeCheckout from "react-stripe-checkout";
+
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_REACT_APP_API_KEY,
   authDomain: import.meta.env.VITE_REACT_APP_AUTH_DOMAIN,
@@ -57,6 +57,8 @@ function Home() {
     new Date().toLocaleDateString()
   );
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const stripePublicKey = import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY;
+  const stripePromise = loadStripe(stripePublicKey);
 
   const signInWithGoogle = async () => {
     try {
@@ -77,7 +79,11 @@ function Home() {
 
       if (!userDoc.exists()) {
         // Se o documento não existir, crie-o com um valor inicial para paymentInfo
-        await setDoc(userRef, { email, paymentInfo: null });
+        await setDoc(userRef, {
+          email,
+          paymentInfo: null,
+          desempenhoPorDisciplina: {},
+        });
       }
 
       // Adicione um listener para atualizações do perfil do usuário
@@ -110,143 +116,42 @@ function Home() {
   const [displayName, setDisplayName] = useState(null); //guarda pra exibe nome do usuario pra tela
   const [paymentInfo, setPaymentInfo] = useState(null);
 
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged(async (user) => {
-  //     if (user) {
-  //       setUser(user);
-
-  //       const userRef = doc(db, "users", user.uid);
-  //       const userDoc = await getDoc(userRef);
-
-  //       if (userDoc.exists()) {
-  //         const userData = userDoc.data();
-  //         const userDisplayName = userData.displayName;
-  //         const userPaymentInfo = userData.paymentInfo;
-
-  //         // Recupere as informações de desempenho do documento do usuário
-  //         const desempenhoSalvo = userData.desempenhoPorDisciplina;
-
-  //         // Atualize o estado desempenhoPorDisciplina com as informações recuperadas
-  //         setDesempenhoPorDisciplina(desempenhoSalvo);
-
-  //         // Recupere as informações de desempenho total do documento do usuário
-  //         const desempenhoTotalSalvo = userData.desempenhoTotal || {
-  //           acertos: 0,
-  //           erros: 0,
-  //         };
-
-  //         // Atualize o estado desempenhoTotal com as informações recuperadas
-  //         setDesempenhoTotal(desempenhoTotalSalvo);
-
-  //         // Atualize o estado paymentInfo
-  //         setPaymentInfo(userPaymentInfo);
-
-  //         // Recupere a data de expiração do documento do usuário
-  //         const expirationDate = userData.expirationDate;
-
-  //         // Se expirationDate existir e não for nulo, atualize o estado
-  //         if (expirationDate) {
-  //           setCurrentDate(expirationDate.toDate().toLocaleDateString());
-  //         }
-
-  //         const paymentInfo = userDoc.data().paymentInfo;
-  //         let maxQuestionsToDisplay = 0;
-  //         let accessDurationDays = 0;
-
-  //         // Defina maxQuestionsToDisplay com base no número máximo de questões disponíveis
-  //         if (paymentInfo === 0 || paymentInfo === null) {
-  //           maxQuestionsToDisplay = Math.min(15, questoesPagina.length);
-  //           accessDurationDays = 1;
-  //         } else if (paymentInfo === 1) {
-  //           maxQuestionsToDisplay = questoesPagina.length;
-  //           accessDurationDays = 30;
-  //         } else if (paymentInfo === 6500) {
-  //           maxQuestionsToDisplay = questoesPagina.length;
-  //           accessDurationDays = 180;
-  //         } else if (paymentInfo === 12000) {
-  //           maxQuestionsToDisplay = questoesPagina.length;
-  //           accessDurationDays = 365;
-  //         }
-
-  //         const totalPages = Math.ceil(
-  //           questoesPagina.length / maxQuestionsToDisplay
-  //         );
-
-  //         setMaxQuestionsToDisplay(maxQuestionsToDisplay);
-
-  //         const questionsToDisplay = questoesPagina.slice(
-  //           0,
-  //           maxQuestionsToDisplay
-  //         );
-  //         setQuestionsToShow(questionsToDisplay);
-
-  //         setPaginaAtual(1);
-
-  //         // const currentDate = new Date();
-
-  //         // expirationDate.setDate(currentDate.getDate() + accessDurationDays);
-
-  //         // await setDoc(userRef, { expirationDate }, { merge: true });
-
-  //         // console.log(
-  //         //   `Acesso concedido por ${accessDurationDays} dias a partir de ${currentDate.toISOString()}`
-  //         // );
-  //       } else {
-  //         // Se o documento do usuário não existir, crie-o com paymentInfo ausente
-  //         await setDoc(userRef, {
-  //           expirationDate: null,
-  //           paymentInfo: null,
-  //           desempenhoTotal: {
-  //             acertos: 0,
-  //             erros: 0,
-  //           },
-  //         });
-
-  //         console.log("Documento do usuário criado.");
-  //       }
-  //     } else {
-  //       setUser(null);
-  //     }
-  //   });
-
-  //   return () => unsubscribe();
-  // }, [auth, maxQuestionsToDisplay]);
-
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         setUser(user);
-
+  
         const userRef = doc(db, "users", user.uid);
         const userDoc = await getDoc(userRef);
-
+  
         if (userDoc.exists()) {
           const userData = userDoc.data();
           const userDisplayName = userData.displayName;
           const userPaymentInfo = userData.paymentInfo;
-
+          const expirationDate = userData.expirationDate;
+  
           // Recupere as informações de desempenho do documento do usuário
           const desempenhoSalvo = userData.desempenhoPorDisciplina;
-
+  
           // Atualize o estado desempenhoPorDisciplina com as informações recuperadas
           setDesempenhoPorDisciplina(desempenhoSalvo);
-
+  
           // Recupere as informações de desempenho total do documento do usuário
           const desempenhoTotalSalvo = userData.desempenhoTotal || {
             acertos: 0,
             erros: 0,
           };
-
+  
           // Atualize o estado desempenhoTotal com as informações recuperadas
           setDesempenhoTotal(desempenhoTotalSalvo);
-
+  
           // Atualize o estado paymentInfo
           setPaymentInfo(userPaymentInfo);
-
+  
           const paymentInfo = userDoc.data().paymentInfo;
           let maxQuestionsToDisplay = 0;
           let accessDurationDays = 0;
-
+  
           // Defina maxQuestionsToDisplay com base no número máximo de questões disponíveis
           if (paymentInfo === 0 || paymentInfo === null) {
             maxQuestionsToDisplay = Math.min(15, questoesPagina.length);
@@ -261,29 +166,30 @@ function Home() {
             maxQuestionsToDisplay = questoesPagina.length;
             accessDurationDays = 365;
           }
-
+  
           const totalPages = Math.ceil(
             questoesPagina.length / maxQuestionsToDisplay
           );
-
+  
           setMaxQuestionsToDisplay(maxQuestionsToDisplay);
-
+  
           const questionsToDisplay = questoesPagina.slice(
             0,
             maxQuestionsToDisplay
           );
           setQuestionsToShow(questionsToDisplay);
-
+  
           setPaginaAtual(1);
-
-          // Se expirationDate não existir no documento do usuário, ou se paymentInfo mudou, atualize a data de expiração
-          if (!userData.expirationDate || userPaymentInfo !== paymentInfo) {
+  
+          // Verifique se expirationDate existe antes de atualizar o banco de dados
+          if (!expirationDate) {
             const currentDate = new Date();
             const expirationDate = new Date(currentDate);
             expirationDate.setDate(currentDate.getDate() + accessDurationDays);
-
+  
+            // Atualize o banco de dados apenas se expirationDate não existir
             await setDoc(userRef, { expirationDate }, { merge: true });
-
+  
             console.log(
               `Acesso concedido por ${accessDurationDays} dias a partir de ${currentDate.toISOString()}`
             );
@@ -300,16 +206,17 @@ function Home() {
             desempenhoPorDisciplina: {}, // Defina um objeto vazio como valor padrão
             cliques: 0,
           });
-
+  
           console.log("Documento do usuário criado.");
         }
       } else {
         setUser(null);
       }
     });
-
+  
     return () => unsubscribe();
   }, [auth, maxQuestionsToDisplay]);
+  
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -394,7 +301,6 @@ function Home() {
     erros: 0,
   });
 
-  
   const [cliques, setCliques] = useState(null);
   const handleRespostaClick = async (question) => {
     // Verifique se a resposta do usuário está correta
@@ -503,30 +409,28 @@ function Home() {
   };
 
   // Chame a função de inicialização dos cliques ao fazer login
-useEffect(() => {
-  if (user) {
-    inicializarCliques();
+  useEffect(() => {
+    if (user) {
+      inicializarCliques();
 
-    // Crie um intervalo para reiniciar os cliques a 
-    const resetCliquesInterval = setInterval(() => {
-      const userRef = doc(db, "users", user.uid);
+      // Crie um intervalo para reiniciar os cliques a
+      const resetCliquesInterval = setInterval(() => {
+        const userRef = doc(db, "users", user.uid);
 
-      // Defina o valor de "cliques" como 0
-      updateDoc(userRef, { cliques: 0 })
-        .then(() => {
-          console.log("Campo 'cliques' reiniciado para 0.");
-        })
-        .catch((error) => {
-          console.error("Erro ao reiniciar o campo 'cliques':", error);
-        });
+        // Defina o valor de "cliques" como 0
+        updateDoc(userRef, { cliques: 0 })
+          .then(() => {
+            console.log("Campo 'cliques' reiniciado para 0.");
+          })
+          .catch((error) => {
+            console.error("Erro ao reiniciar o campo 'cliques':", error);
+          });
       }, 12 * 60 * 60 * 1000); // tempo
 
-    // Retorne uma função de limpeza para cancelar o intervalo quando o componente for desmontado
-    return () => clearInterval(resetCliquesInterval);
-  }
-}, [user]);
-
-
+      // Retorne uma função de limpeza para cancelar o intervalo quando o componente for desmontado
+      return () => clearInterval(resetCliquesInterval);
+    }
+  }, [user]);
 
   const verificarResposta = async (question) => {
     const questionId = question.ids;
@@ -551,75 +455,87 @@ useEffect(() => {
     }));
   };
 
-  const onToken = async (token, amount) => {
+
+
+  const handleCheckout = async ({}) => {
+    const stripe = await stripePromise;
+
     try {
-      const auth = getAuth();
-      const user = auth.currentUser;
+      const { error } = await stripe.redirectToCheckout({
+        lineItems: [
+          {
+            price: "price_1MqQztB3raGqSSUV0XZ3uP6K",
+            quantity: 1,
+          },
+        ],
+        mode: "subscription",
+        successUrl: `http://localhost:5173/success?amount=1&token=${generateUniqueToken()}`,
+      });
 
-      if (!user) {
-        console.error("Usuário não autenticado.");
-        return;
+      if (error) {
+        console.error("Erro ao redirecionar para o checkout:", error);
       }
-
-      // Crie um objeto com informações de pagamento e outros detalhes relevantes
-      const paymentInfo = {
-        token: token.id,
-        amount: amount,
-        currency: "BRL",
-        // Adicione mais campos conforme necessário
-      };
-
-      const userRef = doc(db, "users", user.uid);
-
-      // Atualize as informações de pagamento no documento do usuário
-      await updateDoc(userRef, { paymentInfo });
-
-      // Chame a função para atualizar as informações de acesso (substitua 'amount' pelo valor correto)
-      await atualizarInformacoesDeAcesso(amount);
-
-      // Recarregue a página após o pagamento para obter as novas questões
-      window.location.reload();
-
-      alert("Pagamento realizado com sucesso.");
-    } catch (error) {
-      console.error("Erro ao adicionar informações de pagamento:", error);
+    } catch (err) {
+      console.error("Erro ao iniciar o checkout:", err);
     }
   };
 
-  const atualizarInformacoesDeAcesso = async (paymentInfo) => {
+  const handleCheckoutS = async ({}) => {
+    const stripe = await stripePromise;
+
     try {
-      const auth = getAuth();
-      const user = auth.currentUser;
+      const { error } = await stripe.redirectToCheckout({
+        lineItems: [
+          {
+   
+            price: "price_1NlMrDB3raGqSSUVCv260yLk",
+            quantity: 1,
+          },
+        ],
+        mode: "subscription",
+        successUrl: `http://localhost:5173/success?amount=6500&token=${generateUniqueToken()}`,
+      });
 
-      if (!user) {
-        console.error("Usuário não autenticado.");
-        return;
+      if (error) {
+        console.error("Erro ao redirecionar para o checkout:", error);
       }
-
-      const userRef = doc(db, "users", user.uid);
-
-      const currentDate = new Date();
-      let expirationDate = new Date(currentDate);
-      let accessDurationDays = 0;
-
-      if (paymentInfo === 1) {
-        accessDurationDays = 30;
-      } else if (paymentInfo === 6500) {
-        accessDurationDays = 180;
-      } else if (paymentInfo === 12000) {
-        accessDurationDays = 365;
-      }
-
-      expirationDate.setDate(currentDate.getDate() + accessDurationDays);
-
-      await updateDoc(userRef, { paymentInfo, expirationDate });
-
-      console.log(
-        `Acesso concedido por ${accessDurationDays} dias a partir de ${currentDate.toISOString()}`
-      );
-    } catch (error) {
-      console.error("Erro ao atualizar informações de acesso:", error);
+    } catch (err) {
+      console.error("Erro ao iniciar o checkout:", err);
     }
+  };
+  const handleCheckoutA = async ({}) => {
+    const stripe = await stripePromise;
+
+    try {
+      const { error } = await stripe.redirectToCheckout({
+        lineItems: [
+          {
+           
+            price: "price_1NlMuhB3raGqSSUVeycM4UpE",
+            quantity: 1,
+          },
+        ],
+        mode: "subscription",
+        successUrl: `http://localhost:5173/success?amount=12000&token=${generateUniqueToken()}`,
+      });
+
+      if (error) {
+        console.error("Erro ao redirecionar para o checkout:", error);
+      }
+    } catch (err) {
+      console.error("Erro ao iniciar o checkout:", err);
+    }
+  };
+
+  // Função para gerar um token único
+  const generateUniqueToken = () => {
+    // Gere um timestamp aleatório (pode usar outra lógica se preferir)
+    const timestamp = Date.now();
+
+    // Converta o timestamp em uma string hexadecimal
+    const uniqueToken = timestamp.toString(16);
+
+    return uniqueToken;
   };
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -689,72 +605,37 @@ useEffect(() => {
                       <span>Acesso por 30 dias!</span>
                     </p>
 
-                    <StripeCheckout
-                      token={(token) => onToken(token, 1)} // Função chamada após a conclusão bem-sucedida do pagamento
-                      stripeKey={
-                        import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY
-                      } // Substitua pelo sua chave pública do Stripe
-                      name="SESO em Concursos"
-                      description="Planos de Assinatura"
-                      amount={1} // Substitua pelo valor correto em centavos
-                      currency="BRL" // Substitua pela moeda desejada (BRL para Real Brasileiro)
-                      label="Pagar com Cartão" // Texto exibido no botão
-                      billingAddress={true} // Habilitar informações de endereço
-                      shippingAddress={true} // Habilitar informações de envio
-                      zipCode={true} // Habilitar campo de CEP
+                    <button
+                      className="button-pagamento"
+                      onClick={handleCheckout}
                     >
-                      <button className="button-pagamento">
-                        Realizar Assinatura com cartão
-                      </button>
-                    </StripeCheckout>
+                      Realizar Assinatura com cartão
+                    </button>
                   </div>
                   <div className="open">
                     <p>
                       Assinatura SEMESTREAL: 65,00 <br></br>
                       <span>Acesso por 180 dias!</span>
                     </p>
-                    <StripeCheckout
-                      token={(token) => onToken(token, 6500)} // Função chamada após a conclusão bem-sucedida do pagamento
-                      stripeKey={
-                        import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY
-                      } // Substitua pelo sua chave pública do Stripe
-                      name="Seso em Concursos"
-                      description="Questões para estudos"
-                      amount={6500} // Substitua pelo valor correto em centavos
-                      currency="BRL" // Substitua pela moeda desejada (BRL para Real Brasileiro)
-                      label="Pagar com Cartão" // Texto exibido no botão
-                      billingAddress={true} // Habilitar informações de endereço
-                      shippingAddress={true} // Habilitar informações de envio
-                      zipCode={true} // Habilitar campo de CEP
+                    <button
+                      className="button-pagamento"
+                      onClick={handleCheckoutS}
                     >
-                      <button className="button-pagamento">
-                        Realizar Assinatura com cartão
-                      </button>
-                    </StripeCheckout>
+                      Realizar Assinatura com cartão
+                    </button>
+                   
                   </div>
                   <div className="open">
                     <p>
                       Assinatura Anual: 120,00 <br></br>
                       <span>Acesso por 365 dias!</span>
                     </p>
-                    <StripeCheckout
-                      token={(token) => onToken(token, 12000)} // Função chamada após a conclusão bem-sucedida do pagamento
-                      stripeKey={
-                        import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY
-                      } // Substitua pelo sua chave pública do Stripe
-                      name="Seso em Concursos"
-                      description="Questões para estudos"
-                      amount={12000} // Substitua pelo valor correto em centavos
-                      currency="BRL" // Substitua pela moeda desejada (BRL para Real Brasileiro)
-                      label="Pagar com Cartão" // Texto exibido no botão
-                      billingAddress={true} // Habilitar informações de endereço
-                      shippingAddress={true} // Habilitar informações de envio
-                      zipCode={true} // Habilitar campo de CEP
+                    <button
+                      className="button-pagamento"
+                      onClick={handleCheckoutA}
                     >
-                      <button className="button-pagamento">
-                        Realizar Assinatura com cartão
-                      </button>
-                    </StripeCheckout>
+                      Realizar Assinatura com cartão
+                    </button>
                   </div>
                   <button className="open-button" onClick={closeModal}>
                     Fechar
@@ -962,10 +843,117 @@ useEffect(() => {
             </button>
           </Box>
         )}
-        
-     
+      </Container>
+    </div>
+  );
+}
 
-      {/* 
+export default Home;
+
+// useEffect(() => {
+//   const unsubscribe = auth.onAuthStateChanged(async (user) => {
+//     if (user) {
+//       setUser(user);
+
+//       const userRef = doc(db, "users", user.uid);
+//       const userDoc = await getDoc(userRef);
+
+//       if (userDoc.exists()) {
+//         const userData = userDoc.data();
+//         const userDisplayName = userData.displayName;
+//         const userPaymentInfo = userData.paymentInfo;
+
+//         // Recupere as informações de desempenho do documento do usuário
+//         const desempenhoSalvo = userData.desempenhoPorDisciplina;
+
+//         // Atualize o estado desempenhoPorDisciplina com as informações recuperadas
+//         setDesempenhoPorDisciplina(desempenhoSalvo);
+
+//         // Recupere as informações de desempenho total do documento do usuário
+//         const desempenhoTotalSalvo = userData.desempenhoTotal || {
+//           acertos: 0,
+//           erros: 0,
+//         };
+
+//         // Atualize o estado desempenhoTotal com as informações recuperadas
+//         setDesempenhoTotal(desempenhoTotalSalvo);
+
+//         // Atualize o estado paymentInfo
+//         setPaymentInfo(userPaymentInfo);
+
+//         // Recupere a data de expiração do documento do usuário
+//         const expirationDate = userData.expirationDate;
+
+//         // Se expirationDate existir e não for nulo, atualize o estado
+//         if (expirationDate) {
+//           setCurrentDate(expirationDate.toDate().toLocaleDateString());
+//         }
+
+//         const paymentInfo = userDoc.data().paymentInfo;
+//         let maxQuestionsToDisplay = 0;
+//         let accessDurationDays = 0;
+
+//         // Defina maxQuestionsToDisplay com base no número máximo de questões disponíveis
+//         if (paymentInfo === 0 || paymentInfo === null) {
+//           maxQuestionsToDisplay = Math.min(15, questoesPagina.length);
+//           accessDurationDays = 1;
+//         } else if (paymentInfo === 1) {
+//           maxQuestionsToDisplay = questoesPagina.length;
+//           accessDurationDays = 30;
+//         } else if (paymentInfo === 6500) {
+//           maxQuestionsToDisplay = questoesPagina.length;
+//           accessDurationDays = 180;
+//         } else if (paymentInfo === 12000) {
+//           maxQuestionsToDisplay = questoesPagina.length;
+//           accessDurationDays = 365;
+//         }
+
+//         const totalPages = Math.ceil(
+//           questoesPagina.length / maxQuestionsToDisplay
+//         );
+
+//         setMaxQuestionsToDisplay(maxQuestionsToDisplay);
+
+//         const questionsToDisplay = questoesPagina.slice(
+//           0,
+//           maxQuestionsToDisplay
+//         );
+//         setQuestionsToShow(questionsToDisplay);
+
+//         setPaginaAtual(1);
+
+//         // const currentDate = new Date();
+
+//         // expirationDate.setDate(currentDate.getDate() + accessDurationDays);
+
+//         // await setDoc(userRef, { expirationDate }, { merge: true });
+
+//         // console.log(
+//         //   `Acesso concedido por ${accessDurationDays} dias a partir de ${currentDate.toISOString()}`
+//         // );
+//       } else {
+//         // Se o documento do usuário não existir, crie-o com paymentInfo ausente
+//         await setDoc(userRef, {
+//           expirationDate: null,
+//           paymentInfo: null,
+//           desempenhoTotal: {
+//             acertos: 0,
+//             erros: 0,
+//           },
+//         });
+
+//         console.log("Documento do usuário criado.");
+//       }
+//     } else {
+//       setUser(null);
+//     }
+//   });
+
+//   return () => unsubscribe();
+// }, [auth, maxQuestionsToDisplay]);
+
+{
+  /* 
 <Box className="Rodapé">
   <Box className="Box-Rodapé">
     <p className="Texto-Rodapé">SESOEMCONCURSOS.COM.BR</p>
@@ -992,11 +980,5 @@ useEffect(() => {
     <p className="Texto-Rodapé1">© 2023 - SESO em Concursos</p>
   </Box>
 </Box>
-*/}
-
-</Container>
-    </div>
-  );
+*/
 }
-
-export default Home;
