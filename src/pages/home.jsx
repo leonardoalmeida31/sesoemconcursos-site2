@@ -13,6 +13,12 @@ import { IoMdCut } from "react-icons/io";
 import { loadStripe } from "@stripe/stripe-js";
 import AutoGraphOutlinedIcon from "@mui/icons-material/AutoGraphOutlined";
 import Container from "@mui/material/Container";
+import { Modal, Button, Typography, Table, TableBody, TableCell, TableContainer, TableRow, Paper } from '@mui/material';
+import Collapse from '@mui/material/Collapse';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import IconButton from '@mui/material/IconButton';
+import Depoimentos from './Depoimentos.jsx';
 import { initializeApp } from "firebase/app";
 import {
   getDocs,
@@ -120,38 +126,38 @@ function Home() {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         setUser(user);
-  
+
         const userRef = doc(db, "users", user.uid);
         const userDoc = await getDoc(userRef);
-  
+
         if (userDoc.exists()) {
           const userData = userDoc.data();
           const userDisplayName = userData.displayName;
           const userPaymentInfo = userData.paymentInfo;
           const expirationDate = userData.expirationDate;
-  
+
           // Recupere as informações de desempenho do documento do usuário
           const desempenhoSalvo = userData.desempenhoPorDisciplina;
-  
+
           // Atualize o estado desempenhoPorDisciplina com as informações recuperadas
           setDesempenhoPorDisciplina(desempenhoSalvo);
-  
+
           // Recupere as informações de desempenho total do documento do usuário
           const desempenhoTotalSalvo = userData.desempenhoTotal || {
             acertos: 0,
             erros: 0,
           };
-  
+
           // Atualize o estado desempenhoTotal com as informações recuperadas
           setDesempenhoTotal(desempenhoTotalSalvo);
-  
+
           // Atualize o estado paymentInfo
           setPaymentInfo(userPaymentInfo);
-  
+
           const paymentInfo = userDoc.data().paymentInfo;
           let maxQuestionsToDisplay = 0;
           let accessDurationDays = 0;
-  
+
           // Defina maxQuestionsToDisplay com base no número máximo de questões disponíveis
           if (paymentInfo === 0 || paymentInfo === null) {
             maxQuestionsToDisplay = Math.min(15, questoesPagina.length);
@@ -166,30 +172,30 @@ function Home() {
             maxQuestionsToDisplay = questoesPagina.length;
             accessDurationDays = 365;
           }
-  
+
           const totalPages = Math.ceil(
             questoesPagina.length / maxQuestionsToDisplay
           );
-  
+
           setMaxQuestionsToDisplay(maxQuestionsToDisplay);
-  
+
           const questionsToDisplay = questoesPagina.slice(
             0,
             maxQuestionsToDisplay
           );
           setQuestionsToShow(questionsToDisplay);
-  
+
           setPaginaAtual(1);
-  
+
           // Verifique se expirationDate existe antes de atualizar o banco de dados
           if (!expirationDate) {
             const currentDate = new Date();
             const expirationDate = new Date(currentDate);
             expirationDate.setDate(currentDate.getDate() + accessDurationDays);
-  
+
             // Atualize o banco de dados apenas se expirationDate não existir
             await setDoc(userRef, { expirationDate }, { merge: true });
-  
+
             console.log(
               `Acesso concedido por ${accessDurationDays} dias a partir de ${currentDate.toISOString()}`
             );
@@ -206,17 +212,17 @@ function Home() {
             desempenhoPorDisciplina: {}, // Defina um objeto vazio como valor padrão
             cliques: 0,
           });
-  
+
           console.log("Documento do usuário criado.");
         }
       } else {
         setUser(null);
       }
     });
-  
+
     return () => unsubscribe();
   }, [auth, maxQuestionsToDisplay]);
-  
+
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -457,7 +463,7 @@ function Home() {
 
 
 
-  const handleCheckout = async ({}) => {
+  const handleCheckout = async ({ }) => {
     const stripe = await stripePromise;
 
     try {
@@ -480,14 +486,14 @@ function Home() {
     }
   };
 
-  const handleCheckoutS = async ({}) => {
+  const handleCheckoutS = async ({ }) => {
     const stripe = await stripePromise;
 
     try {
       const { error } = await stripe.redirectToCheckout({
         lineItems: [
           {
-   
+
             price: "price_1NlMrNB3raGqSSUVTfAfLQOF",
             quantity: 1,
           },
@@ -503,14 +509,14 @@ function Home() {
       console.error("Erro ao iniciar o checkout:", err);
     }
   };
-  const handleCheckoutA = async ({}) => {
+  const handleCheckoutA = async ({ }) => {
     const stripe = await stripePromise;
 
     try {
       const { error } = await stripe.redirectToCheckout({
         lineItems: [
           {
-           
+
             price: "price_1NlMulB3raGqSSUVr41T8yfL",
             quantity: 1,
           },
@@ -550,6 +556,9 @@ function Home() {
 
   const modalStyle = {
     display: modalOpen ? "flex" : "none",
+    justifyContent: "center", // Centraliza horizontalmente
+    alignItems: "center", // Centraliza verticalmente
+    // Outros estilos personalizados para o modal, se necessário
   };
 
   <FiltroMulti onFilterChange={setQuestoesFiltradas} db={db} />;
@@ -569,6 +578,12 @@ function Home() {
     }));
   };
 
+  const [isVisible, setIsVisible] = useState(true);
+
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
+
   return (
     <div className="Home">
       {user && (
@@ -579,9 +594,7 @@ function Home() {
           <button onClick={signOut} className="logout-button">
             Sair/Entrar
           </button>
-          <Link to="/MeuPerfil" className="nome-user">
-            Bem-vindo(a), {displayName}
-          </Link>
+
         </Container>
       )}
 
@@ -592,59 +605,111 @@ function Home() {
       )}
       <Container className="fundo-Home">
         <div className="logout-button-container">
-          <div>
-            {modalOpen && (
-              <div className="modal" style={modalStyle}>
-                <div className="modal-content">
-                  <h2>Opções de Assinatura</h2>
-                  <p>Todas as assisnaturas são efetuados com cartão</p>
+          <Modal
+            open={modalOpen}
+            onClose={closeModal}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexDirection: 'column'
+            }}
+          >
+            <Box
+              className="modal-content"
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
+                padding: '15px',
+                borderRadius: '8px',
+                textAlign: 'center',
+                width: '80%',
+                maxWidth: '500px',
+                backgroundColor: '#f4f4f4', // Cor de fundo do modal
+              }}
+            >
+              <Typography variant="h5">Conheça Nossos Planos de Assinatura</Typography>
 
-                  <div>
-                    <p>
-                      Assinatura Mensal: 17,99 <br></br>
-                      <span>Acesso por 30 dias!</span>
-                    </p>
+              <TableContainer component={Paper}>
+                <Table>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>Plano Gratuito</TableCell>
+                      <TableCell>
+                        <ul>
+                          <li>Responda até 15 questões por dia</li>
+                          <li>Comentários Limitados</li>
+                        </ul>
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Plano Mensal</TableCell>
+                      <TableCell>
 
-                    <button
-                      className="button-pagamento"
-                      onClick={handleCheckout}
-                    >
-                      Realizar Assinatura com cartão
-                    </button>
-                  </div>
-                  <div className="open">
-                    <p>
-                      Assinatura SEMESTREAL: 65,00 <br></br>
-                      <span>Acesso por 180 dias!</span>
-                    </p>
-                    <button
-                      className="button-pagamento"
-                      onClick={handleCheckoutS}
-                    >
-                      Realizar Assinatura com cartão
-                    </button>
-                   
-                  </div>
-                  <div className="open">
-                    <p>
-                      Assinatura Anual: 120,00 <br></br>
-                      <span>Acesso por 365 dias!</span>
-                    </p>
-                    <button
-                      className="button-pagamento"
-                      onClick={handleCheckoutA}
-                    >
-                      Realizar Assinatura com cartão
-                    </button>
-                  </div>
-                  <button className="open-button" onClick={closeModal}>
-                    Fechar
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
+                        <ul>
+                          <li>Resolução de Questões Ilimitadas</li>
+                          <li>Comentários Ilimitados</li>
+                        </ul>
+                        <Button variant="contained" onClick={handleCheckout}>
+                          Assinar Agora
+                        </Button>
+                      </TableCell>
+                      <a href="https://api.whatsapp.com/send?phone=5574981265381&text=Quero%20Asssinar%20por%20Pix" target="_blank" rel="noopener noreferrer">
+                        <Button variant="contained">
+                          Pix
+                        </Button>
+                      </a>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Plano Semestral</TableCell>
+                      <TableCell>
+
+                        <ul>
+                          <li>Resolução de Questões Ilimitadas</li>
+                          <li>Comentários Ilimitados</li>
+                        </ul>
+                        <Button variant="contained" onClick={handleCheckoutS}>
+                          Assinar Agora
+                        </Button>
+                      </TableCell>
+                      <a href="https://api.whatsapp.com/send?phone=5574981265381&text=Quero%20Asssinar%20por%20Pix" target="_blank" rel="noopener noreferrer">
+                        <Button variant="contained">
+                          Pix
+                        </Button>
+                      </a>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Plano Anual</TableCell>
+                      <TableCell>
+
+                        <ul>
+                          <li>Resolução de Questões Ilimitadas</li>
+                          <li>Comentários Ilimitados</li>
+                        </ul>
+                        <Button variant="contained" onClick={handleCheckoutA}>
+                          Assinar Agora
+                        </Button>
+                      </TableCell>
+                      <a href="https://api.whatsapp.com/send?phone=5574981265381&text=Quero%20Asssinar%20por%20Pix" target="_blank" rel="noopener noreferrer">
+                        <Button variant="contained">
+                          Pix
+                        </Button>
+                      </a>
+
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+
+              <Button variant="contained" color="secondary" onClick={closeModal}>
+                Fechar
+              </Button>
+            </Box>
+          </Modal>
         </div>
+
 
         {user ? (
           <div>
@@ -680,23 +745,20 @@ function Home() {
 
                     return (
                       <li
-                        className={`alternativa ${
-                          isSelected ? "selecionada" : ""
-                        } ${isRiscada ? "riscado" : ""}`}
+                        className={`alternativa ${isSelected ? "selecionada" : ""
+                          } ${isRiscada ? "riscado" : ""}`}
                         key={index}
                         onClick={() =>
                           handleAlternativaClick(question.ids, index)
                         }
                       >
                         <Box
-                          className={`icon-container ${
-                            isRiscada ? "riscado" : ""
-                          }`}
+                          className={`icon-container ${isRiscada ? "riscado" : ""
+                            }`}
                         >
                           <IoMdCut
-                            className={`tesoura-icon ${
-                              isRiscada ? "riscado" : ""
-                            }`}
+                            className={`tesoura-icon ${isRiscada ? "riscado" : ""
+                              }`}
                             size={14} // Defina o tamanho desejado em pixels
                             color={isRiscada ? "#1c5253" : "black"} // Defina a cor desejada
                             onClick={(e) => {
@@ -707,9 +769,8 @@ function Home() {
                         </Box>
 
                         <span
-                          className={`letra-alternativa-circle ${
-                            isSelected ? "selecionada" : ""
-                          }`}
+                          className={`letra-alternativa-circle ${isSelected ? "selecionada" : ""
+                            }`}
                         >
                           {letraAlternativa}
                         </span>
@@ -806,6 +867,8 @@ function Home() {
                   </Container>
                 )}
               </div>
+
+
             ))}
 
             <Box className="pagination">
@@ -817,7 +880,7 @@ function Home() {
               </span>
               <button
                 onClick={handleNextPage}
-                // disabled={paginaAtual >= totalPages || paymentInfo === 0 || paymentInfo === null}
+              // disabled={paginaAtual >= totalPages || paymentInfo === 0 || paymentInfo === null}
               >
                 Próxima Questão
               </button>
@@ -830,8 +893,8 @@ function Home() {
             <img
               src={imagemSvg}
               alt="Descrição da imagem"
-              width="40%"
-              height="40%"
+              width="30%"
+              height="30%"
             />
 
             <p>
@@ -841,8 +904,57 @@ function Home() {
             <button onClick={signInWithGoogle} className="login-button">
               Entrar com o Google
             </button>
+
+            <Depoimentos/>
           </Box>
         )}
+
+        {user && (
+          <Box className="Rodapé">
+            <Box className="Box-Rodapé2">
+              <p className="Texto-Rodapé2">Assine para Responder Questões ilimitadas Diariamente.</p>
+            </Box>
+            <Box className="Box-Rodapé">
+              <p className="Texto-Rodapé">
+                <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>SESOEMCONCURSOS.COM.BR
+                </Link></p>
+
+              <p className="Texto-Rodapé">
+                <Link to="https://api.whatsapp.com/send?phone=5574981265381" target="_blank" style={{ textDecoration: 'none', color: 'white' }}>Atendimento ao Cliente
+                </Link></p>
+              <p className="Texto-Rodapé">Preços</p>
+              <p className="Texto-Rodapé">Quem Somos</p>
+            </Box>
+
+            <Box className="Box-Rodapé">
+              <p className="Texto-Rodapé">
+                <Link to="/MeuPerfil" target="_blank" style={{ textDecoration: 'none', color: 'white' }}>
+                  Meu Desempenho
+                </Link>
+              </p>
+              <p className="Texto-Rodapé">
+              <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
+                Questões</Link></p>
+
+              <p className="Texto-Rodapé">
+              <Link to="/RankingDesempenho" target="_blank" style={{ textDecoration: 'none', color: 'white' }}>
+                Ranking de Desempenho</Link></p>
+              <p className="Texto-Rodapé">Como usar o SESO em Concursos</p>
+            </Box>
+
+            <Box className="Box-Rodapé">
+              <p className="Texto-Rodapé">Instagram</p>
+              <p className="Texto-Rodapé">Aulas</p>
+              <p className="Texto-Rodapé">Planos de Estudos</p>
+              <p className="Texto-Rodapé">Como usar o SESO em Concursos</p>
+            </Box>
+
+            <Box className="Box-Rodapé1">
+              <p className="Texto-Rodapé1">© 2023 - SESO em Concursos</p>
+            </Box>
+          </Box>
+        )}
+
       </Container>
     </div>
   );
@@ -952,33 +1064,4 @@ export default Home;
 //   return () => unsubscribe();
 // }, [auth, maxQuestionsToDisplay]);
 
-{
-  /* 
-<Box className="Rodapé">
-  <Box className="Box-Rodapé">
-    <p className="Texto-Rodapé">SESOEMCONCURSOS.COM.BR</p>
-    <p className="Texto-Rodapé">Atendimento ao Cliente</p>
-    <p className="Texto-Rodapé">Preços</p>
-    <p className="Texto-Rodapé">Quem Somos</p>
-  </Box>
 
-  <Box className="Box-Rodapé">
-    <p className="Texto-Rodapé">Meu Desempenho</p>
-    <p className="Texto-Rodapé">Aulas</p>
-    <p className="Texto-Rodapé">Planos de Estudos</p>
-    <p className="Texto-Rodapé">Como usar o SESO em Concursos</p>
-  </Box>
-
-  <Box className="Box-Rodapé"> 
-    <p className="Texto-Rodapé">Instagram</p>
-    <p className="Texto-Rodapé">Aulas</p>
-    <p className="Texto-Rodapé">Planos de Estudos</p>
-    <p className="Texto-Rodapé">Como usar o SESO em Concursos</p>
-  </Box>
-
-  <Box className="Box-Rodapé1">
-    <p className="Texto-Rodapé1">© 2023 - SESO em Concursos</p>
-  </Box>
-</Box>
-*/
-}

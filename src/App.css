@@ -32,10 +32,62 @@
       
     }
   }
-  .menu {
-    padding: 0; /* Remova o padding */
-    width: 100%; /* Preencha a largura total da tela */
+  .subscription-option{
+
+   flex-direction: column;
+
+   justify-content: center;
+   border: '2px solid #ccc',
+  
   }
+/* Estilos para a tabela de planos de assinatura */
+.subscription-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  border: 1px solid #ddd;
+}
+
+.subscription-table th,
+.subscription-table td {
+  padding: 5px;
+  text-align: left;
+  flex-direction: column;
+  border-bottom: 1px solid #ddd;
+}
+
+.subscription-table th {
+  background-color: #f2f2f2;
+  flex-direction: column;
+}
+
+/* Estilo para os botões de assinatura */
+.button-pagamento {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.button-pagamento:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo para o botão Fechar */
+.close-button {
+  background-color: #ccc;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  background-color: #999;
+}
   
 
   .login {
@@ -278,7 +330,7 @@
   }
 
   .campo-comentario {
-    margin-bottom: 5em;
+    margin-bottom: 1em;
     align-items: center;
     background-color: #1c525313;
     display: flex;
@@ -344,6 +396,19 @@
     color:#ffffff;
   }
 
+  .MensagemAsssine {
+
+    color: #14493c;
+    font-family: Poppins;
+  
+    border-radius: 8px;
+    text-align: left;
+    font-size: 0.900em;
+    display: flex;
+    
+   
+  }
+  
      
   .comentario {
     display: none;
@@ -521,6 +586,14 @@
 }
 
 /* Estilos para os botões */
+.open-button2 {
+  color: #14493c;
+ font-family: 'Poppins', sans-serif;
+ border: none;
+ font-weight: 500;
+ background: transparent;
+cursor: pointer;
+}
 .open-button {
   color: #14493c;
   font-family: 'Poppins', sans-serif;
@@ -769,6 +842,9 @@
   margin-top: 5em;
   font-size: 0.865em;
   font-weight: 300;
+  color: white;
+  text-decoration: none;
+  color: inherit;
 }
 
 /* Estilos para o texto do rodapé */
@@ -777,4 +853,7 @@
   text-align: start;
   font-size: 0.865em;
   font-weight: 300;
+  color: white;
+  text-decoration: none;
+  
 }
