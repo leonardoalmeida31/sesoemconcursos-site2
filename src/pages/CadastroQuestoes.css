@@ -1,0 +1,46 @@
+/* Estilo para o formulário */
+.form-container {
+    
+
+
+    flex-direction: row;
+  }
+  
+  .box-container {
+    display: flex;
+    justify-content: left; 
+    align-items: center;
+}
+
+.box-ids,
+.box-ano,
+.box-modalidade,
+.box-area,
+.box-banca {
+    padding: 1em;
+    justify-content: left; 
+}
+.box-disciplina {
+  margin-top: 1em;
+  justify-content: left; 
+}
+.box-enunciado {
+  margin-top: 1em;
+  justify-content: left; 
+}
+.box-alternativas {
+  margin-top: 1em;
+  justify-content: left; 
+}
+.box-input-alternativas {
+  margin-top: 1em;
+  justify-content: left; 
+}
+.button-remove-alternativas {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; /* Opcional: alinhe verticalmente ao centro */
+  margin-left: auto; /* Isso empurrará o contêiner para a direita */
+}
+
+

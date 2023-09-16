@@ -3,7 +3,7 @@ const admin = require("firebase-admin");
 
 admin.initializeApp();
 
-exports.resetClicks = functions.pubsub.schedule("0 * * * *").timeZone("UTC").onRun((context) => {
+exports.resetClicks = functions.pubsub.schedule("every 240 minutes").timeZone("UTC").onRun((context) => {
   const db = admin.firestore();
   const usersRef = db.collection("users");
 
