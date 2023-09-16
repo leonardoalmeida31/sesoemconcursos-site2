@@ -11,7 +11,6 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { IoMdCut } from "react-icons/io";
 import { loadStripe } from "@stripe/stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
 import AutoGraphOutlinedIcon from "@mui/icons-material/AutoGraphOutlined";
 import Container from "@mui/material/Container";
 import { initializeApp } from "firebase/app";
