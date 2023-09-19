@@ -27,7 +27,7 @@ import {
   doc,
   setDoc,
   getDoc,
-  updateDoc,
+  updateDoc, query, limit
 } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
@@ -232,14 +232,23 @@ function Home() {
     return array;
   }
 
+
   useEffect(() => {
+  
+    const questionsCollectionRef = collection(db, "questions");
+
+    // Limite a consulta a 15 documentos
+    const queryWithLimit = query(questionsCollectionRef, limit(15));
+    
     const getQuestions = async () => {
-      const data = await getDocs(questionsCollectionRef);
+      const data = await getDocs(queryWithLimit);
       setQuestions(
         shuffleArray(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
       );
     };
-    getQuestions();
+    getQuestions();    
+    
+
   }, []);
 
   useEffect(() => {
@@ -576,12 +585,6 @@ function Home() {
         [index]: !prev[questionId]?.[index], // Inverte o valor atual (riscado ou não)
       },
     }));
-  };
-
-  const [isVisible, setIsVisible] = useState(true);
-
-  const toggleVisibility = () => {
-    setIsVisible(!isVisible);
   };
 
   return (
