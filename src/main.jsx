@@ -7,6 +7,7 @@ import MeuPerfil from './pages/MeuPerfil.jsx'
 import SuccessPage from './pages/success.jsx'
 import RankingDesempenho from './pages/RankingDesempenho.jsx'
 import CadastroQuestoes from './pages/CadastroQuestoes.jsx'
+import AssinaturaPix from './pages/AssinaturaPix.jsx'
 
 
 
@@ -20,6 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/success" element={<SuccessPage />} />
         <Route path="/RankingDesempenho" element={<RankingDesempenho />} />
         <Route path="/CadastroQuestoes" element={<CadastroQuestoes />} />
+        <Route path="/AssinaturaPix" element={<AssinaturaPix />} />
       </Routes>
     </React.StrictMode>
   </Router>

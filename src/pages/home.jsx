@@ -592,12 +592,17 @@ function Home() {
       {user && (
         <Container className="div-menu">
           <button className="open-button" onClick={openModal}>
-            Assine Agora
+            Assinar com cartão
           </button>
+          <Link to="/AssinaturaPix" className="open-button" href="https://api.whatsapp.com/send?phone=5574981265381&text=Quero%20Asssinar%20por%20Pix" target="_blank" rel="noopener noreferrer">
+                        <button  className="open-button">
+                          Assinar com Pìx
+                        </button>
+                      </Link>
           <button onClick={signOut} className="logout-button">
             Sair/Entrar
           </button>
-
+          
         </Container>
       )}
 
@@ -659,11 +664,7 @@ function Home() {
                           Assinar Agora
                         </Button>
                       </TableCell>
-                      <a href="https://api.whatsapp.com/send?phone=5574981265381&text=Quero%20Asssinar%20por%20Pix" target="_blank" rel="noopener noreferrer">
-                        <Button variant="contained">
-                          Pix
-                        </Button>
-                      </a>
+                     
                     </TableRow>
                     <TableRow>
                       <TableCell>Plano Semestral</TableCell>
@@ -677,11 +678,7 @@ function Home() {
                           Assinar Agora
                         </Button>
                       </TableCell>
-                      <a href="https://api.whatsapp.com/send?phone=5574981265381&text=Quero%20Asssinar%20por%20Pix" target="_blank" rel="noopener noreferrer">
-                        <Button variant="contained">
-                          Pix
-                        </Button>
-                      </a>
+                     
                     </TableRow>
                     <TableRow>
                       <TableCell>Plano Anual</TableCell>
@@ -695,11 +692,7 @@ function Home() {
                           Assinar Agora
                         </Button>
                       </TableCell>
-                      <a href="https://api.whatsapp.com/send?phone=5574981265381&text=Quero%20Asssinar%20por%20Pix" target="_blank" rel="noopener noreferrer">
-                        <Button variant="contained">
-                          Pix
-                        </Button>
-                      </a>
+                     
 
                     </TableRow>
                   </TableBody>

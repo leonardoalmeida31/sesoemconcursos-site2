@@ -13,17 +13,27 @@ const Depoimentos = () => {
       id: 1,
       name: 'Leonardo Almeida',
       aprovado: '1º lugar na Prefeitura de Capela do Alto Alegre - BA',
-      text: 'Estudando com o SESO em Concursos eu consegui ser aprovado e classificado em três concursos em 2023.',
+      text: 'A única plataforma de questões de concursos especializada em Serviço Social',
     },
     {
       id: 2,
       name: 'Nilia Magalhães',
-      text: 'O SESO em Concursos é uma porta acessível de oportunidades para quem tem poucas condições de pagar um curso caro na área específica de serviço social para concursos.',
+      text: 'Questões atualizadas e comentadas todos os dias',
     },
     {
       id: 3,
       name: 'Carlos',
-      text: 'O produto superou minhas expectativas. Ótimo trabalho!',
+      text: 'Filtros de questões personalizados para o seu concurso',
+    },
+    {
+      id: 4,
+      name: 'Carlos',
+      text: 'Gráficos de Desempenho que mostram o avanço do seu aprendizado e norteiam seu foco de estudos',
+    },
+    {
+      id: 5,
+      name: 'Carlos',
+      text: 'Aqui você, Assistente Social, encontra o caminho da aprovação!',
     },
   ];
 
@@ -35,7 +45,7 @@ const Depoimentos = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true, // Habilita o autoplay
-    autoplaySpeed: 6000, // Define a velocidade do autoplay em milissegundos (5 segundos no exemplo)
+    autoplaySpeed: 4000, // Define a velocidade do autoplay em milissegundos (5 segundos no exemplo)
   };
 
   const testimonialContainerStyle = {
@@ -65,8 +75,8 @@ const Depoimentos = () => {
       <Slider {...settings}>
         {testimonials.map((testimonial) => (
           <Container key={testimonial.id} style={testimonialContainerStyle}>
-            <Typography style={testimonialNameStyle}>{testimonial.name}</Typography>
-            <Typography style={testimonialTextStyle}>{testimonial.aprovado}</Typography>
+           
+            
             <Typography style={testimonialTextStyle}>{testimonial.text}</Typography>
           </Container>
         ))}

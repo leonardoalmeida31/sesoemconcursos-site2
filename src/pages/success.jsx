@@ -103,7 +103,7 @@ function SuccessPage() {
 
   return (
     <div>
-      <h1>Pagamento realizado com sucesso!</h1>
+      <h1>Assinatura realizada com sucesso!</h1>
       <p>Informações de pagamento:</p>
       {paymentInfo ? (
         <div>
@@ -113,7 +113,7 @@ function SuccessPage() {
       ) : (
         <p>As informações de pagamento estão sendo atualizadas...</p>
       )}
-      <a href="/">Voltar à Página Inicial</a>
+      <a href="/">Toque aqui para continuar respondendo questões</a>
     </div>
   );
 }
