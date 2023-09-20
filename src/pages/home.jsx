@@ -19,6 +19,17 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import IconButton from '@mui/material/IconButton';
 import Depoimentos from './Depoimentos.jsx';
+
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import AdbIcon from '@mui/icons-material/Adb';
+
+
 import { initializeApp } from "firebase/app";
 import {
   getDocs,
@@ -37,6 +48,19 @@ const firebaseConfig = {
   authDomain: import.meta.env.VITE_REACT_APP_AUTH_DOMAIN,
   projectId: import.meta.env.VITE_REACT_APP_PROJECT_ID,
 };
+
+const pages = ['Questões',];
+const settings = ['Perfil', ];
+
+const pageLinks = {
+
+  Questões: '/',
+};
+const settingsLinks = {
+
+  Perfil: '/MeuDesempenho',
+};
+
 
 function Home() {
   const firebaseApp = initializeApp(firebaseConfig);
@@ -65,6 +89,25 @@ function Home() {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const stripePublicKey = import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY;
   const stripePromise = loadStripe(stripePublicKey);
+
+
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
   const signInWithGoogle = async () => {
     try {
@@ -234,20 +277,20 @@ function Home() {
 
 
   useEffect(() => {
-  
+
     const questionsCollectionRef = collection(db, "questions");
 
     // Limite a consulta a 15 documentos
     const queryWithLimit = query(questionsCollectionRef, limit(15));
-    
+
     const getQuestions = async () => {
       const data = await getDocs(queryWithLimit);
       setQuestions(
         shuffleArray(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
       );
     };
-    getQuestions();    
-    
+    getQuestions();
+
 
   }, []);
 
@@ -590,21 +633,247 @@ function Home() {
   return (
     <div className="Home">
       {user && (
+        <AppBar sx={{ backgroundColor: '#1c5253', marginBottom: '1em' }} position="static">
+          <Container maxWidth="xl">
+            <Toolbar disableGutters>
+              
+              <Typography
+                variant="h6"
+                noWrap
+                component="a"
+                href="/"
+                sx={{
+                  mr: 5,
+                  display: { xs: 'none', md: 'flex' },
+                  fontFamily: 'monospace',
+                  fontWeight: 600,
+                  letterSpacing: '.3rem',
+                  color: 'inherit',
+                  textDecoration: 'none',
+                }}
+              >
+                SESO em Concursos
+              </Typography>
+
+              <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleOpenNavMenu}
+                  color="inherit"
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorElNav}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  open={Boolean(anchorElNav)}
+                  onClose={handleCloseNavMenu}
+                  sx={{
+                    display: { xs: 'block', md: 'none' },
+                  }}
+                >
+                  {pages.map((page) => (
+                    <MenuItem key={page} onClick={handleCloseNavMenu}>
+                      <Typography textAlign="center">{page}</Typography>
+                    </MenuItem>
+                  ))}
+                    <MenuItem>
+                  <Link to="/MeuPerfil" style={{ textDecoration: 'none' }}>
+                    <Typography
+
+                      sx={{ color: 'black' }}
+                    >
+                      Meu Desempenho
+                    </Typography>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/RankingDesempenho" style={{ textDecoration: 'none' }}>
+                    <Typography
+
+                      sx={{ color: 'black' }}
+                    >
+                      Ranking
+                    </Typography>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Typography
+
+                    onClick={() => openModal()}
+                    sx={{ color: 'black' }}
+                  >
+                    Assinar com cartão
+                  </Typography>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/AssinaturaPix" style={{ textDecoration: 'none' }}>
+                    <Typography
+
+                      sx={{ color: 'black' }}
+                    >
+                      Assinar com Pix
+                    </Typography>
+                  </Link>
+                </MenuItem>
+                </Menu>
+              </Box>
+             
+              <Typography
+                variant="h6"
+                noWrap
+                component="a"
+                href="/"
+                sx={{
+                  mr: 2,
+                  display: { xs: 'flex', md: 'none' },
+                  flexGrow: 1,
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  letterSpacing: '.1rem',
+                  color: 'inherit',
+                  textDecoration: 'none',
+                }}
+              >
+                SESO em Concursos
+              </Typography>
+              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                {pages.map((page) => (
+                  <Link key={page} to={pageLinks[page]} style={{ textDecoration: 'none' }}>
+                    <Button
+                      sx={{ my: 2, color: 'white', display: 'block' }}
+
+                    >
+                      {page}
+                    </Button>
+
+                  </Link>
+                ))}
+                
+                <MenuItem>
+                  <Link to="/MeuPerfil" style={{ textDecoration: 'none' }}>
+                    <Button
+
+                      sx={{ color: 'white' }}
+                    >
+                      Meu Desempenho
+                    </Button>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/RankingDesempenho" style={{ textDecoration: 'none' }}>
+                    <Button
+
+                      sx={{ color: 'white' }}
+                    >
+                      Ranking
+                    </Button>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Button
+
+                    onClick={() => openModal()}
+                    sx={{ color: 'white' }}
+                  >
+                    Assinar com cartão
+                  </Button>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/AssinaturaPix" style={{ textDecoration: 'none' }}>
+                    <Button
+
+                      sx={{ color: 'white' }}
+                    >
+                      Assinar com Pix
+                    </Button>
+                  </Link>
+                </MenuItem>
+              </Box>
+
+
+
+
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt="Remy Sharp"  />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: '45px' }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {settings.map((setting) => (
+                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                      <Typography textAlign="center">{setting}</Typography>
+                    </MenuItem>
+                  ))}
+                  <MenuItem>
+                    <Typography
+
+                      onClick={signOut}
+                      sx={{ color: 'black' }}
+                    >
+                      Sair/Trocar Conta
+                    </Typography>
+                  </MenuItem>
+                </Menu>
+              </Box>
+            </Toolbar>
+          </Container>
+        </AppBar>)}
+
+
+      {false && (
+        // Este bloco de código não será executado
         <Container className="div-menu">
           <button className="open-button" onClick={openModal}>
             Assinar com cartão
           </button>
-          <Link to="/AssinaturaPix" className="open-button" href="https://api.whatsapp.com/send?phone=5574981265381&text=Quero%20Asssinar%20por%20Pix" target="_blank" rel="noopener noreferrer">
-                        <button  className="open-button">
-                          Assinar com Pìx
-                        </button>
-                      </Link>
+
+          <Link
+            to="/AssinaturaPix"
+            className="open-button"
+            href="https://api.whatsapp.com/send?phone=5574981265381&text=Quero%20Asssinar%20por%20Pix"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="open-button">
+              Assinar com Pix
+            </button>
+          </Link>
+
           <button onClick={signOut} className="logout-button">
             Sair/Entrar
           </button>
-          
         </Container>
       )}
+
 
       {user && (
         <div>
@@ -664,7 +933,7 @@ function Home() {
                           Assinar Agora
                         </Button>
                       </TableCell>
-                     
+
                     </TableRow>
                     <TableRow>
                       <TableCell>Plano Semestral</TableCell>
@@ -678,7 +947,7 @@ function Home() {
                           Assinar Agora
                         </Button>
                       </TableCell>
-                     
+
                     </TableRow>
                     <TableRow>
                       <TableCell>Plano Anual</TableCell>
@@ -692,7 +961,7 @@ function Home() {
                           Assinar Agora
                         </Button>
                       </TableCell>
-                     
+
 
                     </TableRow>
                   </TableBody>
@@ -901,7 +1170,7 @@ function Home() {
               Entrar com o Google
             </button>
 
-            <Depoimentos/>
+            <Depoimentos />
           </Box>
         )}
 
@@ -929,12 +1198,12 @@ function Home() {
                 </Link>
               </p>
               <p className="Texto-Rodapé">
-              <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
-                Questões</Link></p>
+                <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
+                  Questões</Link></p>
 
               <p className="Texto-Rodapé">
-              <Link to="/RankingDesempenho" target="_blank" style={{ textDecoration: 'none', color: 'white' }}>
-                Ranking de Desempenho</Link></p>
+                <Link to="/RankingDesempenho" target="_blank" style={{ textDecoration: 'none', color: 'white' }}>
+                  Ranking de Desempenho</Link></p>
               <p className="Texto-Rodapé">Como usar o SESO em Concursos</p>
             </Box>
 
