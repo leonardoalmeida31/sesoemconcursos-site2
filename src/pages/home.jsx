@@ -50,7 +50,7 @@ const firebaseConfig = {
 };
 
 const pages = ['Questões',];
-const settings = ['Perfil', ];
+const settings = ['Perfil',];
 
 const pageLinks = {
 
@@ -630,13 +630,52 @@ function Home() {
     }));
   };
 
+
+
+
+  const [comentariosQuestao, setcomentariosQuestao] = useState({});
+
+  const handleAdicionarComentario = async (e, questionId) => {
+    e.preventDefault();
+    const comentarioInput = e.target.querySelector('input[type="text"]');
+    const novoComentario = comentarioInput.value;
+  
+    // Verifique se há um comentário válido antes de adicionar
+    if (novoComentario.trim() !== "") {
+      const questionRef = doc(db, "questions", questionId);
+  
+      // Obtenha o documento da questão no Firestore
+      const questionDoc = await getDoc(questionRef);
+  
+      if (questionDoc.exists()) {
+        const comentariosQuestao = questionDoc.data().comentariosQuestao || [];
+  
+        // Adicione o novo comentário à matriz de comentários da questão
+        comentariosQuestao.push(novoComentario);
+  
+        // Atualize o documento da questão no Firestore com os novos comentários
+        await updateDoc(questionRef, { comentariosQuestao });
+  
+        // Atualize o estado local com os novos comentários
+        setcomentariosQuestao(comentariosQuestao);
+  
+        // Limpe o campo de entrada após adicionar o comentário
+        comentarioInput.value = "";
+      }
+    }
+  };
+  
+  
+  
+
+
   return (
     <div className="Home">
       {user && (
         <AppBar sx={{ backgroundColor: '#1c5253', marginBottom: '1em' }} position="static">
           <Container maxWidth="xl">
             <Toolbar disableGutters>
-              
+
               <Typography
                 variant="h6"
                 noWrap
@@ -689,48 +728,48 @@ function Home() {
                       <Typography textAlign="center">{page}</Typography>
                     </MenuItem>
                   ))}
-                    <MenuItem>
-                  <Link to="/MeuPerfil" style={{ textDecoration: 'none' }}>
+                  <MenuItem>
+                    <Link to="/MeuPerfil" style={{ textDecoration: 'none' }}>
+                      <Typography
+
+                        sx={{ color: 'black' }}
+                      >
+                        Meu Desempenho
+                      </Typography>
+                    </Link>
+                  </MenuItem>
+                  <MenuItem>
+                    <Link to="/RankingDesempenho" style={{ textDecoration: 'none' }}>
+                      <Typography
+
+                        sx={{ color: 'black' }}
+                      >
+                        Ranking
+                      </Typography>
+                    </Link>
+                  </MenuItem>
+                  <MenuItem>
                     <Typography
 
+                      onClick={() => openModal()}
                       sx={{ color: 'black' }}
                     >
-                      Meu Desempenho
+                      Assinar com cartão
                     </Typography>
-                  </Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link to="/RankingDesempenho" style={{ textDecoration: 'none' }}>
-                    <Typography
+                  </MenuItem>
+                  <MenuItem>
+                    <Link to="/AssinaturaPix" style={{ textDecoration: 'none' }}>
+                      <Typography
 
-                      sx={{ color: 'black' }}
-                    >
-                      Ranking
-                    </Typography>
-                  </Link>
-                </MenuItem>
-                <MenuItem>
-                  <Typography
-
-                    onClick={() => openModal()}
-                    sx={{ color: 'black' }}
-                  >
-                    Assinar com cartão
-                  </Typography>
-                </MenuItem>
-                <MenuItem>
-                  <Link to="/AssinaturaPix" style={{ textDecoration: 'none' }}>
-                    <Typography
-
-                      sx={{ color: 'black' }}
-                    >
-                      Assinar com Pix
-                    </Typography>
-                  </Link>
-                </MenuItem>
+                        sx={{ color: 'black' }}
+                      >
+                        Assinar com Pix
+                      </Typography>
+                    </Link>
+                  </MenuItem>
                 </Menu>
               </Box>
-             
+
               <Typography
                 variant="h6"
                 noWrap
@@ -761,7 +800,7 @@ function Home() {
 
                   </Link>
                 ))}
-                
+
                 <MenuItem>
                   <Link to="/MeuPerfil" style={{ textDecoration: 'none' }}>
                     <Button
@@ -809,7 +848,7 @@ function Home() {
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Remy Sharp"  />
+                    <Avatar alt="Remy Sharp" />
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -1071,8 +1110,28 @@ function Home() {
                   onClick={() => toggleComentario(question.ids)}
                 >
                   {" "}
-                  Comentário
+                  Comentário do Professor
                 </button>
+
+              
+
+               
+  <div className="secao-comentarios">
+ 
+    {question.comentariosQuestao && question.comentariosQuestao.map((comentariosQuestao, index) => (
+      <div key={index} className="comentario-usuario">
+        <p>{comentariosQuestao}</p>
+      </div>
+    ))}
+
+    <form onSubmit={(e) => handleAdicionarComentario(e, question.id)}>
+  <input type="text" placeholder="Adicione seu comentário..." />
+  <button type="submit">Enviar</button>
+</form>
+
+  </div>
+
+
 
                 <Link
                   to="/MeuPerfil"
