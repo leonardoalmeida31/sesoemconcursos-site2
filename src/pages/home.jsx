@@ -41,6 +41,7 @@ import {
   updateDoc, query, limit
 } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getDatabase, ref, onValue } from "firebase/database";
 
 
 const firebaseConfig = {
@@ -639,35 +640,33 @@ function Home() {
     e.preventDefault();
     const comentarioInput = e.target.querySelector('input[type="text"]');
     const novoComentario = comentarioInput.value;
-  
+
     // Verifique se há um comentário válido antes de adicionar
     if (novoComentario.trim() !== "") {
       const questionRef = doc(db, "questions", questionId);
-  
+
       // Obtenha o documento da questão no Firestore
       const questionDoc = await getDoc(questionRef);
-  
+
       if (questionDoc.exists()) {
         const comentariosQuestao = questionDoc.data().comentariosQuestao || [];
-  
+
         // Adicione o novo comentário à matriz de comentários da questão
         comentariosQuestao.push(novoComentario);
-  
+
         // Atualize o documento da questão no Firestore com os novos comentários
         await updateDoc(questionRef, { comentariosQuestao });
-  
+
         // Atualize o estado local com os novos comentários
         setcomentariosQuestao(comentariosQuestao);
-  
+
         // Limpe o campo de entrada após adicionar o comentário
         comentarioInput.value = "";
       }
     }
   };
-  
-  
-  
 
+ 
 
   return (
     <div className="Home">
@@ -1113,23 +1112,23 @@ function Home() {
                   Comentário do Professor
                 </button>
 
-              
 
-               
-  <div className="secao-comentarios">
- 
-    {question.comentariosQuestao && question.comentariosQuestao.map((comentariosQuestao, index) => (
-      <div key={index} className="comentario-usuario">
-        <p>{comentariosQuestao}</p>
-      </div>
-    ))}
 
-    <form onSubmit={(e) => handleAdicionarComentario(e, question.id)}>
-  <input type="text" placeholder="Adicione seu comentário..." />
-  <button type="submit">Enviar</button>
-</form>
 
-  </div>
+                <Container className="campo-comentario">
+
+                  {question.comentariosQuestao && comentariosQuestao.map((comentariosQuestao, index) => (
+                    <div key={index} className="comentario-usuario">
+                      <p>{comentariosQuestao}</p>
+                    </div>
+                  ))}
+
+                  <form onSubmit={(e) => handleAdicionarComentario(e, question.id)}>
+                    <input type="text" placeholder="Adicione seu comentário..." />
+                    <button type="submit">Enviar</button>
+                  </form>
+
+                </Container>
 
 
 
