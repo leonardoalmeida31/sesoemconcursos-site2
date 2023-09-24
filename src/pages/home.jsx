@@ -8,12 +8,16 @@ import imagemSvg from "../img/img-login-1.svg";
 import { Link } from "react-router-dom";
 import MenuMui from "../MenuMui.jsx";
 import Grid from "@mui/material/Grid";
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
 import Box from "@mui/material/Box";
 import { IoMdCut } from "react-icons/io";
 import { loadStripe } from "@stripe/stripe-js";
 import AutoGraphOutlinedIcon from "@mui/icons-material/AutoGraphOutlined";
 import Container from "@mui/material/Container";
 import { Modal, Button, Typography, Table, TableBody, TableCell, TableContainer, TableRow, Paper } from '@mui/material';
+import { TextField, TextareaAutosize } from '@mui/material';
 import Collapse from '@mui/material/Collapse';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
@@ -38,10 +42,9 @@ import {
   doc,
   setDoc,
   getDoc,
-  updateDoc, query, limit
+  updateDoc, query, limit, addDoc
 } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { getDatabase, ref, onValue } from "firebase/database";
 
 
 const firebaseConfig = {
@@ -276,13 +279,12 @@ function Home() {
     return array;
   }
 
-
   useEffect(() => {
 
     const questionsCollectionRef = collection(db, "questions");
 
-    // Limite a consulta a 15 documentos
-    const queryWithLimit = query(questionsCollectionRef, limit(15));
+    // Limite a consulta a 50 documentos
+    const queryWithLimit = query(questionsCollectionRef, limit(50));
 
     const getQuestions = async () => {
       const data = await getDocs(queryWithLimit);
@@ -307,8 +309,10 @@ function Home() {
     });
 
     setQuestoesFiltradas(filtered);
+    // Redefina a página para 1 quando um filtro for aplicado
+    setPaginaAtual(1); // Adicione esta linha para redefinir a página para 1
 
-    setPaginaAtual(1);
+
   }, [
     filtroBanca,
     filtroDisciplina,
@@ -631,42 +635,31 @@ function Home() {
     }));
   };
 
+  const bull = (
+    <Box
+      component="span"
+      sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)', }}
+    >
+      •
+    </Box>
+  );
 
+  const card = (
+    <React.Fragment>
+      <CardContent>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          Você pode responder apenas 15 questões por dia.
+        </Typography>
 
-
-  const [comentariosQuestao, setcomentariosQuestao] = useState({});
-
-  const handleAdicionarComentario = async (e, questionId) => {
-    e.preventDefault();
-    const comentarioInput = e.target.querySelector('input[type="text"]');
-    const novoComentario = comentarioInput.value;
-
-    // Verifique se há um comentário válido antes de adicionar
-    if (novoComentario.trim() !== "") {
-      const questionRef = doc(db, "questions", questionId);
-
-      // Obtenha o documento da questão no Firestore
-      const questionDoc = await getDoc(questionRef);
-
-      if (questionDoc.exists()) {
-        const comentariosQuestao = questionDoc.data().comentariosQuestao || [];
-
-        // Adicione o novo comentário à matriz de comentários da questão
-        comentariosQuestao.push(novoComentario);
-
-        // Atualize o documento da questão no Firestore com os novos comentários
-        await updateDoc(questionRef, { comentariosQuestao });
-
-        // Atualize o estado local com os novos comentários
-        setcomentariosQuestao(comentariosQuestao);
-
-        // Limpe o campo de entrada após adicionar o comentário
-        comentarioInput.value = "";
-      }
-    }
-  };
-
- 
+        <Typography sx={{ fontSize: 18, color: 'black' }} color="text.secondary">
+          Assine para responder questões ilimitadas todos os dias!
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button onClick={() => openModal()} size="small">Assinar agora</Button>
+      </CardActions>
+    </React.Fragment>
+  );
 
   return (
     <div className="Home">
@@ -685,7 +678,7 @@ function Home() {
                   display: { xs: 'none', md: 'flex' },
                   fontFamily: 'monospace',
                   fontWeight: 600,
-                  letterSpacing: '.3rem',
+                  letterSpacing: '.1rem',
                   color: 'inherit',
                   textDecoration: 'none',
                 }}
@@ -779,7 +772,7 @@ function Home() {
                   display: { xs: 'flex', md: 'none' },
                   flexGrow: 1,
                   fontFamily: 'monospace',
-                  fontWeight: 700,
+                  fontWeight: 500,
                   letterSpacing: '.1rem',
                   color: 'inherit',
                   textDecoration: 'none',
@@ -1109,28 +1102,8 @@ function Home() {
                   onClick={() => toggleComentario(question.ids)}
                 >
                   {" "}
-                  Comentário do Professor
+                  Comentário
                 </button>
-
-
-
-
-                <Container className="campo-comentario">
-
-                  {question.comentariosQuestao && comentariosQuestao.map((comentariosQuestao, index) => (
-                    <div key={index} className="comentario-usuario">
-                      <p>{comentariosQuestao}</p>
-                    </div>
-                  ))}
-
-                  <form onSubmit={(e) => handleAdicionarComentario(e, question.id)}>
-                    <input type="text" placeholder="Adicione seu comentário..." />
-                    <button type="submit">Enviar</button>
-                  </form>
-
-                </Container>
-
-
 
                 <Link
                   to="/MeuPerfil"
@@ -1162,124 +1135,138 @@ function Home() {
                   >
                     {question.comentario}
                   </p>
-                </Container>
 
-                {estatisticasVisiveis && (
-                  <Container className="campo-estatistica">
-                    {Object.entries(desempenhoPorDisciplina).map(
-                      ([disciplina, { acertos, erros }]) => {
-                        const data = [
-                          ["Tipo", "Quantidade"],
-                          ["Acertos", acertos],
-                          ["Erros", erros],
-                        ];
-                        const options = {
-                          is3D: true,
-                        };
+                 
 
-                        return (
-                          <PieChart
-                            key={disciplina}
-                            title={disciplina}
-                            data={data}
-                            options={options}
-                          />
-                        );
-                      }
-                    )}
-                  </Container>
-                )}
-              </div>
-
-
-            ))}
-
-            <Box className="pagination">
-              <button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
-                Questão Anterior
-              </button>
-              <span>
-                {paginaAtual} de {totalPages}
-              </span>
-              <button
-                onClick={handleNextPage}
-              // disabled={paginaAtual >= totalPages || paymentInfo === 0 || paymentInfo === null}
-              >
-                Próxima Questão
-              </button>
-            </Box>
-          </div>
-        ) : (
-          <Box className="login">
-            <p>SESO em Concursos</p>
-
-            <img
-              src={imagemSvg}
-              alt="Descrição da imagem"
-              width="30%"
-              height="30%"
-            />
-
-            <p>
-              Faça login com sua conta do Google para responder questões
-              diariamente.
-            </p>
-            <button onClick={signInWithGoogle} className="login-button">
-              Entrar com o Google
-            </button>
-
-            <Depoimentos />
-          </Box>
-        )}
-
-        {user && (
-          <Box className="Rodapé">
-            <Box className="Box-Rodapé2">
-              <p className="Texto-Rodapé2">Assine para Responder Questões ilimitadas Diariamente.</p>
-            </Box>
-            <Box className="Box-Rodapé">
-              <p className="Texto-Rodapé">
-                <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>SESOEMCONCURSOS.COM.BR
-                </Link></p>
-
-              <p className="Texto-Rodapé">
-                <Link to="https://api.whatsapp.com/send?phone=5574981265381" target="_blank" style={{ textDecoration: 'none', color: 'white' }}>Atendimento ao Cliente
-                </Link></p>
-              <p className="Texto-Rodapé">Preços</p>
-              <p className="Texto-Rodapé">Quem Somos</p>
-            </Box>
-
-            <Box className="Box-Rodapé">
-              <p className="Texto-Rodapé">
-                <Link to="/MeuPerfil" target="_blank" style={{ textDecoration: 'none', color: 'white' }}>
-                  Meu Desempenho
-                </Link>
-              </p>
-              <p className="Texto-Rodapé">
-                <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
-                  Questões</Link></p>
-
-              <p className="Texto-Rodapé">
-                <Link to="/RankingDesempenho" target="_blank" style={{ textDecoration: 'none', color: 'white' }}>
-                  Ranking de Desempenho</Link></p>
-              <p className="Texto-Rodapé">Como usar o SESO em Concursos</p>
-            </Box>
-
-            <Box className="Box-Rodapé">
-              <p className="Texto-Rodapé">Instagram</p>
-              <p className="Texto-Rodapé">Aulas</p>
-              <p className="Texto-Rodapé">Planos de Estudos</p>
-              <p className="Texto-Rodapé">Como usar o SESO em Concursos</p>
-            </Box>
-
-            <Box className="Box-Rodapé1">
-              <p className="Texto-Rodapé1">© 2023 - SESO em Concursos</p>
-            </Box>
-          </Box>
-        )}
 
       </Container>
+
+      {estatisticasVisiveis && (
+        <Container className="campo-estatistica">
+          {Object.entries(desempenhoPorDisciplina).map(
+            ([disciplina, { acertos, erros }]) => {
+              const data = [
+                ["Tipo", "Quantidade"],
+                ["Acertos", acertos],
+                ["Erros", erros],
+              ];
+              const options = {
+                is3D: true,
+              };
+
+              return (
+                <PieChart
+                  key={disciplina}
+                  title={disciplina}
+                  data={data}
+                  options={options}
+                />
+              );
+            }
+          )}
+        </Container>
+      )}
     </div>
+
+
+  ))
+}
+{
+  paymentInfo === null && (
+    <Box sx={{ maxWidth: 400, }}>
+      <Card variant="outlined">{card}</Card>
+    </Box>
+  )
+}
+
+<Box className="pagination">
+  <button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
+    Questão Anterior
+  </button>
+  <span>
+    {paginaAtual} de {totalPages}
+  </span>
+  <button
+    onClick={handleNextPage}
+  // disabled={paginaAtual >= totalPages || paymentInfo === 0 || paymentInfo === null}
+  >
+    Próxima Questão
+  </button>
+</Box>
+          </div >
+        ) : (
+  <Box className="login">
+    <p>SESO em Concursos</p>
+
+    <img
+      src={imagemSvg}
+      alt="Descrição da imagem"
+      width="30%"
+      height="30%"
+    />
+
+    <p>
+      Faça login com sua conta do Google para responder questões
+      diariamente.
+    </p>
+    <button onClick={signInWithGoogle} className="login-button">
+      Entrar com o Google
+    </button>
+
+    <Depoimentos />
+  </Box>
+)}
+
+{
+  user && (
+    <Box className="Rodapé">
+      <Box className="Box-Rodapé2">
+
+      </Box>
+      <Box className="Box-Rodapé">
+        <p className="Texto-Rodapé">
+          <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>SESOEMCONCURSOS.COM.BR
+          </Link></p>
+
+        <p className="Texto-Rodapé">
+          <Link to="https://api.whatsapp.com/send?phone=5574981265381" target="_blank" style={{ textDecoration: 'none', color: 'white' }}>Atendimento ao Cliente
+          </Link></p>
+        <p className="Texto-Rodapé">Preços</p>
+        <p className="Texto-Rodapé">Quem Somos</p>
+      </Box>
+
+      <Box className="Box-Rodapé">
+        <p className="Texto-Rodapé">
+          <Link to="/MeuPerfil" target="_blank" style={{ textDecoration: 'none', color: 'white' }}>
+            Meu Desempenho
+          </Link>
+        </p>
+        <p className="Texto-Rodapé">
+          <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
+            Questões</Link></p>
+
+        <p className="Texto-Rodapé">
+          <Link to="/RankingDesempenho" target="_blank" style={{ textDecoration: 'none', color: 'white' }}>
+            Ranking de Desempenho</Link></p>
+        <p className="Texto-Rodapé">Como usar o SESO em Concursos</p>
+      </Box>
+
+      <Box className="Box-Rodapé">
+        <p className="Texto-Rodapé">Instagram</p>
+        <p className="Texto-Rodapé">Aulas</p>
+        <p className="Texto-Rodapé">Planos de Estudos</p>
+        <p className="Texto-Rodapé">Como usar o SESO em Concursos</p>
+      </Box>
+
+      <Box className="Box-Rodapé1">
+        <p className="Texto-Rodapé1">© 2023 - SESO em Concursos</p>
+      </Box>
+    </Box>
+  )
+}
+
+      </Container >
+    </div >
   );
 }
 
@@ -1386,5 +1373,4 @@ export default Home;
 
 //   return () => unsubscribe();
 // }, [auth, maxQuestionsToDisplay]);
-
 

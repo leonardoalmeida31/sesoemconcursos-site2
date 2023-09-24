@@ -133,11 +133,12 @@ const [username, setUsername] = useState('');
         <Container className="form-container">
 
 <div>
-      {loggedIn ? (
+     
         <><div>
 
                         <button onClick={handleLogout}>Sair</button>
-                    </div><h2>Adicionar Nova Questão</h2><form onSubmit={handleSubmit}>
+                    </div>
+                    <h2>Adicionar Nova Questão</h2><form onSubmit={handleSubmit}>
 
                             <div className="box-container">
                                 <div className="box-ids">
@@ -307,7 +308,7 @@ const [username, setUsername] = useState('');
                   </div>
                   <button onClick={handleLogin}>Login</button>
                 </div>
-              )}
+             
            </div>
         </Container>
     );
