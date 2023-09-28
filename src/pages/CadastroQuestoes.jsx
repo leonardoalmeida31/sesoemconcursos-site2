@@ -98,7 +98,7 @@ const CadastroQuestoes = () => {
                 area: '',
                 modalidade: '',
                 enunciado: '',
-                alternativas: ['(A)', '(B)', '(C)', '(D)', '(E)'],
+                alternativas: ['(A) ', '(B) ', '(C) ', '(D) ', '(E) '],
                 resposta: '',
                 comentario: '',
             });
@@ -188,7 +188,16 @@ const [username, setUsername] = useState('');
                                         id="banca"
                                         value={questionData.banca}
                                         onChange={(e) => handleInputChange(e, 'banca')}
-                                        style={{ width: '20em' }} // Defina o tamanho desejado aqui
+                                        style={{ width: '10em' }} // Defina o tamanho desejado aqui
+                                    />
+                                </div>
+                                <div className="box-cargo">
+                                    <label htmlFor="cargo">Cargo:   </label>
+                                    <TextField
+                                        id="cargo"
+                                        value={questionData.cargo}
+                                        onChange={(e) => handleInputChange(e, 'cargo')}
+                                        style={{ width: '10em' }} // Defina o tamanho desejado aqui
                                     />
                                 </div>
 

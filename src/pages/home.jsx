@@ -527,7 +527,7 @@ function Home() {
       const { error } = await stripe.redirectToCheckout({
         lineItems: [
           {
-            price: "price_1NlMlMB3raGqSSUV72kSZ4FU",
+            price: "price_1NrgsdB3raGqSSUVG7HNSE2v",
             quantity: 1,
           },
         ],
