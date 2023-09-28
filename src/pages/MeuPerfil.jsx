@@ -149,26 +149,25 @@ function MeuPerfil() {
 
 
   const [displayName, setDisplayName] = useState(null); //guarda pra exibe nome do usuario pra tela
-
+  const [photoURL, setPhotoURL] = useState("");
   const [paymentInfo, setPaymentInfo] = useState(null);
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         setUser(user);
-
+  
         const userRef = doc(db, "users", user.uid);
         const userDoc = await getDoc(userRef);
-
+  
         if (userDoc.exists()) {
           const userData = userDoc.data();
           const userDisplayName = userData.displayName;
-
-          setDisplayName(userDisplayName); // Atualize o estado com o nome do usuário
-
-          // Obtenha o email do usuário diretamente do documento do usuário
           const userEmail = userData.email;
-
-          setEmail(userEmail); // Atualize o estado do email
+          const userPhotoURL = user.photoURL; // Obtenha a URL da foto do perfil do usuário
+  
+          setDisplayName(userDisplayName);
+          setEmail(userEmail); // Atualize o estado com o email
+          setPhotoURL(userPhotoURL); // Atualize o estado com a URL da foto
         } else {
           setUser(null);
         }
@@ -176,9 +175,11 @@ function MeuPerfil() {
         setUser(null);
       }
     });
-
+  
     return () => unsubscribe();
   }, [auth, maxQuestionsToDisplay]);
+  
+  
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -448,7 +449,21 @@ function MeuPerfil() {
 
     <Container className="ContainerTotal">
 
-      <Box className="box-user"> <p className="nome-user2">Olá, {displayName}</p> </Box>
+<Box className="box-user">
+{photoURL && (
+  <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <img src={photoURL} alt="Foto do usuário" className="user-photo" style={{ borderRadius: "50%" }} />
+  </div>
+)}
+  <p className="nome-user2">Olá, {displayName}</p>
+  {email && <p className="nome-user2">Email: {email}</p>}
+  
+
+
+
+
+</Box>
+
 
       <p className="p-desempenho-geral">CONFIRA SEU DESEMPENHO GERAL</p>
       <Box className="box-grafico-geral">
@@ -484,8 +499,7 @@ function MeuPerfil() {
 
 
 
-
-
+     
       <Box className="Box-select">
         <p className="disciplinaSelecionada"> Filtre seu Desempenho por Disciplina:</p>
         <Select className="Select-Desempenho"
@@ -500,7 +514,7 @@ function MeuPerfil() {
           ))}
         </Select>
       </Box>
-
+     
 
 
       {disciplinaSelecionadaData ? (

@@ -9,7 +9,7 @@ import RankingDesempenho from './pages/RankingDesempenho.jsx'
 import CadastroQuestoes from './pages/CadastroQuestoes.jsx'
 import AssinaturaPix from './pages/AssinaturaPix.jsx'
 import Discursivas from './pages/Discursivas.jsx'
-import Questoes from './pages/Questoes.jsx'
+
 
 
 
@@ -25,7 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/CadastroQuestoes" element={<CadastroQuestoes />} />
         <Route path="/AssinaturaPix" element={<AssinaturaPix />} />
         <Route path="/Discursivas" element={<Discursivas />} />
-        <Route path="/Questoes" element={<Questoes />} />
+      
       </Routes>
     </React.StrictMode>
   </Router>
