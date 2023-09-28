@@ -4,7 +4,9 @@ import "./FiltroMulti.css";
 
 import { getDocs, collection } from "firebase/firestore";
 
-function FiltroMulti({ db, onFilterChange}) {
+import { getDatabase, ref, onValue } from 'firebase/database'
+
+function FiltroMulti({firebaseApp, onFilterChange}) {
   const [selectedDisciplinas, setSelectedDisciplinas] = useState([]);
   const [selectedAssuntos, setSelectedAssuntos] = useState([]);
   const [assuntoOptions, setAssuntoOptions] = useState([]);
@@ -15,21 +17,28 @@ function FiltroMulti({ db, onFilterChange}) {
   const [questions, setQuestions] = useState([]);
   const [filteredQuestoes, setFilteredQuestoes] = useState([]);
 
-  
+
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, "questions"));
-        const questionsData = querySnapshot.docs.map((doc) => doc.data());
-        setQuestions(questionsData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+    const questionsRef = ref(getDatabase(firebaseApp), 'questions');
+
+    const fetchData = () => {
+      onValue(questionsRef, (snapshot) => {
+        const questionData = snapshot.val();
+
+        if (questionData) {
+          const questionArray = Object.keys(questionData).map((key) => ({
+            id: key,
+            ...questionData[key],
+          }));
+
+          setQuestions(questionArray);
+        }
+      });
     };
 
     fetchData();
-  }, [db]);
+  }, [firebaseApp]);
 
   const handleDisciplinasChange = (selectedDisciplinas) => {
     setSelectedDisciplinas(selectedDisciplinas);

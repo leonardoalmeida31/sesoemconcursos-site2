@@ -45,7 +45,8 @@ import {
   updateDoc, query, limit, addDoc
 } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-
+import { getDatabase, ref, onValue } from 'firebase/database';
+import 'firebase/database';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_REACT_APP_API_KEY,
@@ -70,7 +71,7 @@ function Home() {
   const firebaseApp = initializeApp(firebaseConfig);
   const db = getFirestore(firebaseApp);
   const auth = getAuth(firebaseApp);
-  const questionsCollectionRef = collection(db, "questions");
+  // const questionsCollectionRef = collection(db, "questions");
   const [user, setUser] = useState(null);
   const questoesPorPagina = 1;
   const [questions, setQuestions] = useState([]);
@@ -280,21 +281,23 @@ function Home() {
   }
 
   useEffect(() => {
+    const questionsRef = ref(getDatabase(firebaseApp), 'questions');
+    onValue(questionsRef, (snapshot) => {
+      const questionData = snapshot.val();
 
-    const questionsCollectionRef = collection(db, "questions");
+      if (questionData) {
+        const questionArray = Object.keys(questionData).map((key) => ({
+          id: key,
+          ...questionData[key],
+        }));
 
-    // Limite a consulta a 50 documentos
-    const queryWithLimit = query(questionsCollectionRef, limit(50));
+        shuffleArray(questionArray);
+        setQuestions(questionArray);
+      }
+    });
 
-    const getQuestions = async () => {
-      const data = await getDocs(queryWithLimit);
-      setQuestions(
-        shuffleArray(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-      );
+    return () => {
     };
-    getQuestions();
-
-
   }, []);
 
   useEffect(() => {
@@ -344,7 +347,7 @@ function Home() {
 
   const [alternativaSelecionada, setAlternativaSelecionada] = useState({});
 
-  //  as respostas corretas ou incorretas são armazenadas aqui embaixo agora
+
   const [resultados, setResultados] = useState({});
 
   const handleAlternativaClick = (questionId, alternativaIndex) => {
@@ -471,7 +474,7 @@ function Home() {
     }
   };
 
-  // Chame a função de inicialização dos cliques ao fazer login
+
   useEffect(() => {
     if (user) {
       inicializarCliques();
@@ -1011,7 +1014,7 @@ function Home() {
           <div>
             <div></div>
             {questoesPagina.map((question) => (
-              <div key={question.ids} className="question-container">
+              <div key={question.id} className="question-container">
                 <div className="cabecalho-disciplina">
                   <p>
                     ID: {question.ids}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
