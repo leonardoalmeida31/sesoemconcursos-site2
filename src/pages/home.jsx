@@ -1084,7 +1084,7 @@ function Home() {
                   onClick={() => toggleComentario(question.ids)}
                 >
                   {" "}
-                  Comentário
+                  Comentários
                 </button>
 
                 <Link
@@ -1115,8 +1115,22 @@ function Home() {
                       overflowX: "auto", // Adiciona a rolagem horizontal quando necessário
                     }}
                   >
+                    
+                 
                     {question.comentario}
+                    
+                   
+
                   </p>
+                 
+                  <Box className={
+                      comentariosVisiveis[question.ids]
+                        ? "comentario visivel"
+                        : "comentario"
+                    }>
+                  <Comentarios question={question} db={db} user={user}  />
+                  </Box>
+                
                 </Container>
 
                 {estatisticasVisiveis && (
@@ -1144,9 +1158,7 @@ function Home() {
                     )}
                   </Container>
                 )}
-                <div>
-                  <Comentarios question={question} db={db} user={user}  />
-                  </div>
+
               </div>
             ))}
             {paymentInfo === null && (
