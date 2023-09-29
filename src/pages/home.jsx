@@ -8,31 +8,40 @@ import imagemSvg from "../img/img-login-1.svg";
 import { Link } from "react-router-dom";
 import MenuMui from "../MenuMui.jsx";
 import Grid from "@mui/material/Grid";
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
 import { IoMdCut } from "react-icons/io";
 import { loadStripe } from "@stripe/stripe-js";
 import AutoGraphOutlinedIcon from "@mui/icons-material/AutoGraphOutlined";
 import Container from "@mui/material/Container";
-import { Modal, Button, Typography, Table, TableBody, TableCell, TableContainer, TableRow, Paper } from '@mui/material';
-import { TextField, TextareaAutosize } from '@mui/material';
-import Collapse from '@mui/material/Collapse';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import IconButton from '@mui/material/IconButton';
-import Depoimentos from './Depoimentos.jsx';
+import {
+  Modal,
+  Button,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  Paper,
+} from "@mui/material";
+import { TextField, TextareaAutosize } from "@mui/material";
+import Collapse from "@mui/material/Collapse";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import IconButton from "@mui/material/IconButton";
+import Depoimentos from "./Depoimentos.jsx";
 
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Avatar from '@mui/material/Avatar';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Avatar from "@mui/material/Avatar";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import AdbIcon from "@mui/icons-material/Adb";
 
 import { initializeApp } from "firebase/app";
 import {
@@ -42,11 +51,18 @@ import {
   doc,
   setDoc,
   getDoc,
-  updateDoc, query, limit, addDoc
+  updateDoc,
+  addDoc,
+  onSnapshot,
+  serverTimestamp,
+  query,
+  where,
 } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { getDatabase, ref, onValue } from 'firebase/database';
-import 'firebase/database';
+import { getDatabase, ref, onValue } from "firebase/database";
+import "firebase/database";
+import { useParams } from "react-router-dom";
+import Comentarios from "./Comentarios.jsx";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_REACT_APP_API_KEY,
@@ -54,18 +70,15 @@ const firebaseConfig = {
   projectId: import.meta.env.VITE_REACT_APP_PROJECT_ID,
 };
 
-const pages = ['Questões',];
-const settings = ['Perfil',];
+const pages = ["Questões"];
+const settings = ["Perfil"];
 
 const pageLinks = {
-
-  Questões: '/',
+  Questões: "/",
 };
 const settingsLinks = {
-
-  Perfil: '/MeuDesempenho',
+  Perfil: "/MeuDesempenho",
 };
-
 
 function Home() {
   const firebaseApp = initializeApp(firebaseConfig);
@@ -94,7 +107,6 @@ function Home() {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const stripePublicKey = import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY;
   const stripePromise = loadStripe(stripePublicKey);
-
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -271,7 +283,6 @@ function Home() {
     return () => unsubscribe();
   }, [auth, maxQuestionsToDisplay]);
 
-
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -281,7 +292,7 @@ function Home() {
   }
 
   useEffect(() => {
-    const questionsRef = ref(getDatabase(firebaseApp), 'questions');
+    const questionsRef = ref(getDatabase(firebaseApp), "questions");
     onValue(questionsRef, (snapshot) => {
       const questionData = snapshot.val();
 
@@ -291,13 +302,12 @@ function Home() {
           ...questionData[key],
         }));
 
-        shuffleArray(questionArray);
+        // shuffleArray(questionArray);
         setQuestions(questionArray);
       }
     });
 
-    return () => {
-    };
+    return () => {};
   }, []);
 
   useEffect(() => {
@@ -314,8 +324,6 @@ function Home() {
     setQuestoesFiltradas(filtered);
     // Redefina a página para 1 quando um filtro for aplicado
     setPaginaAtual(1); // Adicione esta linha para redefinir a página para 1
-
-
   }, [
     filtroBanca,
     filtroDisciplina,
@@ -346,7 +354,6 @@ function Home() {
   };
 
   const [alternativaSelecionada, setAlternativaSelecionada] = useState({});
-
 
   const [resultados, setResultados] = useState({});
 
@@ -474,7 +481,6 @@ function Home() {
     }
   };
 
-
   useEffect(() => {
     if (user) {
       inicializarCliques();
@@ -521,9 +527,7 @@ function Home() {
     }));
   };
 
-
-
-  const handleCheckout = async ({ }) => {
+  const handleCheckout = async ({}) => {
     const stripe = await stripePromise;
 
     try {
@@ -546,14 +550,13 @@ function Home() {
     }
   };
 
-  const handleCheckoutS = async ({ }) => {
+  const handleCheckoutS = async ({}) => {
     const stripe = await stripePromise;
 
     try {
       const { error } = await stripe.redirectToCheckout({
         lineItems: [
           {
-
             price: "price_1NlMrNB3raGqSSUVTfAfLQOF",
             quantity: 1,
           },
@@ -569,14 +572,13 @@ function Home() {
       console.error("Erro ao iniciar o checkout:", err);
     }
   };
-  const handleCheckoutA = async ({ }) => {
+  const handleCheckoutA = async ({}) => {
     const stripe = await stripePromise;
 
     try {
       const { error } = await stripe.redirectToCheckout({
         lineItems: [
           {
-
             price: "price_1NlMulB3raGqSSUVr41T8yfL",
             quantity: 1,
           },
@@ -641,7 +643,7 @@ function Home() {
   const bull = (
     <Box
       component="span"
-      sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)', }}
+      sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
     >
       •
     </Box>
@@ -654,12 +656,17 @@ function Home() {
           Você pode responder apenas 15 questões por dia.
         </Typography>
 
-        <Typography sx={{ fontSize: 18, color: 'black' }} color="text.secondary">
+        <Typography
+          sx={{ fontSize: 18, color: "black" }}
+          color="text.secondary"
+        >
           Assine para responder questões ilimitadas todos os dias!
         </Typography>
       </CardContent>
       <CardActions>
-        <Button onClick={() => openModal()} size="small">Assinar agora</Button>
+        <Button onClick={() => openModal()} size="small">
+          Assinar agora
+        </Button>
       </CardActions>
     </React.Fragment>
   );
@@ -667,10 +674,12 @@ function Home() {
   return (
     <div className="Home">
       {user && (
-        <AppBar sx={{ backgroundColor: '#1c5253', marginBottom: '1em' }} position="static">
+        <AppBar
+          sx={{ backgroundColor: "#1c5253", marginBottom: "1em" }}
+          position="static"
+        >
           <Container maxWidth="xl">
             <Toolbar disableGutters>
-
               <Typography
                 variant="h6"
                 noWrap
@@ -678,18 +687,18 @@ function Home() {
                 href="/"
                 sx={{
                   mr: 5,
-                  display: { xs: 'none', md: 'flex' },
-                  fontFamily: 'monospace',
+                  display: { xs: "none", md: "flex" },
+                  fontFamily: "monospace",
                   fontWeight: 600,
-                  letterSpacing: '.1rem',
-                  color: 'inherit',
-                  textDecoration: 'none',
+                  letterSpacing: ".1rem",
+                  color: "inherit",
+                  textDecoration: "none",
                 }}
               >
                 SESO em Concursos
               </Typography>
 
-              <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
                 <IconButton
                   size="large"
                   aria-label="account of current user"
@@ -704,18 +713,18 @@ function Home() {
                   id="menu-appbar"
                   anchorEl={anchorElNav}
                   anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
+                    vertical: "bottom",
+                    horizontal: "left",
                   }}
                   keepMounted
                   transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
+                    vertical: "top",
+                    horizontal: "left",
                   }}
                   open={Boolean(anchorElNav)}
                   onClose={handleCloseNavMenu}
                   sx={{
-                    display: { xs: 'block', md: 'none' },
+                    display: { xs: "block", md: "none" },
                   }}
                 >
                   {pages.map((page) => (
@@ -724,40 +733,34 @@ function Home() {
                     </MenuItem>
                   ))}
                   <MenuItem>
-                    <Link to="/MeuPerfil" style={{ textDecoration: 'none' }}>
-                      <Typography
-
-                        sx={{ color: 'black' }}
-                      >
+                    <Link to="/MeuPerfil" style={{ textDecoration: "none" }}>
+                      <Typography sx={{ color: "black" }}>
                         Meu Desempenho
                       </Typography>
                     </Link>
                   </MenuItem>
                   <MenuItem>
-                    <Link to="/RankingDesempenho" style={{ textDecoration: 'none' }}>
-                      <Typography
-
-                        sx={{ color: 'black' }}
-                      >
-                        Ranking
-                      </Typography>
+                    <Link
+                      to="/RankingDesempenho"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <Typography sx={{ color: "black" }}>Ranking</Typography>
                     </Link>
                   </MenuItem>
                   <MenuItem>
                     <Typography
-
                       onClick={() => openModal()}
-                      sx={{ color: 'black' }}
+                      sx={{ color: "black" }}
                     >
                       Assinar com cartão
                     </Typography>
                   </MenuItem>
                   <MenuItem>
-                    <Link to="/AssinaturaPix" style={{ textDecoration: 'none' }}>
-                      <Typography
-
-                        sx={{ color: 'black' }}
-                      >
+                    <Link
+                      to="/AssinaturaPix"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <Typography sx={{ color: "black" }}>
                         Assinar com Pix
                       </Typography>
                     </Link>
@@ -772,73 +775,54 @@ function Home() {
                 href="/"
                 sx={{
                   mr: 2,
-                  display: { xs: 'flex', md: 'none' },
+                  display: { xs: "flex", md: "none" },
                   flexGrow: 1,
-                  fontFamily: 'monospace',
+                  fontFamily: "monospace",
                   fontWeight: 500,
-                  letterSpacing: '.1rem',
-                  color: 'inherit',
-                  textDecoration: 'none',
+                  letterSpacing: ".1rem",
+                  color: "inherit",
+                  textDecoration: "none",
                 }}
               >
                 SESO em Concursos
               </Typography>
-              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+              <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                 {pages.map((page) => (
-                  <Link key={page} to={pageLinks[page]} style={{ textDecoration: 'none' }}>
-                    <Button
-                      sx={{ my: 2, color: 'white', display: 'block' }}
-
-                    >
+                  <Link
+                    key={page}
+                    to={pageLinks[page]}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Button sx={{ my: 2, color: "white", display: "block" }}>
                       {page}
                     </Button>
-
                   </Link>
                 ))}
 
                 <MenuItem>
-                  <Link to="/MeuPerfil" style={{ textDecoration: 'none' }}>
-                    <Button
-
-                      sx={{ color: 'white' }}
-                    >
-                      Meu Desempenho
-                    </Button>
+                  <Link to="/MeuPerfil" style={{ textDecoration: "none" }}>
+                    <Button sx={{ color: "white" }}>Meu Desempenho</Button>
                   </Link>
                 </MenuItem>
                 <MenuItem>
-                  <Link to="/RankingDesempenho" style={{ textDecoration: 'none' }}>
-                    <Button
-
-                      sx={{ color: 'white' }}
-                    >
-                      Ranking
-                    </Button>
-                  </Link>
-                </MenuItem>
-                <MenuItem>
-                  <Button
-
-                    onClick={() => openModal()}
-                    sx={{ color: 'white' }}
+                  <Link
+                    to="/RankingDesempenho"
+                    style={{ textDecoration: "none" }}
                   >
+                    <Button sx={{ color: "white" }}>Ranking</Button>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Button onClick={() => openModal()} sx={{ color: "white" }}>
                     Assinar com cartão
                   </Button>
                 </MenuItem>
                 <MenuItem>
-                  <Link to="/AssinaturaPix" style={{ textDecoration: 'none' }}>
-                    <Button
-
-                      sx={{ color: 'white' }}
-                    >
-                      Assinar com Pix
-                    </Button>
+                  <Link to="/AssinaturaPix" style={{ textDecoration: "none" }}>
+                    <Button sx={{ color: "white" }}>Assinar com Pix</Button>
                   </Link>
                 </MenuItem>
               </Box>
-
-
-
 
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
@@ -847,17 +831,17 @@ function Home() {
                   </IconButton>
                 </Tooltip>
                 <Menu
-                  sx={{ mt: '45px' }}
+                  sx={{ mt: "45px" }}
                   id="menu-appbar"
                   anchorEl={anchorElUser}
                   anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
+                    vertical: "top",
+                    horizontal: "right",
                   }}
                   keepMounted
                   transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
+                    vertical: "top",
+                    horizontal: "right",
                   }}
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
@@ -868,11 +852,7 @@ function Home() {
                     </MenuItem>
                   ))}
                   <MenuItem>
-                    <Typography
-
-                      onClick={signOut}
-                      sx={{ color: 'black' }}
-                    >
+                    <Typography onClick={signOut} sx={{ color: "black" }}>
                       Sair/Trocar Conta
                     </Typography>
                   </MenuItem>
@@ -880,8 +860,8 @@ function Home() {
               </Box>
             </Toolbar>
           </Container>
-        </AppBar>)}
-
+        </AppBar>
+      )}
 
       {false && (
         // Este bloco de código não será executado
@@ -897,9 +877,7 @@ function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <button className="open-button">
-              Assinar com Pix
-            </button>
+            <button className="open-button">Assinar com Pix</button>
           </Link>
 
           <button onClick={signOut} className="logout-button">
@@ -907,7 +885,6 @@ function Home() {
           </button>
         </Container>
       )}
-
 
       {user && (
         <div>
@@ -920,28 +897,30 @@ function Home() {
             open={modalOpen}
             onClose={closeModal}
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexDirection: 'column'
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
             }}
           >
             <Box
               className="modal-content"
               sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'column',
-                padding: '15px',
-                borderRadius: '8px',
-                textAlign: 'center',
-                width: '80%',
-                maxWidth: '500px',
-                backgroundColor: '#f4f4f4', // Cor de fundo do modal
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexDirection: "column",
+                padding: "15px",
+                borderRadius: "8px",
+                textAlign: "center",
+                width: "80%",
+                maxWidth: "500px",
+                backgroundColor: "#f4f4f4", // Cor de fundo do modal
               }}
             >
-              <Typography variant="h5">Conheça Nossos Planos de Assinatura</Typography>
+              <Typography variant="h5">
+                Conheça Nossos Planos de Assinatura
+              </Typography>
 
               <TableContainer component={Paper}>
                 <Table>
@@ -958,7 +937,6 @@ function Home() {
                     <TableRow>
                       <TableCell>Plano Mensal</TableCell>
                       <TableCell>
-
                         <ul>
                           <li>Resolução de Questões Ilimitadas</li>
                           <li>Comentários Ilimitados</li>
@@ -967,12 +945,10 @@ function Home() {
                           Assinar Agora
                         </Button>
                       </TableCell>
-
                     </TableRow>
                     <TableRow>
                       <TableCell>Plano Semestral</TableCell>
                       <TableCell>
-
                         <ul>
                           <li>Resolução de Questões Ilimitadas</li>
                           <li>Comentários Ilimitados</li>
@@ -981,12 +957,10 @@ function Home() {
                           Assinar Agora
                         </Button>
                       </TableCell>
-
                     </TableRow>
                     <TableRow>
                       <TableCell>Plano Anual</TableCell>
                       <TableCell>
-
                         <ul>
                           <li>Resolução de Questões Ilimitadas</li>
                           <li>Comentários Ilimitados</li>
@@ -995,20 +969,21 @@ function Home() {
                           Assinar Agora
                         </Button>
                       </TableCell>
-
-
                     </TableRow>
                   </TableBody>
                 </Table>
               </TableContainer>
 
-              <Button variant="contained" color="secondary" onClick={closeModal}>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={closeModal}
+              >
                 Fechar
               </Button>
             </Box>
           </Modal>
         </div>
-
 
         {user ? (
           <div>
@@ -1044,20 +1019,23 @@ function Home() {
 
                     return (
                       <li
-                        className={`alternativa ${isSelected ? "selecionada" : ""
-                          } ${isRiscada ? "riscado" : ""}`}
+                        className={`alternativa ${
+                          isSelected ? "selecionada" : ""
+                        } ${isRiscada ? "riscado" : ""}`}
                         key={index}
                         onClick={() =>
                           handleAlternativaClick(question.ids, index)
                         }
                       >
                         <Box
-                          className={`icon-container ${isRiscada ? "riscado" : ""
-                            }`}
+                          className={`icon-container ${
+                            isRiscada ? "riscado" : ""
+                          }`}
                         >
                           <IoMdCut
-                            className={`tesoura-icon ${isRiscada ? "riscado" : ""
-                              }`}
+                            className={`tesoura-icon ${
+                              isRiscada ? "riscado" : ""
+                            }`}
                             size={14} // Defina o tamanho desejado em pixels
                             color={isRiscada ? "#1c5253" : "black"} // Defina a cor desejada
                             onClick={(e) => {
@@ -1068,8 +1046,9 @@ function Home() {
                         </Box>
 
                         <span
-                          className={`letra-alternativa-circle ${isSelected ? "selecionada" : ""
-                            }`}
+                          className={`letra-alternativa-circle ${
+                            isSelected ? "selecionada" : ""
+                          }`}
                         >
                           {letraAlternativa}
                         </span>
@@ -1138,138 +1117,147 @@ function Home() {
                   >
                     {question.comentario}
                   </p>
+                </Container>
 
-                 
+                {estatisticasVisiveis && (
+                  <Container className="campo-estatistica">
+                    {Object.entries(desempenhoPorDisciplina).map(
+                      ([disciplina, { acertos, erros }]) => {
+                        const data = [
+                          ["Tipo", "Quantidade"],
+                          ["Acertos", acertos],
+                          ["Erros", erros],
+                        ];
+                        const options = {
+                          is3D: true,
+                        };
 
+                        return (
+                          <PieChart
+                            key={disciplina}
+                            title={disciplina}
+                            data={data}
+                            options={options}
+                          />
+                        );
+                      }
+                    )}
+                  </Container>
+                )}
+                <div>
+                  <Comentarios question={question} db={db} user={user}  />
+                  </div>
+              </div>
+            ))}
+            {paymentInfo === null && (
+              <Box sx={{ maxWidth: 400 }}>
+                <Card variant="outlined">{card}</Card>
+              </Box>
+            )}
 
-      </Container>
-
-      {estatisticasVisiveis && (
-        <Container className="campo-estatistica">
-          {Object.entries(desempenhoPorDisciplina).map(
-            ([disciplina, { acertos, erros }]) => {
-              const data = [
-                ["Tipo", "Quantidade"],
-                ["Acertos", acertos],
-                ["Erros", erros],
-              ];
-              const options = {
-                is3D: true,
-              };
-
-              return (
-                <PieChart
-                  key={disciplina}
-                  title={disciplina}
-                  data={data}
-                  options={options}
-                />
-              );
-            }
-          )}
-        </Container>
-      )}
-    </div>
-
-
-  ))
-}
-{
-  paymentInfo === null && (
-    <Box sx={{ maxWidth: 400, }}>
-      <Card variant="outlined">{card}</Card>
-    </Box>
-  )
-}
-
-<Box className="pagination">
-  <button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
-    Questão Anterior
-  </button>
-  <span>
-    {paginaAtual} de {totalPages}
-  </span>
-  <button
-    onClick={handleNextPage}
-  // disabled={paginaAtual >= totalPages || paymentInfo === 0 || paymentInfo === null}
-  >
-    Próxima Questão
-  </button>
-</Box>
-          </div >
+            <Box className="pagination">
+              <button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
+                Questão Anterior
+              </button>
+              <span>
+                {paginaAtual} de {totalPages}
+              </span>
+              <button
+                onClick={handleNextPage}
+                // disabled={paginaAtual >= totalPages || paymentInfo === 0 || paymentInfo === null}
+              >
+                Próxima Questão
+              </button>
+            </Box>
+          </div>
         ) : (
-  <Box className="login">
-    <p>SESO em Concursos</p>
+          <Box className="login">
+            <p>SESO em Concursos</p>
 
-    <img
-      src={imagemSvg}
-      alt="Descrição da imagem"
-      width="30%"
-      height="30%"
-    />
+            <img
+              src={imagemSvg}
+              alt="Descrição da imagem"
+              width="30%"
+              height="30%"
+            />
 
-    <p>
-      Faça login com sua conta do Google para responder questões
-      diariamente.
-    </p>
-    <button onClick={signInWithGoogle} className="login-button">
-      Entrar com o Google
-    </button>
+            <p>
+              Faça login com sua conta do Google para responder questões
+              diariamente.
+            </p>
+            <button onClick={signInWithGoogle} className="login-button">
+              Entrar com o Google
+            </button>
 
-    <Depoimentos />
-  </Box>
-)}
+            <Depoimentos />
+          </Box>
+        )}
 
-{
-  user && (
-    <Box className="Rodapé">
-      <Box className="Box-Rodapé2">
+        {user && (
+          <Box className="Rodapé">
+            <Box className="Box-Rodapé2"></Box>
+            <Box className="Box-Rodapé">
+              <p className="Texto-Rodapé">
+                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                  SESOEMCONCURSOS.COM.BR
+                </Link>
+              </p>
 
-      </Box>
-      <Box className="Box-Rodapé">
-        <p className="Texto-Rodapé">
-          <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>SESOEMCONCURSOS.COM.BR
-          </Link></p>
+              <p className="Texto-Rodapé">
+                <Link
+                  to="https://api.whatsapp.com/send?phone=5574981265381"
+                  target="_blank"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  Atendimento ao Cliente
+                </Link>
+              </p>
+              <p className="Texto-Rodapé">Preços</p>
+              <p className="Texto-Rodapé">Quem Somos</p>
+            </Box>
 
-        <p className="Texto-Rodapé">
-          <Link to="https://api.whatsapp.com/send?phone=5574981265381" target="_blank" style={{ textDecoration: 'none', color: 'white' }}>Atendimento ao Cliente
-          </Link></p>
-        <p className="Texto-Rodapé">Preços</p>
-        <p className="Texto-Rodapé">Quem Somos</p>
-      </Box>
+            <Box className="Box-Rodapé">
+              <p className="Texto-Rodapé">
+                <Link
+                  to="/MeuPerfil"
+                  target="_blank"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  Meu Desempenho
+                </Link>
+              </p>
+              <p className="Texto-Rodapé">
+                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                  Questões
+                </Link>
+              </p>
 
-      <Box className="Box-Rodapé">
-        <p className="Texto-Rodapé">
-          <Link to="/MeuPerfil" target="_blank" style={{ textDecoration: 'none', color: 'white' }}>
-            Meu Desempenho
-          </Link>
-        </p>
-        <p className="Texto-Rodapé">
-          <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
-            Questões</Link></p>
+              <p className="Texto-Rodapé">
+                <Link
+                  to="/RankingDesempenho"
+                  target="_blank"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  Ranking de Desempenho
+                </Link>
+              </p>
+              <p className="Texto-Rodapé">Como usar o SESO em Concursos</p>
+            </Box>
 
-        <p className="Texto-Rodapé">
-          <Link to="/RankingDesempenho" target="_blank" style={{ textDecoration: 'none', color: 'white' }}>
-            Ranking de Desempenho</Link></p>
-        <p className="Texto-Rodapé">Como usar o SESO em Concursos</p>
-      </Box>
+            <Box className="Box-Rodapé">
+              <p className="Texto-Rodapé">Instagram</p>
+              <p className="Texto-Rodapé">Aulas</p>
+              <p className="Texto-Rodapé">Planos de Estudos</p>
+              <p className="Texto-Rodapé">Como usar o SESO em Concursos</p>
+            </Box>
 
-      <Box className="Box-Rodapé">
-        <p className="Texto-Rodapé">Instagram</p>
-        <p className="Texto-Rodapé">Aulas</p>
-        <p className="Texto-Rodapé">Planos de Estudos</p>
-        <p className="Texto-Rodapé">Como usar o SESO em Concursos</p>
-      </Box>
-
-      <Box className="Box-Rodapé1">
-        <p className="Texto-Rodapé1">© 2023 - SESO em Concursos</p>
-      </Box>
-    </Box>
-  )
-}
-
-      </Container >
-    </div >
+            <Box className="Box-Rodapé1">
+              <p className="Texto-Rodapé1">© 2023 - SESO em Concursos</p>
+            </Box>
+          </Box>
+        )}
+      </Container>
+    </div>
   );
 }
 
@@ -1376,4 +1364,3 @@ export default Home;
 
 //   return () => unsubscribe();
 // }, [auth, maxQuestionsToDisplay]);
-
