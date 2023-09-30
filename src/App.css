@@ -413,6 +413,7 @@
   .comentario {
     display: none;
     padding: 1em;
+    margin-top: 3em;
     background-color: #ffffff;
     font-family: Poppins;
      align-items: center;
@@ -743,12 +744,16 @@ cursor: pointer;
   padding: 1em;
   background-color: #fff;
   width: 400px;
+  margin-top: 1.5em;
   border-radius: 7px;
   box-shadow: 4px 2px #a3bcbc;
 }
 
 .comment-content {
   display: flex;
+  padding-right: 2em;
+  padding-left: 1em;
+  
   flex-direction: column;
 }
 

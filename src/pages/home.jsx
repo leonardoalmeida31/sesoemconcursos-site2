@@ -1123,7 +1123,7 @@ function Home() {
 
                   </p>
                  
-                  <Box className={
+                  <Box sx={{paddingBottom: '2em', marginTop: '3em', marginBottom: '3em'}} className={
                       comentariosVisiveis[question.ids]
                         ? "comentario visivel"
                         : "comentario"
