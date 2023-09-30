@@ -1123,12 +1123,12 @@ function Home() {
 
                   </p>
                  
-                  <Box sx={{paddingBottom: '2em', marginTop: '3em', marginBottom: '3em'}} className={
+                  <Box sx={{paddingBottom: '2em', marginTop: '3em', marginBottom: '3em', backgroundColor: 'transparent' }} className={
                       comentariosVisiveis[question.ids]
                         ? "comentario visivel"
-                        : "comentario"
+                        : "comentarios"
                     } >
-                  <Comentarios  question={question} db={db} user={user}  />
+                  <Comentarios   question={question} db={db} user={user}  />
                   </Box>
                 
                 </Container>

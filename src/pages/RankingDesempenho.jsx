@@ -87,11 +87,11 @@ function RankingDesempenho() {
             try {
                 const usersSnapshot = await getDocs(collection(db, "users"));
                 const usersData = [];
-
+    
                 for (const userDoc of usersSnapshot.docs) {
                     const userData = userDoc.data();
-                    // Certifique-se de que o usuário tem um campo de desempenho total
-                    if (userData.desempenhoTotal) {
+                    // Certifique-se de que o usuário tem um campo de desempenho total e pelo menos 10 acertos
+                    if (userData.desempenhoTotal && userData.desempenhoTotal.acertos >= 10) {
                         usersData.push({
                             id: userDoc.id,
                             displayName: userData.displayName,
@@ -99,7 +99,7 @@ function RankingDesempenho() {
                         });
                     }
                 }
-
+    
                 // Ordene os usuários com base no número de acertos (em ordem decrescente)
                 // e, em seguida, no número de erros (em ordem crescente)
                 usersData.sort((a, b) => {
@@ -110,22 +110,27 @@ function RankingDesempenho() {
                     // Se o número de acertos for igual, compare o número de erros (em ordem crescente)
                     return a.desempenhoTotal.erros - b.desempenhoTotal.erros;
                 });
-
+    
                 setUsersWithPerformance(usersData);
             } catch (error) {
                 console.error("Erro ao buscar usuários com desempenho:", error);
             }
         };
-
+    
         fetchUsersWithPerformance();
     }, [db]);
 
+
     const calculatePercentage = (acertos, erros) => {
-        const totalQuestoes = acertos + erros;
-        if (totalQuestoes === 0) {
-            return 0; // Avoid division by zero
+        if (acertos >= 10) { // Altere 10 para o limite desejado
+            const totalQuestoes = acertos + erros;
+            if (totalQuestoes === 0) {
+                return 0; // Evitar divisão por zero
+            }
+            return ((acertos / totalQuestoes) * 100).toFixed(2);
+        } else {
+            return null; // Retornar nulo se o usuário tiver menos de 50 acertos
         }
-        return ((acertos / totalQuestoes) * 100).toFixed(2);
     };
     
 
@@ -175,7 +180,7 @@ const classificarUsuários = (critério, direção) => {
             </Box>
             <Paper elevation={3} sx={{ background: "linear-gradient(180deg, #1c5253 0%, #1a3e40 100%)" }}>
                 <List>
-                    {usersWithPerformance.map((usuário, índice) => (
+                {usersWithPerformance.slice(0, 50).map((usuário, índice) => (
                         <div key={usuário.id}>
                             <ListItem sx={{ padding: "0.500em", display: "flex", alignItems: "center" }}>
                                 <Avatar sx={{ marginRight: "1em", marginLeft: "0.500em", backgroundColor: "#1c5253" }}>{índice + 1}</Avatar>
