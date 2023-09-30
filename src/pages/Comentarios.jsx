@@ -7,7 +7,7 @@ import {
   getDocs,
   serverTimestamp,
   deleteDoc,
-  doc,
+  doc, getDoc
 } from "firebase/firestore";
 import {
   Typography,
@@ -19,13 +19,20 @@ import {
   TextField,
   Button,
   Box,
-  TextareaAutosize,
+  TextareaAutosize, OutlinedInput
 } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
+
+
 
 const Comentarios = ({ question, db, user }) => {
   const [comentario, setComentario] = useState("");
   const [currentQuestionId, setCurrentQuestionId] = useState("");
   const [comments, setComments] = useState({});
+  const [photoURL, setPhotoURL] = useState("");
+
 
   // Função para ajustar dinamicamente a altura do textarea
   const handleTextareaHeight = (event) => {
@@ -37,19 +44,36 @@ const Comentarios = ({ question, db, user }) => {
   const handleCommentDelete = async (commentId) => {
     try {
       const comentariosRef = collection(db, "comentarios");
-      await deleteDoc(doc(comentariosRef, commentId));
+      const commentDoc = doc(comentariosRef, commentId);
+      const commentSnapshot = await getDoc(commentDoc);
 
-      // Atualize o estado dos comentários após a exclusão
-      setComments((prevComments) => ({
-        ...prevComments,
-        [question.id]: prevComments[question.id].filter(
-          (comentario) => comentario.id !== commentId
-        ),
-      }));
+      if (!commentSnapshot.exists()) {
+        console.error("O comentário não existe.");
+        return;
+      }
+
+      const commentData = commentSnapshot.data();
+
+      // Verifique se o usuário atual é o autor do comentário
+      if (commentData.user === user.uid) {
+        // Apenas o autor pode excluir o comentário
+        await deleteDoc(commentDoc);
+
+        // Atualize o estado dos comentários após a exclusão
+        setComments((prevComments) => ({
+          ...prevComments,
+          [question.id]: prevComments[question.id].filter(
+            (comentario) => comentario.id !== commentId
+          ),
+        }));
+      } else {
+        console.error("Você não tem permissão para excluir este comentário.");
+      }
     } catch (error) {
       console.error("Erro ao excluir comentário:", error);
     }
   };
+
 
   const handleCommentChange = (e) => {
     const questionId = e.target.getAttribute("data-questionid");
@@ -71,7 +95,7 @@ const Comentarios = ({ question, db, user }) => {
         timestamp: serverTimestamp(),
         user: user.uid,
         displayName: user.displayName,
-        userPhotoURL: user.photoURL, // Adicione a URL da foto de perfil do usuário
+        userPhotoURL: user.photoURL,
       });
 
       // Atualize a lista de comentários para a questão atual
@@ -91,6 +115,7 @@ const Comentarios = ({ question, db, user }) => {
           timestamp: data.timestamp.toDate(),
           user: data.user,
           displayName: data.displayName,
+          userPhotoURL: data.userPhotoURL,
         });
       });
 
@@ -126,6 +151,7 @@ const Comentarios = ({ question, db, user }) => {
               timestamp: data.timestamp.toDate(),
               user: data.user,
               displayName: data.displayName,
+              userPhotoURL: data.userPhotoURL, // Usar a URL da foto do usuário do comentário
             });
           });
 
@@ -144,34 +170,37 @@ const Comentarios = ({ question, db, user }) => {
   }, [question.id, db]);
 
   return (
-    <Box sx={{paddingBottom: '3em'}}>
-      <Typography >Comentários relevantes</Typography>
+    <Box className="app-container">
+      <Typography variant="h6">Comentários relevantes</Typography>
       <List className="comment-list">
         {comments[question.id] &&
           comments[question.id].map((comentario) => (
             <ListItem key={comentario.id} className="comment">
               <ListItemAvatar>
-              <Avatar src={user.photoURL}>
-                  {/* Exiba a primeira letra do nome se a foto não estiver disponível */}
-                  {!user.photoURL && comentario.displayName[0]}
-                </Avatar>
+                <Avatar src={comentario.userPhotoURL}>{comentario.displayName[0]}</Avatar>
               </ListItemAvatar>
+
               <div className="comment-content">
                 <ListItemText
-                  secondary={comentario.displayName}
+                  secondary={comentario.displayName} 
+                  secondaryTypographyProps={{ variant: 'body1', color: 'textSecondary', color: '#1c5253', paddingTop: '1em' }}
                   primary={comentario.text}
+                  
                 />
                 <p className="comment-time">
                   {new Date(comentario.timestamp).toLocaleString()}
                 </p>
-                <Button
-                  variant="outlined"
+                <ListItemSecondaryAction>
+                <IconButton
                   color="error"
-                  className="delete-button"
+                  aria-label="Excluir Comentário"
                   onClick={() => handleCommentDelete(comentario.id)}
+                  disabled={comentario.user !== user.uid}
                 >
-                  Excluir
-                </Button>
+                  <HighlightOffIcon />
+                </IconButton>
+                </ListItemSecondaryAction>
+
               </div>
             </ListItem>
           ))}
@@ -185,7 +214,7 @@ const Comentarios = ({ question, db, user }) => {
           placeholder="Digite seu comentário"
           value={comentario}
           data-questionid={question.id}
-          style={{ maxWidth: "50em" }}
+          
           onChange={(e) => {
             handleTextareaHeight(e);
             handleCommentChange(e);

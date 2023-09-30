@@ -1127,8 +1127,8 @@ function Home() {
                       comentariosVisiveis[question.ids]
                         ? "comentario visivel"
                         : "comentario"
-                    }>
-                  <Comentarios question={question} db={db} user={user}  />
+                    } >
+                  <Comentarios  question={question} db={db} user={user}  />
                   </Box>
                 
                 </Container>
