@@ -24269,9 +24269,9 @@
     "ano": 2022,
     "cargo": "Assistente Social",
     "area": "Municipal",
-    "modalidade": "Múltipla-Escolha",
     "disciplina": "Português",
     "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "modalidade": "Múltipla-Escolha",
     "enunciado": "Indique a alternativa cuja frase apresenta concordância verbal correta, conforme as regras gramaticais.",
     "alternativas": [
       "(A) Presenciou-se cenas desagradáveis na Amazônia.",
@@ -24279,6 +24279,153 @@
       "(C) Sempre houveram problemas de desmatamento e queimadas nas florestas.",
       "(D) Em florestas tropicais, a maior parte dos incêndios ocorre em época de seca.",
       "(E) Não se deve poupar esforços para preservar os biomas brasileiros."
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 1172,
+    "banca": "FEPESE",
+    "concurso": "Prefeitura de Biguaçu - SC",
+    "ano": 2022,
+    "cargo": "Assistente Social",
+    "area": "Municipal",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Desburocratização e abertura mais rápida de empreendimentos em Biguaçu\n\nA fim de desburocratizar e acelerar a abertura de empresas, o município criou neste ano o programa Avança Biguaçu, que visa a reduzir o prazo entre o registro do negócio e o primeiro faturamento. A iniciativa faz parte do pacote de ações de facilitação do acesso aos serviços oferecidos nas secretarias municipais.\n\nOutra iniciativa lançada em Biguaçu para fomentar o desenvolvimento econômico e sustentável da cidade é o DEL (Programa de Desenvolvimento Econômico Local). A partir de dados levantados pela Facisc (Federação das Associações Empresariais de Santa Catarina), serão desenvolvidas políticas e ações com o Programa de Desenvolvimento Econômico Local que possibilitam a continuidade dos projetos de interesse da comunidade, contribuindo para a exploração de potencialidades e crescimento da cidade.\n\nA identificação de pontos fortes e fracos e a implantação desses mecanismos, de acordo com a Prefeitura de Biguaçu, proporcionarão, a médio e longo prazo, o fortalecimento dos setores como o do agronegócio, indústria, comércio e serviços. “Essa iniciativa também tem por objetivo promover melhorias no ambiente para novos investimentos, aumentar a produtividade e competitividade dos negócios locais, com vantagens tanto para os empreendedores quanto para os trabalhadores. E essas metas deverão ser alcançadas com a participação dos agentes envolvidos, suas percepções e adesão”, reforça o prefeito.\n\nO município também deu início, neste ano, à revisão do Plano Diretor, que passará por uma atualização, visando a ordenar o planejamento urbano da cidade, com participação de gestores públicos e da população, com criação de propostas de melhorias do município, garantindo o direito à terra urbana, moradia, saneamento, infraestrutura, transporte, trabalho e lazer para os cidadãos do presente e das gerações futuras.\n\nDisponível em: https://ndmais.com.br/tecnologia/biguacu-investe--em-inovacao-planejamento-e-desenvolvimento/. Acesso em: 19 de out. 2022. Fragmento adaptado.\n\nAssinale a frase retirada do texto que apresenta falta de concordância verbal.",
+    "alternativas": [
+      "(A) A iniciativa faz parte do pacote de ações de facilitação do acesso aos serviços oferecidos nas secretarias municipais.",
+      "(B) “E essas metas deverão ser alcançadas com a participação dos agentes envolvidos, suas percepções e adesão”, reforça o prefeito.",
+      "(C) Essa iniciativa também tem por objetivo promover melhorias no ambiente para novos investimentos […].",
+      "(D) A identificação de pontos fortes e fracos e a implantação desses mecanismos, de acordo com a Prefeitura de Biguaçu, proporcionará, a médio e longo prazo, o fortalecimento dos setores como o do agronegócio, indústria, comércio e serviços.",
+      "(E) […] serão desenvolvidas políticas e ações com o Programa de Desenvolvimento Econômico Local que possibilitam a continuidade dos projetos de interesse da comunidade, contribuindo para a exploração de potencialidades e crescimento da cidade."
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 1173,
+    "banca": "IESES",
+    "concurso": "SAP-SC",
+    "ano": 2022,
+    "cargo": "Assistente Social",
+    "area": "Estadual",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Assinale a alternativa que apresenta ERRO de concordância verbal.",
+    "alternativas": [
+      "(A) Havia três pessoas esperando na fila.",
+      "(B) A multidão ultrapassou a grade de proteção.",
+      "(C) Precisam-se de funcionários. ",
+      "(D) A maioria dos trabalhadores vai tirar férias.",
+      "(E) Vendem-se apartamentos. "
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 1174,
+    "banca": "IESES",
+    "concurso": "UDESC",
+    "ano": 2022,
+    "cargo": "Assistente Social",
+    "area": "Estadual",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Assinale a frase escrita em conformidade com as normas da língua portuguesa padrão.",
+    "alternativas": [
+      "(A) A culpa é dessa mídia medíocre que para vender jornais passam por cima de todo mundo.",
+      "(B) Não há documentos que demostre a baixa da responsabilidade pelo executor da obra ou que atribua a Sra. Vanderci tal responsabilidade.",
+      "(C) Os 22 conselheiros do Conselho Estadual de Entorpecentes - CONEN, certamente estão felizes pela divulgação dos trabalhos da instituição.",
+      "(D) Arrombaste amigo Carlos Pereira, falastes tudo com a habitual exímia da escrita: mulher incomparável.",
+      "(E) O restaurante, cujo preço de venda é superior a trezentos mil reais, está localizado na rua João Moreira César, esquina com a avenida Rui Barbosa."
+    ],
+    "resposta": "E",
+    "comentario": ""
+  },
+  {
+    "ids": 1175,
+    "banca": "FEPESE",
+    "concurso": "UDESC",
+    "ano": 2022,
+    "cargo": "Assistente Social",
+    "area": "Estadual",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Assinale a alternativa correta quanto à concordância verbal.",
+    "alternativas": [
+      "(A) Queiram ou não os eleitores, o risco de que volte a acontecer os erros do passado são reais.",
+      "(B) Observa-se nas entrelinhas do documento que deve haver suspeitas de manipulação de dados.",
+      "(C) Também se observou riscos decorrentes da instalação nesses metais.",
+      "(D) Observou-se em paredes e em janelas falhas de vedação onde houveram infiltrações.",
+      "(E) No corrente ano, irão fazer vinte e dois anos que me formei em Farmácia. "
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 1176,
+    "banca": "VUNESP",
+    "concurso": "Prefeitura de Sorocaba - SP",
+    "ano": 2022,
+    "cargo": "Assistente Social",
+    "area": "Municipal",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Leia o texto para responder à questão.\n\nQueda de renda é alarmante\n\nO mercado de trabalho brasileiro começa a superar alguns dos principais impactos da pandemia. A taxa de desemprego medida pela Pesquisa Nacional por Amostra de Domicílio (Pnad) Contínua do Instituto Brasileiro de Geografia e Estatística (IBGE) ficou em 11,2% no trimestre móvel de novembro a janeiro, menor do que a registrada dois anos antes, isto é, no período imediatamente anterior ao início da pandemia. Mas a queda expressiva de 9,7% no rendimento real habitual em um ano mostra que problemas novos desafiam aqueles que conseguiram manter uma ocupação remunerada.\n\nA recuperação do emprego tem mostrado consistência pelo menos desde o segundo semestre do ano passado, e as expectativas para os próximos meses são de continuidade dessa tendência. Não parece improvável que os números do fim do ano sejam melhores do que os atuais. Mas a recuperação tem sido lenta, razão pela qual persistem alguns números absolutos que preocupam. E a melhora ocorre num período em que a inflação subiu acentuadamente e se mantém em níveis muito altos.\n\nEm meio a dados animadores, como o do aumento expressivo do pessoal ocupado (95,4 milhões de trabalhadores, 8,2 milhões mais do que um ano antes), há alguns que mostram aspectos preocupantes do mercado de trabalho. Embora a taxa de desocupação na mais recente Pnad Contínua (11,2%) seja muito inferior ao recorde do período da pandemia, de 14,9% registrado no trimestre móvel de julho a setembro de 2020, é muito maior do que o melhor resultado de toda a pesquisa do IBGE iniciada em 2012 (6,5% no trimestre de novembro de 2013 a janeiro de 2014).\n\nEm números absolutos, isso significa que, embora o desemprego venha diminuindo, ainda há 12 milhões de trabalhadores sem ocupação. Esse é um dado que não deixa dúvidas sobre a dimensão do drama do desemprego no País. Mas o número de desocupados é parte de um conjunto maior, o de trabalhadores subutilizados, que formam o contingente também chamado de mão de obra desperdiçada. Entre desocupados, subocupados por insuficiência de horas trabalhadas e trabalhadores que formam a força de trabalho potencial (pessoas que não estão em busca de trabalho, mas estão disponíveis para trabalhar), são 27,8 milhões de pessoas. Como outros indicadores negativos das condições do mercado de trabalho, também este vem diminuindo nos últimos meses, mas, dada a lentidão da redução, mantém-se em níveis historicamente muito altos.\n\n(https://opiniao.estadao.com.br, 20.03.2022. Adaptado)\n\nAssinale a alternativa em que o enunciado está em conformidade com a norma-padrão de concordância.",
+    "alternativas": [
+      "(A) A mão de obra desperdiçada corresponde a 27,8 milhões de pessoas, dentre as quais estão 12 milhões de trabalhadores sem ocupação.",
+      "(B) A recuperação tem sido lenta, razão pela qual ainda exista alguns números absolutos que preocupam no contexto atual.",
+      "(C) Há dados bastante animadores, pois há um ano haviam 8,2 milhões de trabalhadores a menos do total de 95,4 milhões hoje contabilizado.",
+      "(D) A ocupação e a renda maior seria um cenário auspicioso para os trabalhadores, dos quais hoje 12 milhões vive sem atividade laboral.",
+      "(E) Os percentuais recentes da Pnad Contínua são inferior ao recorde do período da pandemia, mas ainda maior do que os anteriores"
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 1177,
+    "banca": "AMAUC",
+    "concurso": "Prefeitura de Lindóia do Sul - SC",
+    "ano": 2022,
+    "cargo": "Assistente Social",
+    "area": "Municipal",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "O texto seguinte servirá de base para responder à questão.\n\nINSS inclui mais doenças em lista que paga auxílio sem carência\n\nO INSS amplia a lista que fornece direito ao auxílio-doença e à aposentadoria por invalidez sem que seja necessário cumprir a carência mínima de doze meses de contribuições para ter o benefício.\n\nA partir de outubro, mais duas enfermidades passam a integrar o rol daquelas que liberam o benefício mesmo sem o segurado ter feito o pagamento mínimo de doze contribuições. As doenças são acidente vascular encefálico agudo e abdômen agudo cirúrgico.\n\nElas estão em portaria conjunta dos ministérios do Trabalho e Previdência e da Saúde, publicada no Diário Oficial da União em 1º de setembro e se somam a quinze outras já existentes em lei. Eis algumas: tuberculose ativa, hanseníase, câncer, cegueira, cardiopatia grave, doença de Parkinson, Aids, contaminação por radiação.\n\nCom a inclusão, o trabalhador acometido por qualquer uma delas pode ter o benefício por incapacidade a qualquer momento. Neste caso, no entanto, precisará ter laudo médico que comprove a doença, assim como atestado de afastamento e receituário.\n\nO atestado deve conter a CID (Classificação Internacional de Doenças), além de assinatura e carimbo médico, com registro no Conselho Regional de Medicina. Também é necessário que esteja legível, sem rasuras.\n\nPara o advogado João Badari, a medida amplia a proteção social, papel fundamental da Previdência. 'Quando se amplia a lista de doenças graves que não necessitam de carência, maior proteção social você traz para o segurado no momento em que ele mais precisa.'\n\nFonte: INSS inclui mais doenças em lista que paga auxílio sem carência (msn.com). Adaptado\n\nElas estão em portaria conjunta dos ministérios do Trabalho e Previdência e da Saúde, 'publicada' no Diário Oficial da União.\n\nA palavra em destaque concorda com o termo:",
+    "alternativas": [
+      "(A) Previdência da Saúde.",
+      "(B) Conjunta.",
+      "(C) Saúde.",
+      "(D) Previdência.",
+      "(E) Portaria."
+    ],
+    "resposta": "E",
+    "comentario": ""
+  },
+  {
+    "ids": 1178,
+    "banca": "VUNESP",
+    "concurso": "TJ-SP",
+    "ano": 2022,
+    "cargo": "Assistente Social",
+    "area": "Federal",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A loteria genética\n\nO morticínio e as iniquidades provocados por ideias supostamente científicas sobre genes e raças são conhecidos. Em boa medida por causa desse histórico sombrio, parte da sociedade passou as últimas décadas ignorando, quando não combatendo, pesquisas no campo da genética humana, particularmente da genética comportamental. Não é uma estratégia particularmente brilhante. Um dos maus hábitos da realidade é que ela não vai embora só porque você não gosta dos resultados que ela produz.\n\nEsse panorama começou a mudar nos últimos anos, com a publicação de livros escritos por cientistas com agenda abertamente progressista que mostram que os genes são relevantes para o comportamento humano. “The Genetic Lottery”, de Kathryn Paige Harden, é uma dessas obras. Seu maior mérito é apresentar e desmitificar o problema. Genes importam não só no âmbito individual mas também para os grandes desafios sociais, como a igualdade. O peso da genética no desempenho escolar de uma criança é igual ao da renda dos pais, ou seja, bem forte. E o desempenho escolar, vale lembrar, é uma variável-chave na definição da renda, felicidade e até do número de anos que a pessoa vai viver.\n\nHarden faz um apanhado bem didático dos tipos de pesquisa genética que existem, as diferenças entre eles e como interpretá-los. Embora o senso comum pense os genes como determinantes, seu efeito sobre a maioria das características que nos interessam é muito mais probabilístico. Bons genes no ambiente errado não fazem milagres. E um ambiente propício pode fazer com que mesmo alguém que não tenha sido favorecido pela loteria genética se saia bem.\n\nUma boa analogia é com a miopia. Ela é 100% genética, mas depende de certas condições ambientais para manifestar-se. Mais importante, mesmo quando ela dá as caras, a sociedade tem uma solução não genética 100% eficaz: óculos.\n\n(Hélio Schwartsman. https://www1.folha.uol.com.br/colunas/ helioschwartsman/2021/12/a-loteria-genetica.shtml. 18.12.2021. Adaptado)\n\nAssinale a alternativa em que a frase redigida a partir do texto está em conformidade com a norma-padrão de concordância verbal e nominal da língua portuguesa.",
+    "alternativas": [
+      "(A) Livros mais recentemente publicado procuram evidenciar o quanto o comportamento humano é determinado pelos genes.",
+      "(B) Um ambiente adequado pode ser importante para o desenvolvimento mesmo daqueles que não foram geneticamente beneficiado.",
+      "(C) Em uma obra bastante atual, a maneira como a genética se relaciona com certos dilemas sociais são o foco da pesquisadora americana.",
+      "(D) Para entender o papel real da genética, é preciso separar o que é senso comum das respostas fornecidas por estudos científicos.",
+      "(E) O histórico sombrio que pairava sobre as pretensas pesquisas genéticas constituíam a razão de a sociedade ter evitado discuti-las."
     ],
     "resposta": "D",
     "comentario": ""

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import "./FiltroMulti.css";
-
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
 import { getDocs, collection } from "firebase/firestore";
 
 import { getDatabase, ref, onValue } from 'firebase/database'
 
-function FiltroMulti({firebaseApp, onFilterChange}) {
+function FiltroMulti({ firebaseApp, onFilterChange }) {
   const [selectedDisciplinas, setSelectedDisciplinas] = useState([]);
   const [selectedAssuntos, setSelectedAssuntos] = useState([]);
   const [assuntoOptions, setAssuntoOptions] = useState([]);
@@ -16,7 +17,8 @@ function FiltroMulti({firebaseApp, onFilterChange}) {
   const [selectedAreas, setSelectedAreas] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [filteredQuestoes, setFilteredQuestoes] = useState([]);
-
+  const [keywords, setKeywords] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
 
   useEffect(() => {
@@ -104,7 +106,7 @@ function FiltroMulti({firebaseApp, onFilterChange}) {
     label: area,
   }));
 
- 
+
   const handleFilterClick = () => {
     const filteredQuestoes = questions
       .filter((item) => {
@@ -122,25 +124,43 @@ function FiltroMulti({firebaseApp, onFilterChange}) {
           selectedModalidades.some((selected) => selected.value === item.modalidade);
         const anoMatch =
           selectedAnos.length === 0 || selectedAnos.some((selected) => selected.value === item.ano);
-          const areaMatch =
+        const areaMatch =
           selectedAreas.length === 0 || selectedAreas.some((selected) => selected.value === item.area);
-
+  
+        const keywordsMatch =
+          keywords.trim() === "" ||
+          item.enunciado.toLowerCase().includes(keywords.toLowerCase());
+  
         return (
           disciplinaMatch &&
           assuntoMatch &&
           bancaMatch &&
           modalidadeMatch &&
           areaMatch &&
-          anoMatch
+          anoMatch &&
+          keywordsMatch
         );
       });
-
-    setFilteredQuestoes(filteredQuestoes); // Alterada para usar setFilteredQuestoes
+  
+    setFilteredQuestoes(filteredQuestoes);
     onFilterChange(filteredQuestoes);
   };
+  
 
   return (
     <div className="filter-container">
+      <Box  className="div-filter2">
+        <TextField  
+          type="text"
+          className="filter-input"
+          placeholder="Filtrar por palavra-chave"
+          value={keywords}
+          onChange={(e) => setKeywords(e.target.value)}
+          size="small"
+
+        />
+      </Box>
+
       <div className="div-filter">
         <Select
           className="filter-select"

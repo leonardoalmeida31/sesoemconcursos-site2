@@ -31,12 +31,20 @@
     }
   }
   .div-filter {
-    width: 25em; /* Largura padrão para cada filtro */
+    width: 20em; /* Largura padrão para cada filtro */
     margin-right: 0.100em; /* Espaçamento entre os filtros */
     display: flex;
     flex-direction: column;
-   
-    
+     
+  }
+  .div-filter2 {
+    width: 19.3em; /* Largura padrão para cada filtro */
+    margin-right: 0.450em; /* Espaçamento entre os filtros */
+    margin-left: 0.300em; /* Espaçamento entre os filtros */
+
+    display: flex;
+    flex-direction: column;
+     background-color: white;
   }
   .filtro-button {
     

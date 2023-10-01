@@ -28,10 +28,11 @@ import {
   TableRow,
   Paper,
   ListItem,
-  List, 
-  ListItemText 
+  List,
+  ListItemText
 } from "@mui/material";
 import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
+import PollOutlinedIcon from '@mui/icons-material/PollOutlined';
 import { TextField, TextareaAutosize } from "@mui/material";
 import Collapse from "@mui/material/Collapse";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -307,7 +308,7 @@ function Home() {
           ...questionData[key],
         }));
 
-        //shuffleArray(questionArray);
+        shuffleArray(questionArray);
         setQuestions(questionArray);
       }
     });
@@ -1004,12 +1005,12 @@ function Home() {
                 </Box>
                 <Box className="cabecalho-orgao">
                   <p>
-                    Banca: {question.banca}
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ano: {question.ano}
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cargo: {question.cargo}
+                  <span style={{ color: "black" }}>Banca:</span> &nbsp;{question.banca}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "black" }}>Ano:</span> &nbsp;{question.ano}
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "black" }}>Cargo: </span>&nbsp;{question.cargo}
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   </p>
-                  <p>Órgão: {question.concurso}</p>
+                  <p><span style={{ color: "black" }}>Órgão: </span>&nbsp;  {question.concurso}</p>
                 </Box>
                 <p className="enunciado">{question.enunciado}</p>
                 <List>
@@ -1035,17 +1036,17 @@ function Home() {
                           className={`icon-container ${isRiscada ? "riscado" : ""
                             }`}
                         >
-                          <ContentCutRoundedIcon  style={{ color: '#1c5253', fontSize: "small"  }}
+                          <ContentCutRoundedIcon style={{ color: '#1c5253', fontSize: "small" }}
                             className={`tesoura-icon ${isRiscada ? "riscado" : ""
                               }`}
-                            
-                           
+
+
                             onClick={(e) => {
                               e.stopPropagation();
                               handleRiscarAlternativa(question.ids, index);
                             }}
-                           
-                          
+
+
                           />
                         </Box>
 
@@ -1082,23 +1083,25 @@ function Home() {
                   )}
                 </div>
 
-                <IconButton sx={{color:"#1c5253", }}
+                <IconButton sx={{ color: "#1c5253", }}
                   className="button-comentario"
                   onClick={() => toggleComentario(question.ids)}
                 >
                   {" "}
-                  <QuestionAnswerOutlinedIcon fontSize="small"  sx={{color:"#1c5253", backgroundColor: 'transparent'}} /> 
-                  <Typography sx={{ fontSize: '0.600em', color:"#1c5253", marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500'}}  color="error">Comentários
+                  <QuestionAnswerOutlinedIcon fontSize="small" sx={{ color: "#1c5253", backgroundColor: 'transparent' }} />
+                  <Typography sx={{ fontSize: '0.550em', color: "#1c5253", marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500' }} color="error">Comentários
                   </Typography>
                 </IconButton>
 
-                <Link
-                  to="/MeuPerfil"
-                  className="button-estatisticas"
-                  target="_blank"
-                >
-                  Meu Desempenho
-                </Link>
+
+                <IconButton sx={{ color: "#1c5253", marginLeft: '0.500em' }}>
+                  <Link to="/MeuPerfil" target="_blank" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+                    <PollOutlinedIcon fontSize="small" sx={{ color: "#1c5253", backgroundColor: 'transparent' }} />
+                    <Typography sx={{ fontSize: '0.550em', color: "#1c5253", marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500' }} color="error">Meu Desempenho</Typography>
+                  </Link>
+                </IconButton>
+
+
 
                 <Container className="linha-horizontal-comentario"></Container>
 

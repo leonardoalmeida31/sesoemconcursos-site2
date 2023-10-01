@@ -288,7 +288,7 @@ const Comentarios = ({ question, db, user }) => {
         {comments[question.id] &&
           comments[question.id].map((comentario) => (
 
-            <ListItem sx={{ width: '100%', }} key={comentario.id} className="comment">
+            <ListItem sx={{ width: '100%', display: 'flex', alignItems: 'flex-start'}} key={comentario.id} className="comment">
               <ListItemAvatar >
                 <Avatar style={{ width: '2em', height: '2em', }} src={comentario.userPhotoURL}>{comentario.displayName[0]}</Avatar>
               </ListItemAvatar>
