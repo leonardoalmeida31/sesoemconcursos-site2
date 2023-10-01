@@ -13,6 +13,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
 import { IoMdCut } from "react-icons/io";
+import ContentCutRoundedIcon from '@mui/icons-material/ContentCutRounded';
 import { loadStripe } from "@stripe/stripe-js";
 import AutoGraphOutlinedIcon from "@mui/icons-material/AutoGraphOutlined";
 import Container from "@mui/material/Container";
@@ -26,7 +27,11 @@ import {
   TableContainer,
   TableRow,
   Paper,
+  ListItem,
+  List, 
+  ListItemText 
 } from "@mui/material";
+import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
 import { TextField, TextareaAutosize } from "@mui/material";
 import Collapse from "@mui/material/Collapse";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -86,7 +91,7 @@ function Home() {
   const auth = getAuth(firebaseApp);
   // const questionsCollectionRef = collection(db, "questions");
   const [user, setUser] = useState(null);
-  const questoesPorPagina = 1;
+  const questoesPorPagina = 10;
   const [questions, setQuestions] = useState([]);
   const [paginaAtual, setPaginaAtual] = useState(1);
   const [questoesFiltradas, setQuestoesFiltradas] = useState([]);
@@ -302,12 +307,12 @@ function Home() {
           ...questionData[key],
         }));
 
-        // shuffleArray(questionArray);
+        //shuffleArray(questionArray);
         setQuestions(questionArray);
       }
     });
 
-    return () => {};
+    return () => { };
   }, []);
 
   useEffect(() => {
@@ -527,7 +532,7 @@ function Home() {
     }));
   };
 
-  const handleCheckout = async ({}) => {
+  const handleCheckout = async ({ }) => {
     const stripe = await stripePromise;
 
     try {
@@ -550,7 +555,7 @@ function Home() {
     }
   };
 
-  const handleCheckoutS = async ({}) => {
+  const handleCheckoutS = async ({ }) => {
     const stripe = await stripePromise;
 
     try {
@@ -572,7 +577,7 @@ function Home() {
       console.error("Erro ao iniciar o checkout:", err);
     }
   };
-  const handleCheckoutA = async ({}) => {
+  const handleCheckoutA = async ({ }) => {
     const stripe = await stripePromise;
 
     try {
@@ -990,14 +995,14 @@ function Home() {
             <div></div>
             {questoesPagina.map((question) => (
               <div key={question.id} className="question-container">
-                <div className="cabecalho-disciplina">
+                <Box className="cabecalho-disciplina">
                   <p>
                     ID: {question.ids}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     {question.disciplina}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     {question.assunto}
                   </p>
-                </div>
-                <div className="cabecalho-orgao">
+                </Box>
+                <Box className="cabecalho-orgao">
                   <p>
                     Banca: {question.banca}
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ano: {question.ano}
@@ -1005,9 +1010,9 @@ function Home() {
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   </p>
                   <p>Órgão: {question.concurso}</p>
-                </div>
+                </Box>
                 <p className="enunciado">{question.enunciado}</p>
-                <ul>
+                <List>
                   {question.alternativas.map((alternativa, index) => {
                     const letraAlternativa =
                       alternativa.match(/^\(([A-E])\)/)[1];
@@ -1019,36 +1024,34 @@ function Home() {
 
                     return (
                       <li
-                        className={`alternativa ${
-                          isSelected ? "selecionada" : ""
-                        } ${isRiscada ? "riscado" : ""}`}
+                        className={`alternativa ${isSelected ? "selecionada" : ""
+                          } ${isRiscada ? "riscado" : ""}`}
                         key={index}
                         onClick={() =>
                           handleAlternativaClick(question.ids, index)
                         }
                       >
                         <Box
-                          className={`icon-container ${
-                            isRiscada ? "riscado" : ""
-                          }`}
-                        >
-                          <IoMdCut
-                            className={`tesoura-icon ${
-                              isRiscada ? "riscado" : ""
+                          className={`icon-container ${isRiscada ? "riscado" : ""
                             }`}
-                            size={14} // Defina o tamanho desejado em pixels
-                            color={isRiscada ? "#1c5253" : "black"} // Defina a cor desejada
+                        >
+                          <ContentCutRoundedIcon  style={{ color: '#1c5253', fontSize: "small"  }}
+                            className={`tesoura-icon ${isRiscada ? "riscado" : ""
+                              }`}
+                            
+                           
                             onClick={(e) => {
                               e.stopPropagation();
                               handleRiscarAlternativa(question.ids, index);
                             }}
+                           
+                          
                           />
                         </Box>
 
                         <span
-                          className={`letra-alternativa-circle ${
-                            isSelected ? "selecionada" : ""
-                          }`}
+                          className={`letra-alternativa-circle ${isSelected ? "selecionada" : ""
+                            }`}
                         >
                           {letraAlternativa}
                         </span>
@@ -1056,7 +1059,7 @@ function Home() {
                       </li>
                     );
                   })}
-                </ul>
+                </List>
                 <div className="button-feedback-container">
                   <button
                     className="button-responder"
@@ -1079,13 +1082,15 @@ function Home() {
                   )}
                 </div>
 
-                <button
+                <IconButton sx={{color:"#1c5253", }}
                   className="button-comentario"
                   onClick={() => toggleComentario(question.ids)}
                 >
                   {" "}
-                  Comentários
-                </button>
+                  <QuestionAnswerOutlinedIcon fontSize="small"  sx={{color:"#1c5253", backgroundColor: 'transparent'}} /> 
+                  <Typography sx={{ fontSize: '0.600em', color:"#1c5253", marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500'}}  color="error">Comentários
+                  </Typography>
+                </IconButton>
 
                 <Link
                   to="/MeuPerfil"
@@ -1104,6 +1109,14 @@ function Home() {
                     overflowX: "auto", // Adiciona a rolagem horizontal quando necessário
                   }}
                 >
+
+                  <Box sx={{ paddingBottom: '2em', marginTop: '3em', marginBottom: '3em', backgroundColor: 'transparent' }} className={
+                    comentariosVisiveis[question.ids]
+                      ? "comentario visivel"
+                      : "comentarios"
+                  } >
+                    <Comentarios question={question} db={db} user={user} />
+                  </Box>
                   <p
                     className={
                       comentariosVisiveis[question.ids]
@@ -1115,22 +1128,16 @@ function Home() {
                       overflowX: "auto", // Adiciona a rolagem horizontal quando necessário
                     }}
                   >
-                    
-                 
+
+
                     {question.comentario}
-                    
-                   
+
+
 
                   </p>
-                 
-                  <Box sx={{paddingBottom: '2em', marginTop: '3em', marginBottom: '3em', backgroundColor: 'transparent' }} className={
-                      comentariosVisiveis[question.ids]
-                        ? "comentario visivel"
-                        : "comentarios"
-                    } >
-                  <Comentarios   question={question} db={db} user={user}  />
-                  </Box>
-                
+
+
+
                 </Container>
 
                 {estatisticasVisiveis && (
@@ -1169,16 +1176,16 @@ function Home() {
 
             <Box className="pagination">
               <button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
-                Questão Anterior
+                Página Anterior
               </button>
               <span>
                 {paginaAtual} de {totalPages}
               </span>
               <button
                 onClick={handleNextPage}
-                // disabled={paginaAtual >= totalPages || paymentInfo === 0 || paymentInfo === null}
+              // disabled={paginaAtual >= totalPages || paymentInfo === 0 || paymentInfo === null}
               >
-                Próxima Questão
+                Próxima Página
               </button>
             </Box>
           </div>

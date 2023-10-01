@@ -186,27 +186,25 @@
     font-size: 0.865em;
     font-weight: 400;
   }
-  .letra-alternativa {
-    color: black;
-    font-weight: bold;
-    margin-right: 5px;
-  }
   .icon-container {
-    background-color: #1c525323;
-    /*border: 0.030em solid black;*/
-    border-radius: 100%; /* Isso cria um círculo arredondado */
-    padding: 0.300em; /* Ajuste o valor de acordo com o tamanho desejado */
-    display: inline-block; /* Isso garante que o contêiner se ajuste ao tamanho do ícone */
+    border: 1px solid  #1c52537a; /* Altere a largura e a cor da borda conforme necessário */
+    border-radius: 50%; /* Use 50% para fazer um círculo perfeito */
+    padding: 0.3em; /* Ajuste o valor de acordo com o tamanho desejado */
+    display: inline-flex; /* Use inline-flex para alinhar o conteúdo vertical e horizontalmente */
     align-items: center;
     justify-content: center;
     margin-right: 1em;
   }
+  .icon-container:hover {
+    background-color: #1c52537a; /* Altere a cor da borda no hover */
+  
+  }
   
   .letra-alternativa-circle {
     display: inline-block;
-    width: 22px;
-    height: 22px;
-    border: 0.100em solid black;
+    width: 24px;
+    height: 24px;
+    border: 1px solid black;
     border-radius: 100%;
     text-align: center;
     align-items: center;

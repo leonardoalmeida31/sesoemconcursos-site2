@@ -197,14 +197,14 @@ const Comentarios = ({ question, db, user }) => {
       const comentariosRef = collection(db, "comentarios");
       const commentDoc = doc(comentariosRef, commentId);
       const commentSnapshot = await getDoc(commentDoc);
-
+  
       if (!commentSnapshot.exists()) {
         console.error("O comentário não existe.");
         return;
       }
-
+  
       const commentData = commentSnapshot.data();
-
+  
       // Verifique se o usuário já curtiu o comentário
       if (!commentData.likesBy || !commentData.likesBy.includes(user.uid)) {
         // Atualize o Firestore para registrar a curtida
@@ -212,33 +212,44 @@ const Comentarios = ({ question, db, user }) => {
           likes: commentData.likes + 1,
           likesBy: [...(commentData.likesBy || []), user.uid],
         });
-
+  
         // Atualize o estado local
         setLikes((prevLikes) => ({
           ...prevLikes,
           [commentId]: (prevLikes[commentId] || 0) + 1,
         }));
       } else {
-        console.error("Você já curtiu este comentário.");
+        // Se o usuário já curtiu o comentário, remova a curtida
+        await updateDoc(commentDoc, {
+          likes: commentData.likes - 1,
+          likesBy: commentData.likesBy.filter((userId) => userId !== user.uid),
+        });
+  
+        // Atualize o estado local para refletir a remoção da curtida
+        setLikes((prevLikes) => ({
+          ...prevLikes,
+          [commentId]: (prevLikes[commentId] || 0) - 1,
+        }));
       }
     } catch (error) {
       console.error("Erro ao curtir comentário:", error);
     }
   };
+  
 
   const handleDislikeComment = async (commentId) => {
     try {
       const comentariosRef = collection(db, "comentarios");
       const commentDoc = doc(comentariosRef, commentId);
       const commentSnapshot = await getDoc(commentDoc);
-
+  
       if (!commentSnapshot.exists()) {
         console.error("O comentário não existe.");
         return;
       }
-
+  
       const commentData = commentSnapshot.data();
-
+  
       // Verifique se o usuário já descurtiu o comentário
       if (!commentData.dislikesBy || !commentData.dislikesBy.includes(user.uid)) {
         // Atualize o Firestore para registrar a descurtida
@@ -246,21 +257,30 @@ const Comentarios = ({ question, db, user }) => {
           dislikes: commentData.dislikes + 1,
           dislikesBy: [...(commentData.dislikesBy || []), user.uid],
         });
-
+  
         // Atualize o estado local
         setDislikes((prevDislikes) => ({
           ...prevDislikes,
           [commentId]: (prevDislikes[commentId] || 0) + 1,
         }));
       } else {
-        console.error("Você já descurtiu este comentário.");
+        // Se o usuário já descurtiu o comentário, remova a descurtida
+        await updateDoc(commentDoc, {
+          dislikes: commentData.dislikes - 1,
+          dislikesBy: commentData.dislikesBy.filter((userId) => userId !== user.uid),
+        });
+  
+        // Atualize o estado local para refletir a remoção da descurtida
+        setDislikes((prevDislikes) => ({
+          ...prevDislikes,
+          [commentId]: (prevDislikes[commentId] || 0) - 1,
+        }));
       }
     } catch (error) {
       console.error("Erro ao descurtir comentário:", error);
     }
   };
-
-
+  
   return (
     <Box className="app-container">
       <Typography variant="h7">Comentários relevantes</Typography>

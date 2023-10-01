@@ -23929,5 +23929,358 @@
     "resposta": "A",
     "area": "Federal",
     "banca": "CESPE/CEBRASPE"
+  },
+  {
+    "ids": 1155,
+    "banca": "VUNESP",
+    "concurso": "Prefeitura de São José do Rio Preto - SP",
+    "ano": 2023,
+    "cargo": "Assistente Social",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "enunciado": "Leia o texto para responder a questão.\n\nDeus, ou alguém por Ele, me poupou de uns tantos pesadelos. É nisso que penso enquanto o camarada à minha frente, com incontida excitação, vai fazendo o pormenorizado relato de sua batalha para alugar apartamento. Já esteve em duas dúzias de endereços, contabiliza, e em outros tantos pretende estar, pois em cada um achou defeito. Longe de se lamentar, está feliz. À beira da euforia, parece governado pela convicção de que o bom não é achar, é procurar. Prazer que exige dele ver imperfeição onde não tem.\n\nRespeitemos o time dos que procuram na esperança de não encontrar – de certa forma aparentados com aqueles que inventam pretexto para estar o tempo todo reformando a casa. São, uns e outros, meus antípodas1 . A simples ideia de empreender uma reforma me levaria a buscar um novo pouso – se também essa perspectiva não me trouxesse pânico. Problema da minha exclusiva terapia, eu sei. E, a esta altura da vida, já não há divã que dê jeito na fobia imobiliária de quem jamais se lançou numa peregrinação em busca de poleiro.\n\nNo entanto, ciente das minhas dificuldades nesse particular, houve um dia, meio século atrás, em que, com poucos meses de São Paulo, e pendurado ainda na generosidade do casal que me acolheu de mala e cuia, achei que era hora de providenciar cafofo próprio.\n\nCaiu do céu uma proposta para dividir apartamento com um colega. É bem verdade que o edifício ainda não estava concluído e talvez fôssemos ali, o Sérgio e eu, os únicos moradores, pois não me lembro de vizinhos. Se mais gente veio, foi para o mesmo apartamento, de apenas um quarto e sala microscópica, mas onde, em dado momento, se espremeram quatro rapazes, todos do ramo jornalístico. E nem a nossa juventude explicaria a indiferença coletiva ante o fato de não haver ali uma geladeira, por miúda que fosse, para tantos bebedores de cerveja. Fogão havia, mas ocioso, pois nenhum de nós fritava um ovo.\n\nTeria ficado indefinidamente em tal moquiço2 , se um dos comparsas, exasperado, não me houvesse proposto alugar coisa menos deprimente. ________ mais dois apartamentos, ambos excelentes, que também não foi preciso garimpar. O mesmo se diga de um terceiro, o atual, no qual estou ______  quase 28 anos e do qual não pretendo arredar pé – a não ser que o referido pé já não ______ conta dos 24 degraus que me trazem a este primeiro andar.\n\n(Humberto Werneck. Fobia imobiliária. www.estadao.com.br, 02.10.2020. Adaptado)\n\n1 antípoda: aquele tem característica oposta.\n\n2 moquiço: habitação rústica, desprovida de conforto.\n\nSegundo a norma-padrão de concordância verbal, as lacunas do texto são completadas, correta e respectivamente, por:",
+    "alternativas": [
+      "(A) Existiu … há … dá",
+      "(B) Existiram … tem … dão",
+      "(C) Houve … faz … dê",
+      "(D) Houveram … há … deem",
+      "(E) Tem … fazem … desse"
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 1156,
+    "banca": "NC-UFPR",
+    "concurso": "UFPR",
+    "ano": 2023,
+    "cargo": "Assistente Social",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "enunciado": "O texto a seguir é referência para a questão.\n\nJornalismo e objetividade\n\n Hélio Schwartsman\n\nQual o futuro do jornalismo? Leonard Downie Jr. e Andrew Heyward ensaiam uma resposta em 'Beyond Objectivity'. Não se trata exatamente de um livro, mas de um estudo, que pode ser baixado de graça na internet (agradeço ao Nelson de Sá pela dica).\n\nOs autores propõem que a busca pela objetividade deixe de ser uma meta declarada do jornalismo, já que ela claramente não pode ser alcançada. Concordo com o diagnóstico, mas não com a terapêutica. A ideia de que um repórter pudesse ser objetivo ao escrever uma história nunca foi filosoficamente consistente. Não há indivíduo que não tenha manias, preferências ideológicas e vieses. Sempre brinco que o jornalismo é a realização diária de uma impossibilidade teórica.\n\nReluto, porém, em abraçar a tese de que devamos renunciar à objetividade. Penso que tentar alcançá-la, mesmo sabendo que jamais chegaremos lá, nos força a uma disciplina que tende a melhorar a qualidade das reportagens (textos de opinião são um pouco diferentes). O repórter que se preocupa em buscar o equilíbrio e considera perspectivas diferentes da sua provavelmente fará um trabalho melhor do que aquele que veste o chapéu do militante e já tem todas as conclusões prontas antes mesmo de começar. O modelo de negócios tem muito ______ com isso. A ideia de objetividade no jornalismo americano foi favorecida pelo fato de que, até ______ pouco, publicações dependiam mais de anúncios do que da venda de exemplares. Como comerciantes, que são o grosso dos anunciantes, querem ficar bem com todos, os jornais escaparam um pouco das pressões de seu próprio público por algum tipo de alinhamento ideológico.\n\nIsso mudou. As empresas agora dependem mais de seus clientes. É só ver que executivos da Fox News cogitaram de esconder dados de seu caprichoso público para não ferir sua suscetibilidade e, assim, não perder audiência. Se a objetividade não existisse, seria preciso inventá-la.\n\nDisponível em: https://www1.folha.uol.com.br/colunas/helioschwartsman/2023/03/jornalismo-e-objetividade.shtml. Adaptado.\n\nAssinale a alternativa cujos termos preenchem corretamente as lacunas, na ordem em que aparecem no texto. ",
+    "alternativas": [
+      "(A) a ver – há",
+      "(B) haver – há",
+      "(C) a ver – á",
+      "(D) haver – à",
+      "(E) à ver – à"
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 1157,
+    "banca": "FEPESE",
+    "concurso": "Prefeitura de Cunha Porã - SC",
+    "ano": 2023,
+    "cargo": "Assistente Social",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "enunciado": "Assinale a frase que está de acordo com a norma padrão.",
+    "alternativas": [
+      "(A) Se você fizer o curso sobre conexões de gás, com certeza não te faltará empregos.",
+      "(B) Segundo informaram-me, o governador não quer que se prive os funcionários dessas vantagens.",
+      "(C) Exatamente à meia-noite, iniciaram-se as apurações dos votos das seções eleitorais do município de Cunha Porã, cuja prefeitura terá novo comando a partir do dia primeiro de janeiro vindouro.",
+      "(D) De acordo com estudos realizados pelo Instituto Mapa, os indicadores políticos-sociais e econômicos-financeiros tendem a piorar nos municípios de pequeno porte.",
+      "(E) Refiro-me aquela mulher que fez o discurso ontem à noite, não à esta que agora entrou no auditório."
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 1158,
+    "banca": "VUNESP",
+    "concurso": "Prefeitura de Pindamonhangaba - SP",
+    "ano": 2023,
+    "cargo": "Assistente Social",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "enunciado": "Leia o texto para responder à questão.\n\nOIT: desigualdades de gênero no emprego são maiores do que se pensava\n\nUm novo relatório da Organização Internacional do Trabalho (OIT) revela que as diferenças entre os gêneros no acesso ao emprego e às condições de trabalho são maiores do que se pensava anteriormente. Um novo indicador, desenvolvido pela OIT, capta todas as pessoas sem emprego que estão interessadas em encontrar um emprego. Por esse motivo, ele reflete um quadro muito mais sombrio da situação das mulheres no mundo do trabalho do que a taxa de desemprego mais comumente usada. O documento “Novos dados esclarecem as diferenças de gênero no mercado de trabalho”, indica que 15% das mulheres em idade produtiva em todo o mundo gostariam de trabalhar, mas não têm emprego, em comparação com 10, 5% dos homens.\n\nA lacuna de postos de trabalho é particularmente grave nos países em desenvolvimento, onde a proporção de mulheres incapazes de encontrar uma vaga chega a 24, 9% nos países de baixa renda. A taxa correspondente para os homens na mesma categoria é de 16, 6%, um nível preocupantemente alto, mas significativamente inferior ao das mulheres.\n\nA análise aponta que as responsabilidades pessoais e familiares, incluindo o trabalho de cuidados não remunerado, afetam desproporcionalmente as mulheres. Essas atividades se tornam um impedimento não apenas para uma contratação, mas também para procurar emprego ativamente ou para estarem disponíveis para trabalhos de última hora.\n\n(ONU News. Disponível em: https: //news.un.org/pt/story/ 2023/03/1810927. Adaptado)\n\nFoi reescrito em conformidade com a norma-padrão de concordância o trecho:",
+    "alternativas": [
+      "(A) Anteriormente, pensava-se que os desequilíbrios de gênero no acesso ao trabalho fosse menor.",
+      "(B) É captado, com o novo indicador da OIT, todas as pessoas sem emprego que estão interessadas em encontrar um emprego.",
+      "(C) Embora seja considerado alto, a taxa de desemprego entre os homens, de 16,6%, ainda é menor do que a das mulheres. ",
+      "(D) As responsabilidades pessoais e familiares e o trabalho de cuidados não remunerado são considerados responsáveis por afetar as mulheres.",
+      "(E) Podem haver certas atividades específicas que se tornam impedimentos para a contratação de mulheres."
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 1159,
+    "banca": "OBJETIVA CONCURSOS",
+    "concurso": "Prefeitura de Piratininga - SP",
+    "ano": 2023,
+    "cargo": "Assistente Social",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "enunciado": "Em relação à concordância nominal e verbal, assinalar a alternativa CORRETA:",
+    "alternativas": [
+      "(A) Lidar com os desafios exige leis nacionais apropriadas, eficientes e adequadas; políticas públicas efetivas; iniciativas globais de regulação e de governança satisfatórias, que possa guiar e exigir que as empresas do mercado de alimentos atuem de acordo com os padrões de direitos humanos e sustentabilidade.",
+      "(B) Várias iniciativas são consideradas em termos de padrões morais e jurídicos lastreados nos direitos humanos, estabelecido como referência para a atuação no setor de alimentos.",
+      "(C) Tornar acessível o conhecimento é uma iniciativa importante, pois se destina a dar acesso a uma realidade turva, hermética e complexa, que envolve a produção de alimentos e que contribui para transformar a realidade a partir de cada um de nós.",
+      "(D) A regulação e a autorregulação das empresas transnacionais ou globais está na agenda internacional desde a década de 1970."
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 1160,
+    "banca": "UFMA",
+    "concurso": "UFMA",
+    "ano": 2023,
+    "cargo": "Assistente Social",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "enunciado": "Marque a opção correta quanto à concordância verbal:",
+    "alternativas": [
+      "(A) Fazem anos que não a vejo. ",
+      "(B) Haviam muitos candidatos para a vaga.",
+      "(C) Existem pessoas honestas no mundo.",
+      "(D) Deu seis horas da manhã.",
+      "(E) Era onze da noite quando chegamos."
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 1161,
+    "banca": "OBJETIVA CONCURSOS",
+    "concurso": "Prefeitura de Lavras do Sul - RS",
+    "ano": 2023,
+    "cargo": "Assistente Social",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "enunciado": "Considerando-se as regras de concordância verbal, analisar os itens abaixo:\n\nI. Fazem oito anos que não vejo meu pai. II. Nesse momento, faz vinte graus em Gramado.",
+    "alternativas": [
+      "(A) Os itens I e II estão corretos.",
+      "(B) Somente o item I está correto.",
+      "(C) Somente o item II está correto.",
+      "(D) Os itens I e II estão incorretos."
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 1162,
+    "banca": "UniRV - GO",
+    "concurso": "Prefeitura de Rio Verde - GO",
+    "ano": 2023,
+    "cargo": "Assistente Social",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "enunciado": "Assinale a alternativa que apresenta conjugação verbal de acordo com a norma culta:",
+    "alternativas": [
+      "(A) Nós não traríamos a menina até aqui se achássemos perigoso.",
+      "(B) Quando eles saberem a verdade, ficarão furiosos.",
+      "(C) Queremos que ela sai de casa o quanto antes.",
+      "(D) Desejo que eles fazem uma viagem tranquila."
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 1163,
+    "banca": "CESPE/CEBRASPE",
+    "concurso": "Prefeitura de São Cristóvão - SE",
+    "ano": 2023,
+    "cargo": "Assistente Social",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "enunciado": "Texto CB2A1-I\n\nEm 2023, os preços dos medicamentos comercializados no Brasil só poderão ser reajustados em até 5,6%. O índice, definido pela Câmara de Regulação do Mercado de Medicamentos (CMED), vale desde abril. O percentual não é um aumento automático nos preços, mas uma definição de teto permitido de reajuste, ou seja, cada empresa pode optar pela aplicação do índice total ou menor, conforme suas estratégias comerciais.\n\nPara chegar ao índice, a CMED observa fatores como a inflação dos últimos doze meses, mediante o Índice de Preços ao Consumidor Amplo (IPCA), a produtividade das indústrias de medicamentos, custos não captados pela inflação, como câmbio e tarifa de energia elétrica, e a concorrência de mercado, conforme determina o cálculo utilizado desde 2015.\n\nInternet: <www.gov.br/saude> (com adaptações).\n\nNo último parágrafo do texto CB2A1-I, a forma verbal “determina” está flexionada na terceira pessoa do singular porque concorda com o termo",
+    "alternativas": [
+      "(A) “CMED”.",
+      "(B) “cálculo”. ",
+      "(C) “inflação”. ",
+      "(D) “mercado”."
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 1164,
+    "banca": "BRB",
+    "concurso": "Prefeitura de Borda da Mata - MG",
+    "ano": 2023,
+    "cargo": "Assistente Social",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "enunciado": "Segundo as regras de escrita da Gramática normativa, assinale a alternativa que se apresenta inteiramente correta.",
+    "alternativas": [
+      "(A) O diretor do Centro Acadêmico, não conseguiu convencer os demais conselheiros à respeito da proposta de austeridade nos gastos.",
+      "(B) Os alunos do colégio foram rever novamente o filme que a professora os pediu que assistissem.",
+      "(C) A torcida manifestou seu descontentamento quanto a escalação e ao esquema tático do treinador nos jogos do time.",
+      "(D) Embora tenha se dedicado aos exercícios físicos na academia, Flávio, diretor acadêmico, descuidou-se na dieta e, portanto, não perdeu peso.",
+      "(E) Todos os alunos do colégio preferiam mais sorvete do que pipoca, para experimentarem durante os intervalos. "
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 1165,
+    "banca": "FGV",
+    "concurso": "Banestes",
+    "ano": 2023,
+    "cargo": "Assistente Social",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "enunciado": "Assinale a frase abaixo inteiramente correta em função de todos os aspectos da norma culta.",
+    "alternativas": [
+      "(A) O dinheiro é o pé de cabra do poder.",
+      "(B) Aprenda com as massas; depois ensine-as o necessário.",
+      "(C) O ensino à distância é preferível ao presencial. ",
+      "(D) Os homens fazem as leis; as mulheres os costumes.",
+      "(E) Perto de 243 passageiros dormiram no aeroporto."
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 1166,
+    "banca": "FEPESE",
+    "concurso": "Prefeitura de Balneário Camboriú - SC",
+    "ano": 2023,
+    "cargo": "Assistente Social",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "enunciado": "Assinale a frase correta quanto à concordância verbal.",
+    "alternativas": [
+      "(A) Se houvessem boas condições climáticas, a colheita teria sido bem melhor",
+      "(B) Combinações morfológicas apareceu nos dois extremos do mapa, e as demais variações ocorreram nas localidades.",
+      "(C) Caiu na pista diversas caixas de tomates, que trouxeram problemas de engarrafamento.",
+      "(D) Na tabela de número 1, pode-se observar as variedades de videiras mais produtivas e também as que dá frutos mais doces.",
+      "(E) Cinquenta por cento das frotas de ônibus que trafegam pela cidade estão em péssimo estado de conservação"
+    ],
+    "resposta": "E",
+    "comentario": ""
+  },
+  {
+    "ids": 1167,
+    "banca": "FEPESE",
+    "concurso": "Prefeitura de Balneário Camboriú - SC",
+    "ano": 2023,
+    "cargo": "Assistente Social",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "enunciado": "Identifique a opção correta das palavras sugeridas entre parênteses nas frases abaixo.\n\n1. Por favor, traga-me (duzentos/duzentas) gramas de queijo gorgonzola. 2. (Anexo/Anexos) ao relatório, encontram-se diversos gráficos. 3. É (necessário/necessária) a paciência de um monge para ouvir as tuas lamúrias diárias. 4. Temos a esperança de que V. Sa. continuará a nos prestigiar com (vossa/sua) honrosa participação. 5. Essas festas são (menos/menas) importantes do que uma viagem a Portugal e à Espanha.\n\nAssinale a alternativa que apresenta as palavras que completam corretamente as frases",
+    "alternativas": [
+      "(A) duzentos • Anexo • necessária • vossa • menos",
+      "(B) duzentos • Anexos • necessária • sua • menos",
+      "(C) duzentas • Anexo • necessário • vossa • menas",
+      "(D) duzentas • Anexos • necessário • sua • menas",
+      "(E) duzentas • Anexos • necessário • sua • menos"
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 1168,
+    "banca": "Quadrix",
+    "concurso": "Prefeitura de Alto Paraíso de Goiás - GO",
+    "ano": 2023,
+    "cargo": "Assistente Social",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "enunciado": "Assinale a alternativa na qual as normas de concordância verbal foram seguidas. ",
+    "alternativas": [
+      "(A) Existe assuntos que eu preferiria não tratar com você.",
+      "(B) Fazem duas semanas que não visito meus avós.",
+      "(C) Haviam duas crianças perdidas na praia.",
+      "(D) Vendem-se roupas usadas neste local.",
+      "(E) Contrata-se profissionais experientes para auxiliar na reforma."
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 1169,
+    "banca": "VUNESP",
+    "concurso": "PRUDENCO",
+    "ano": 2022,
+    "cargo": "Assistente Social",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "enunciado": "Leia o texto para responder à questão.\n\nA crise econômica agravada pela pandemia da Covid-19 reforçou estratégias comerciais que _________ pouco tempo ainda eram impensáveis. Frigoríficos da periferia de Fortaleza comercializam até mesmo opções de ossadas de primeira e de segunda. A diferença entre os produtos está na quantidade de carne presente no osso e no preço por quilo.\n\nAs ossadas sempre estiveram presentes nos açougues do Nordeste, sendo usadas em caldos, sopas, feijão, entre outros pratos. No entanto, com _____ alta no preço dos alimentos, como a carne, cujo aumento chegou ______ 24,4% em 12 meses em Fortaleza, segundo o Instituto Brasileiro de Geografia e Estatística (IBGE), muitas famílias mais vulneráveis passaram ______ recorrer _______ ossadas como item principal no prato.\n\n(https://diariodonordeste.verdesmares.com.br/. 25.10.2021. Adaptado)\n\nReelaborando-se o enunciado do trecho – A diferença entre os produtos está na quantidade de carne presente no osso e no preço por quilo. – para uma perspectiva de hipótese, a forma verbal destacada deve ser substituída por:",
+    "alternativas": [
+      "(A) estivera.",
+      "(B) estava.",
+      "(C) esteve.",
+      "(D) estará.",
+      "(E) estaria."
+    ],
+    "resposta": "E",
+    "comentario": ""
+  },
+  {
+    "ids": 1170,
+    "banca": "VUNESP",
+    "concurso": "PRUDENCO",
+    "ano": 2022,
+    "cargo": "Assistente Social",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "enunciado": "Leia o texto para responder à questão.\n\nCobrar o passaporte\n\nO expressivo recrudescimento da Covid-19 registrado nesta semana no país não apenas reaviva os temores com relação à doença como deixa mais claro do que nunca a importância da vacinação geral, sem a qual o vírus prosseguirá circulando, com risco de produzir novas e mais agressivas cepas.\n\nNesta sexta (28.01.2022), o Brasil contabilizou nada menos que 257.239 casos confirmados da enfermidade. Com isso, a média móvel de infecções nos últimos sete dias atingiu a marca de 183.203, a maior já registrada desde o início da pandemia.\n\nNesse cenário, é essencial que se generalize no país a cobrança do passaporte vacinal, medida que a um só tempo aumenta a proteção coletiva e serve como forte incentivo para que mais pessoas se imunizem, reduzindo a transmissão comunitária do patógeno.\n\nAlém de compulsório em eventos, estabelecimentos comerciais, repartições públicas, aeroportos e aparelhos culturais, o comprovante de imunização precisa também ser exigido, ao menos para os alunos maiores de 12 anos, nas escolas que agora iniciam o ano letivo, como já ocorre com as vacinas obrigatórias da infância.\n\nAfigura-se preocupante, pois, que apenas sete estados tenham, até o momento, expressado a intenção de requerer a comprovação.\n\n(Editorial. Folha de S.Paulo, 28.02.2022. Adaptado)\n\nAssinale a alternativa que atende à norma-padrão de concordância. ",
+    "alternativas": [
+      "(A) Nesta sexta (28.01.2022), no Brasil, foi contabilizado nada menos que 257.239 casos confirmados da enfermidade.",
+      "(B) Nesta sexta (28.01.2022), no Brasil, nada menos que 257.239 casos confirmados da enfermidade foram contabilizados.",
+      "(C) Nesta sexta (28.01.2022), no Brasil, contabilizou-se nada menos que 257.239 casos confirmados da enfermidade.",
+      "(D) Nesta sexta (28.01.2022), no Brasil, fizeram-se a contabilização de nada menos que 257.239 casos confirmados da enfermidade.",
+      "(E) Nesta sexta (28.01.2022), no Brasil, foram contabilizado nada menos que 257.239 casos confirmados da enfermidade."
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 1171,
+    "banca": "IBADE",
+    "concurso": "Prefeitura de Barra de São Francisco - ES",
+    "ano": 2022,
+    "cargo": "Assistente Social",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "disciplina": "Português",
+    "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
+    "enunciado": "Indique a alternativa cuja frase apresenta concordância verbal correta, conforme as regras gramaticais.",
+    "alternativas": [
+      "(A) Presenciou-se cenas desagradáveis na Amazônia.",
+      "(B) Obedeceram-se aos severos regulamentos ambientais.",
+      "(C) Sempre houveram problemas de desmatamento e queimadas nas florestas.",
+      "(D) Em florestas tropicais, a maior parte dos incêndios ocorre em época de seca.",
+      "(E) Não se deve poupar esforços para preservar os biomas brasileiros."
+    ],
+    "resposta": "D",
+    "comentario": ""
   }
 ]
