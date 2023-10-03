@@ -12,8 +12,6 @@ import Discursivas from './pages/Discursivas.jsx'
 
 
 
-
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Router>
     <React.StrictMode>

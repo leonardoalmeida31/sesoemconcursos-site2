@@ -13,6 +13,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
 import { IoMdCut } from "react-icons/io";
+import Select from "@mui/material/Select";
 import ContentCutRoundedIcon from '@mui/icons-material/ContentCutRounded';
 import { loadStripe } from "@stripe/stripe-js";
 import AutoGraphOutlinedIcon from "@mui/icons-material/AutoGraphOutlined";
@@ -92,7 +93,8 @@ function Home() {
   const auth = getAuth(firebaseApp);
   // const questionsCollectionRef = collection(db, "questions");
   const [user, setUser] = useState(null);
-  const questoesPorPagina = 10;
+  const [questoesPorPagina, setQuestoesPorPagina] = useState(10); // Defina o valor padrão como 10
+
   const [questions, setQuestions] = useState([]);
   const [paginaAtual, setPaginaAtual] = useState(1);
   const [questoesFiltradas, setQuestoesFiltradas] = useState([]);
@@ -563,7 +565,7 @@ function Home() {
       const { error } = await stripe.redirectToCheckout({
         lineItems: [
           {
-            price: "price_1NlMrNB3raGqSSUVTfAfLQOF",
+            price: "price_1NwtihB3raGqSSUVxHmuE62X",
             quantity: 1,
           },
         ],
@@ -990,8 +992,27 @@ function Home() {
             </Box>
           </Modal>
         </div>
+        
+        {user && (
+        <Box sx={{marginTop: '3em'}} border="1px solid #ccc"  borderRadius={1} padding={2}>
+          <Select
+            value={questoesPorPagina}
+            onChange={(e) => setQuestoesPorPagina(Number(e.target.value))}
+            size="small"
+            sx={{backgroundColor: '#f2f2f2', fontSize: '0.800em', fontFamily: 'Poppins'}}
+          >
+            <MenuItem value={1}>1 Questão por página</MenuItem>
+            <MenuItem value={5}>5 Questões por página</MenuItem>
+            <MenuItem value={10}>10 Questões por página</MenuItem>
+            <MenuItem value={15}>15 Questões por página</MenuItem>
+            <MenuItem value={20}>20 Questões por página</MenuItem>
+          </Select>
+
+
+        </Box> )}
 
         {user ? (
+
           <div>
             <div></div>
             {questoesPagina.map((question) => (
@@ -1005,15 +1026,15 @@ function Home() {
                 </Box>
                 <Box className="cabecalho-orgao">
                   <p>
-                  <span style={{ color: "black" }}>Banca:</span> &nbsp;{question.banca}
+                    <span style={{ color: "black" }}>Banca:</span> &nbsp;{question.banca}
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "black" }}>Ano:</span> &nbsp;{question.ano}
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "black" }}>Cargo: </span>&nbsp;{question.cargo}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "black" }}>Cargo: </span>&nbsp;{question.cargo}
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   </p>
                   <p><span style={{ color: "black" }}>Órgão: </span>&nbsp;  {question.concurso}</p>
                 </Box>
                 <p className="enunciado">{question.enunciado}</p>
-                <List>
+                <ul>
                   {question.alternativas.map((alternativa, index) => {
                     const letraAlternativa =
                       alternativa.match(/^\(([A-E])\)/)[1];
@@ -1060,7 +1081,7 @@ function Home() {
                       </li>
                     );
                   })}
-                </List>
+                </ul>
                 <div className="button-feedback-container">
                   <button
                     className="button-responder"
