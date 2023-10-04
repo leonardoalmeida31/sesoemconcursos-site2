@@ -21,7 +21,7 @@ function Cronometro() {
           const newSegundos = segundos + 1;
   
           if (newSegundos === 60) {
-            setMinutos((minutos) => minutos + 0.5);
+            setMinutos((minutos) => minutos + 1);
             return 0; // Redefinir os segundos para 0
           } else {
             return newSegundos;
