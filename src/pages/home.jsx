@@ -18,6 +18,7 @@ import ContentCutRoundedIcon from '@mui/icons-material/ContentCutRounded';
 import { loadStripe } from "@stripe/stripe-js";
 import AutoGraphOutlinedIcon from "@mui/icons-material/AutoGraphOutlined";
 import Container from "@mui/material/Container";
+import Cronometro from './Cronometro.jsx';
 import {
   Modal,
   Button,
@@ -49,7 +50,7 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-
+import { useMediaQuery } from '@mui/material';
 import { initializeApp } from "firebase/app";
 import {
   getDocs,
@@ -93,7 +94,7 @@ function Home() {
   const auth = getAuth(firebaseApp);
   // const questionsCollectionRef = collection(db, "questions");
   const [user, setUser] = useState(null);
-  const [questoesPorPagina, setQuestoesPorPagina] = useState(10); // Defina o valor padrão como 10
+  const [questoesPorPagina, setQuestoesPorPagina] = useState(5); // Defina o valor padrão como 10
 
   const [questions, setQuestions] = useState([]);
   const [paginaAtual, setPaginaAtual] = useState(1);
@@ -105,6 +106,7 @@ function Home() {
   const [filtroModalidade, setFiltroModalidade] = useState(null);
   const [filtroArea, setFiltroArea] = useState(null);
   const indiceInicial = (paginaAtual - 1) * questoesPorPagina;
+  const isMobile = useMediaQuery('(max-width: 600px)');
 
   const [questionsToShow, setQuestionsToShow] = useState([]);
   const [maxQuestionsToDisplay, setMaxQuestionsToDisplay] = useState(0);
@@ -896,6 +898,9 @@ function Home() {
 
       {user && (
         <div>
+          <Typography   sx={{fontSize: '1em', fontWeight: 'bold', fontFamily: 'Poppins', textAlign: "center" ,  padding: '1em', paddingTop: '0.400em', color: "#1c5253"}}>
+            A única plataforma de Questões de concursos especializada em Serviço Social
+          </Typography>
           <FiltroMulti onFilterChange={setQuestoesFiltradas} db={db} />
         </div>
       )}
@@ -992,24 +997,28 @@ function Home() {
             </Box>
           </Modal>
         </div>
-        
+
+
         {user && (
-        <Box sx={{marginTop: '3em'}} border="1px solid #ccc"  borderRadius={1} padding={2}>
-          <Select
-            value={questoesPorPagina}
-            onChange={(e) => setQuestoesPorPagina(Number(e.target.value))}
-            size="small"
-            sx={{backgroundColor: '#f2f2f2', fontSize: '0.800em', fontFamily: 'Poppins'}}
-          >
-            <MenuItem value={1}>1 Questão por página</MenuItem>
-            <MenuItem value={5}>5 Questões por página</MenuItem>
-            <MenuItem value={10}>10 Questões por página</MenuItem>
-            <MenuItem value={15}>15 Questões por página</MenuItem>
-            <MenuItem value={20}>20 Questões por página</MenuItem>
-          </Select>
 
+          <Box sx={{ marginTop: '3em',  display: 'flex',
+          flexDirection: isMobile ? 'column' : 'row',  }} border="1px solid #ccc" borderRadius={1} padding={2}>
+            <Select
+              value={questoesPorPagina}
+              onChange={(e) => setQuestoesPorPagina(Number(e.target.value))}
+              size="small"
+              sx={{ backgroundColor: '#f2f2f2', fontSize: '0.800em', fontFamily: 'Poppins' }}
+            >
+              <MenuItem value={1}>1 Questão por página</MenuItem>
+              <MenuItem value={5}>5 Questões por página</MenuItem>
+              <MenuItem value={10}>10 Questões por página</MenuItem>
+              <MenuItem value={15}>15 Questões por página</MenuItem>
+              <MenuItem value={20}>20 Questões por página</MenuItem>
+            </Select>
 
-        </Box> )}
+            <Cronometro /> {/* Renderize o componente Cronometro aqui */}
+
+          </Box>)}
 
         {user ? (
 
