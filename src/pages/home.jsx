@@ -5,6 +5,7 @@ import "../App.css";
 import Chart from "react-google-charts";
 import PieChart from "../PieChart.jsx";
 import imagemSvg from "../img/img-login-1.svg";
+import SESOLogo from "../img/logo-seso-5.png";
 import { Link } from "react-router-dom";
 import MenuMui from "../MenuMui.jsx";
 import Grid from "@mui/material/Grid";
@@ -633,10 +634,6 @@ function Home() {
     // Outros estilos personalizados para o modal, se necessário
   };
 
-  <FiltroMulti onFilterChange={setQuestoesFiltradas} db={db} />;
-
-  const [estatisticasVisiveis, setEstatisticasVisiveis] = useState(false);
-
   const [alternativasRiscadasPorQuestao, setAlternativasRiscadasPorQuestao] =
     useState({});
 
@@ -685,63 +682,36 @@ function Home() {
     <div className="Home">
       {user && (
         <AppBar
-          sx={{ backgroundColor: "#1c5253", marginBottom: "1em" }}
-          position="static"
+          sx={{ backgroundColor: "#1c5253", marginBottom: "1em" }} position="static"
         >
-          <Container maxWidth="xl">
+          <Container maxWidth="x1">
             <Toolbar disableGutters>
-              <Typography
-                variant="h6"
-                noWrap
-                component="a"
-                href="/"
-                sx={{
-                  mr: 5,
-                  display: { xs: "none", md: "flex" },
-                  fontFamily: "monospace",
-                  fontWeight: 600,
-                  letterSpacing: ".1rem",
-                  color: "inherit",
-                  textDecoration: "none",
-                }}
+            <Avatar alt="SESO Logo" src={SESOLogo}   sx={{  width: 40,  height: 40,   marginRight: "0.100em",  }}
+      />
+              <Typography variant="h6" noWrap component="a" href="/" sx={{  mr: 3, display: { xs: "none", md: "flex" }, fontFamily: "Poppins", fontWeight: 500, letterSpacing: ".1rem", color: "inherit", textDecoration: "none", }}
               >
                 SESO em Concursos
               </Typography>
 
               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleOpenNavMenu}
-                  color="inherit"
+                <IconButton size="large" aria-label="account of current user"  aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenNavMenu} color="inherit"
                 >
                   <MenuIcon />
                 </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorElNav}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "left",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "left",
-                  }}
-                  open={Boolean(anchorElNav)}
-                  onClose={handleCloseNavMenu}
-                  sx={{
-                    display: { xs: "block", md: "none" },
-                  }}
+                <Menu id="menu-appbar" anchorEl={anchorElNav} anchorOrigin={{ vertical: "bottom", horizontal: "left", }}   keepMounted  transformOrigin={{  vertical: "top", horizontal: "left", }} open={Boolean(anchorElNav)}  onClose={handleCloseNavMenu} sx={{ display: { xs: "block", md: "none" }, }}
                 >
                   {pages.map((page) => (
                     <MenuItem key={page} onClick={handleCloseNavMenu}>
                       <Typography textAlign="center">{page}</Typography>
                     </MenuItem>
                   ))}
+                  <MenuItem>
+                    <Link to="/Discursivas" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
+                      <Typography sx={{ color: "black" }}>
+                        Discursivas
+                      </Typography>
+                    </Link>
+                  </MenuItem>
                   <MenuItem>
                     <Link to="/MeuPerfil" style={{ textDecoration: "none" }}>
                       <Typography sx={{ color: "black" }}>
@@ -777,25 +747,14 @@ function Home() {
                   </MenuItem>
                 </Menu>
               </Box>
-
-              <Typography
-                variant="h6"
-                noWrap
-                component="a"
-                href="/"
-                sx={{
-                  mr: 2,
-                  display: { xs: "flex", md: "none" },
-                  flexGrow: 1,
-                  fontFamily: "monospace",
-                  fontWeight: 500,
-                  letterSpacing: ".1rem",
-                  color: "inherit",
+          
+              <Typography variant="h6"  noWrap component="a" href="/" sx={{  mr: 2, display: { xs: "flex", md: "none" },  flexGrow: 1,  fontFamily: "Poppins", fontWeight: 500, letterSpacing: ".1rem", color: "inherit",
                   textDecoration: "none",
                 }}
               >
                 SESO em Concursos
               </Typography>
+             
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                 {pages.map((page) => (
                   <Link
@@ -808,7 +767,11 @@ function Home() {
                     </Button>
                   </Link>
                 ))}
-
+                   <MenuItem>
+                  <Link to="/Discursivas" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
+                    <Button sx={{ color: "white" }}>DISCURSIVAS</Button>
+                  </Link>
+                </MenuItem>
                 <MenuItem>
                   <Link to="/MeuPerfil" style={{ textDecoration: "none" }}>
                     <Button sx={{ color: "white" }}>Meu Desempenho</Button>
@@ -873,35 +836,12 @@ function Home() {
         </AppBar>
       )}
 
-      {false && (
-        // Este bloco de código não será executado
-        <Container className="div-menu">
-          <button className="open-button" onClick={openModal}>
-            Assinar com cartão
-          </button>
-
-          <Link
-            to="/AssinaturaPix"
-            className="open-button"
-            href="https://api.whatsapp.com/send?phone=5574981265381&text=Quero%20Asssinar%20por%20Pix"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <button className="open-button">Assinar com Pix</button>
-          </Link>
-
-          <button onClick={signOut} className="logout-button">
-            Sair/Entrar
-          </button>
-        </Container>
-      )}
-
       {user && (
         <div>
           <Typography   sx={{fontSize: '1em', fontWeight: 'bold', fontFamily: 'Poppins', textAlign: "center" ,  padding: '1em', paddingTop: '0.400em', color: "#1c5253"}}>
             A única plataforma de Questões de concursos especializada em Serviço Social
           </Typography>
-          <FiltroMulti onFilterChange={setQuestoesFiltradas} db={db} />
+          <FiltroMulti onFilterChange={setQuestoesFiltradas} setPaginaAtual={setPaginaAtual} db={db} />
         </div>
       )}
       <Container className="fundo-Home">
@@ -998,7 +938,6 @@ function Home() {
           </Modal>
         </div>
 
-
         {user && (
 
           <Box sx={{ marginTop: '3em',  display: 'flex',
@@ -1070,13 +1009,10 @@ function Home() {
                             className={`tesoura-icon ${isRiscada ? "riscado" : ""
                               }`}
 
-
                             onClick={(e) => {
                               e.stopPropagation();
                               handleRiscarAlternativa(question.ids, index);
                             }}
-
-
                           />
                         </Box>
 
@@ -1123,15 +1059,12 @@ function Home() {
                   </Typography>
                 </IconButton>
 
-
                 <IconButton sx={{ color: "#1c5253", marginLeft: '0.500em' }}>
                   <Link to="/MeuPerfil" target="_blank" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
                     <PollOutlinedIcon fontSize="small" sx={{ color: "#1c5253", backgroundColor: 'transparent' }} />
                     <Typography sx={{ fontSize: '0.550em', color: "#1c5253", marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500' }} color="error">Meu Desempenho</Typography>
                   </Link>
                 </IconButton>
-
-
 
                 <Container className="linha-horizontal-comentario"></Container>
 
@@ -1162,42 +1095,10 @@ function Home() {
                     }}
                   >
 
-
                     {question.comentario}
 
-
-
                   </p>
-
-
-
                 </Container>
-
-                {estatisticasVisiveis && (
-                  <Container className="campo-estatistica">
-                    {Object.entries(desempenhoPorDisciplina).map(
-                      ([disciplina, { acertos, erros }]) => {
-                        const data = [
-                          ["Tipo", "Quantidade"],
-                          ["Acertos", acertos],
-                          ["Erros", erros],
-                        ];
-                        const options = {
-                          is3D: true,
-                        };
-
-                        return (
-                          <PieChart
-                            key={disciplina}
-                            title={disciplina}
-                            data={data}
-                            options={options}
-                          />
-                        );
-                      }
-                    )}
-                  </Container>
-                )}
 
               </div>
             ))}
@@ -1314,105 +1215,3 @@ function Home() {
 }
 
 export default Home;
-
-// useEffect(() => {
-//   const unsubscribe = auth.onAuthStateChanged(async (user) => {
-//     if (user) {
-//       setUser(user);
-
-//       const userRef = doc(db, "users", user.uid);
-//       const userDoc = await getDoc(userRef);
-
-//       if (userDoc.exists()) {
-//         const userData = userDoc.data();
-//         const userDisplayName = userData.displayName;
-//         const userPaymentInfo = userData.paymentInfo;
-
-//         // Recupere as informações de desempenho do documento do usuário
-//         const desempenhoSalvo = userData.desempenhoPorDisciplina;
-
-//         // Atualize o estado desempenhoPorDisciplina com as informações recuperadas
-//         setDesempenhoPorDisciplina(desempenhoSalvo);
-
-//         // Recupere as informações de desempenho total do documento do usuário
-//         const desempenhoTotalSalvo = userData.desempenhoTotal || {
-//           acertos: 0,
-//           erros: 0,
-//         };
-
-//         // Atualize o estado desempenhoTotal com as informações recuperadas
-//         setDesempenhoTotal(desempenhoTotalSalvo);
-
-//         // Atualize o estado paymentInfo
-//         setPaymentInfo(userPaymentInfo);
-
-//         // Recupere a data de expiração do documento do usuário
-//         const expirationDate = userData.expirationDate;
-
-//         // Se expirationDate existir e não for nulo, atualize o estado
-//         if (expirationDate) {
-//           setCurrentDate(expirationDate.toDate().toLocaleDateString());
-//         }
-
-//         const paymentInfo = userDoc.data().paymentInfo;
-//         let maxQuestionsToDisplay = 0;
-//         let accessDurationDays = 0;
-
-//         // Defina maxQuestionsToDisplay com base no número máximo de questões disponíveis
-//         if (paymentInfo === 0 || paymentInfo === null) {
-//           maxQuestionsToDisplay = Math.min(15, questoesPagina.length);
-//           accessDurationDays = 1;
-//         } else if (paymentInfo === 1) {
-//           maxQuestionsToDisplay = questoesPagina.length;
-//           accessDurationDays = 30;
-//         } else if (paymentInfo === 6500) {
-//           maxQuestionsToDisplay = questoesPagina.length;
-//           accessDurationDays = 180;
-//         } else if (paymentInfo === 12000) {
-//           maxQuestionsToDisplay = questoesPagina.length;
-//           accessDurationDays = 365;
-//         }
-
-//         const totalPages = Math.ceil(
-//           questoesPagina.length / maxQuestionsToDisplay
-//         );
-
-//         setMaxQuestionsToDisplay(maxQuestionsToDisplay);
-
-//         const questionsToDisplay = questoesPagina.slice(
-//           0,
-//           maxQuestionsToDisplay
-//         );
-//         setQuestionsToShow(questionsToDisplay);
-
-//         setPaginaAtual(1);
-
-//         // const currentDate = new Date();
-
-//         // expirationDate.setDate(currentDate.getDate() + accessDurationDays);
-
-//         // await setDoc(userRef, { expirationDate }, { merge: true });
-
-//         // console.log(
-//         //   `Acesso concedido por ${accessDurationDays} dias a partir de ${currentDate.toISOString()}`
-//         // );
-//       } else {
-//         // Se o documento do usuário não existir, crie-o com paymentInfo ausente
-//         await setDoc(userRef, {
-//           expirationDate: null,
-//           paymentInfo: null,
-//           desempenhoTotal: {
-//             acertos: 0,
-//             erros: 0,
-//           },
-//         });
-
-//         console.log("Documento do usuário criado.");
-//       }
-//     } else {
-//       setUser(null);
-//     }
-//   });
-
-//   return () => unsubscribe();
-// }, [auth, maxQuestionsToDisplay]);

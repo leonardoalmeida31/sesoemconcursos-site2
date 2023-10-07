@@ -47,7 +47,7 @@
     margin-right: 0.450em; /* Espaçamento entre os filtros */
     margin-left: 0.300em; /* Espaçamento entre os filtros */
     justify-content: center;  
-    
+    font-family: 'Poppins';
     display: flex;
     flex-direction: column;
      background-color: white;

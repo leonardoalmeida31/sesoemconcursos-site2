@@ -7,7 +7,7 @@ import { getDocs, collection } from "firebase/firestore";
 
 import { getDatabase, ref, onValue } from 'firebase/database'
 
-function FiltroMulti({ firebaseApp, onFilterChange }) {
+function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
   const [selectedDisciplinas, setSelectedDisciplinas] = useState([]);
   const [selectedAssuntos, setSelectedAssuntos] = useState([]);
   const [assuntoOptions, setAssuntoOptions] = useState([]);
@@ -126,11 +126,11 @@ function FiltroMulti({ firebaseApp, onFilterChange }) {
           selectedAnos.length === 0 || selectedAnos.some((selected) => selected.value === item.ano);
         const areaMatch =
           selectedAreas.length === 0 || selectedAreas.some((selected) => selected.value === item.area);
-  
+
         const keywordsMatch =
           keywords.trim() === "" ||
           item.enunciado.toLowerCase().includes(keywords.toLowerCase());
-  
+
         return (
           disciplinaMatch &&
           assuntoMatch &&
@@ -141,23 +141,25 @@ function FiltroMulti({ firebaseApp, onFilterChange }) {
           keywordsMatch
         );
       });
-  
+
     setFilteredQuestoes(filteredQuestoes);
     onFilterChange(filteredQuestoes);
+    setPaginaAtual(1); // Redefina a página para 1 usando a prop
+
   };
-  
+
 
   return (
     <div className="filter-container">
-      <Box  className="div-filter2">
-        <TextField  
+      <Box className="div-filter2">
+        <TextField
           type="text"
           className="filter-input"
-          placeholder="Filtrar por palavra-chave"
+          placeholder="Filtrar por palavra-chave..."
           value={keywords}
           onChange={(e) => setKeywords(e.target.value)}
           size="small"
-
+          InputProps={{ style: { fontSize: '0.885em', color: 'black' } }} // Altere o valor do fontSize conforme necessário
         />
       </Box>
 
