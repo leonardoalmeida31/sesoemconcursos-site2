@@ -686,8 +686,8 @@ function Home() {
         >
           <Container maxWidth="x1">
             <Toolbar disableGutters>
-            <Avatar alt="SESO Logo" src={SESOLogo}   sx={{  width: 40,  height: 40,   marginRight: "0.100em",  }}
-      />
+            {/*<Avatar alt="SESO Logo" src={SESOLogo}   sx={{  width: 40,  height: 40,   marginRight: "0.100em",  }}
+      />*/}
               <Typography variant="h6" noWrap component="a" href="/" sx={{  mr: 3, display: { xs: "none", md: "flex" }, fontFamily: "Poppins", fontWeight: 500, letterSpacing: ".1rem", color: "inherit", textDecoration: "none", }}
               >
                 SESO em Concursos
