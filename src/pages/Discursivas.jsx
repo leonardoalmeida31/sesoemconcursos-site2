@@ -898,12 +898,42 @@ function Discursivas() {
             )}
 
             {user && (
-                <div>
+                <Box sx={{ justifyContent: 'center' }}>
                     <Typography sx={{ fontSize: '1em', fontWeight: 'bold', fontFamily: 'Poppins', textAlign: "center", paddingTop: '0.400em', color: "#1c5253" }}>
                         DISCURSIVAS
                     </Typography>
                     {/* <FiltroD onFilterChange={setQuestoesFiltradas} db={db} />*/}
-                </div>
+
+                    <Typography sx={{ fontSize: '1em', fontWeight: 'bold', fontFamily: 'Poppins', textAlign: "center", paddingTop: '0.400em', color: "#1c5253" }}>
+                        NO VÍDEO ABAIXO VEJA COMO ESTUDAR DISCURSIVAS PARA CONCURSOS
+                    </Typography>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            padding: '1em',
+                        }}
+                    >
+
+                        <iframe
+                            width="854"
+                            height="480"
+                            src="https://www.youtube.com/embed/uX-Xk86d_l0?si=K42ykJb0NM-VPIuF"
+                            title="YouTube video player"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                        ></iframe>
+                    </Box>
+                    <Box sx={{justifyContent: 'center', display: 'flex'}}>
+                      
+                        <a href="https://docs.google.com/document/d/11igAxtM4AKYgi-jYn6ISTEAte1kLz5CFKT5tyGjZ0h0/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+                            <Button>Toque aqui para acessar o texto com comando</Button>
+                        </a>
+                    </Box>
+                </Box>
+
             )}
             <Container className="fundo-Home">
                 <div className="logout-button-container">
@@ -1029,86 +1059,86 @@ function Discursivas() {
                     <div>
                         {paymentInfo === null ? (
                             <div>
-                            <p>Questões dicursivas exclusivas para Assinantes. <br></br>Assine para Responder.</p>
-                            <IconButton disabled>
-                              <LockIcon />
-                            </IconButton>
-                          </div>
+                                <p>Questões dicursivas exclusivas para Assinantes. <br></br>Assine para Responder.</p>
+                                <IconButton disabled>
+                                    <LockIcon />
+                                </IconButton>
+                            </div>
                         ) : (
                             <>
 
-                        {questoesPagina.map((question) => (
-                                <div key={question.id} className="question-container">
-                                    <Box className="cabecalho-disciplina">
-                                        <p>
-                                            ID: {question.ids}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            {question.disciplina}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            {question.assunto}
-                                        </p>
-                                    </Box>
-                                    <Box className="cabecalho-orgao">
-                                        <p>
-                                            <span style={{ color: "black" }}>Banca:</span> &nbsp;{question.banca}
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "black" }}>Ano:</span> &nbsp;{question.ano}
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "black" }}>Cargo: </span>&nbsp;{question.cargo}
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        </p>
-                                        <p><span style={{ color: "black" }}>Órgão: </span>&nbsp;  {question.concurso}</p>
-                                    </Box>
-                                    <p className="enunciado">{question.enunciado}</p>
-
-
-
-                                    <IconButton sx={{ color: "#1c5253", }}
-                                        className="button-comentario"
-                                        onClick={() => toggleComentario(question.ids)}
-                                    >
-                                        {" "}
-                                        <QuestionAnswerOutlinedIcon fontSize="small" sx={{ color: "#1c5253", backgroundColor: 'transparent' }} />
-                                        <Typography sx={{ fontSize: '0.550em', color: "#1c5253", marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500' }} color="error">Responder/Respostas
-                                        </Typography>
-                                    </IconButton>
-
-
-                                    <Container className="linha-horizontal-comentario"></Container>
-
-                                    <Container
-                                        className="campo-comentario"
-                                        style={{
-                                            // Impede que o texto quebre para a próxima linha
-                                            overflowX: "auto", // Adiciona a rolagem horizontal quando necessário
-                                        }}
-                                    >
-
-                                        <Box sx={{ paddingBottom: '2em', marginTop: '3em', marginBottom: '3em', backgroundColor: 'transparent' }} className={
-                                            comentariosVisiveis[question.ids]
-                                                ? "comentario visivel"
-                                                : "comentarios"
-                                        } >
-                                            <RDiscursivas question={question} db={db} user={user} />
+                                {questoesPagina.map((question) => (
+                                    <div key={question.id} className="question-container">
+                                        <Box className="cabecalho-disciplina">
+                                            <p>
+                                                ID: {question.ids}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                {question.disciplina}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                {question.assunto}
+                                            </p>
                                         </Box>
+                                        <Box className="cabecalho-orgao">
+                                            <p>
+                                                <span style={{ color: "black" }}>Banca:</span> &nbsp;{question.banca}
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "black" }}>Ano:</span> &nbsp;{question.ano}
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "black" }}>Cargo: </span>&nbsp;{question.cargo}
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </p>
+                                            <p><span style={{ color: "black" }}>Órgão: </span>&nbsp;  {question.concurso}</p>
+                                        </Box>
+                                        <p className="enunciado">{question.enunciado}</p>
 
-                                    </Container>
 
-                            </div>
 
-                            ))}
+                                        <IconButton sx={{ color: "#1c5253", }}
+                                            className="button-comentario"
+                                            onClick={() => toggleComentario(question.ids)}
+                                        >
+                                            {" "}
+                                            <QuestionAnswerOutlinedIcon fontSize="small" sx={{ color: "#1c5253", backgroundColor: 'transparent' }} />
+                                            <Typography sx={{ fontSize: '0.550em', color: "#1c5253", marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500' }} color="error">Responder/Respostas
+                                            </Typography>
+                                        </IconButton>
 
-                        <Box className="pagination">
-                            <button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
-                                Página Anterior
-                            </button>
-                            <span>
-                                {paginaAtual} de {totalPages}
-                            </span>
-                            <button
-                                onClick={handleNextPage}
-                            // disabled={paginaAtual >= totalPages || paymentInfo === 0 || paymentInfo === null}
-                            >
-                                Próxima Página
-                            </button>
-                        </Box>
-                        </>
+
+                                        <Container className="linha-horizontal-comentario"></Container>
+
+                                        <Container
+                                            className="campo-comentario"
+                                            style={{
+                                                // Impede que o texto quebre para a próxima linha
+                                                overflowX: "auto", // Adiciona a rolagem horizontal quando necessário
+                                            }}
+                                        >
+
+                                            <Box sx={{ paddingBottom: '2em', marginTop: '3em', marginBottom: '3em', backgroundColor: 'transparent' }} className={
+                                                comentariosVisiveis[question.ids]
+                                                    ? "comentario visivel"
+                                                    : "comentarios"
+                                            } >
+                                                <RDiscursivas question={question} db={db} user={user} />
+                                            </Box>
+
+                                        </Container>
+
+                                    </div>
+
+                                ))}
+
+                                <Box className="pagination">
+                                    <button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
+                                        Página Anterior
+                                    </button>
+                                    <span>
+                                        {paginaAtual} de {totalPages}
+                                    </span>
+                                    <button
+                                        onClick={handleNextPage}
+                                    // disabled={paginaAtual >= totalPages || paymentInfo === 0 || paymentInfo === null}
+                                    >
+                                        Próxima Página
+                                    </button>
+                                </Box>
+                            </>
                         )}
                     </div>
 

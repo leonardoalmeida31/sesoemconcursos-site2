@@ -686,19 +686,19 @@ function Home() {
         >
           <Container maxWidth="x1">
             <Toolbar disableGutters>
-            {/*<Avatar alt="SESO Logo" src={SESOLogo}   sx={{  width: 40,  height: 40,   marginRight: "0.100em",  }}
+              {/*<Avatar alt="SESO Logo" src={SESOLogo}   sx={{  width: 40,  height: 40,   marginRight: "0.100em",  }}
       />*/}
-              <Typography variant="h6" noWrap component="a" href="/" sx={{  mr: 3, display: { xs: "none", md: "flex" }, fontFamily: "Poppins", fontWeight: 500, letterSpacing: ".1rem", color: "inherit", textDecoration: "none", }}
+              <Typography variant="h6" noWrap component="a" href="/" sx={{ mr: 3, display: { xs: "none", md: "flex" }, fontFamily: "Poppins", fontWeight: 500, letterSpacing: ".1rem", color: "inherit", textDecoration: "none", }}
               >
                 SESO em Concursos
               </Typography>
 
               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-                <IconButton size="large" aria-label="account of current user"  aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenNavMenu} color="inherit"
+                <IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenNavMenu} color="inherit"
                 >
                   <MenuIcon />
                 </IconButton>
-                <Menu id="menu-appbar" anchorEl={anchorElNav} anchorOrigin={{ vertical: "bottom", horizontal: "left", }}   keepMounted  transformOrigin={{  vertical: "top", horizontal: "left", }} open={Boolean(anchorElNav)}  onClose={handleCloseNavMenu} sx={{ display: { xs: "block", md: "none" }, }}
+                <Menu id="menu-appbar" anchorEl={anchorElNav} anchorOrigin={{ vertical: "bottom", horizontal: "left", }} keepMounted transformOrigin={{ vertical: "top", horizontal: "left", }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: "block", md: "none" }, }}
                 >
                   {pages.map((page) => (
                     <MenuItem key={page} onClick={handleCloseNavMenu}>
@@ -747,14 +747,15 @@ function Home() {
                   </MenuItem>
                 </Menu>
               </Box>
-          
-              <Typography variant="h6"  noWrap component="a" href="/" sx={{  mr: 2, display: { xs: "flex", md: "none" },  flexGrow: 1,  fontFamily: "Poppins", fontWeight: 500, letterSpacing: ".1rem", color: "inherit",
-                  textDecoration: "none",
-                }}
+
+              <Typography variant="h6" noWrap component="a" href="/" sx={{
+                mr: 2, display: { xs: "flex", md: "none" }, flexGrow: 1, fontFamily: "Poppins", fontWeight: 500, letterSpacing: ".1rem", color: "inherit",
+                textDecoration: "none",
+              }}
               >
                 SESO em Concursos
               </Typography>
-             
+
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                 {pages.map((page) => (
                   <Link
@@ -767,7 +768,7 @@ function Home() {
                     </Button>
                   </Link>
                 ))}
-                   <MenuItem>
+                <MenuItem>
                   <Link to="/Discursivas" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
                     <Button sx={{ color: "white" }}>DISCURSIVAS</Button>
                   </Link>
@@ -825,10 +826,22 @@ function Home() {
                     </MenuItem>
                   ))}
                   <MenuItem>
+                    <a
+                      href="https://api.whatsapp.com/send?phone=5574981265381"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      Suporte WhatsApp
+                    </a>
+                  </MenuItem>
+                  
+                  <MenuItem>
                     <Typography onClick={signOut} sx={{ color: "black" }}>
                       Sair/Trocar Conta
                     </Typography>
                   </MenuItem>
+                  
                 </Menu>
               </Box>
             </Toolbar>
@@ -838,7 +851,7 @@ function Home() {
 
       {user && (
         <div>
-          <Typography   sx={{fontSize: '1em', fontWeight: 'bold', fontFamily: 'Poppins', textAlign: "center" ,  padding: '1em', paddingTop: '0.400em', color: "#1c5253"}}>
+          <Typography sx={{ fontSize: '1em', fontWeight: 'bold', fontFamily: 'Poppins', textAlign: "center", padding: '1em', paddingTop: '0.400em', color: "#1c5253" }}>
             A única plataforma de Questões de concursos especializada em Serviço Social
           </Typography>
           <FiltroMulti onFilterChange={setQuestoesFiltradas} setPaginaAtual={setPaginaAtual} db={db} />
@@ -940,8 +953,10 @@ function Home() {
 
         {user && (
 
-          <Box sx={{ marginTop: '3em',  display: 'flex',
-          flexDirection: isMobile ? 'column' : 'row',  }} border="1px solid #ccc" borderRadius={1} padding={2}>
+          <Box sx={{
+            marginTop: '3em', display: 'flex',
+            flexDirection: isMobile ? 'column' : 'row',
+          }} border="1px solid #ccc" borderRadius={1} padding={2}>
             <Select
               value={questoesPorPagina}
               onChange={(e) => setQuestoesPorPagina(Number(e.target.value))}
@@ -1147,9 +1162,9 @@ function Home() {
         )}
 
         {user && (
-          <Box className="Rodapé">
-            <Box className="Box-Rodapé2"></Box>
-            <Box className="Box-Rodapé">
+        <Box className="Rodapé">
+           
+          <Box className="Box-Rodapé">
               <p className="Texto-Rodapé">
                 <Link to="/" style={{ textDecoration: "none", color: "white" }}>
                   SESOEMCONCURSOS.COM.BR
@@ -1165,7 +1180,15 @@ function Home() {
                   Atendimento ao Cliente
                 </Link>
               </p>
-              <p className="Texto-Rodapé">Preços</p>
+              <p className="Texto-Rodapé">
+                <Link
+                  to="https://chat.whatsapp.com/F2vTpLRwvPm5be8llpsdVu"
+                  target="_blank"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  Grupo no WhatsApp
+                </Link>
+              </p>
               <p className="Texto-Rodapé">Quem Somos</p>
             </Box>
 
