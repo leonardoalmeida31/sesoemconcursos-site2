@@ -728,12 +728,14 @@ function Home() {
                     </Link>
                   </MenuItem>
                   <MenuItem>
-                    <Typography
-                      onClick={() => openModal()}
-                      sx={{ color: "black" }}
+                    <Link
+                      to="/Assinatura"
+                      style={{ textDecoration: "none" }}
                     >
-                      Assinar com cartão
-                    </Typography>
+                      <Typography sx={{ color: "black" }}>
+                        Assinar com Cartão
+                      </Typography>
+                    </Link>
                   </MenuItem>
                   <MenuItem>
                     <Link
@@ -787,9 +789,9 @@ function Home() {
                   </Link>
                 </MenuItem>
                 <MenuItem>
-                  <Button onClick={() => openModal()} sx={{ color: "white" }}>
-                    Assinar com cartão
-                  </Button>
+                  <Link to="/Assinatura" style={{ textDecoration: "none" }}>
+                    <Button sx={{ color: "white" }}>Assinar com Cartão</Button>
+                  </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/AssinaturaPix" style={{ textDecoration: "none" }}>
@@ -851,7 +853,7 @@ function Home() {
 
       {user && (
         <div>
-          <Typography sx={{ fontSize: '1em', fontWeight: 'bold', fontFamily: 'Poppins', textAlign: "center", padding: '1em', paddingTop: '0.400em', color: "#1c5253" }}>
+          <Typography sx={{ fontSize: '0.875em', fontWeight: '400', fontFamily: 'Poppins', textAlign: "center", padding: '1em', paddingTop: '0.400em', color: "#1c5253" }}>
             A única plataforma de Questões de concursos especializada em Serviço Social
           </Typography>
           <FiltroMulti onFilterChange={setQuestoesFiltradas} setPaginaAtual={setPaginaAtual} db={db} />
@@ -1170,7 +1172,7 @@ function Home() {
                   SESOEMCONCURSOS.COM.BR
                 </Link>
               </p>
-
+             
               <p className="Texto-Rodapé">
                 <Link
                   to="https://api.whatsapp.com/send?phone=5574981265381"
@@ -1190,6 +1192,7 @@ function Home() {
                 </Link>
               </p>
               <p className="Texto-Rodapé">Quem Somos</p>
+              <p className="Texto-Rodapé">Como usar o SESO em Concursos</p>
             </Box>
 
             <Box className="Box-Rodapé">
@@ -1221,7 +1224,15 @@ function Home() {
             </Box>
 
             <Box className="Box-Rodapé">
-              <p className="Texto-Rodapé">Instagram</p>
+            <p className="Texto-Rodapé">
+                <Link
+                  to="https://www.instagram.com/sesoemconcursos/"
+                  target="_blank"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  Instagram
+                </Link>
+              </p>
               <p className="Texto-Rodapé">Aulas</p>
               <p className="Texto-Rodapé">Planos de Estudos</p>
               <p className="Texto-Rodapé">Como usar o SESO em Concursos</p>

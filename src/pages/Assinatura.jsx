@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import FiltroD from "../FiltroD.jsx";
+import FiltroMulti from "../FiltroMulti.jsx";
 import { CaretRight, ChatCenteredText, ChartPie } from "@phosphor-icons/react";
 import "../App.css";
 import Chart from "react-google-charts";
 import PieChart from "../PieChart.jsx";
 import imagemSvg from "../img/img-login-1.svg";
+import SESOLogo from "../img/logo-seso-5.png";
 import { Link } from "react-router-dom";
 import MenuMui from "../MenuMui.jsx";
 import Grid from "@mui/material/Grid";
@@ -18,21 +19,12 @@ import ContentCutRoundedIcon from '@mui/icons-material/ContentCutRounded';
 import { loadStripe } from "@stripe/stripe-js";
 import AutoGraphOutlinedIcon from "@mui/icons-material/AutoGraphOutlined";
 import Container from "@mui/material/Container";
-import LockIcon from '@mui/icons-material/Lock';
-import Cronometro from './Cronometro.jsx';
+import { styled } from "@mui/system";
+import CheckIcon from '@mui/icons-material/Check';
+import ClearIcon from '@mui/icons-material/Clear';
+
 import {
-    Modal,
-    Button,
-    Typography,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableRow,
-    Paper,
-    ListItem,
-    List,
-    ListItemText
+    Modal, Button, Typography, Table, TableBody, TableCell, TableContainer, TableRow, Paper, ListItem, List, ListItemText
 } from "@mui/material";
 import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
 import PollOutlinedIcon from '@mui/icons-material/PollOutlined';
@@ -54,24 +46,13 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { useMediaQuery } from '@mui/material';
 import { initializeApp } from "firebase/app";
 import {
-    getDocs,
-    getFirestore,
-    collection,
-    doc,
-    setDoc,
-    getDoc,
-    updateDoc,
-    addDoc,
-    onSnapshot,
-    serverTimestamp,
-    query,
-    where, limit
+    getDocs, getFirestore, collection, doc, setDoc, getDoc, updateDoc, addDoc, onSnapshot, serverTimestamp, query, where,
 } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getDatabase, ref, onValue } from "firebase/database";
 import "firebase/database";
 import { useParams } from "react-router-dom";
-import RDiscursivas from "./RDiscursivas.jsx";
+import Comentarios from "./Comentarios.jsx";
 
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_REACT_APP_API_KEY,
@@ -89,23 +70,50 @@ const settingsLinks = {
     Perfil: "/MeuDesempenho",
 };
 
-function Discursivas() {
+const StyledCard = styled(Card)(({ theme }) => ({
+    backgroundColor: "#f0f0f0",
+    border: "1px solid #ccc",
+    borderRadius: "10px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-between",
+    height: "100%",
+}));
+
+const StyledCardContent = styled(CardContent)(({ theme }) => ({
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+}));
+
+const StyledPrice = styled(Typography)(({ theme }) => ({
+    fontSize: "2rem",
+    fontWeight: "bold",
+    color: "#007bff",
+    alignItems: "center"
+}));
+
+const StyledButton = styled(Button)(({ theme }) => ({
+    marginTop: "1rem",
+    backgroundColor: "#007bff",
+    color: "white",
+    '&:hover': {
+        backgroundColor: "#0056b3",
+    },
+}));
+
+function Assinatura() {
     const firebaseApp = initializeApp(firebaseConfig);
     const db = getFirestore(firebaseApp);
     const auth = getAuth(firebaseApp);
-    const questionsCollectionRef = collection(db, "discursivas");
+    // const questionsCollectionRef = collection(db, "questions");
     const [user, setUser] = useState(null);
     const [questoesPorPagina, setQuestoesPorPagina] = useState(5); // Defina o valor padrão como 10
 
     const [questions, setQuestions] = useState([]);
     const [paginaAtual, setPaginaAtual] = useState(1);
-    const [questoesFiltradas, setQuestoesFiltradas] = useState([]);
-    const [filtroBanca, setFiltroBanca] = useState(null);
-    const [filtroDisciplina, setFiltroDisciplina] = useState(null);
-    const [filtroAssunto, setFiltroAssunto] = useState(null);
-    const [filtroAno, setFiltroAno] = useState(null);
-    const [filtroModalidade, setFiltroModalidade] = useState(null);
-    const [filtroArea, setFiltroArea] = useState(null);
+
     const indiceInicial = (paginaAtual - 1) * questoesPorPagina;
     const isMobile = useMediaQuery('(max-width: 600px)');
 
@@ -302,89 +310,6 @@ function Discursivas() {
         return array;
     }
 
-    useEffect(() => {
-
-        const questionsCollectionRef = collection(db, "discursivas");
-
-        // Limite a consulta a 50 documentos
-        const queryWithLimit = query(questionsCollectionRef, limit(500));
-
-        const getQuestions = async () => {
-            const data = await getDocs(queryWithLimit);
-            setQuestions(
-                shuffleArray(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-            );
-        };
-        getQuestions();
-
-
-    }, []);
-
-
-    useEffect(() => {
-        const filtered = questions.filter((question) => {
-            return (
-                (!filtroBanca || question.banca === filtroBanca) &&
-                (!filtroDisciplina || question.disciplina === filtroDisciplina) &&
-                (!filtroAno || question.ano === filtroAno) &&
-                (!filtroAssunto || question.assunto === filtroAssunto) &&
-                (!filtroModalidade || question.modalidade === filtroModalidade)
-            );
-        });
-
-        setQuestoesFiltradas(filtered);
-        // Redefina a página para 1 quando um filtro for aplicado
-        setPaginaAtual(1); // Adicione esta linha para redefinir a página para 1
-    }, [
-        filtroBanca,
-        filtroDisciplina,
-        filtroAssunto,
-        filtroAno,
-        filtroModalidade,
-        filtroArea,
-        questions,
-    ]);
-
-    const questoesPagina = questoesFiltradas.slice(
-        indiceInicial,
-        indiceInicial + questoesPorPagina
-    );
-
-    const totalPages = Math.ceil(questoesFiltradas.length / questoesPorPagina);
-
-    const handlePreviousPage = () => {
-        if (paginaAtual > 1) {
-            setPaginaAtual(paginaAtual - 1);
-        }
-    };
-
-    const handleNextPage = () => {
-        if (paginaAtual < totalPages) {
-            setPaginaAtual(paginaAtual + 1);
-        }
-    };
-
-    const [alternativaSelecionada, setAlternativaSelecionada] = useState({});
-
-    const [resultados, setResultados] = useState({});
-
-    const handleAlternativaClick = (questionId, alternativaIndex) => {
-        const newAlternativaSelecionada = {
-            [questionId]: alternativaIndex,
-        };
-        setAlternativaSelecionada(newAlternativaSelecionada);
-    };
-
-    const [respostaCorreta, setRespostaCorreta] = useState(null);
-    const [acertos, setAcertos] = useState(0);
-    const [erros, setErros] = useState(0);
-    const [desempenhoPorDisciplina, setDesempenhoPorDisciplina] = useState({});
-
-    const [desempenhoTotal, setDesempenhoTotal] = useState({
-        acertos: 0,
-        erros: 0,
-    });
-
     const [cliques, setCliques] = useState(null);
     const handleRespostaClick = async (question) => {
         // Verifique se a resposta do usuário está correta
@@ -515,28 +440,9 @@ function Discursivas() {
         }
     }, [user]);
 
-    const verificarResposta = async (question) => {
-        const questionId = question.ids;
 
-        const respostaCorreta = question.resposta.charCodeAt(0) - 65;
 
-        // Verificar se a disciplina já está no estado de desempenho
-        const disciplina = question.disciplina;
 
-        if (alternativaSelecionada === respostaCorreta) {
-        } else {
-        }
-    };
-
-    const [comentariosVisiveis, setComentariosVisiveis] = useState({});
-
-    const toggleComentario = (questionId) => {
-        console.log("Toggled comentario for questionId:", questionId);
-        setComentariosVisiveis((prevVisiveis) => ({
-            ...prevVisiveis,
-            [questionId]: !prevVisiveis[questionId],
-        }));
-    };
 
     const handleCheckout = async ({ }) => {
         const stripe = await stripePromise;
@@ -634,115 +540,85 @@ function Discursivas() {
         // Outros estilos personalizados para o modal, se necessário
     };
 
-    <FiltroD onFilterChange={setQuestoesFiltradas} db={db} />;
 
-    const [estatisticasVisiveis, setEstatisticasVisiveis] = useState(false);
+    const planos = [
+        {
+            nome: "Mensal",
+            preco: "R$ 11,99/mês",
+            beneficios: [
+                { texto: "Resolução de Questões Ilimitadas", icone: <CheckIcon style={{ color: "#1c5253" }} /> },
+                { texto: "Comentários de professores", icone: <CheckIcon style={{ color: "#1c5253" }} /> },
+                { texto: "Questões Discursivas Liberadas", icone: <CheckIcon style={{ color: "#1c5253" }} /> },
+                { texto: "Acesso ao gráfico de Desempenho Ilimitado", icone: <CheckIcon style={{ color: "#1c5253" }} /> },
+                { texto: "Participar do Ranking de Desempenho do Site", icone: <CheckIcon style={{ color: "#1c5253" }} /> },
+                { texto: "Maior custo a longo prazo", icone: <ClearIcon style={{ color: "#ff0000" }} /> },
+            ],
+        },
+        {
+            nome: "Semestral",
+            preco: "R$ 60,00/a cada 6 meses",
+            beneficios: [
+                { texto: "Resolução de Questões Ilimitadas", icone: <CheckIcon style={{ color: "#1c5253" }} /> },
+                { texto: "Comentários de professores", icone: <CheckIcon style={{ color: "#1c5253" }} /> },
+                { texto: "Questões Discursivas Liberadas", icone: <CheckIcon style={{ color: "#1c5253" }} /> },
+                { texto: "Acesso ao gráfico de Desempenho Ilimitado", icone: <CheckIcon style={{ color: "#1c5253" }} /> },
+                { texto: "Participar do Ranking de Desempenho do Site", icone: <CheckIcon style={{ color: "#1c5253" }} /> },
+                { texto: "Plano mais popular", icone: <CheckIcon style={{ color: "#1c5253" }} /> },
 
-    const [alternativasRiscadasPorQuestao, setAlternativasRiscadasPorQuestao] =
-        useState({});
+            ],
+        },
+        {
+            nome: "Anual",
+            preco: "R$ 120,00/a cada 12 meses",
+            beneficios: [
+                { texto: "Resolução de Questões Ilimitadas", icone: <CheckIcon style={{ color: "#1c5253" }} /> },
+                { texto: "Comentários de professores", icone: <CheckIcon style={{ color: "#1c5253" }} /> },
+                { texto: "Questões Discursivas Liberadas", icone: <CheckIcon style={{ color: "#1c5253" }} /> },
+                { texto: "Acesso ao gráfico de Desempenho Ilimitado", icone: <CheckIcon style={{ color: "#1c5253" }} /> },
+                { texto: "Participar do Ranking de Desempenho do Site", icone: <CheckIcon style={{ color: "#1c5253" }} /> },
+                { texto: "Maior desconto", icone: <CheckIcon style={{ color: "#1c5253" }} /> },
 
-    const handleRiscarAlternativa = (questionId, index) => {
-        setAlternativasRiscadasPorQuestao((prev) => ({
-            ...prev,
-            [questionId]: {
-                ...prev[questionId],
-                [index]: !prev[questionId]?.[index], // Inverte o valor atual (riscado ou não)
-            },
-        }));
-    };
+            ],
+        },
+    ];
 
-    const bull = (
-        <Box
-            component="span"
-            sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-        >
-            •
-        </Box>
-    );
 
-    const card = (
-        <React.Fragment>
-            <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    Você pode responder apenas 15 questões por dia.
-                </Typography>
 
-                <Typography
-                    sx={{ fontSize: 18, color: "black" }}
-                    color="text.secondary"
-                >
-                    Assine para responder questões ilimitadas todos os dias!
-                </Typography>
-            </CardContent>
-            <CardActions>
-                <Button onClick={() => openModal()} size="small">
-                    Assinar agora
-                </Button>
-            </CardActions>
-        </React.Fragment>
-    );
 
     return (
         <div className="Home">
             {user && (
                 <AppBar
-                    sx={{ backgroundColor: "#1c5253", marginBottom: "1em" }}
-                    position="static"
+                    sx={{ backgroundColor: "#1c5253", marginBottom: "1em" }} position="static"
                 >
-                    <Container maxWidth="xl">
+                    <Container maxWidth="x1">
                         <Toolbar disableGutters>
-                            <Typography
-                                variant="h6"
-                                noWrap
-                                component="a"
-                                href="/"
-                                sx={{
-                                    mr: 5,
-                                    display: { xs: "none", md: "flex" },
-                                    fontFamily: "monospace",
-                                    fontWeight: 600,
-                                    letterSpacing: ".1rem",
-                                    color: "inherit",
-                                    textDecoration: "none",
-                                }}
+                            {/*<Avatar alt="SESO Logo" src={SESOLogo}   sx={{  width: 40,  height: 40,   marginRight: "0.100em",  }}
+      />*/}
+                            <Typography variant="h6" noWrap component="a" href="/" sx={{ mr: 3, display: { xs: "none", md: "flex" }, fontFamily: "Poppins", fontWeight: 500, letterSpacing: ".1rem", color: "inherit", textDecoration: "none", }}
                             >
                                 SESO em Concursos
                             </Typography>
 
                             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-                                <IconButton
-                                    size="large"
-                                    aria-label="account of current user"
-                                    aria-controls="menu-appbar"
-                                    aria-haspopup="true"
-                                    onClick={handleOpenNavMenu}
-                                    color="inherit"
+                                <IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenNavMenu} color="inherit"
                                 >
                                     <MenuIcon />
                                 </IconButton>
-                                <Menu
-                                    id="menu-appbar"
-                                    anchorEl={anchorElNav}
-                                    anchorOrigin={{
-                                        vertical: "bottom",
-                                        horizontal: "left",
-                                    }}
-                                    keepMounted
-                                    transformOrigin={{
-                                        vertical: "top",
-                                        horizontal: "left",
-                                    }}
-                                    open={Boolean(anchorElNav)}
-                                    onClose={handleCloseNavMenu}
-                                    sx={{
-                                        display: { xs: "block", md: "none" },
-                                    }}
+                                <Menu id="menu-appbar" anchorEl={anchorElNav} anchorOrigin={{ vertical: "bottom", horizontal: "left", }} keepMounted transformOrigin={{ vertical: "top", horizontal: "left", }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: "block", md: "none" }, }}
                                 >
                                     {pages.map((page) => (
                                         <MenuItem key={page} onClick={handleCloseNavMenu}>
                                             <Typography textAlign="center">{page}</Typography>
                                         </MenuItem>
                                     ))}
+                                    <MenuItem>
+                                        <Link to="/Discursivas" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
+                                            <Typography sx={{ color: "black" }}>
+                                                Discursivas
+                                            </Typography>
+                                        </Link>
+                                    </MenuItem>
                                     <MenuItem>
                                         <Link to="/MeuPerfil" style={{ textDecoration: "none" }}>
                                             <Typography sx={{ color: "black" }}>
@@ -779,24 +655,14 @@ function Discursivas() {
                                 </Menu>
                             </Box>
 
-                            <Typography
-                                variant="h6"
-                                noWrap
-                                component="a"
-                                href="/"
-                                sx={{
-                                    mr: 2,
-                                    display: { xs: "flex", md: "none" },
-                                    flexGrow: 1,
-                                    fontFamily: "monospace",
-                                    fontWeight: 500,
-                                    letterSpacing: ".1rem",
-                                    color: "inherit",
-                                    textDecoration: "none",
-                                }}
+                            <Typography variant="h6" noWrap component="a" href="/" sx={{
+                                mr: 2, display: { xs: "flex", md: "none" }, flexGrow: 1, fontFamily: "Poppins", fontWeight: 500, letterSpacing: ".1rem", color: "inherit",
+                                textDecoration: "none",
+                            }}
                             >
                                 SESO em Concursos
                             </Typography>
+
                             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                                 {pages.map((page) => (
                                     <Link
@@ -809,7 +675,11 @@ function Discursivas() {
                                         </Button>
                                     </Link>
                                 ))}
-
+                                <MenuItem>
+                                    <Link to="/Discursivas" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
+                                        <Button sx={{ color: "white" }}>DISCURSIVAS</Button>
+                                    </Link>
+                                </MenuItem>
                                 <MenuItem>
                                     <Link to="/MeuPerfil" style={{ textDecoration: "none" }}>
                                         <Button sx={{ color: "white" }}>Meu Desempenho</Button>
@@ -863,10 +733,22 @@ function Discursivas() {
                                         </MenuItem>
                                     ))}
                                     <MenuItem>
+                                        <a
+                                            href="https://api.whatsapp.com/send?phone=5574981265381"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            style={{ textDecoration: "none", color: "black" }}
+                                        >
+                                            Suporte WhatsApp
+                                        </a>
+                                    </MenuItem>
+
+                                    <MenuItem>
                                         <Typography onClick={signOut} sx={{ color: "black" }}>
                                             Sair/Trocar Conta
                                         </Typography>
                                     </MenuItem>
+
                                 </Menu>
                             </Box>
                         </Toolbar>
@@ -874,284 +756,34 @@ function Discursivas() {
                 </AppBar>
             )}
 
-            {false && (
-                // Este bloco de código não será executado
-                <Container className="div-menu">
-                    <button className="open-button" onClick={openModal}>
-                        Assinar com cartão
-                    </button>
-
-                    <Link
-                        to="/AssinaturaPix"
-                        className="open-button"
-                        href="https://api.whatsapp.com/send?phone=5574981265381&text=Quero%20Asssinar%20por%20Pix"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <button className="open-button">Assinar com Pix</button>
-                    </Link>
-
-                    <button onClick={signOut} className="logout-button">
-                        Sair/Entrar
-                    </button>
-                </Container>
-            )}
-
             {user && (
-                <Box sx={{ justifyContent: 'center' }}>
-                    <Typography sx={{ fontSize: '1em', fontWeight: 'bold', fontFamily: 'Poppins', textAlign: "center", paddingTop: '0.400em', color: "#1c5253" }}>
-                        DISCURSIVAS
-                    </Typography>
-                    {/* <FiltroD onFilterChange={setQuestoesFiltradas} db={db} />*/}
+                <div>
 
 
-                    {paymentInfo === null ? (
-                        <div>
-                            <p><br></br></p>
-                          
-                        </div>
-                    ) : (
-                        <>
-                            <Typography sx={{ fontSize: '1em', fontWeight: 'bold', fontFamily: 'Poppins', textAlign: "center", paddingTop: '0.400em', color: "#1c5253" }}>
-                                NO VÍDEO ABAIXO VEJA COMO ESTUDAR DISCURSIVAS PARA CONCURSOS
-                            </Typography>
-
-                            <Box
-                                sx={{
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    padding: '1em',
-                                }}
-                            >
-
-                                <iframe
-                                    width="854"
-                                    height="480"
-                                    src="https://www.youtube.com/embed/uX-Xk86d_l0?si=K42ykJb0NM-VPIuF"
-                                    title="YouTube video player"
-                                    frameBorder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowFullScreen
-                                ></iframe>
-                            </Box>
-                            <Box sx={{ justifyContent: 'center', display: 'flex' }}>
-
-                                <a href="https://docs.google.com/document/d/11igAxtM4AKYgi-jYn6ISTEAte1kLz5CFKT5tyGjZ0h0/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
-                                    <Button>Toque aqui para acessar o texto com comando</Button>
-                                </a>
-                            </Box>
-                        </>
-                    )}
-                </Box>
-
+                </div>
             )}
             <Container className="fundo-Home">
                 <div className="logout-button-container">
-                    <Modal
-                        open={modalOpen}
-                        onClose={closeModal}
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            flexDirection: "column",
-                        }}
-                    >
-                        <Box
-                            className="modal-content"
-                            sx={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                flexDirection: "column",
-                                padding: "15px",
-                                borderRadius: "8px",
-                                textAlign: "center",
-                                width: "80%",
-                                maxWidth: "500px",
-                                backgroundColor: "#f4f4f4", // Cor de fundo do modal
-                            }}
-                        >
-                            <Typography variant="h5">
-                                Conheça Nossos Planos de Assinatura
-                            </Typography>
 
-                            <TableContainer component={Paper}>
-                                <Table>
-                                    <TableBody>
-                                        <TableRow>
-                                            <TableCell>Plano Gratuito</TableCell>
-                                            <TableCell>
-                                                <ul>
-                                                    <li>Responda até 15 questões por dia</li>
-                                                    <li>Comentários Limitados</li>
-                                                </ul>
-                                            </TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Plano Mensal</TableCell>
-                                            <TableCell>
-                                                <ul>
-                                                    <li>Resolução de Questões Ilimitadas</li>
-                                                    <li>Comentários Ilimitados</li>
-                                                </ul>
-                                                <Button variant="contained" onClick={handleCheckout}>
-                                                    Assinar Agora
-                                                </Button>
-                                            </TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Plano Semestral</TableCell>
-                                            <TableCell>
-                                                <ul>
-                                                    <li>Resolução de Questões Ilimitadas</li>
-                                                    <li>Comentários Ilimitados</li>
-                                                </ul>
-                                                <Button variant="contained" onClick={handleCheckoutS}>
-                                                    Assinar Agora
-                                                </Button>
-                                            </TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Plano Anual</TableCell>
-                                            <TableCell>
-                                                <ul>
-                                                    <li>Resolução de Questões Ilimitadas</li>
-                                                    <li>Comentários Ilimitados</li>
-                                                </ul>
-                                                <Button variant="contained" onClick={handleCheckoutA}>
-                                                    Assinar Agora
-                                                </Button>
-                                            </TableCell>
-                                        </TableRow>
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-
-                            <Button
-                                variant="contained"
-                                color="secondary"
-                                onClick={closeModal}
-                            >
-                                Fechar
-                            </Button>
-                        </Box>
-                    </Modal>
                 </div>
-
-
-                {user && (
-
-                    <Box sx={{
-                        marginTop: '2em', display: 'flex',
-                        flexDirection: isMobile ? 'column' : 'row',
-                    }} border="1px solid #ccc" borderRadius={1} padding={2}>
-                        <Select
-                            value={questoesPorPagina}
-                            onChange={(e) => setQuestoesPorPagina(Number(e.target.value))}
-                            size="small"
-                            sx={{ backgroundColor: '#f2f2f2', fontSize: '0.800em', fontFamily: 'Poppins' }}
-                        >
-                            <MenuItem value={1}>1 Questão por página</MenuItem>
-                            <MenuItem value={5}>5 Questões por página</MenuItem>
-                            <MenuItem value={10}>10 Questões por página</MenuItem>
-                            <MenuItem value={15}>15 Questões por página</MenuItem>
-                            <MenuItem value={20}>20 Questões por página</MenuItem>
-                        </Select>
-
-                        <Cronometro /> {/* Renderize o componente Cronometro aqui */}
-
-                    </Box>)}
 
                 {user ? (
 
+                    <Box sx={{ display: "flex", justifyContent: "space-around", padding: "1em" }}>
+                        <Button variant="contained" onClick={handleCheckout} sx={{ marginRight: "10px" }}>
+                            Assinar MENSAL
+                        </Button>
 
-                    <div>
-                        {paymentInfo === null ? (
-                            <div>
-                                <p>Questões dicursivas exclusivas para Assinantes. <br></br>Assine para Responder.</p>
-                                <IconButton disabled>
-                                    <LockIcon />
-                                </IconButton>
-                            </div>
-                        ) : (
-                            <>
+                        <Button variant="contained" onClick={handleCheckoutS} sx={{ marginRight: "10px" }}>
+                            Assinar SEMESTRAL
+                        </Button>
 
-                                {questoesPagina.map((question) => (
-                                    <div key={question.id} className="question-container">
-                                        <Box className="cabecalho-disciplina">
-                                            <p>
-                                                ID: {question.ids}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                {question.disciplina}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                {question.assunto}
-                                            </p>
-                                        </Box>
-                                        <Box className="cabecalho-orgao">
-                                            <p>
-                                                <span style={{ color: "black" }}>Banca:</span> &nbsp;{question.banca}
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "black" }}>Ano:</span> &nbsp;{question.ano}
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "black" }}>Cargo: </span>&nbsp;{question.cargo}
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            </p>
-                                            <p><span style={{ color: "black" }}>Órgão: </span>&nbsp;  {question.concurso}</p>
-                                        </Box>
-                                        <p className="enunciado">{question.enunciado}</p>
+                        <Button variant="contained" onClick={handleCheckoutA} sx={{ marginRight: "10px" }}>
+                            Assinar ANUAL
+                        </Button>
 
-
-
-                                        <IconButton sx={{ color: "#1c5253", }}
-                                            className="button-comentario"
-                                            onClick={() => toggleComentario(question.ids)}
-                                        >
-                                            {" "}
-                                            <QuestionAnswerOutlinedIcon fontSize="small" sx={{ color: "#1c5253", backgroundColor: 'transparent' }} />
-                                            <Typography sx={{ fontSize: '0.550em', color: "#1c5253", marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500' }} color="error">Responder/Respostas
-                                            </Typography>
-                                        </IconButton>
-
-
-                                        <Container className="linha-horizontal-comentario"></Container>
-
-                                        <Container
-                                            className="campo-comentario"
-                                            style={{
-                                                // Impede que o texto quebre para a próxima linha
-                                                overflowX: "auto", // Adiciona a rolagem horizontal quando necessário
-                                            }}
-                                        >
-
-                                            <Box sx={{ paddingBottom: '2em', marginTop: '3em', marginBottom: '3em', backgroundColor: 'transparent' }} className={
-                                                comentariosVisiveis[question.ids]
-                                                    ? "comentario visivel"
-                                                    : "comentarios"
-                                            } >
-                                                <RDiscursivas question={question} db={db} user={user} />
-                                            </Box>
-
-                                        </Container>
-
-                                    </div>
-
-                                ))}
-
-                                <Box className="pagination">
-                                    <button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
-                                        Página Anterior
-                                    </button>
-                                    <span>
-                                        {paginaAtual} de {totalPages}
-                                    </span>
-                                    <button
-                                        onClick={handleNextPage}
-                                    // disabled={paginaAtual >= totalPages || paymentInfo === 0 || paymentInfo === null}
-                                    >
-                                        Próxima Página
-                                    </button>
-                                </Box>
-                            </>
-                        )}
-                    </div>
+                        
+                    </Box>
 
                 ) : (
                     <Box className="login">
@@ -1176,19 +808,34 @@ function Discursivas() {
                     </Box>
                 )}
 
-                {user && (
-                    <Box className="Rodapé">
-                        <Box className="Box-Rodapé2"></Box>
+                <Container>
+                    <Grid container spacing={3}>
+                        {planos.map((plano, index) => (
+                            <Grid item xs={15} sm={6} md={4} key={index}>
+                                <StyledCard>
+                                    <StyledCardContent>
+                                        <Typography variant="h6" component="div">
+                                            {plano.nome}
+                                        </Typography>
+                                        <StyledPrice sx={{ fontSize: "1.2em", color: "#1c5253" }}>{plano.preco}</StyledPrice>
+                                        <List>
+                                            {plano.beneficios.map((beneficio, idx) => (
+                                                <ListItem key={idx}>
+                                                    {beneficio.icone}
+                                                    <ListItemText primary={beneficio.texto} />
+                                                </ListItem>
+                                            ))}
+                                        </List>
+                                    </StyledCardContent>
+                                </StyledCard>
+                            </Grid>
+                        ))}
+                    </Grid>
 
-                        <Box className="Box-Rodapé1">
-                            <p className="Texto-Rodapé1">© 2023 - SESO em Concursos</p>
-                        </Box>
-                    </Box>
-                )}
+                </Container>
             </Container>
         </div>
     );
 }
 
-export default Discursivas;
-
+export default Assinatura;
