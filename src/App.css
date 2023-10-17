@@ -172,6 +172,8 @@
     font-weight: 400;
     font-family: Poppins;
     margin-top: 1.5em;
+    margin-left: 1em;
+    margin-right: 0.200em;
     white-space: pre-line; /* Adiciona quebras de linha */
     justify-content: flex-start;
     padding: 0.300em;
@@ -182,6 +184,7 @@
     cursor: pointer;
     padding-left: 1em; /* Adiciona espaço para a letra */
     border-radius: 5px;
+    text-align: left;
     margin: 15px;
     font-size: 0.865em;
     font-weight: 400;
@@ -202,8 +205,8 @@
   
   .letra-alternativa-circle {
     display: inline-block;
-    width: 24px;
-    height: 24px;
+    width: 25px;
+    height: 25px;
     border: 1px solid black;
     border-radius: 100%;
     text-align: center;
@@ -211,6 +214,7 @@
     line-height: 22px;
     font-weight: bold;
     margin-right: 5px;
+    
     color: black;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
@@ -235,7 +239,8 @@
     border: none;
     padding: 0.450em 1em;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 15px;
+    margin-left: 15px;
     font-family: Poppins;
     border-radius: 5px;
     font-size: 0.900em;
@@ -281,7 +286,8 @@
   }
   
   .linha-horizontal-comentario {
-    border-top: 2px solid #1c52533a;
+    border-top: 2px solid #1c52531e;
+    
     margin-bottom: 0px;
   }
   
@@ -558,7 +564,8 @@
     width: 100%;
     background-color: #1c5253;
     font-weight: 400;
-    border-radius: 5px;
+   border-top-right-radius: 7px;
+   border-top-left-radius: 7px;
     
   }
   

@@ -9,7 +9,9 @@ import { Link } from 'react-router-dom';
 import MenuMui from '../MenuMui.jsx';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-
+import IconButton from '@mui/material/IconButton';
+import RefreshIcon from '@mui/icons-material/Refresh'; // Use o ícone apropriado
+import Typography from '@mui/material/Typography';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
@@ -155,16 +157,16 @@ function MeuPerfil() {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         setUser(user);
-  
+
         const userRef = doc(db, "users", user.uid);
         const userDoc = await getDoc(userRef);
-  
+
         if (userDoc.exists()) {
           const userData = userDoc.data();
           const userDisplayName = userData.displayName;
           const userEmail = userData.email;
           const userPhotoURL = user.photoURL; // Obtenha a URL da foto do perfil do usuário
-  
+
           setDisplayName(userDisplayName);
           setEmail(userEmail); // Atualize o estado com o email
           setPhotoURL(userPhotoURL); // Atualize o estado com a URL da foto
@@ -175,11 +177,11 @@ function MeuPerfil() {
         setUser(null);
       }
     });
-  
+
     return () => unsubscribe();
   }, [auth, maxQuestionsToDisplay]);
-  
-  
+
+
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -266,110 +268,6 @@ function MeuPerfil() {
   const [acertos, setAcertos] = useState(0);
   const [erros, setErros] = useState(0);
   const [desempenhoPorDisciplina, setDesempenhoPorDisciplina] = useState({});
-
-
-  // const handleRespostaClick = async (question) => {
-
-
-  //   // Verifique se a resposta do usuário está correta
-  //   const respostaUsuario = alternativaSelecionada[question.ids];
-  //   const respostaCorreta = question.resposta.charCodeAt(0) - 65;
-  //   const questaoId = question.ids;
-
-  //   const resultadoQuestao = respostaUsuario === respostaCorreta;
-
-  //   // Atualize o estado dos resultados com o resultado da questão
-  //   setResultados((prevResultados) => ({
-  //     ...prevResultados,
-  //     [questaoId]: resultadoQuestao,
-  //   }));
-
-  //   if (respostaUsuario === respostaCorreta) {
-  //     setRespostaCorreta(true); // A resposta do usuário está correta
-  //     setAcertos(acertos + 1); // Incrementa o número de acertos
-  //     setDesempenhoPorDisciplina((prevDesempenho) => {
-
-  //       const disciplina = question.disciplina;
-  //       return {
-  //         ...prevDesempenho,
-  //         [disciplina]: {
-  //           acertos: (prevDesempenho[disciplina]?.acertos || 0) + 1,
-  //           erros: prevDesempenho[disciplina]?.erros || 0,
-  //         },
-  //       };
-  //     });
-  //   } else {
-  //     setRespostaCorreta(false); // A resposta do usuário está incorreta
-  //     setErros(erros + 1); // Incrementa o número de erros
-  //     setDesempenhoPorDisciplina((prevDesempenho) => {
-  //       const disciplina = question.disciplina;
-  //       return {
-  //         ...prevDesempenho,
-  //         [disciplina]: {
-  //           acertos: prevDesempenho[disciplina]?.acertos || 0,
-  //           erros: (prevDesempenho[disciplina]?.erros || 0) + 1,
-  //         },
-  //       };
-  //     });
-  //   }
-  //   // Salvar as informações de desempenho no Firebase
-  //   if (user) {
-  //     const userRef = doc(db, "users", user.uid);
-
-  //     // Obtenha o documento do usuário
-  //     const userDoc = await getDoc(userRef);
-
-  //     if (userDoc.exists()) {
-  //       const userData = userDoc.data();
-
-  //       // Recupere as informações de desempenho do documento do usuário
-  //       const desempenhoSalvo = userData.desempenhoPorDisciplina;
-
-  //       // Atualize as informações de desempenho no documento do usuário
-  //       await setDoc(userRef, { desempenhoPorDisciplina }, { merge: true });
-  //     }
-  //   }
-
-
-
-
-  //   if (!user) {
-  //     // O usuário não está autenticado, redirecione para a página de login
-  //     console.log("Usuário não autenticado.");
-  //     // Redirecionar para a página de login ou mostrar uma mensagem
-  //     return;
-  //   }
-
-  //   // Verifique se a assinatura é igual a zero ou null
-  //   if (paymentInfo === null || paymentInfo === 0) {
-  //     // O usuário não tem uma assinatura
-
-  //     // Verifique se é um novo dia
-  //     const newDate = new Date().toLocaleDateString();
-  //     if (newDate !== currentDate) {
-  //       // Reinicie a contagem para o novo dia
-  //       setCurrentDate(newDate);
-  //       setAnsweredCount(0);
-  //     }
-
-  //     // Verifique se o usuário atingiu o limite de 15 respostas hoje
-  //     if (answeredCount >= 15) {
-  //       console.log("Você atingiu o limite de 15 respostas hoje.");
-  //       // Exiba uma mensagem informando que o usuário atingiu o limite
-  //       return;
-  //     }
-
-  //     // Permita que o usuário responda à questão e atualize a contagem
-  //     verificarResposta(question);
-  //     setAnsweredCount(answeredCount + 1);
-  //   } else {
-  //     // O usuário tem uma assinatura válida, permita que ele responda à questão
-  //     verificarResposta(question);
-  //   }
-  // };
-
-
-
   const verificarResposta = async (question) => {
     const questionId = question.ids;
 
@@ -445,24 +343,86 @@ function MeuPerfil() {
     (desempenhoTotal?.acertos || 0) + (desempenhoTotal?.erros || 0);
 
 
+
+  const [disciplinaSelecionadaParaZerar, setDisciplinaSelecionadaParaZerar] = useState(null);
+
+  const zerarDesempenhoPorDisciplina = async () => {
+    if (!user) {
+      // Verifique se o usuário está autenticado
+      console.log("Usuário não autenticado.");
+      // Você pode redirecionar o usuário para fazer login ou exibir uma mensagem de erro.
+      return;
+    }
+
+    const userRef = doc(db, "users", user.uid);
+
+    if (!disciplinaSelecionada) {
+      console.log("Selecione uma disciplina para zerar o desempenho.");
+      // Exiba uma mensagem informando ao usuário para selecionar uma disciplina.
+      return;
+    }
+
+    try {
+      // Crie um objeto vazio para representar o desempenho por disciplina zerado
+      const desempenhoZerado = { ...desempenhoPorDisciplina };
+      delete desempenhoZerado[disciplinaSelecionada];
+
+      // Atualize os dados no Firebase para zerar o desempenho da disciplina selecionada do usuário
+      await updateDoc(userRef, { desempenhoPorDisciplina: desempenhoZerado });
+
+      // Atualize o estado local para refletir o desempenho zerado
+      setDesempenhoPorDisciplina(desempenhoZerado);
+      console.log(`Desempenho da disciplina ${disciplinaSelecionada} zerado com sucesso!`);
+    } catch (error) {
+      console.error(`Erro ao zerar o desempenho da disciplina ${disciplinaSelecionada}:`, error);
+      // Lidar com erros, exibir mensagens de erro, etc.
+    }
+  };
+
+
+  const zerarDesempenhoTotal = async () => {
+    if (!user) {
+      // Verifique se o usuário está autenticado
+      console.log("Usuário não autenticado.");
+      // Você pode redirecionar o usuário para fazer login ou exibir uma mensagem de erro.
+      return;
+    }
+  
+    const userRef = doc(db, "users", user.uid);
+  
+    try {
+      // Atualize os dados no Firebase para zerar o desempenho total do usuário
+      await updateDoc(userRef, { desempenhoTotal: { acertos: 0, erros: 0 } });
+  
+      // Atualize o estado local para refletir o desempenho total zerado
+      setDesempenhoTotal({ acertos: 0, erros: 0 });
+      console.log("Desempenho total zerado com sucesso!");
+    } catch (error) {
+      console.error("Erro ao zerar o desempenho total:", error);
+      // Lidar com erros, exibir mensagens de erro, etc.
+    }
+  };
+  
+  
+
   return (
 
     <Container className="ContainerTotal">
 
-<Box className="box-user">
-{photoURL && (
-  <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-    <img src={photoURL} alt="Foto do usuário" className="user-photo" style={{ borderRadius: "50%" }} />
-  </div>
-)}
-  <p className="nome-user2">Olá, {displayName}</p>
-  {email && <p className="nome-user2">Email: {email}</p>}
-  
+      <Box className="box-user">
+        {photoURL && (
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <img src={photoURL} alt="Foto do usuário" className="user-photo" style={{ borderRadius: "50%" }} />
+          </div>
+        )}
+        <p className="nome-user2">Olá, {displayName}</p>
+        {email && <p className="nome-user2">Email: {email}</p>}
 
 
 
 
-</Box>
+
+      </Box>
 
 
       <p className="p-desempenho-geral">CONFIRA SEU DESEMPENHO GERAL</p>
@@ -495,11 +455,23 @@ function MeuPerfil() {
         <div style={{ textAlign: 'center' }}>
           <p className="acertos">{totalQuestoesRespondidas} Questões Resolvidas</p>
         </div>
+
+        <Box sx={{display: "flex",justifyContent: "center"}}>
+              <IconButton
+          onClick={zerarDesempenhoTotal}
+           sx={{color: "white", justifyContent: "center"}}
+            aria-label="Zerar Desempenho por Disciplina"
+          >
+            <RefreshIcon /> {/* Use o ícone apropriado */}
+            <Typography variant="body2">Zerar Desempenho Total</Typography>
+          </IconButton>
+              </Box>
+
       </Box>
 
 
 
-     
+
       <Box className="Box-select">
         <p className="disciplinaSelecionada"> Filtre seu Desempenho por Disciplina:</p>
         <Select className="Select-Desempenho"
@@ -514,16 +486,9 @@ function MeuPerfil() {
           ))}
         </Select>
       </Box>
-     
-
 
       {disciplinaSelecionadaData ? (
         <Container className="disciplina-grafico">
-
-
-
-
-
 
           <div style={{ borderRadius: '10px', overflow: 'hidden' }}>
             <Chart
@@ -553,16 +518,26 @@ function MeuPerfil() {
           <ul>
             <li className="acertos">Acertos: {disciplinaSelecionadaData.acertos || 0} &nbsp;&nbsp;&nbsp;&nbsp;Erros: {disciplinaSelecionadaData.erros || 0}</li>
 
+
+            
           </ul>
-
-
+              <Box sx={{display: "flex",justifyContent: "center"}}>
+              <IconButton
+            onClick={zerarDesempenhoPorDisciplina}
+           sx={{color: "white", justifyContent: "center"}}
+            aria-label="Zerar Desempenho por Disciplina"
+          >
+            <RefreshIcon /> {/* Use o ícone apropriado */}
+            <Typography variant="body2">Zerar Desempenho Nessa Disciplina</Typography>
+          </IconButton>
+              </Box>
+          
         </Container>
       ) : (
         <p className="disciplinaSelecionada"></p>
       )}
 
     </Container>
-
 
   );
 

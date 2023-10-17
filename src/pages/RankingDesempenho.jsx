@@ -91,7 +91,7 @@ function RankingDesempenho() {
                 for (const userDoc of usersSnapshot.docs) {
                     const userData = userDoc.data();
                     // Certifique-se de que o usuário tem um campo de desempenho total e pelo menos 10 acertos
-                    if (userData.desempenhoTotal && userData.desempenhoTotal.acertos >= 10) {
+                    if (userData.desempenhoTotal && userData.desempenhoTotal.acertos >= 20) {
                         usersData.push({
                             id: userDoc.id,
                             displayName: userData.displayName,

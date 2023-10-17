@@ -978,8 +978,8 @@ function Home() {
 
         {user ? (
 
-          <div>
-            <div></div>
+          <Box >
+          
             {questoesPagina.map((question) => (
               <div key={question.id} className="question-container">
                 <Box className="cabecalho-disciplina">
@@ -989,14 +989,14 @@ function Home() {
                     {question.assunto}
                   </p>
                 </Box>
-                <Box className="cabecalho-orgao">
+                <Box sx={{ borderLeft: "1px solid #1c52531e", borderRight: "1px solid #1c52531e", borderBottom: "1px solid #1c52531e" }}>  <Box className="cabecalho-orgao">
                   <p>
-                    <span style={{ color: "black" }}>Banca:</span> &nbsp;{question.banca}
+                    <span style={{ color: "black" }}>&nbsp;&nbsp;Banca:</span> &nbsp;{question.banca}
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "black" }}>Ano:</span> &nbsp;{question.ano}
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "black" }}>Cargo: </span>&nbsp;{question.cargo}
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   </p>
-                  <p><span style={{ color: "black" }}>Órgão: </span>&nbsp;  {question.concurso}</p>
+                  <p><span style={{ color: "black" }}>&nbsp;&nbsp;Órgão: </span>&nbsp;  {question.concurso}</p>
                 </Box>
                 <p className="enunciado">{question.enunciado}</p>
                 <ul>
@@ -1065,8 +1065,9 @@ function Home() {
                     </p>
                   )}
                 </div>
-
-                <IconButton sx={{ color: "#1c5253", }}
+                </Box>
+                
+                <IconButton sx={{ color: "#1c5253", padding: "0.700em"}}
                   className="button-comentario"
                   onClick={() => toggleComentario(question.ids)}
                 >
@@ -1076,13 +1077,13 @@ function Home() {
                   </Typography>
                 </IconButton>
 
-                <IconButton sx={{ color: "#1c5253", marginLeft: '0.500em' }}>
+                <IconButton sx={{ color: "#1c5253", marginLeft: '0.500em', padding: "0.700em" }}>
                   <Link to="/MeuPerfil" target="_blank" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
                     <PollOutlinedIcon fontSize="small" sx={{ color: "#1c5253", backgroundColor: 'transparent' }} />
                     <Typography sx={{ fontSize: '0.550em', color: "#1c5253", marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500' }} color="error">Meu Desempenho</Typography>
                   </Link>
                 </IconButton>
-
+               
                 <Container className="linha-horizontal-comentario"></Container>
 
                 <Container
@@ -1100,6 +1101,7 @@ function Home() {
                   } >
                     <Comentarios question={question} db={db} user={user} />
                   </Box>
+
                   <p
                     className={
                       comentariosVisiveis[question.ids]
@@ -1115,8 +1117,9 @@ function Home() {
                     {question.comentario}
 
                   </p>
+                  
                 </Container>
-
+                
               </div>
             ))}
             {paymentInfo === null && (
@@ -1139,7 +1142,7 @@ function Home() {
                 Próxima Página
               </button>
             </Box>
-          </div>
+          </Box>
         ) : (
           <Box className="login">
             <p>SESO em Concursos</p>
