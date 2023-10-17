@@ -808,7 +808,8 @@ function Assinatura() {
                     </Box>
                 )}
 
-                <Container>
+
+{user && ( <Container>
                     <Grid container spacing={3}>
                         {planos.map((plano, index) => (
                             <Grid item xs={15} sm={6} md={4} key={index}>
@@ -832,7 +833,7 @@ function Assinatura() {
                         ))}
                     </Grid>
 
-                </Container>
+                </Container> )}
             </Container>
         </div>
     );
