@@ -205,8 +205,8 @@
   
   .letra-alternativa-circle {
     display: inline-block;
-    width: 25px;
-    height: 25px;
+    width: 23px;
+    height: 23px;
     border: 1px solid black;
     border-radius: 100%;
     text-align: center;
