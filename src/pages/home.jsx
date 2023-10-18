@@ -1129,18 +1129,18 @@ function Home() {
             )}
 
             <Box className="pagination">
-              <button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
+              <Button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
                 Página Anterior
-              </button>
+              </Button>
               <span>
                 {paginaAtual} de {totalPages}
               </span>
-              <button
+              <Button
                 onClick={handleNextPage}
               // disabled={paginaAtual >= totalPages || paymentInfo === 0 || paymentInfo === null}
               >
                 Próxima Página
-              </button>
+              </Button>
             </Box>
           </Box>
         ) : (
