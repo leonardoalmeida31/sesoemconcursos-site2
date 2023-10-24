@@ -772,12 +772,12 @@ function Home() {
                 ))}
                 <MenuItem>
                   <Link to="/Discursivas" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
-                    <Button sx={{ color: "white" }}>DISCURSIVAS</Button>
+                    <Button sx={{ color: "white", fontSize: '0.800em' }}>DISCURSIVAS</Button>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/MeuPerfil" style={{ textDecoration: "none" }}>
-                    <Button sx={{ color: "white" }}>Meu Desempenho</Button>
+                    <Button sx={{ color: "white", fontSize: '0.800em' }}>Meu Desempenho</Button>
                   </Link>
                 </MenuItem>
                 <MenuItem>
@@ -785,17 +785,17 @@ function Home() {
                     to="/RankingDesempenho"
                     style={{ textDecoration: "none" }}
                   >
-                    <Button sx={{ color: "white" }}>Ranking</Button>
+                    <Button sx={{ color: "white", fontSize: '0.800em' }}>Ranking</Button>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/Assinatura" style={{ textDecoration: "none" }}>
-                    <Button sx={{ color: "white" }}>Assinar com Cartão</Button>
+                    <Button sx={{ color: "white", fontSize: '0.800em' }}>Assinar com Cartão</Button>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/AssinaturaPix" style={{ textDecoration: "none" }}>
-                    <Button sx={{ color: "white" }}>Assinar com Pix</Button>
+                    <Button sx={{ color: "white", fontSize: '0.800em' }}>Assinar com Pix</Button>
                   </Link>
                 </MenuItem>
               </Box>
@@ -1209,7 +1209,7 @@ function Home() {
                 </Link>
               </p>
               <p className="Texto-Rodapé">
-                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <Link to="/" style={{ textDecoration: "none", color: "white", }}>
                   Questões
                 </Link>
               </p>
