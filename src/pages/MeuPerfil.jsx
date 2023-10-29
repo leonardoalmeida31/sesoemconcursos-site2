@@ -68,54 +68,6 @@ function MeuPerfil() {
     new Date().toLocaleDateString()
   );
 
-
-  // const signInWithGoogle = async () => {
-  //   try {
-  //     const auth = getAuth();
-  //     const provider = new GoogleAuthProvider();
-
-  //     const userCredential = await signInWithPopup(auth, provider);
-  //     const user = userCredential.user;
-
-  //     const uid = user.uid;
-  //     const email = user.email;
-  //     const displayName = user.displayName; // Obtenha o nome de exibição do usuário
-  //     const userRef = doc(db, "users", uid);
-
-  //     // Verifica se o documento do usuário já existe
-  //     const userDoc = await getDoc(userRef);
-
-  //     if (!userDoc.exists()) {
-  //       // Se o documento não existir, crie-o com um valor inicial para paymentInfo
-  //       await setDoc(userRef, { email, paymentInfo: null });
-  //     }
-
-  //     // Adicione um listener para atualizações do perfil do usuário
-  //     auth.onAuthStateChanged(async (user) => {
-  //       if (user) {
-  //         const updatedUser = auth.currentUser;
-  //         const updatedDisplayName = updatedUser.displayName;
-
-  //         // Atualize o nome do usuário no documento Firestore
-  //         await updateDoc(userRef, { displayName: updatedDisplayName });
-  //       }
-  //     });
-  //     // Resto do código...
-  //   } catch (error) {
-  //     console.error("Erro ao fazer login com o Google:", error);
-  //   }
-  // };
-
-  // const signOut = async () => {
-  //   try {
-  //     const auth = getAuth();
-  //     await auth.signOut();
-  //     setUser(null);
-  //   } catch (error) {
-  //     console.error("Erro ao fazer logout:", error);
-  //   }
-  // };
-
   const [desempenhoTotal, setDesempenhoTotal] = useState(null);
 
   const fetchDesempenhoTotal = async (userId) => {
@@ -254,20 +206,11 @@ function MeuPerfil() {
   const [resultados, setResultados] = useState({});
 
 
-
-  // const handleAlternativaClick = (questionId, alternativaIndex) => {
-  //   const newAlternativaSelecionada = {
-  //     [questionId]: alternativaIndex,
-  //   };
-  //   setAlternativaSelecionada(newAlternativaSelecionada);
-  // };
-
-
-  //criação de novo filtro de estatiscas por disciplina
   const [respostaCorreta, setRespostaCorreta] = useState(null);
   const [acertos, setAcertos] = useState(0);
   const [erros, setErros] = useState(0);
   const [desempenhoPorDisciplina, setDesempenhoPorDisciplina] = useState({});
+  const [desempenhoPorBanca, setDesempenhoPorBanca] = useState({});
   const verificarResposta = async (question) => {
     const questionId = question.ids;
 
@@ -278,9 +221,6 @@ function MeuPerfil() {
 
 
     if (alternativaSelecionada === respostaCorreta) {
-
-
-
 
     } else {
 
@@ -387,13 +327,13 @@ function MeuPerfil() {
       // Você pode redirecionar o usuário para fazer login ou exibir uma mensagem de erro.
       return;
     }
-  
+
     const userRef = doc(db, "users", user.uid);
-  
+
     try {
       // Atualize os dados no Firebase para zerar o desempenho total do usuário
       await updateDoc(userRef, { desempenhoTotal: { acertos: 0, erros: 0 } });
-  
+
       // Atualize o estado local para refletir o desempenho total zerado
       setDesempenhoTotal({ acertos: 0, erros: 0 });
       console.log("Desempenho total zerado com sucesso!");
@@ -402,8 +342,85 @@ function MeuPerfil() {
       // Lidar com erros, exibir mensagens de erro, etc.
     }
   };
-  
-  
+
+
+
+
+  //função de buscar desempenho e exibir por banca:
+
+  useEffect(() => {
+    // Função para buscar o desempenho por disciplina do Firebase
+    const fetchDesempenhoPorBanca = async () => {
+      if (user) {
+        const userRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userRef);
+
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          const desempenho = userData.desempenhoPorBanca || {};
+          setDesempenhoPorBanca(desempenho);
+        }
+      }
+    };
+
+    // Chame a função para buscar o desempenho por disciplina
+    fetchDesempenhoPorBanca();
+  }, [user, db]);
+
+
+  const [bancaSelecionada, setBancaSelecionada] = useState("");
+
+  useEffect(() => {
+    if (desempenhoPorBanca) {
+      const bancas = Object.keys(desempenhoPorBanca);
+      if (bancas.length > 0) {
+        setBancaSelecionada(bancas[0]); // Defina a primeira disciplina como selecionada por padrão
+      }
+    }
+  }, [desempenhoPorBanca]);
+
+
+  const bancaSelecionadaData =
+    bancaSelecionada && desempenhoPorBanca[bancaSelecionada];
+
+
+
+
+
+  const [bancaSelecionadaParaZerar, setBancaSelecionadaParaZerar] = useState(null);
+
+  const zerarDesempenhoPorBanca = async () => {
+    if (!user) {
+      // Verifique se o usuário está autenticado
+      console.log("Usuário não autenticado.");
+      // Você pode redirecionar o usuário para fazer login ou exibir uma mensagem de erro.
+      return;
+    }
+
+    const userRef = doc(db, "users", user.uid);
+
+    if (!bancaSelecionada) {
+      console.log("Selecione uma banca para zerar o desempenho.");
+      // Exiba uma mensagem informando ao usuário para selecionar uma banca.
+      return;
+    }
+
+    try {
+      // Crie um objeto vazio para representar o desempenho por disciplina zerado
+      const desempenhoZerado = { ...desempenhoPorBanca };
+      delete desempenhoZerado[bancaSelecionada];
+
+      // Atualize os dados no Firebase para zerar o desempenho da disciplina selecionada do usuário
+      await updateDoc(userRef, { desempenhoPorBanca: desempenhoZerado });
+
+      // Atualize o estado local para refletir o desempenho zerado
+      setDesempenhoPorBanca(desempenhoZerado);
+      console.log(`Desempenho da banca ${bancaSelecionada} zerado com sucesso!`);
+    } catch (error) {
+      console.error(`Erro ao zerar o desempenho da banca ${bancaSelecionada}:`, error);
+      // Lidar com erros, exibir mensagens de erro, etc.
+    }
+  };
 
   return (
 
@@ -456,16 +473,16 @@ function MeuPerfil() {
           <p className="acertos">{totalQuestoesRespondidas} Questões Resolvidas</p>
         </div>
 
-        <Box sx={{display: "flex",justifyContent: "center"}}>
-              <IconButton
-          onClick={zerarDesempenhoTotal}
-           sx={{color: "white", justifyContent: "center"}}
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <IconButton
+            onClick={zerarDesempenhoTotal}
+            sx={{ color: "white", justifyContent: "center" }}
             aria-label="Zerar Desempenho por Disciplina"
           >
             <RefreshIcon /> {/* Use o ícone apropriado */}
             <Typography variant="body2">Zerar Desempenho Total</Typography>
           </IconButton>
-              </Box>
+        </Box>
 
       </Box>
 
@@ -493,8 +510,8 @@ function MeuPerfil() {
           <div style={{ borderRadius: '10px', overflow: 'hidden' }}>
             <Chart
               width={'100%'}
-              height={'100%'}
-              chartType="BarChart"
+              height={'300px'}
+              chartType="PieChart"
               loader={<Container>Carregando gráfico...</Container>}
               data={[
                 ['Desempenho', 'Quantidade', { role: 'style' }],
@@ -508,9 +525,9 @@ function MeuPerfil() {
                   bold: true,
                   alignment: 'center',
                 },
+                colors: ['#1c5253', '#B22222'],
                 backgroundColor: 'white',
-                bars: 'horizontal',
-                bar: { groupWidth: '30%' }, // Ajuste a largura das barras aqui (por exemplo, 50%)
+                pieHole: 0.4, // Defina o tamanho do buraco no gráfico (valores de 0 a 1)
               }}
             />
           </div>
@@ -519,24 +536,91 @@ function MeuPerfil() {
             <li className="acertos">Acertos: {disciplinaSelecionadaData.acertos || 0} &nbsp;&nbsp;&nbsp;&nbsp;Erros: {disciplinaSelecionadaData.erros || 0}</li>
 
 
-            
+
           </ul>
-              <Box sx={{display: "flex",justifyContent: "center"}}>
-              <IconButton
-            onClick={zerarDesempenhoPorDisciplina}
-           sx={{color: "white", justifyContent: "center"}}
-            aria-label="Zerar Desempenho por Disciplina"
-          >
-            <RefreshIcon /> {/* Use o ícone apropriado */}
-            <Typography variant="body2">Zerar Desempenho Nessa Disciplina</Typography>
-          </IconButton>
-              </Box>
-          
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <IconButton
+              onClick={zerarDesempenhoPorDisciplina}
+              sx={{ color: "white", justifyContent: "center" }}
+              aria-label="Zerar Desempenho por Disciplina"
+            >
+              <RefreshIcon /> {/* Use o ícone apropriado */}
+              <Typography variant="body2">Zerar Desempenho Nessa Disciplina</Typography>
+            </IconButton>
+          </Box>
+
         </Container>
       ) : (
         <p className="disciplinaSelecionada"></p>
       )}
 
+
+
+
+      <Box sx={{marginBottom: "1em"}}className="Box-select">
+        <p className="disciplinaSelecionada"> Filtre seu Desempenho por Banca:</p>
+        <Select  className="Select-Desempenho"
+          value={bancaSelecionada}
+          onChange={(e) => setBancaSelecionada(e.target.value)}
+        >
+          <MenuItem value={null}>Selecione uma banca</MenuItem>
+          {Object.keys(desempenhoPorBanca).map((banca) => (
+            <MenuItem key={banca} value={banca}>
+              {banca}
+            </MenuItem>
+          ))}
+        </Select>
+      </Box>
+
+      {bancaSelecionadaData ? (
+        <Container className="banca-grafico">
+
+          <div style={{ borderRadius: '10px', overflow: 'hidden' }}>
+            <Chart
+              width={'100%'}
+              height={'300px'}
+              chartType="PieChart"
+              loader={<Container>Carregando gráfico...</Container>}
+              data={[
+                ['Desempenho', 'Quantidade', { role: 'style' }],
+                ['Acertos', bancaSelecionadaData.acertos || 0, '#1c5253'],
+                ['Erros', bancaSelecionadaData.erros || 0, '#B22222'],
+              ]}
+              options={{
+                title: `Desempenho em ${bancaSelecionada}`,
+                titleTextStyle: {
+                  fontSize: 12,
+                  bold: true,
+                  alignment: 'center',
+                },
+                colors: ['#1c5253', '#B22222'],
+                backgroundColor: 'white',
+                pieHole: 0.4, // Defina o tamanho do buraco no gráfico (valores de 0 a 1)
+              }}
+            />
+          </div>
+
+          <ul>
+            <li className="acertos">Acertos: {bancaSelecionadaData.acertos || 0} &nbsp;&nbsp;&nbsp;&nbsp;Erros: {bancaSelecionadaData.erros || 0}</li>
+
+
+
+          </ul>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <IconButton
+              onClick={zerarDesempenhoPorBanca}
+              sx={{ color: "white", justifyContent: "center" }}
+              aria-label="Zerar Desempenho por Banca"
+            >
+              <RefreshIcon /> {/* Use o ícone apropriado */}
+              <Typography variant="body2">Zerar Desempenho Nessa Banca</Typography>
+            </IconButton>
+          </Box>
+
+        </Container>
+      ) : (
+        <p className="bancaSelecionada"></p>
+      )}
     </Container>
 
   );

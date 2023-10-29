@@ -150,6 +150,8 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
 
   // Antes de renderizar o componente Select "Banca", ordene o array bancaOptions em ordem alfabética.
   const sortedBancaOptions = bancaOptions.slice().sort((a, b) => a.label.localeCompare(b.label));
+  const sortedDisciplinaOptions = disciplinaOptions.slice().sort((a, b) => a.label.localeCompare(b.label));
+  const sortedAnoOptions = anoOptions.slice().sort((a, b) => b.label - a.label);
 
 
   return (
@@ -171,7 +173,7 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           className="filter-select"
           value={selectedDisciplinas}
           onChange={handleDisciplinasChange}
-          options={disciplinaOptions}
+          options={sortedDisciplinaOptions}
           isMulti={true}
           placeholder="Disciplina"
         />
@@ -215,7 +217,7 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           className="filter-select"
           value={selectedAnos}
           onChange={(selectedOptions) => setSelectedAnos(selectedOptions)}
-          options={anoOptions}
+          options={sortedAnoOptions}
           isMulti={true}
           placeholder="Ano"
         />
