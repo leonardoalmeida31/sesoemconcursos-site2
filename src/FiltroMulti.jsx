@@ -140,13 +140,16 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           anoMatch &&
           keywordsMatch
         );
-      });
+      })
+
 
     setFilteredQuestoes(filteredQuestoes);
     onFilterChange(filteredQuestoes);
     setPaginaAtual(1); // Redefina a página para 1 usando a prop
-
   };
+
+  // Antes de renderizar o componente Select "Banca", ordene o array bancaOptions em ordem alfabética.
+  const sortedBancaOptions = bancaOptions.slice().sort((a, b) => a.label.localeCompare(b.label));
 
 
   return (
@@ -189,7 +192,7 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           className="filter-select"
           value={selectedBancas}
           onChange={(selectedOptions) => setSelectedBancas(selectedOptions)}
-          options={bancaOptions}
+          options={sortedBancaOptions}
           isMulti={true}
           placeholder="Banca"
         />

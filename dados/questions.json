@@ -146,7 +146,7 @@
     "cargo": "Assistente Social",
     "modalidade": "Múltipla-Escolha",
     "disciplina": "Seguridade Social",
-    "banca": "COTEC FADENOR",
+    "banca": "COTEC",
     "enunciado": "O processo de redemocratização no Brasil, na década de 1980, foi favorável para a institucionalização de um sistema de proteção social por meio da seguridade social. Na Constituição Federal, promulgada e não outorgada em 1988, estão previstos alguns direitos sociais que, direcionados como normas programáticas, asseguram o acesso populacional à saúde, previdência e assistência social. Com base nessas previsões, associe a política prevista na coluna I com o enunciado da coluna II.\nCOLUNA I  1 – Política de Saúde 2 – Política de Previdência Social 3 – Política de Assistência Social\nCOLUNA II ( )  Prevê a proteção à maternidade, especialmente à gestante, e ao trabalhador, quando se encontra em situação de desemprego involuntário.\n( ) É um de seus objetivos a habilitação e reabilitação das pessoas com deficiências com o intuito de viabilizar a sua convivência familiar e comunitária.\n( )  Prevê o recebimento de um salário-mínimo para os idosos que não têm condições de, ou podem, se autoproverem e se manterem socioeconomicamente.\n( ) Assegura, na execução dos serviços, de forma complementar, a atuação da livre iniciativa privada com preferência para as entidades filantrópicas e sem fins lucrativos.\n( ) É referência, e de filiação obrigatória, quando a necessidade é pela provisão de recursos, como cobertura, para as pessoas com idade avançada ou que estão incapacitadas, temporária ou permanentemente, para o trabalho.\n( ) Integraliza uma rede de ações e serviços que se sustenta na participação da comunidade, e na descentralização político-administrativa, como algumas de suas diretrizes.\n( ) Constitui um sistema responsável pela fiscalização da produção de equipamentos, imunobiológicos, hemoderivados entre outros insumos.\n( ) Situa-se, entre seus principais objetivos, a proteção à família, à maternidade, ao segmento infantojuvenil e à velhice.\n\nIndique a alternativa que contém a sequência CORRETA de associações, considerando os enunciados de cima para baixo.",
     "ids": 833,
     "ano": 2023,
@@ -363,7 +363,7 @@
     "resposta": "C",
     "cargo": "Assistente Social",
     "disciplina": "Estatuto da Criança e do Adolescente - ECA",
-    "banca": "AVANÇA SP",
+    "banca": "Avança SP",
     "modalidade": "Múltipla-Escolha",
     "area": "Municipal",
     "comentario": "1",
@@ -1523,7 +1523,7 @@
       "(D) Alt + F4",
       "(E) Alt + Barra de espaço"
     ],
-    "banca": "AVANÇA SP",
+    "banca": "Avança SP",
     "comentario": "A) Ctrl + A: Esse atalho é utilizado para selecionar todos os itens (arquivos, pastas, texto, etc.) em uma janela ou área de trabalho.\n\nB) F3: Esse é o atalho específico para abrir a caixa de pesquisa dentro de uma janela do Windows Explorer ou na área de trabalho. Com a caixa de pesquisa aberta, você pode digitar o nome do arquivo ou pasta que deseja procurar.\n\nC) Alt + Enter: Esse atalho é usado para exibir as propriedades do item selecionado (como um arquivo ou pasta).\n\nD) Alt + F4: Esse atalho é utilizado para fechar a janela ou programa ativo no Windows.\n\nE) Alt + Barra de espaços: Esse atalho abre o menu de controle da janela ativa, onde você pode restaurar, minimizar, maximizar, mover ou fechar a janela usando as teclas de seta e a tecla Enter.\n\nPortanto, o atalho correto para procurar um arquivo ou uma pasta no MS-Windows 7 é a opção B) F3.",
     "cargo": "Assistente Social"
   },
@@ -1587,7 +1587,7 @@
     "comentario": "A resposta correta é a alternativa C: Somente os itens I e III.\n\nA) Somente o item I: Isso está incorreto. O item II também está correto, pois a memória RAM é, de fato, uma memória volátil, ou seja, ela não retém as informações após o desligamento do computador.\n\nB) Somente o item II: Isso está incorreto. O item I também está correto, pois a memória RAM é responsável por guardar temporariamente as informações em execução no computador.\n\nD) Todos os itens: Isso está incorreto. O item II está errado, pois a memória RAM é volátil e não armazena os dados permanentemente após o desligamento do computador.\n\nExplicação dos itens corretos:\n\nI. A memória RAM é a responsável por guardar temporariamente as informações que estão em execução no computador. Quando você abre um programa ou um arquivo, ele é carregado na memória RAM para que o processador possa acessá-lo rapidamente enquanto está em execução. A RAM é muito mais rápida do que o armazenamento de longo prazo (por exemplo, um disco rígido ou SSD), tornando o acesso aos dados mais ágil durante o uso do computador.\n\nIII. Dependendo das especificações do hardware e da tarefa, a memória RAM pode processar informações significativamente mais rápido que um HD. Como mencionado acima, a memória RAM é muito mais rápida do que o armazenamento de longo prazo, como um HD ou SSD. Isso torna a RAM ideal para a execução de programas e tarefas em tempo real, pois os dados podem ser rapidamente carregados e acessados pelo processador. No entanto, a memória RAM é volátil, o que significa que seu conteúdo é perdido quando o computador é desligado. Por outro lado, os dados armazenados em um HD ou SSD são mantidos mesmo quando o computador é desligado.",
     "enunciado": "Sobre a memória RAM e suas principais características, analisar os itens abaixo:\nI. A memória RAM é a responsável por guardar temporariamente as informações que estão em execução no computador. II. A memória RAM é uma memória volátil. Isso significa que ela armazena arquivos permanentemente e mantém os dados após o desligamento do computador. III. Dependendo das especificações do hardware e da tarefa, a memória RAM pode processar informações significativamente mais rápido que um HD.\nEstá(ão) CORRETO(S):",
     "assunto": "Hardware: Dispositivos de Armazenamento, Memórias e Periféricos",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "modalidade": "Múltipla-Escolha",
     "disciplina": "Noções de Informática"
   },
@@ -1629,7 +1629,7 @@
     "enunciado": "Uma Unidade de Estado Sólido é um tipo de dispositivo sem partes móveis para armazenamento não volátil de dados digitais. São responsáveis pelo armazenamento, diferindo dos sistemas magnéticos (como os HDs). Os dispositivos utilizam memória flash (tecnologia semelhante às utilizadas em cartões de memória e pen-drives). Em relação às características dessa tecnologia, assinalar a alternativa CORRETA:",
     "ids": 1043,
     "concurso": "Prefeitura de Nova Hartz - RS",
-    "banca": "OBJETIVA CONCURSOS"
+    "banca": "OBJETIVA"
   },
   {
     "assunto": "02. Origem e História das Políticas Sociais no Brasil",
@@ -1739,7 +1739,7 @@
     "comentario": "Item I – Os monitores comuns são considerados periféricos de saída, uma vez que apenas recebem informações do computador e transmitem esses dados em forma de imagem. Porém, os monitores touchscreen também podem ser considerados periféricos de entrada, já que o usuário estará inserindo informações na máquina ao utilizar o modo touchscreen.\n\nII. Projetor multimídia: Um projetor multimídia é um dispositivo de saída, usado para exibir imagens, vídeos ou apresentações em uma tela ou superfície. Ele não possui função de entrada de dados.\n\nIII. Caixa de som: Uma caixa de som é um dispositivo de saída, utilizado para reproduzir áudio do computador, mas não é um dispositivo de entrada de dados.",
     "assunto": "Hardware: Dispositivos de Armazenamento, Memórias e Periféricos",
     "area": "Municipal",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "ids": 1050,
     "modalidade": "Múltipla-Escolha",
     "disciplina": "Noções de Informática",
@@ -1817,7 +1817,7 @@
   {
     "disciplina": "Noções de Informática",
     "area": "Municipal",
-    "banca": "AVANÇA SP",
+    "banca": "Avança SP",
     "concurso": "Prefeitura de Pereiras - SP",
     "ids": 1093,
     "alternativas": [
@@ -2048,7 +2048,7 @@
     "modalidade": "Múltipla-Escolha",
     "cargo": "Assistente Social",
     "assunto": "Nuvem ('cloud computing' e 'cloud storage')",
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "resposta": "A",
     "alternativas": [
       "(A) I e II, apenas.",
@@ -2362,7 +2362,7 @@
     "concurso": "FUNDEP (Gestão de Concursos) - 2022 - Prefeitura de Bom Sucesso - MG",
     "modalidade": "Múltipla-Escolha",
     "ids": 90,
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "cargo": "Assistente Social",
     "alternativas": [
       "(A) O adotando deve contar com, no máximo, 21 anos de idade à data do pedido, salvo se já estiver sob a guarda ou tutela dos adotantes.",
@@ -2719,7 +2719,7 @@
     "cargo": "Assistente Social",
     "modalidade": "Múltipla-Escolha",
     "ids": 1061,
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "disciplina": "Noções de Informática"
   },
   {
@@ -2764,7 +2764,7 @@
     "cargo": "Assistente Social"
   },
   {
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "comentario": "Art. 5º A organização da assistência social tem como base as seguintes diretrizes:\nI - descentralização político-administrativa para os Estados, o Distrito Federal e os Municípios, e comando único das ações em cada esfera de governo;\nII - participação da população, por meio de organizações representativas, na formulação das políticas e no controle das ações em todos os níveis;\nIII - primazia da responsabilidade do Estado na condução da política de assistência social em cada esfera de governo.",
     "disciplina": "Lei Orgânica da Assistência Social - LOAS",
     "ano": 2022,
@@ -2875,7 +2875,7 @@
     "assunto": "Microsoft Office: Word, Excel, PowerPoint e etc...",
     "cargo": "Assistente Social",
     "modalidade": "Múltipla-Escolha",
-    "banca": "COTEC FADENOR",
+    "banca": "COTEC",
     "enunciado": "Em um software de edição de planilhas eletrônicas como Microsoft Excel, OpenOffice Calc ou LibreOffice Calc, qual fórmula pode ser utilizada para somar os valores que estão no intervalo das células B2 a B7 (incluindo as células B2, B3, B4, B5, B6 e B7)?",
     "comentario": "A fórmula que pode ser utilizada para somar os valores que estão no intervalo das células B2 a B7 (incluindo as células B2, B3, B4, B5, B6 e B7) é a seguinte:\nA) =SOMA(B2:B7)\n\nEssa fórmula utilizará a função SOMA para somar os valores presentes no intervalo especificado (B2 até B7).",
     "disciplina": "Noções de Informática",
@@ -3330,7 +3330,7 @@
       "(E) A Formalidade."
     ],
     "ano": 2023,
-    "banca": "AVANÇA SP",
+    "banca": "Avança SP",
     "area": "Municipal",
     "comentario": "Art. 3º São princípios organizativos do SUAS:\n\nI - universalidade: todos têm direito à proteção socioassistencial, prestada a quem dela necessitar, com respeito à dignidade e à autonomia do cidadão, sem discriminação de qualquer espécie ou comprovação vexatória da sua condição;\n\nII - gratuidade: a assistência social deve ser prestada sem exigência de contribuição ou contrapartida, observado o que dispõe o art. 35, da Lei nº 10.741, de 1º de outubro de 2003 - Estatuto do Idoso;\n\nIII- integralidade da proteção social: oferta das provisões em sua completude, por meio de conjunto articulado de serviços, programas, projetos e benefícios socioassistenciais;\n\nIV - intersetorialidade: integração e articulação da rede socioassistencial com as demais políticas e órgãos setoriais;\n\nV- equidade: respeito às diversidades regionais, culturais, socioeconômicas, políticas e territoriais, priorizando aqueles que estiverem em situação de vulnerabilidade e risco pessoal e social.\n\nFONTE: https://www.mds.gov.br/webarquivos/public/NOBSUAS_2012.pdf",
     "resposta": "A",
@@ -3363,7 +3363,7 @@
   {
     "comentario": "IMPACTO SOCIAL ESPERADO: Contribuir para:\n\n- Redução das violações dos direitos socioassistenciais, seus agravamentos ou reincidência;\n\n- Orientação e proteção social a Famílias e indivíduos;\n\n- Acesso a serviços socioassistenciais e das políticas públicas setoriais;\n\n- Identificação de situações de violação de direitos socioassistenciais;\n\n- Melhoria da qualidade de vida das famílias.\n\nFONTE: https://www.mds.gov.br/webarquivos/publicacao/assistencia_social/Normativas/tipificacao.pdf",
     "cargo": "Assistente Social",
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "alternativas": [
       "(A) Reduzir e prevenir situações de isolamento social e de institucionalização.",
       "(B) Garantir o acesso aos serviços socioassistenciais e aos das políticas públicas setoriais.",
@@ -3495,7 +3495,7 @@
     "cargo": "Assistente Social",
     "modalidade": "Múltipla-Escolha",
     "disciplina": "Tipificação Nacional de Serviços Socioassistenciais",
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "enunciado": "A Tipificação Nacional de Serviços Socioassistenciais está organizada por níveis de complexidade do Sistema Único de Assistência Social.\n\nCorresponde a um desses níveis:",
     "area": "Municipal",
     "resposta": "C",
@@ -3608,7 +3608,7 @@
     ],
     "nivel": "superior",
     "ano": 2022,
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "concurso": "Prefeitura de Simão Dias",
     "enunciado": "De acordo com a Lei nº 11.340/2006 - Lei Maria da Penha, compete à equipe de atendimento multidisciplinar, dentre outras atribuições que lhe forem reservadas pela legislação local:\n\nI. Fornecer subsídios por escrito ao juiz, ao Ministério Público e à Defensoria Pública, mediante laudos ou verbalmente em audiência.\nII. Desenvolver trabalhos de orientação, encaminhamento, prevenção e outras medidas voltados para a ofendida, o agressor e os familiares, com especial atenção às crianças e aos adolescentes.\nIII. Quando a complexidade do caso exigir avaliação mais aprofundada, o juiz poderá determinar a manifestação de profissional especializado, mediante a indicação da equipe de atendimento\n\nEstá(ão) CORRETO(S):"
   },
@@ -3727,7 +3727,7 @@
       "(C) símile, já que o segundo termo da metáfora (fisgada) é precedido de conjunção comparativa (como), comparando as duas ideias e criando a imagem poética.",
       "(D) pleonasmo, visto que ideias já expressas são repetidas ao longo dos versos, com o objetivo de enfatizar a imagem criada pelo autor."
     ],
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "ids": 714,
     "assunto": "Figuras de Linguagem",
     "comentario": "C) GABARITO: Símile é uma figura de linguagem que estabelece uma comparação explícita entre dois elementos por meio do uso de conectivos comparativos, como 'como' ou 'tal qual'. Exemplo: 'Ela é bela como uma rosa.'\n\nPerífrase é uma figura de linguagem que consiste em expressar uma ideia de forma indireta, utilizando uma sequência de palavras para descrever algo que poderia ser dito de forma mais direta. Exemplo: 'O monarca dos mares' (em vez de simplesmente dizer 'o rei do oceano').",
@@ -3818,7 +3818,7 @@
       "(C) Uma regulação permanente, em que todos os casos são iguais.",
       "(D) Uma intervenção estatal que não financia a reprodução do capital, mas financia a força de trabalho."
     ],
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "comentario": "O que se questiona na sociedade brasileira hoje é o caráter “truncado” dessa regulação (Oliveira, 1990). Trata-se, como mostra Oliveira, de “uma regulação permanentemente ''cada caso é um caso”. “(...) uma intervenção estatal que financia a reprodução do capital mas não financia a reprodução da força de trabalho” (Oliveira, 1990:46). Para o autor, o que caracteriza uma regulação “truncada” é a ausência de regras estáveis e a ausência de direitos, particularmente dos trabalhadores. Assim, as políticas governamentais no campo social, embora expressem o caráter contraditório das lutas sociais, acabam por reiterar o perfil da desigualdade no país e mantêm essa área de ação submersa e paliativa. São políticas que “organizam as formas e o acesso social dos trabalhadores aos serviços e equipamentos de uso coletivo a partir do papel conjuntural que o Estado desempenha na gestão da força de trabalho” (Sposati, 1988:11). Este papel de mecanismo regulador se estabelece e se modifica casuisticamente, em face da correlação das forças sociais em diferentes conjunturas históricas (cf. Vieira, 1983)."
   },
   {
@@ -3991,7 +3991,7 @@
     "enunciado": "Sobre o ato infracional praticado por adolescente, o Estatuto da Criança e do Adolescente (ECA) previu a aplicação de medidas que variam:",
     "resposta": "E",
     "cargo": "Assistente Social",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "disciplina": "Estatuto da Criança e do Adolescente - ECA",
     "modalidade": "Múltipla-Escolha",
     "alternativas": [
@@ -4019,7 +4019,7 @@
       "(E) Alt + letra sublinhada"
     ],
     "comentario": "A) Ctrl + Tab: Esse atalho permite avançar para a próxima guia aberta em aplicativos que suportam guias, como navegadores da web (por exemplo, Google Chrome, Mozilla Firefox), programas de edição de texto, entre outros. Se você estiver na última guia, ele voltará para a primeira guia.\n\nB) Ctrl + Shift + Tab: Esse atalho realiza a ação oposta ao anterior. Ele permite retroceder para a guia anterior em aplicativos que suportam guias.\n\nC) Tab: Pressionar apenas a tecla Tab, sem a combinação de outras teclas, é usado para navegar entre diferentes elementos ou campos em uma janela ou página da web, em vez de navegar entre guias.\n\nD) Shift + Tab: Essa combinação de teclas permite retroceder entre diferentes elementos ou campos em uma janela ou página da web, em vez de navegar entre guias.\n\nE) Alt + letra sublinhada: Essa combinação de teclas é usada para acessar o menu ou um comando específico em um aplicativo que possui teclas de atalho visíveis, onde a letra desejada está sublinhada. Por exemplo, se você pressionar Alt + F, abrirá o menu 'Arquivo' em muitos aplicativos.\n\nPortanto, a alternativa correta é a opção A) Ctrl + Tab, pois ela permite avançar entre as guias abertas em aplicativos que suportam esse recurso.",
-    "banca": "AVANÇA SP",
+    "banca": "Avança SP",
     "concurso": "Prefeitura de São Lourenço da Serra - SP",
     "ano": 2023,
     "ids": 1081,
@@ -4175,7 +4175,7 @@
     "ids": 1082,
     "modalidade": "Múltipla-Escolha",
     "cargo": "Assistente Social",
-    "banca": "AVANÇA SP",
+    "banca": "Avança SP",
     "ano": 2023,
     "disciplina": "Noções de Informática",
     "assunto": "Teclas de atalho",
@@ -4402,7 +4402,7 @@
     "disciplina": "Estatuto da Pessoa Idosa",
     "enunciado": "As entidades que desenvolvam programas de institucionalização de longa permanência a idosos adotarão os seguintes princípios preconizados pelo Estatuto do Idoso, exceto:",
     "assunto": "04. Da Política de Atendimento ao Idoso (arts. 46 ao 68)",
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "area": "Municipal",
     "resposta": "D",
     "nivel": "superior",
@@ -4511,7 +4511,7 @@
     "area": "Municipal",
     "enunciado": "Sobre hardware, analisar os itens abaixo:\nI. O teclado e a placa-mãe são exemplos de hardware. II. Os sistemas operacionais são exemplos de hardware. III. Existem dois tipos de hardware no computador: os internos e os externos.\nEstão CORRETOS:",
     "ids": 1059,
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "resposta": "B",
     "modalidade": "Múltipla-Escolha",
     "assunto": "Hardware: Dispositivos de Armazenamento, Memórias e Periféricos",
@@ -4977,7 +4977,7 @@
   {
     "disciplina": "Lei Orgânica da Assistência Social - LOAS",
     "modalidade": "Múltipla-Escolha",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "nivel": "superior",
     "assunto": "05. Dos Serviços, Prog. de Assist. Social e Enfrent. da Pobreza (arts. 23 a 26)",
     "alternativas": [
@@ -5123,7 +5123,7 @@
       "(D) I, II e III."
     ],
     "enunciado": "Sobre a computação nas nuvens, analise as afirmativas a seguir.\n\nI. A evolução constante da computação e das telecomunicações com o acesso à internet é um cenário perfeito para a popularização da cloud computing.\n\nII. Pode ser definida como a disponibilização de serviços computacionais dos mais variados tipos a partir da internet.\n\nIII. Com a cloud computing, os aplicativos são instalados no computador do usuário e os dados são todos armazenados em servidores da internet, isto é, na nuvem.\n\n Estão corretas as afirmativas",
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "ids": 908,
     "comentario": "A III. está incorreta porque não precisa ser instalado no computador do usuário. Um exemplo clássico disso é o Word 365 da Microsoft que funciona completamente na nuvem.\n\nAs afirmações I e II estão corretas. A evolução constante da computação e das telecomunicações, juntamente com o acesso à internet, de fato, impulsionou a popularização da computação em nuvem. Além disso, a definição apresentada na afirmação II está correta, pois a computação em nuvem envolve a disponibilização de uma variedade de serviços computacionais através da internet.",
     "ano": 2023,
@@ -5140,7 +5140,7 @@
     "assunto": "Ameaças (Vírus, Worms, Trojans, Malware, etc.)",
     "resposta": "D",
     "modalidade": "Múltipla-Escolha",
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "disciplina": "Noções de Informática",
     "area": "Municipal",
     "alternativas": [
@@ -5178,7 +5178,7 @@
   },
   {
     "ano": 2023,
-    "banca": "AVANÇA SP",
+    "banca": "Avança SP",
     "alternativas": [
       "(A) Apenas o Item I está correto. ",
       "(B) Apenas o Item II está correto.",
@@ -5259,7 +5259,7 @@
     "resposta": "B"
   },
   {
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "modalidade": "Múltipla-Escolha",
     "assunto": "02. Proteção Social Básica, Especial, Especial de Média e Alta Complexidade",
     "ids": 1123,
@@ -5939,7 +5939,7 @@
     "ano": 2023,
     "assunto": "Nuvem ('cloud computing' e 'cloud storage')",
     "concurso": "Prefeitura de Lavras - MG",
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "resposta": "C",
     "cargo": "Assistente Social",
     "comentario": "A opção correta é a letra C: 'II e III, apenas.'\nAgora vamos analisar as afirmativas individualmente:\n\nI. 'O usuário pode utilizar os recursos somente o tempo que precisar, porém deve pagar pela licença em tempo integral, como no modelo tradicional.'\nIncorreta: Essa afirmativa está incorreta. Um dos benefícios da computação em nuvem é a capacidade de pagamento conforme o uso, ou seja, o usuário paga apenas pelos recursos que efetivamente utiliza, em vez de pagar por uma licença em tempo integral, como no modelo tradicional.\n\nII. 'O fornecedor do serviço de cloud computing é quem se encarrega de aperfeiçoar, corrigir falhas e aumentar o desempenho da aplicação, sempre que necessário.'\nCorreta: Essa afirmativa está correta. Um dos aspectos da computação em nuvem é que o provedor de serviços é responsável por manter e atualizar a infraestrutura subjacente, bem como aperfeiçoar, corrigir falhas e melhorar o desempenho da aplicação conforme necessário. Isso permite que os usuários se beneficiem das melhorias contínuas sem precisar se preocupar com essas tarefas.\n\nIII. 'O usuário não precisa se preocupar com o hardware, com procedimentos de backup nem de controle de segurança da aplicação contratada.'\nCorreta: Essa afirmativa está correta. Ao utilizar a computação em nuvem, o usuário não precisa se preocupar com a manutenção do hardware subjacente, como servidores, nem com procedimentos de backup ou controle de segurança da aplicação contratada. Essas responsabilidades são geralmente tratadas pelo provedor de serviços em nuvem.\n\nPortanto, as afirmativas corretas são II e III, apenas.",
@@ -6015,7 +6015,7 @@
   {
     "cargo": "Assistente Social",
     "ano": 2019,
-    "banca": "COTEC FADENOR",
+    "banca": "COTEC",
     "modalidade": "Múltipla-Escolha",
     "comentario": "Para acessar o modo seguro no Windows 7, você precisa reiniciar o computador e, durante a inicialização, pressionar repetidamente a tecla F8 antes do logotipo do Windows aparecer. Isso abrirá um menu de opções avançadas de inicialização, onde você pode selecionar o 'Modo de Segurança' usando as setas do teclado e pressionando Enter para confirmar a escolha. O modo seguro permite que você inicie o Windows com um conjunto mínimo de drivers e serviços, o que pode ser útil para solucionar problemas e corrigir erros no sistema.\n\nNo Windows 10: há pelo menos 3 possbilidades para entrar nesse modo:\nA partir de CONFIGURAÇÕES (na parte de Atualização & Segurança).\nA partir da TELA DE ENTRADA (pressionando a tecla shift).\nA partir de uma tela preta ou branca.",
     "ids": 1098,
@@ -6403,7 +6403,7 @@
     ],
     "cargo": "Assistente Social",
     "ids": 565,
-    "banca": "OBJETIVA CONCURSOS"
+    "banca": "OBJETIVA"
   },
   {
     "area": "Municipal",
@@ -6696,7 +6696,7 @@
       "(D) Ir na aba'Ferramentas' e selecionar a opção 'Índices'",
       "(E) Ir na aba 'Revisar' e selecionar a opção 'Índices'"
     ],
-    "banca": "AVANÇA SP",
+    "banca": "Avança SP",
     "ano": 2023
   },
   {
@@ -6760,7 +6760,7 @@
     "nivel": "superior",
     "ids": 156,
     "disciplina": "Códido de Ética do/a A. S. + Lei 8.662/93",
-    "banca": "OBJETIVA CONCURSOS"
+    "banca": "OBJETIVA"
   },
   {
     "nivel": "superior",
@@ -7038,7 +7038,7 @@
   },
   {
     "cargo": "Assistente Social",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "alternativas": [
       "(A) Rede Socioassistencial.",
       "(B) Vigilância Socioassistencial.",
@@ -7340,7 +7340,7 @@
     "assunto": "05. Do Financiamento (arts. 31 a 38)",
     "ids": 594,
     "concurso": "Prefeitura de Candói - PR",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "comentario": "Art. 33. Os recursos financeiros do Sistema Único de Saúde (SUS) serão depositados em conta especial, em cada esfera de sua atuação, e movimentados sob fiscalização dos respectivos Conselhos de Saúde.\n\nArt. 37. O Conselho Nacional de Saúde estabelecerá as diretrizes a serem observadas na elaboração dos planos de saúde, em função das características epidemiológicas e da organização dos serviços em cada jurisdição administrativa.\n\nArt. 38. Não será permitida a destinação de subvenções e auxílios a instituições prestadoras de serviços de saúde com finalidade lucrativa.\n\nFONTE: http://www.planalto.gov.br/ccivil_03/leis/l8080.htm",
     "resposta": "A",
     "enunciado": "Segundo o disposto na Lei nº 8.080/1990 - SUS, marcar C para as afirmativas Certas, E para as Erradas e, após, assinalar a alternativa que apresenta a sequência CORRETA:\n\n( ) Os recursos financeiros do Sistema Único de Saúde (SUS) serão depositados em conta especial, em cada esfera de sua atuação, e movimentados sob fiscalização dos respectivos Conselhos de Saúde.\n\n( ) O Conselho Nacional de Saúde estabelecerá as diretrizes a serem observadas na elaboração dos planos de saúde, em função das características epidemiológicas e da organização dos serviços em cada jurisdição administrativa.\n\n( ) Será permitida a destinação de subvenções e auxílios a instituições prestadoras de serviços de saúde com finalidade lucrativa, desde que aprovada pelo Conselho Nacional de Saúde.",
@@ -7404,7 +7404,7 @@
     "enunciado": "De acordo com o estabelecido pela Tipificação Nacional de Serviços Socioassistenciais, não devem ser usuários do Serviço de Proteção e Atendimento Integral a Família (PAIF):",
     "ids": 1002,
     "resposta": "C",
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "disciplina": "Tipificação Nacional de Serviços Socioassistenciais",
     "comentario": "GABARITO: C) Não devem ser usuários do PAIF porque são famílias e indivíduos que já estão com os seus direitos sociais violados.\n\nFONTE: https://www.mds.gov.br/webarquivos/publicacao/assistencia_social/Normativas/tipificacao.pdf"
   },
@@ -7514,7 +7514,7 @@
     "concurso": "Prefeitura de Jaguariaíva - PR",
     "resposta": "B",
     "area": "Municipal",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "assunto": "Sintaxe: Concordância verbal e Concordância nominal",
     "disciplina": "Português",
     "cargo": "Assistente Social",
@@ -7663,7 +7663,7 @@
     "disciplina": "Norma Operacional Básica NOB-SUAS",
     "ano": 2021,
     "area": "Municipal",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "modalidade": "Múltipla-Escolha",
     "comentario": "Art. 19 A União, os Estados, o Distrito Federal e os municípios deverão elaborar os respectivos Planos de Assistência Social a cada 4 (quatro) anos, de acordo com os períodos de elaboração do Plano Plurianual - PPA.\n\nArt. 20 A realização de diagnóstico socioterritorial, a cada quadriênio, compõe a elaboração dos Planos de Assistência Social em cada esfera de governo.\n\nFONTE: https://www.mds.gov.br/webarquivos/public/NOBSUAS_2012.pdf",
     "ids": 829
@@ -7737,7 +7737,7 @@
     "nivel": "superior",
     "area": "Municipal",
     "resposta": "C",
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "assunto": "06. Lei n º 8.662 art 4 ao 5: Competências e Atribuições Privativas",
     "alternativas": [
       "(A) Planejar, executar e avaliar pesquisas que possam contribuir para a análise da realidade social e para subsidiar ações profissionais. ",
@@ -7939,7 +7939,7 @@
       "(C) Somente os itens I e III.",
       "(D) Todos os itens."
     ],
-    "banca": "OBJETIVA CONCURSOS"
+    "banca": "OBJETIVA"
   },
   {
     "banca": "CESPE/CEBRASPE",
@@ -8016,7 +8016,7 @@
     "ano": 2019,
     "comentario": "A): Proteção Social Especial de Média Complexidade\n\nB): Proteção Social Especial de Alta Complexidade\n\nC): GBARITO\n\nD): Proteção Social Especial de Alta Complexidade\n\nFONTE: https://www.mds.gov.br/webarquivos/publicacao/assistencia_social/Normativas/tipificacao.pdf",
     "disciplina": "Tipificação Nacional de Serviços Socioassistenciais",
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "cargo": "Assistente Social",
     "resposta": "C",
     "modalidade": "Múltipla-Escolha",
@@ -8089,7 +8089,7 @@
   },
   {
     "comentario": "Caracterizam técnicas ou instrumentos de pesquisa:\n\nObservação\n\nEntrevista\n\nQuestionários\n\nAnálise de materiais ou documental\n\nFONTE: https://biblio.direito.ufmg.br/?p=5116",
-    "banca": "AVANÇA SP",
+    "banca": "Avança SP",
     "cargo": "Assistente Social",
     "ids": 615,
     "modalidade": "Múltipla-Escolha",
@@ -8112,7 +8112,7 @@
   {
     "assunto": "02. Proteção Social Básica, Especial, Especial de Média e Alta Complexidade",
     "area": "Municipal",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "ano": 2023,
     "resposta": "A",
     "concurso": "Prefeitura de Canoas - RS",
@@ -9378,7 +9378,7 @@
   },
   {
     "comentario": "Art. 10.§  1º O direito à liberdade compreende, entre outros, os seguintes aspectos:\n\nI - faculdade de ir, vir e estar  nos  logradouros  públicos  e  espaços comunitários, ressalvadas as restrições legais;\nII - opinião e expressão;\nIII - crença e culto religioso;\nIV - prática de esportes e de diversões;\nV - participação na vida familiar e comunitária;\nVI - participação na vida política, na forma da lei;\nVII - faculdade de buscar refúgio, auxílio e orientação.",
-    "banca": "AVANÇA SP",
+    "banca": "Avança SP",
     "nivel": "superior",
     "ano": 2021,
     "cargo": "Assistente Social",
@@ -9514,7 +9514,7 @@
     "resposta": "E",
     "concurso": "Prefeitura de Canoas - RS",
     "comentario": "Art. 87. A Vigilância Socioassistencial é caracterizada como uma das funções da política de assistência social e deve ser realizada por intermédio da produção, sistematização, análise e disseminação de informações territorializadas, e trata:\n\nI. Contribuir para que as equipes dos serviços socioassistenciais avaliem sua própria atuação.\n\nII. Ampliar o conhecimento das equipes dos serviços socioassistenciais sobre as características da população e do território de forma a melhor atender às necessidades e às demandas existentes.\n\nIII. Proporcionar o planejamento e a execução das ações de busca ativa que assegurem a oferta de serviços e benefícios às famílias e aos indivíduos mais vulneráveis, superando a atuação pautada exclusivamente pela demanda espontânea.\n\nFONTE: https://www.mds.gov.br/webarquivos/public/NOBSUAS_2012.pdf",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "enunciado": "De acordo com a Norma Operacional Básica do Sistema Único de Assistência Social (NOB/SUAS), sobre os objetivos da Vigilância Socioassistencial, fornecendo informações estruturadas, analisar os itens abaixo:\nI. Contribuir para que as equipes dos serviços socioassistenciais avaliem sua própria atuação.\nII. Ampliar o conhecimento das equipes dos serviços socioassistenciais sobre as características da população e do território de forma a melhor atender às necessidades e às demandas existentes.\nIII. Proporcionar o planejamento e a execução das ações de busca ativa que assegurem a oferta de serviços e benefícios às famílias e aos indivíduos mais vulneráveis, superando a atuação pautada exclusivamente pela demanda espontânea.\n\nEstá(ão) CORRETO(S):",
     "ano": 2023,
     "ids": 1139,
@@ -9797,7 +9797,7 @@
     "assunto": "Teclas de atalho",
     "comentario": "A) Alt + 1: Não é um atalho para Mostrar Ajuda. O atalho Alt + 1 é comumente usado para trocar para o primeiro item na barra de tarefas.\n\nC) CTRL + H: Esse atalho não é específico para Mostrar Ajuda no MS-Windows 7. No entanto, no Windows Explorer (ou no Explorador de Arquivos), o atalho CTRL + H é usado para exibir o histórico da pasta, mostrando as pastas visitadas anteriormente.\n\nD) Shift + A: Não é um atalho relevante para Mostrar Ajuda. O Shift é geralmente usado para digitar letras maiúsculas, e o atalho Shift + A não tem uma função específica relacionada à ajuda.\n\nE) Alt + U: Também não é um atalho relacionado à opção Mostrar Ajuda. O Alt + U não tem uma função específica no MS-Windows 7.\n\nPortanto, a resposta correta é a alternativa B) F1, que é um atalho universalmente conhecido para mostrar a ajuda contextual em muitos programas e aplicativos do MS-Windows 7, bem como em muitos outros sistemas operacionais e software. Pressionar F1 geralmente abre uma janela de ajuda que fornece informações e suporte sobre a funcionalidade ou recurso que está sendo usado no momento.",
     "ano": 2021,
-    "banca": "AVANÇA SP",
+    "banca": "Avança SP",
     "concurso": "Prefeitura de Pereiras - SP",
     "ids": 1094,
     "disciplina": "Noções de Informática",
@@ -10481,7 +10481,7 @@
     "cargo": "Assistente Social"
   },
   {
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "ano": 2021,
     "assunto": "Hardware: Dispositivos de Armazenamento, Memórias e Periféricos",
     "disciplina": "Noções de Informática",
@@ -10518,7 +10518,7 @@
     "ids": 1146,
     "enunciado": "A Norma Operacional Básica do Sistema Único de Assistência Social (NOB/SUAS), aprovada pela Resolução CNAS nº 33/2012, estabelece que a política de assistência social, que tem por funções a proteção social, a vigilância socioassistencial e a defesa de direitos, organiza-se sob a forma de sistema público. De acordo com a NOB/SUAS, são objetivos do SUAS, EXCETO:",
     "cargo": "Assistente Social",
-    "banca": "AVANÇA SP",
+    "banca": "Avança SP",
     "concurso": "Prefeitura de São Lourenço da Serra - SP",
     "area": "Municipal"
   },
@@ -10560,7 +10560,7 @@
     "ano": 2023,
     "modalidade": "Múltipla-Escolha",
     "cargo": "Assistente Social",
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "resposta": "C",
     "assunto": "01. Origem e História das Políticas Sociais no Mundo"
   },
@@ -11352,7 +11352,7 @@
   },
   {
     "concurso": "Prefeitura de São Romão - MG",
-    "banca": "COTEC FADENOR",
+    "banca": "COTEC",
     "assunto": "01. Surgimento e Institucionalização do Serviço Social",
     "comentario": "O surgimento da profissão se dá no seio da sociedade burguesa, mais particularmente, no âmbito da ordem monopólica. É nesse contexto que profissionais, como o assistente social, são requisitados para intervir nas expressões mais latentes da 'questão social'. A intervenção, no entanto, é norteada por perspectivas conservadoras (como o positivismo e o funcionalismo) e o tratamento dado a essas expressões se estabelecem pela via da psicologização. A problemática da 'questão social' é vista como “externa às instituições da sociedade burguesa – ela deriva não das suas dinâmica e estrutura, mas de um conjunto de dilemas mentais e morais' (NETTO, 2006, p. 45-46). Isso faz com que essas problemáticas individualizadas, ou seja, vistas como disfunções, patologias ou desajustamentos próprios dos indivíduos, que devem ser corrigidos e controlados pelo Estado.\n\nBIBLIOGRAFIA: NETTO, J. P. Capitalismo monopolista e Serviço Social. 5. Ed. São Paulo: Cortez, 2006.",
     "alternativas": [
@@ -11408,7 +11408,7 @@
     ],
     "cargo": "Assistente Social",
     "ids": 912,
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "comentario": "A alternativa correta é:\n\nD) I, II e III.\n\nExplicação:\n\nAfirmação I: É correta. Gmail, Dropbox e YouTube são exemplos de recursos que se enquadram no conceito de computação em nuvem. Eles são serviços baseados na nuvem que fornecem funcionalidades e armazenamento de dados através da internet.\n\nAfirmação II: É correta. Na maioria dos casos de serviços de computação em nuvem, os usuários podem acessar as aplicações independentemente do sistema operacional ou do equipamento utilizado. Isso ocorre porque as aplicações são acessadas através de navegadores web ou aplicativos específicos, tornando-as compatíveis com diferentes sistemas operacionais e dispositivos.\n\nAfirmação III: É correta. Com a computação em nuvem, o usuário não precisa se preocupar com a infraestrutura necessária para executar a aplicação. Essa responsabilidade é transferida para o provedor de serviços em nuvem, que é responsável por fornecer a infraestrutura, manutenção e atualizações necessárias.\n\n Portanto, todas as afirmativas (I, II e III) estão corretas.",
     "modalidade": "Múltipla-Escolha"
   },
@@ -11946,7 +11946,7 @@
   },
   {
     "disciplina": "Estatuto da Criança e do Adolescente - ECA",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "ids": 150,
     "resposta": "A",
     "nivel": "superior",
@@ -12106,7 +12106,7 @@
     "ano": 2022,
     "enunciado": "Em conformidade com a Política Nacional de Assistência Social, os serviços socioassistenciais no Sistema Único de Assistência Social são organizados de acordo com referências como\n\nI. Vigilância social.\n\nII. Proteção social.\n\nIII. Defesa social e institucional.\n\nEstá(ão) CORRETO(S):",
     "cargo": "Assistente Social",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "disciplina": "Política Nacional de Assistência Social - PNAS",
     "concurso": "Prefeitura de Simão Dias",
     "nivel": "superior",
@@ -12364,7 +12364,7 @@
   },
   {
     "enunciado": "Sobre a Descentralização Político- Administrativa e Territorialização prevista na Política Nacional de Assistência Social, marque a alternativa INCORRETA:",
-    "banca": "FAU UNICENTRO",
+    "banca": "FAU",
     "ano": 2022,
     "modalidade": "Múltipla-Escolha",
     "assunto": "05. Descentralização Político-Administrativa e Territorialização e Novas Bases para a Relação entre o Estado e a Sociedade Civil",
@@ -12854,7 +12854,7 @@
     "comentario": "Art. 30. É condição para os repasses, aos Municípios, aos Estados e ao Distrito Federal, dos recursos de que trata esta lei, a efetiva instituição e funcionamento de: I - Conselho de Assistência Social, de composição paritária entre governo e sociedade civil;",
     "disciplina": "Lei Orgânica da Assistência Social - LOAS",
     "resposta": "C",
-    "banca": "COPESE UFPI",
+    "banca": "COPESE - UFPI",
     "ids": 34,
     "assunto": "03. Da Organização e da Gestão (arts. 6º a 19)",
     "enunciado": "A composição do Conselho Municipal de Assistência Social, conforme a Lei nº 8.742, de 7 de dezembro de 1993, é:",
@@ -13182,7 +13182,7 @@
     "modalidade": "Múltipla-Escolha",
     "concurso": "Prefeitura de Carmo do Paranaíba - MG",
     "resposta": "B",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "cargo": "Assistente Social",
     "area": "Municipal",
     "disciplina": "Códido de Ética do/a A. S. + Lei 8.662/93",
@@ -13378,7 +13378,7 @@
     ],
     "concurso": "Prefeitura de Simão Dias",
     "comentario": "Art.  17.  À  pessoa  idosa  que  esteja  no  domínio  de  suas  faculdades mentais é assegurado o direito de optar pelo tratamento de saúde que lhe for reputado mais favorável.",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "nivel": "superior",
     "assunto": "02. Dos Direitos Fundamentais (arts. 8º ao 42)",
     "enunciado": "Em conformidade com a Lei nº 10.741/2003 - Estatuto do Idoso, sobre o direito à saúde, é CORRETO afirmar que"
@@ -13726,7 +13726,7 @@
       "(C) Somente os itens I e III.",
       "(D) Todos os itens."
     ],
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "cargo": "Assistente Social",
     "comentario": "Art. 5º São diretrizes estruturantes da gestão do SUAS:\n\nI – primazia da responsabilidade do Estado na condução da política de assistência social;\n\nII – descentralização político-administrativa e comando único das ações em cada esfera de governo;\n\nIII – financiamento partilhado entre a União, os Estados, o Distrito Federal e os Municípios;\n\nIV – matricialidade sociofamiliar;\n\nV – territorialização;\n\nVI – fortalecimento da relação democrática entre Estado e sociedade civil;\n\nVII – controle social e participação popular.\n\nFONTE: https://www.mds.gov.br/webarquivos/public/NOBSUAS_2012.pdf"
   },
@@ -13968,7 +13968,7 @@
     "assunto": "Capítulo IV- Pacto de Aprimoramento do Sistema Único de Assistência Social",
     "modalidade": "Múltipla-Escolha",
     "ids": 826,
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "resposta": "E",
     "enunciado": "Em conformidade com a Norma Operacional Básica do Sistema Único de Assistência Social - NOB/SUAS 2012, sobre o alcance das metas de aprimoramento do SUAS, analisar os itens abaixo:\nI. O planejamento para alcance das metas de aprimoramento do SUAS será realizado por meio de ferramenta informatizada, a ser disponibilizada pela União.\nII. Os Conselhos de Assistência Social deliberarão acerca do planejamento para o alcance das metas.\nIII. A resolução do respectivo Conselho de Assistência Social referente à aprovação ou revisão do planejamento para alcance de metas deverá ser publicada em Diário Oficial ou jornal de grande circulação.\nEstá(ão) CORRETO(S):",
     "comentario": "Art. 32. O planejamento para alcance das metas de aprimoramento do SUAS será realizado por meio de ferramenta informatizada, a ser disponibilizada pela União.\n\n§1º Os conselhos de assistência social deliberarão acerca do planejamento para o alcance das metas.\n\n§2º A resolução do respectivo conselho de assistência social referente à aprovação ou revisão do planejamento para alcance de metas deverá ser publicada em diário oficial ou jornal de grande circulação.\n\nFONTE: https://www.mds.gov.br/webarquivos/public/NOBSUAS_2012.pdf",
@@ -14145,7 +14145,7 @@
     "modalidade": "Múltipla-Escolha",
     "disciplina": "Estatuto da Pessoa Idosa",
     "nivel": "superior",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "enunciado": "De acordo com a Lei nº 10.741/2003 - Estatuto do Idoso, ao idoso que esteja no domínio de suas faculdades mentais, é assegurado o direito de optar pelo tratamento de saúde que lhe for reputado mais favorável. Não estando o idoso em condições de proceder à opção, esta será feita:\n\nI. Pelo curador, quando o idoso for interditado.\nII. Pelos familiares, quando o idoso não tiver curador ou este não puder ser contactado em tempo hábil.\nIII. Pelo médico, quando ocorrer iminente risco de vida e não houver tempo hábil para consulta a curador ou familiar.\n\n Está(ão) CORRETO(S):",
     "comentario": "Art. 17. Ao idoso que esteja no domínio de suas faculdades mentais é assegurado o direito de optar pelo tratamento de saúde que lhe for reputado mais favorável.\nParágrafo único. Não estando o idoso em condições de proceder à opção, esta será feita:\nI – pelo curador, quando o idoso for interditado;\nII – pelos familiares, quando o idoso não tiver curador ou este não puder ser contactado em tempo hábil;\nIII – pelo médico, quando ocorrer iminente risco de vida e não houver tempo hábil para consulta a curador ou familiar;\nIV – pelo próprio médico, quando não houver curador ou familiar conhecido, caso em que deverá comunicar o fato ao Ministério Público.",
     "concurso": "Prefeitura de Horizontina",
@@ -14361,7 +14361,7 @@
     "disciplina": "Serviço Social na Educação",
     "ano": 2019,
     "enunciado": "O documento intitulado: “Subsídios para atuação de Assistentes Sociais na Política de Educação”, elaborado pelo conjunto CFESSCRESS, tem como objetivo contribuir para que a atuação profissional na Política de Educação se efetive em consonância com os processos de fortalecimento do projeto ético-político do serviço social e de luta por uma educação pública, laica, gratuita, presencial e de qualidade, que, enquanto um efetivo direito social, potencialize formas de sociabilidade humanizadoras. Diante disso, analise a concepção de educação que deve orientar a atuação de assistentes sociais na Política de Educação:\n\nI - A função social da educação é marcada pelas contradições, pelos projetos e pelas lutas societárias e não se esgota nas instituições educacionais.\nII - Uma das funções principais da educação formal nas nossas sociedades é produzir tanta conformidade ou “consenso” quanto for capaz, a partir de dentro e por meio dos seus próprios limites institucionalizados e legalmente sancionados.\nIII - Uma educação de caráter emancipador, ao mesmo tempo em que não prescinde da educação escolarizada, não se limita de forma alguma à mesma.\nIV - A política educacional se estrutura como forma de assegurar modos autônomos de pensar e agir.\nV - Compreender o alcance das estratégias educacionais empreendidas sob a hegemonia do capital financeiro e reorientar a direção política de sua atuação é um desafio que a profissão tem condições teóricas e políticas de forjar.\n\nEstão CORRETAS as afirmações:",
-    "banca": "FAU UNICENTRO",
+    "banca": "FAU",
     "resposta": "C",
     "alternativas": [
       "(A) Apenas as afirmativas II e III estão corretas.",
@@ -14532,7 +14532,7 @@
       "(D) Apenas os itens II e III são verdadeiros.",
       "(E) Todos os itens são verdadeiros."
     ],
-    "banca": "AVANÇA SP",
+    "banca": "Avança SP",
     "disciplina": "Norma Operacional Básica NOB-SUAS",
     "cargo": "Assistente Social",
     "ids": 828,
@@ -14681,7 +14681,7 @@
     ],
     "disciplina": "Política Nacional de Assistência Social - PNAS",
     "modalidade": "Múltipla-Escolha",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "enunciado": "De acordo com a Política Nacional de Assistência Social (PNAS), sobre a Proteção Social Básica e o Centro de Referência de Assistência Social, analisar os itens abaixo:\n\nI. Realiza, ainda, sob a orientação do gestor municipal de Assistência Social, o mapeamento e a organização da rede socioassistencial de proteção básica e promove a inserção das famílias nos serviços de Assistência Social local.\nII. Promove também o encaminhamento da população local para as demais políticas públicas e sociais, possibilitando o desenvolvimento de ações intersetoriais que visem à sustentabilidade, de forma a romper com o ciclo de reprodução intergeracional do processo de exclusão social e evitar que essas famílias e esses indivíduos tenham seus direitos violados, recaindo em situações de vulnerabilidades e riscos.\nIII. São considerados serviços de proteção básica de Assistência Social aqueles que prescindem da família como unidade de referência.\n\nEstá(ão) CORRETO(S):",
     "ano": 2023,
     "cargo": "Assistente Social",
@@ -14736,7 +14736,7 @@
     "assunto": "01. Disposições Preliminares (arts. 1º ao 7º)",
     "concurso": "FUNDEP (Gestão de Concursos) - 2023 - Prefeitura de Lavras - MG",
     "cargo": "Assistente Social",
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "alternativas": [
       "(A) à previdência social.",
       "(B) ao voto.",
@@ -15553,7 +15553,7 @@
     "comentario": "Art. 16. Os CRESS aplicarão as seguintes penalidades aos infratores dos dispositivos desta Lei: II - suspensão de um a dois anos de exercício da profissão ao Assistente Social que, no âmbito de sua atuação, deixar de cumprir disposições do Código de Ética, tendo em vista a gravidade da falta; \n\n ALTERNATIVA CORRETA: (A)",
     "nivel": "superior",
     "cargo": "Assistente Social",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "enunciado": "Em conformidade com a Lei nº 8.662/1993, em relação às penalidades aplicadas pelos Conselhos Regionais de Serviço Social aos infratores dos dispositivos dessa Lei, assinalar a alternativa que preenche a lacuna abaixo CORRETAMENTE:\n\nSuspensão de um a ____ anos de exercício da profissão ao Assistente Social que, no âmbito de sua atuação, deixar de cumprir disposições do Código de Ética, tendo em vista a gravidade da falta.",
     "ids": 219,
     "resposta": "A",
@@ -15683,7 +15683,7 @@
       "(C) comparar dois documentos para ver a diferença entre eles.",
       "(D) comparar o tamanho das fontes utilizadas no documento, ao listar, para o usuário, a fonte e o tamanho utilizado."
     ],
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "ano": 2023
   },
   {
@@ -15854,7 +15854,7 @@
   {
     "resposta": "E",
     "enunciado": "De acordo com a Política Nacional de Assistência Social (PNAS), é um de seus princípios a divulgação ampla de benefícios, serviços, programas e projetos assistenciais, bem como dos recursos oferecidos pelo Poder Público:",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "area": "Municipal",
     "cargo": "Assistente Social",
     "alternativas": [
@@ -15906,7 +15906,7 @@
     "ids": 970,
     "concurso": "Prefeitura de Bom Jesus do Amparo - MG",
     "modalidade": "Múltipla-Escolha",
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "ano": 2018,
     "resposta": "A",
     "comentario": "A A) está incorreta porque o Serviço de Proteção Social a Adolescentes em Cumprimento de Medida Socioeducativa é de média complexidade. As demais alternativas estão corretas.\n\nFONTE: https://www.mds.gov.br/webarquivos/publicacao/assistencia_social/Normativas/tipificacao.pdf",
@@ -16034,7 +16034,7 @@
     "comentario": "I. Antes de abrir um arquivo anexado à mensagem, deve-se ter a certeza de que ele não apresenta riscos, verificando-o com ferramentas antimalware. - Essa afirmativa está correta. Sempre é recomendado verificar arquivos anexados com ferramentas antimalware atualizadas antes de abrir ou executá-los para evitar riscos de malware.\n\nII. Sempre deve-se usar a criptografia para conexão entre o leitor de e-mails e os servidores de e-mail do provedor. - Essa afirmativa também está correta. Utilizar a criptografia na conexão entre o leitor de e-mails e os servidores de e-mail do provedor é uma boa prática de segurança para proteger a privacidade das comunicações.\n\nIII. Deve-se utilizar as opções que permitam abrir ou executar automaticamente arquivos ou programas anexados às mensagens. - Essa afirmativa está incorreta. É altamente desaconselhável utilizar opções que permitam abrir ou executar automaticamente arquivos anexados às mensagens, pois isso pode facilitar a execução de malware sem o conhecimento do usuário.\n\nPortanto, apenas as afirmativas I e II estão corretas, e a alternativa correta é a A) I e II, apenas.",
     "ano": 2023,
     "modalidade": "Múltipla-Escolha",
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "enunciado": "Conforme o cert.br, analise as afirmativas a seguir em relação à utilização de programas leitores de e-mail:\nI. Antes de abrir um arquivo anexado à mensagem, deve-se ter a certeza de que ele não apresenta riscos, verificando-o com ferramentas antimalware.\nII. Sempre deve-se usar a criptografia para conexão entre o leitor de e-mails e os servidores de e-mail do provedor. III. Deve-se utilizar as opções que permitam abrir ou executar automaticamente arquivos ou programas anexados às mensagens.\nEstão corretas as afirmativas",
     "ids": 1024
   },
@@ -16280,7 +16280,7 @@
       "(D) A ferramenta 'Restringir Edição' pode ser encontrada na guia Revisão.",
       "(E) Ir na aba 'Revisar' e selecionar a opção 'Índices'"
     ],
-    "banca": "OBJETIVA CONCURSOS"
+    "banca": "OBJETIVA"
   },
   {
     "area": "Federal",
@@ -16385,7 +16385,7 @@
       "(D) As emendas parlamentares.",
       "(E) As doutrinações religiosas."
     ],
-    "banca": "OBJETIVA CONCURSOS"
+    "banca": "OBJETIVA"
   },
   {
     "modalidade": "Múltipla-Escolha",
@@ -16397,7 +16397,7 @@
     "cargo": "Assistente Social",
     "enunciado": "De acordo com o Código de Ética Profissional do Assistente Social, não é um direito desse profissional",
     "comentario": "Art. 2º - aprimoramento profissional de forma contínua, colocando-o a serviço dos princípios deste CÓDIGO; ALTERNATIVA CORRETA: (C)",
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "alternativas": [
       "(A) Participação na elaboração e gerenciamento das políticas sociais, e na formulação e implementação de programas sociais..",
       "(B) Inviolabilidade do local de trabalho e respectivos arquivos e documentação, garantindo o sigilo profissional.",
@@ -16506,7 +16506,7 @@
     "ids": 232,
     "comentario": "Art. 6º É vedado ao/à assistente social:b- aproveitar-se de situações decorrentes da relação assistente social-usuário/a, para obter vantagens pessoais ou para terceiros;  ALTERNATIVA CORRETA: (E)",
     "area": "Municipal",
-    "banca": "AVANÇA SP",
+    "banca": "Avança SP",
     "concurso": " Avança SP - 2023 - Prefeitura de Americana - SP",
     "assunto": "02. Código de Ética: art 1º ao 14: Direitos, Deveres e Vedações",
     "resposta": "E",
@@ -16632,7 +16632,7 @@
       "(C) 4, 2, 1, 3.",
       "(D) 4, 3, 1, 2."
     ],
-    "banca": "FUMARC ",
+    "banca": "FUMARC",
     "assunto": "07. Art.  98. ao Art.  130. Das Medidas de Proteção as Medidas Sócio-Educativas",
     "enunciado": "Associe as duas colunas, relacionando as medidas socioeducativas previstas no Estatuto da Criança e do Adolescente e sua correta descrição, numerando a segunda coluna de acordo com a primeira. \n\n(1) Advertência\n(2) Internação\n(3) Liberdade Assistida\n(4) Prestação de Serviços à Comunidade\n\n( ) Realização de tarefas gratuitas de interesse geral, por período não excedente a seis meses, junto a entidades assistenciais, hospitais, escolas e outros estabelecimentos congêneres.\n( ) Será fixada pelo prazo mínimo de seis meses, podendo a qualquer tempo ser prorrogada, revogada ou substituída por outra medida, ouvido o orientador, o Ministério Público e o defensor\n( ) Admoestação verbal, que será reduzida a termo e assinada.\n( ) Medida privativa da liberdade, sujeita aos princípios de brevidade, excepcionalidade e respeito à condição peculiar de pessoa em desenvolvimento.\n A sequência CORRETA, de cima para baixo, é:",
     "comentario": "\n\n ALTERNATIVA CORRETA: (D)",
@@ -16870,7 +16870,7 @@
     "modalidade": "Múltipla-Escolha",
     "concurso": "Prefeitura de São Lourenço da Serra - SP",
     "comentario": "Art. 45. A gestão financeira e orçamentária da assistência social implica na observância dos princípios da administração pública, em especial: a legalidade, a impessoalidade, a moralidade, a publicidade e a eficiência.\n\nFONTE: https://www.mds.gov.br/webarquivos/public/NOBSUAS_2012.pdf",
-    "banca": "AVANÇA SP",
+    "banca": "Avança SP",
     "disciplina": "Norma Operacional Básica NOB-SUAS",
     "resposta": "B",
     "ids": 1145
@@ -16962,7 +16962,7 @@
     "nivel": "superior",
     "assunto": "02. Art. 7. ao Art.  18-B - Dos Direitos Fundamentais:  Direito à Vida, à Saúde, à Liberdade, ao Respeito e à Dignidade",
     "ids": 72,
-    "banca": "AVANÇA SP",
+    "banca": "Avança SP",
     "area": "Municipal",
     "comentario": " ALTERNATIVA CORRETA: (E)",
     "concurso": "Avança SP - 2023 - Prefeitura de Americana - SP",
@@ -17166,7 +17166,7 @@
     "assunto": "Capítulo VI - Gestão Financeira e Orçamentária dos Sistema Único de Assistência Social",
     "area": "Municipal",
     "ids": 821,
-    "banca": "OBJETIVA CONCURSOS"
+    "banca": "OBJETIVA"
   },
   {
     "cargo": "Assistente Social",
@@ -17426,7 +17426,7 @@
     "cargo": "Assistente Social",
     "modalidade": "Múltipla-Escolha",
     "concurso": "Prefeitura de São Romão - MG",
-    "banca": "COTEC FADENOR",
+    "banca": "COTEC",
     "alternativas": [
       "(A) a importância do enfrentamento da discriminação com a pessoa com deficiência, entendida, exclusivamente, como ação concreta que anula o seu acesso a bens, direitos e serviços sociais.",
       "(B) os investimentos em tecnologias assistivas para que outros familiares realizem as atividades para as pessoas com deficiências e mobilidade reduzida.",
@@ -17660,7 +17660,7 @@
     "enunciado": "No Microsoft Windows 10, o atalho Ctrl+Shift+Esc:",
     "ano": 2023,
     "resposta": "D",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "comentario": "A) Abre o menu de atalho da janela ativa: Esse atalho é normalmente representado pelo botão direito do mouse ou pela tecla de contexto Menu de Aplicação. Ao pressionar essa tecla (ou equivalente), um menu de opções relacionadas à janela ou item ativo é exibido.\n\nB) Alterna entre os aplicativos abertos: O atalho Alt + Tab é usado para alternar rapidamente entre aplicativos e janelas abertas no Windows. Pressionando Alt + Tab, uma pequena janela com miniaturas dos aplicativos abertos é exibida, permitindo que o usuário selecione o aplicativo desejado.\n\nC) Abre o Iniciar: O atalho Tecla Windows (ou Win) é usado para abrir o menu Iniciar no Windows 10. Pressionando essa tecla, o menu Iniciar é exibido, permitindo que o usuário acesse programas, configurações e documentos.\n\nD) Abre o gerenciador de tarefas: O atalho Ctrl + Shift + Esc é usado para abrir diretamente o Gerenciador de Tarefas no Windows 10. Como mencionado anteriormente, esse utilitário permite visualizar e gerenciar os processos em execução no sistema, bem como monitorar o desempenho do computador, encerrar aplicativos ou tarefas que não estão respondendo e verificar o uso da CPU, memória, disco e rede.\n\nPortanto, a alternativa correta é a opção D) Abre o gerenciador de tarefas."
   },
   {
@@ -18183,7 +18183,7 @@
     "area": "Municipal",
     "ids": 1152,
     "disciplina": "Português",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "comentario": "A alternativa correta é a letra D: \"A multidão ultrapassou a barreira.\"\n\nA concordância verbal correta nessa frase é \"ultrapassou,\" que concorda com o sujeito \"a multidão\" no singular. As demais alternativas possuem erros de concordância verbal:\n\nA - \"Houveram muitas brigas na Câmara.\" O verbo \"houveram\" deve ser substituído por \"houve\" para concordar com o sujeito \"muitas brigas,\" que está no singular.\n\nB - \"O elenco eram muito competentes.\" O verbo \"eram\" deve ser substituído por \"era\" para concordar com o sujeito \"o elenco,\" que está no singular.\n\nC - \"Estados Unidos influenciam o mundo inteiro.\" O verbo \"influenciam\" deve ser substituído por \"influencia\" para concordar com o sujeito \"Estados Unidos,\" que está no singular.",
     "enunciado": "Em relação à concordância verbal, assinalar a alternativa CORRETA:"
   },
@@ -18330,7 +18330,7 @@
     "assunto": "02. Art. 7. ao Art.  18-B - Dos Direitos Fundamentais:  Direito à Vida, à Saúde, à Liberdade, ao Respeito e à Dignidade",
     "resposta": "D",
     "modalidade": "Múltipla-Escolha",
-    "banca": "AVANÇA SP",
+    "banca": "Avança SP",
     "ano": 2022,
     "cargo": "Assistente Social"
   },
@@ -18871,7 +18871,7 @@
     "enunciado": "É uma das diretrizes estruturantes da gestão do Sistema Único de Assistência Social (SUAS):",
     "disciplina": "Norma Operacional Básica NOB-SUAS",
     "area": "Municipal",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "resposta": "B",
     "ano": 2023,
     "comentario": "Art. 5º São diretrizes estruturantes da gestão do SUAS:\n\nI- primazia da responsabilidade do Estado na condução da política de assistência social; (LOAS)\n\nII- descentralização político-administrativa e comando único das ações em cada esfera de governo; (LOAS)\n\nIII- financiamento partilhado entre a União, os Estados, o Distrito Federal e os Municípios;\n\nIV- matricialidade sociofamiliar;\n\nV - territorialização;\n\nVI - fortalecimento da relação democrática entre Estado e sociedade civil;\n\nVII - controle social e participação popular\n\nFONTE: https://www.mds.gov.br/webarquivos/public/NOBSUAS_2012.pdf",
@@ -18922,7 +18922,7 @@
   {
     "ids": 971,
     "resposta": "C",
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "modalidade": "Múltipla-Escolha",
     "cargo": "Assistente Social",
     "concurso": "INB",
@@ -18978,7 +18978,7 @@
     "cargo": "Assistente Social"
   },
   {
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "resposta": "D",
     "cargo": "Assistente Social",
     "nivel": "superior",
@@ -19389,7 +19389,7 @@
     "nivel": "superior",
     "comentario": "O Centro de Referência da Assistência Social – CRAS é uma unidade pública estatal de base territorial, localizado em áreas de vulnerabilidade social, que abrange um total de até 1.000 famílias/ano. Executa serviços de proteção social básica, organiza e coordena a rede de serviços socioassistenciais locais da  política de assistência social.\n\nO CRAS atua com famílias e indivíduos em seu contexto comunitário, visando a orientação e o convívio sociofamiliar e comunitário. Neste sentido é responsável pela oferta do Programa de Atenção Integral às Famílias. \n\nFONTE: https://www.mds.gov.br/webarquivos/publicacao/assistencia_social/Normativas/PNAS2004.pdf",
     "assunto": "02. Proteção Social Básica, Especial, Especial de Média e Alta Complexidade",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "concurso": "Prefeitura de Antônio Olinto - PR",
     "ano": 2019,
     "disciplina": "Política Nacional de Assistência Social - PNAS"
@@ -19445,7 +19445,7 @@
     "resposta": "C",
     "cargo": "Assistente Social",
     "enunciado": "Sobre Planejamento Social: intencionalidade e instrumentação, analisar a sentença abaixo:\n\nO termo “planejamento”, na perspectiva lógico-racional, refere-se ao processo permanente e metódico de abordagem racional e científica de questões que se colocam no mundo social (1ª parte). Enquanto processo permanente, o planejamento social supõe ação contínua sobre um conjunto estático de situações em um determinado momento histórico (2ª parte). Como processo metódico de abordagem racional e científica, o planejamento social supõe uma sequência de atos decisórios, ordenados em movimentos definidos e baseados em conhecimentos teóricos, científicos e técnicos (3ª parte).\n\nA sentença está:",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "disciplina": "Planejamento Social",
     "comentario": "O termo “planejamento”, na perspectiva lógico-racional, refere-se ao processo permanente e metódico de abordagem racional e científica de questões que se colocam no mundo social (1ª parte). Enquanto processo permanente, supõe ação contínua sobre um conjunto dinâmico de situações em um determinado momento histórico. (2ª parte). Como processo metódico de abordagem racional e científica, o planejamento social supõe uma sequência de atos decisórios, ordenados em movimentos definidos e baseados em conhecimentos teóricos, científicos e técnicos (3ª parte).\n\nBIBLIOGRAFIA: BAPTISTA, Myriam Veras. Planejamento Social: intencionalidade e instrumentação. 11ª edição. São Paulo: Veras Editora, 2015.",
     "ano": 2022,
@@ -19462,7 +19462,7 @@
     "disciplina": "Política Nacional de Assistência Social - PNAS",
     "ids": 1121,
     "area": "Municipal",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "alternativas": [
       "(A) Benefícios socioassistenciais.",
       "(B) Controle social.",
@@ -19833,7 +19833,7 @@
       "(C) Somente os itens I e II.",
       "(D) Todos os itens."
     ],
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "concurso": "Prefeitura de Sete Lagoas",
     "comentario": "\n\n ALTERNATIVA CORRETA: (D)",
     "ano": 2022
@@ -20156,7 +20156,7 @@
     ],
     "cargo": "Assistente Social",
     "resposta": "E",
-    "banca": "AVANÇA SP",
+    "banca": "Avança SP",
     "concurso": "Prefeitura de Americana - SP",
     "ids": 543,
     "nivel": "superior",
@@ -20681,7 +20681,7 @@
   },
   {
     "disciplina": "Noções de Informática",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "comentario": "A alternativa correta é a letra A: Projetor, impressora e caixa de som.\n\nDispositivos de saída são aqueles que permitem ao computador exibir ou transmitir informações para o usuário ou outros dispositivos externos. Eles são usados para 'sair' com os dados processados pelo computador. Vamos analisar os exemplos fornecidos em cada alternativa:\n\nA) Projetor: É um dispositivo de saída que permite exibir imagens e vídeos em uma tela maior, como uma parede ou uma tela de projeção.\nImpressora: É um dispositivo de saída que permite imprimir documentos, imagens e outros conteúdos em papel ou outros materiais.\nCaixa de som: É um dispositivo de saída que reproduz sons e áudios emitidos pelo computador, permitindo que o usuário ouça músicas, sons de sistema, áudios de vídeos, entre outros.\n\nB) Câmera: A câmera é um dispositivo de entrada que capta imagens e vídeos do ambiente e os envia para o computador. Não é um dispositivo de saída.\nMonitor: O monitor é um dispositivo de saída, pois exibe as informações e gráficos gerados pelo computador, permitindo que o usuário visualize o que está acontecendo no sistema.\nFone de ouvido: Os fones de ouvido são dispositivos de saída, pois reproduzem áudio emitido pelo computador, permitindo que o usuário ouça sons sem perturbar os outros ao redor.\n\nC) Teclado: O teclado é um dispositivo de entrada, pois permite que o usuário forneça comandos e dados para o computador.\nProjetor: Já mencionado anteriormente. É um dispositivo de saída que permite exibir imagens e vídeos em uma tela maior.\nMouse: O mouse é um dispositivo de entrada, pois permite que o usuário mova o cursor na tela e interaja com elementos do sistema.\n\nD) Webcam: A webcam é um dispositivo de entrada que captura imagens e vídeos do ambiente e os envia para o computador. Não é um dispositivo de saída.\nImpressora: Já mencionado anteriormente. É um dispositivo de saída que permite imprimir documentos, imagens e outros conteúdos em papel ou outros materiais.\nTeclado: Já mencionado anteriormente. É um dispositivo de entrada, pois permite que o usuário forneça comandos e dados para o computador.",
     "ids": 1042,
     "enunciado": "São exemplos de dispositivos de saída:",
@@ -21097,7 +21097,7 @@
     ],
     "assunto": "03. Da Organização e da Gestão (arts. 6º a 19)",
     "comentario": "Art. 16. As instâncias deliberativas do Suas, de caráter permanente e composição paritária entre governo e sociedade civil, são:\nI - o Conselho Nacional de Assistência Social;\nII - os Conselhos Estaduais de Assistência Social;\nIII - o Conselho de Assistência Social do Distrito Federal;\nIV - os Conselhos Municipais de Assistência Social.",
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "enunciado": "De acordo com a Lei nº 8.742, de 07 de dezembro de 1993, Lei Orgânica da Assistência Social, são instâncias deliberativas do Sistema Único de Assistência Social (SUAS), de caráter permanente e composição paritária entre governo e sociedade civil, exceto:"
   },
   {
@@ -21716,7 +21716,7 @@
   {
     "resposta": "B",
     "assunto": "01. Origem e História das Políticas Sociais no Mundo",
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "alternativas": [
       "(A) Um Estado forte para romper o poder dos sindicatos e controlar a moeda.",
       "(B) Uma reforma fiscal, aumentando os impostos sobre os rendimentos mais altos.",
@@ -21963,7 +21963,7 @@
   },
   {
     "modalidade": "Múltipla-Escolha",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "disciplina": "Política Nacional de Assistência Social - PNAS",
     "cargo": "Assistente Social",
     "concurso": "FHSTE",
@@ -22159,7 +22159,7 @@
       "(D) linha e coluna.",
       "(E) retrato e paisagem."
     ],
-    "banca": "COTEC FADENOR",
+    "banca": "COTEC",
     "resposta": "E",
     "enunciado": "No Microsoft Word, a orientação da página é um recurso de configuração de página adequado para permitir alternância entre os modos",
     "modalidade": "Múltipla-Escolha",
@@ -22235,7 +22235,7 @@
     "disciplina": "Noções de Informática"
   },
   {
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "enunciado": "Em conformidade com a Norma Operacional Básica do Sistema Único de Assistência Social (NOB/SUAS), a segurança de convívio ou vivência familiar, comunitária e social, exige a oferta pública de rede continuada de serviços que garantam oportunidades e ação profissional para:",
     "alternativas": [
       "(A) A inclusão nos Programas de Transferência de Renda.",
@@ -22316,7 +22316,7 @@
     "ano": 2021,
     "enunciado": "Em conformidade com a Norma Operacional Básica do Sistema Único de Assistência Social - NOB/SUAS 2012, sobre os Fundos de Assistência Social, analisar a sentença abaixo: Os Fundos de Assistência Social são instrumentos de gestão orçamentária e financeira da União, dos Estados, do Distrito Federal e dos Municípios, nos quais devem ser alocadas as receitas e executadas as despesas relativas ao conjunto de ações, serviços, programas, projetos e benefícios de assistência social (1ª parte). Os Fundos de Assistência Social devem ser inscritos no Cadastro Nacional de Pessoa Jurídica (CNPJ), na condição de filial, na forma das Instruções Normativas da Receita Federal do Brasil em vigor, devendo possuir autonomia administrativa e de gestão, com o intuito de assegurar maior transparência na identificação e no controle das contas a eles vinculadas (2ª parte). A sentença está:",
     "disciplina": "Norma Operacional Básica NOB-SUAS",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "resposta": "B"
   },
   {
@@ -22476,7 +22476,7 @@
       "(D) V, F, V, V, V.",
       "(E) V, V, V, F, V."
     ],
-    "banca": "FAU UNICENTRO",
+    "banca": "FAU",
     "nivel": "superior",
     "cargo": "Assistente Social",
     "assunto": "03. Da Organização e da Gestão (arts. 6º a 19)",
@@ -22514,7 +22514,7 @@
     "concurso": "Prefeitura de São Romão - MG",
     "disciplina": "Políticas Sociais",
     "enunciado": "Dicionários, como o de Política (BOBBIO et al., 1998, p. 908), evidenciam características de um tipo de política social “orientada ao bem-estar dos cidadãos e do povo, mas que exclui a sua direta participação”. Essa política social é referendada, historicamente, por sua tendência autoritária, assistencialista, que não perde de vista sua execução centralizada e dimensão benevolente. O trecho se refere à política social",
-    "banca": "COTEC FADENOR",
+    "banca": "COTEC",
     "cargo": "Assistente Social",
     "modalidade": "Múltipla-Escolha",
     "ano": 2023,
@@ -22677,7 +22677,7 @@
   },
   {
     "modalidade": "Múltipla-Escolha",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "comentario": "Ambos são princípios, por isso estão corretos.",
     "disciplina": "Lei Orgânica da Assistência Social - LOAS",
     "cargo": "Assistente Social",
@@ -22864,7 +22864,7 @@
     "area": "Municipal",
     "comentario": "A Política Pública de Assistência Social realiza-se de forma integrada às políticas setoriais, considerando as desigualdades socioterritoriais, visando seu enfrentamento, à garantia dos mínimos sociais, ao provimento de condições para atender contingências sociais e à universalização dos direitos sociais. Sob essa perspectiva, objetiva:\n\nProver serviços, programas, projetos e benefícios de proteção social básica e, ou, especial para famílias, indivíduos e grupos que deles necessitarem.\n\nContribuir com a inclusão e a eqüidade dos usuários e grupos específicos, ampliando o acesso aos bens e serviços socioassistenciais básicos e especiais, em áreas urbana e rural.\n\nAssegurar que as ações no âmbito da assistência social tenham centralidade na família, e que garantam a convivência familiar e comunitária.\n\nFONTE: https://www.mds.gov.br/webarquivos/publicacao/assistencia_social/Normativas/PNAS2004.pdf",
     "disciplina": "Política Nacional de Assistência Social - PNAS",
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "ano": 2019
   },
   {
@@ -22968,7 +22968,7 @@
       "(D) Somente os itens I e III.",
       "(E) Somente os itens II e III."
     ],
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "ids": 1116,
     "area": "Municipal"
   },
@@ -23290,7 +23290,7 @@
     "ano": 2019,
     "disciplina": "Tipificação Nacional de Serviços Socioassistenciais",
     "comentario": "Serviço de Acolhimento Instucional:\n\npromove o acolhimento em diferentes tipos de equipamentos, destinado a famílias e / ou indivíduos com vínculos familiares rompidos ou fragilizados, a fim de garantir proteção integral. Deve garantir privacidade, respeito à diversidade de ciclos de vida, arranjos familiares, raça / etnia, religião, gênero e orientação sexual.\n\nServiço de Acolhimento em Repúblicas:\n\noferece proteção, apoio e moradia subsidiada a grupos de pessoas maiores de 18 anos de idade em estado de abandono, situação de vulnerabilidade e risco pessoal e social, com vínculos familiares rompidos ou extremamente fragilizados e sem condições de moradia e autossustentação.\n\nServiço de Acolhimento em Família Acolhedora:\n\norganiza o acolhimento de crianças e adolescentes, afastados da família por medida de proteção, em residência de famílias acolhedoras cadastradas:\n\nÉ previsto até que seja possível o retorno à família de origem ou, na sua impossibilidade, o encaminhamento para adoção.\n\nServiço de Proteção em Situações de Calamidades Públicas e de Emergência:\n\nPromove apoio e proteção à população atingida por situações de emergência e calamidade publica, com a oferta de alojamentos provisórios, atenções e provisões materiais, conforme as necessidades detectadas.\n\nFONTE: https://www.mds.gov.br/webarquivos/publicacao/assistencia_social/Normativas/tipificacao.pdf",
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "cargo": "Assistente Social",
     "modalidade": "Múltipla-Escolha",
     "resposta": "D",
@@ -23449,7 +23449,7 @@
     "nivel": "superior",
     "cargo": "Assistente Social",
     "assunto": "04. Código de Ética: Da Observância, Penalidades, Aplicação e Cumprimento Deste Código",
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "area": "Municipal",
     "enunciado": "De acordo com a Resolução CFESS nº 273, de 13 de março de 1993 (Código de Ética Profissional do Assistente Social), constitui uma infração disciplinar, exceto:",
     "modalidade": "Múltipla-Escolha",
@@ -23782,7 +23782,7 @@
     "area": "Municipal",
     "ano": 2019,
     "resposta": "A",
-    "banca": "FUNDEP",
+    "banca": "FUNDEP (Gestão de Concursos)",
     "concurso": "Prefeitura de Uberlândia - MG",
     "ids": 980,
     "enunciado": "Está previsto no documento do CNAS Tipificação Nacional de Serviços Socioassistenciais (2009) que o serviço que organiza o acolhimento de crianças e adolescentes afastados da família por medida de proteção em residência de famílias acolhedoras cadastradas deve ser provido por meio de articulação das seguintes redes, exceto:"
@@ -24016,7 +24016,7 @@
   },
   {
     "ids": 1159,
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "concurso": "Prefeitura de Piratininga - SP",
     "ano": 2023,
     "cargo": "Assistente Social",
@@ -24057,7 +24057,7 @@
   },
   {
     "ids": 1161,
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "concurso": "Prefeitura de Lavras do Sul - RS",
     "ano": 2023,
     "cargo": "Assistente Social",
@@ -24473,7 +24473,7 @@
   },
   {
     "ids": 1181,
-    "banca": "OBJETIVA CONCURSOS",
+    "banca": "OBJETIVA",
     "concurso": "Prefeitura de Jaguariaíva - PR",
     "ano": 2023,
     "cargo": "Assistente Social",
@@ -28357,16 +28357,16 @@
     "modalidade": "Múltipla-Escolha",
     "enunciado": "O Código de Ética Profissional do Assistente Social explicita, em seu artigo 2° , a “defesa intransigente dos direitos humanos e recusa do arbítrio e do autoritarismo”. Para efetivação dessa defesa, é indispensável a compreensão de direitos humanos como universais, indivisíveis, interdependentes e inter-relacionados. Supõe também reconhecê-los como um conjunto de direitos, inclusive o direito à solidariedade, à paz, ao desenvolvimento e a um ambiente sadio. Vale destacar, conforme Aguinsky (2006), que a busca pela efetivação desses direitos implica em um processo de enfrentamento de interesses, que se processam nos âmbitos nacional e internacional e são de natureza divergente. Esses interesses são, fundamentalmente,",
     "alternativas": [
-        "(A) plurais.",
-        "(B) econômicos.",
-        "(C) sociológicos.",
-        "(D) genéricos.",
-        "(E) específicos."
+      "(A) plurais.",
+      "(B) econômicos.",
+      "(C) sociológicos.",
+      "(D) genéricos.",
+      "(E) específicos."
     ],
     "resposta": "B",
     "comentario": ""
-},
-{
+  },
+  {
     "ids": 1369,
     "ano": 2017,
     "banca": "VUNESP",
@@ -28378,16 +28378,16 @@
     "modalidade": "Múltipla-Escolha",
     "enunciado": "O Brasil viveu diferentes períodos históricos, nos quais a questão dos direitos humanos foi se colocando de modo diferenciado em relação à ação da sociedade na luta por tais direitos. Foi no período do enfrentamento à ditadura militar que a luta pelos direitos humanos ganhou força social e política. A forte repressão a todo tipo de manifestação e a violação de direitos políticos e sociais foram impulsionadores da discussão sobre direitos, quando esta passou a ganhar a conotação que tem hoje: de direitos humanos e sociais, incorporados ao discurso",
     "alternativas": [
-        "(A) democrático.",
-        "(B) emancipatório.",
-        "(C) individualista.",
-        "(D) solidário.",
-        "(E) alternativo."
+      "(A) democrático.",
+      "(B) emancipatório.",
+      "(C) individualista.",
+      "(D) solidário.",
+      "(E) alternativo."
     ],
     "resposta": "A",
     "comentario": ""
-},
-{
+  },
+  {
     "ids": 1370,
     "ano": 2017,
     "banca": "VUNESP",
@@ -28399,16 +28399,16 @@
     "modalidade": "Múltipla-Escolha",
     "enunciado": "Os assistentes sociais encontram limites concretos para a ação ética em defesa da concretização dos direitos humanos, limites esses impostos pelas contradições da sociedade brasileira capitalista, marcada pela desigualdade social e pelas diversas formas de exclusão que se sobrepõem à plena realização dos indivíduos. Vencer esses limites supõe estabelecer atitudes críticas da parte dos profissionais, enquanto agentes éticos, para avançarem em suas práticas, no compromisso com os trabalhadores, na garantia da realização dos direitos humanos e na construção de uma sociedade igualitária para todos. Supõe, ainda, compreender o cotidiano profissional em suas contradições e conflitos institucionais, no sentido de identificar possíveis mediações e estratégias que contribuam para",
     "alternativas": [
-        "(A) uma definição clara de estratégias globais para enfrentamento deste cenário.",
-        "(B) um maior compromisso ético-político profissional.",
-        "(C) a construção de um aparato legal que fundamenta a ação profissional.",
-        "(D) o engajamento de toda a sociedade nesta causa.",
-        "(E) a superação de determinações institucionais ambíguas."
+      "(A) uma definição clara de estratégias globais para enfrentamento deste cenário.",
+      "(B) um maior compromisso ético-político profissional.",
+      "(C) a construção de um aparato legal que fundamenta a ação profissional.",
+      "(D) o engajamento de toda a sociedade nesta causa.",
+      "(E) a superação de determinações institucionais ambíguas."
     ],
     "resposta": "B",
     "comentario": ""
-},
-{
+  },
+  {
     "ids": 1371,
     "ano": 2017,
     "banca": "VUNESP",
@@ -28420,16 +28420,16 @@
     "modalidade": "Múltipla-Escolha",
     "enunciado": "De acordo com a Lei n° 13.146/2015, toda pessoa com deficiência tem direito a igualdade de oportunidades com as demais pessoas e será protegida de toda forma de negligência, discriminação, exploração, violência, tortura, crueldade, opressão e tratamento desumano ou degradante. Conforme o artigo 5° (parágrafo único) da referida lei, para fins dessa proteção, são consideradas especialmente vulneráveis as seguintes pessoas com deficiência: a criança, o adolescente, o idoso e",
     "alternativas": [
-        "(A) aqueles em situação de rua.",
-        "(B) suas famílias.",
-        "(C) os excluídos do mercado de trabalho.",
-        "(D) a população quilombola.",
-        "(E) a mulher."
+      "(A) aqueles em situação de rua.",
+      "(B) suas famílias.",
+      "(C) os excluídos do mercado de trabalho.",
+      "(D) a população quilombola.",
+      "(E) a mulher."
     ],
     "resposta": "E",
     "comentario": ""
-},
-{
+  },
+  {
     "ids": 1372,
     "ano": 2017,
     "banca": "VUNESP",
@@ -28441,16 +28441,16 @@
     "modalidade": "Múltipla-Escolha",
     "enunciado": "A Constituição Federal de 1988 estabelece um conjunto de valores fundamentais para a sociedade brasileira, a maior parte dos quais se expressa no reconhecimento dos direitos humanos. De natureza declaratória, os direitos fundamentais são enunciados constitucionais considerados essenciais aos cidadãos. Já as garantias têm natureza processual, como mecanismos do poder público asseguradores da proteção ou reparação do direito fundamental. Como princípio absoluto, que organiza as regras civis sobre os direitos da personalidade, diante do qual os demais valores são relativos, está o valor da dignidade. Entre as garantias fundamentais, destaca-se, no artigo 5° , inciso X da Constituição, a inviolabilidade da intimidade, da vida privada, da honra e da",
     "alternativas": [
-        "(A) escolha e do exercício laborativo.",
-        "(B) comunicação da informação.",
-        "(C) imagem das pessoas.",
-        "(D) decisão de ir e vir.",
-        "(E) liberdade de pensamento e atos."
+      "(A) escolha e do exercício laborativo.",
+      "(B) comunicação da informação.",
+      "(C) imagem das pessoas.",
+      "(D) decisão de ir e vir.",
+      "(E) liberdade de pensamento e atos."
     ],
     "resposta": "C",
     "comentario": ""
-},
-{
+  },
+  {
     "ids": 1373,
     "ano": 2017,
     "banca": "VUNESP",
@@ -28462,16 +28462,16 @@
     "modalidade": "Múltipla-Escolha",
     "enunciado": "Embora não se negue que a família, independentemente da sua condição socioeconômica e de sua configuração, pode se constituir em um espaço de conflitos diversificados e de negação das relações protetivas entre seus membros, é inegável também que, ao longo da história moderna, caracterizou-se como um espaço de inserção e apoio para o indivíduo. Conforme a perspectiva apontada por Gueiros (2002), em decorrência das políticas neoliberais adotadas no Brasil, o trabalho, como principal fator de integração e de acesso à cidadania, deixa de fazer parte da vida de muitos indivíduos, fato esse somado à escassez de políticas públicas voltadas para setores vulnerabilizados da sociedade. Nessa linha de pensamento, ganha importância",
     "alternativas": [
-        "(A) o trabalho informal.",
-        "(B) o individualismo.",
-        "(C) a prática moralizadora.",
-        "(D) a solidariedade familiar.",
-        "(E) o preconceito."
+      "(A) o trabalho informal.",
+      "(B) o individualismo.",
+      "(C) a prática moralizadora.",
+      "(D) a solidariedade familiar.",
+      "(E) o preconceito."
     ],
     "resposta": "D",
     "comentario": ""
-},
-{
+  },
+  {
     "ids": 1374,
     "ano": 2017,
     "banca": "VUNESP",
@@ -28483,16 +28483,16 @@
     "modalidade": "Múltipla-Escolha",
     "enunciado": "No Brasil, nas últimas décadas do século XX, importantes mudanças geraram novas configurações familiares e foram incorporadas pela Carta Constitucional de 1988, especialmente as referentes à sua composição e à condição do homem ou da mulher como chefe de família. Vale destacar que essas mudanças se processam entre conflitos e tensões e que certas características dos diferentes modelos familiares convivem em uma mesma família, acentuando, assim, seu grau de",
     "alternativas": [
-        "(A) complexidade.",
-        "(B) dependência.",
-        "(C) solidariedade.",
-        "(D) autonomia.",
-        "(E) alteridade."
+      "(A) complexidade.",
+      "(B) dependência.",
+      "(C) solidariedade.",
+      "(D) autonomia.",
+      "(E) alteridade."
     ],
     "resposta": "A",
     "comentario": ""
-},
-{
+  },
+  {
     "ids": 1375,
     "ano": 2017,
     "banca": "VUNESP",
@@ -28504,16 +28504,16 @@
     "modalidade": "Múltipla-Escolha",
     "enunciado": "As novas configurações familiares são cada vez mais frequentes, marcadamente nas grandes metrópoles; assim começam a ter visibilidade, seja por contarem com apoio de grupos organizados, com grande poder de pressão por direitos, seja por fazerem parte do cotidiano das pessoas, não sendo possível negá-las. É correto afirmar que a família condensa uma história, uma linguagem e códigos morais próprios. É a partir desses elementos e de sua condição social que a família organiza sua forma de inserção na sociedade e de",
     "alternativas": [
-        "(A) orientação e acompanhamento permanentes.",
-        "(B) submissão a demandas próprias do sistema.",
-        "(C) compreensão objetiva de seu papel.",
-        "(D) definição de seu status social.",
-        "(E) socialização de seus membros."
+      "(A) orientação e acompanhamento permanentes.",
+      "(B) submissão a demandas próprias do sistema.",
+      "(C) compreensão objetiva de seu papel.",
+      "(D) definição de seu status social.",
+      "(E) socialização de seus membros."
     ],
     "resposta": "E",
     "comentario": ""
-},
-{
+  },
+  {
     "ids": 1376,
     "ano": 2017,
     "banca": "VUNESP",
@@ -28525,16 +28525,16 @@
     "modalidade": "Múltipla-Escolha",
     "enunciado": "Ao estudar a delimitação da moral nas famílias pobres, Sarti (2012) pergunta quais são os fundamentos que efetivamente estruturam suas relações, segundo sua própria concepção moral. Em sua pesquisa, a autora observa que a dinâmica entre consanguinidade e afetividade promove um movimento pendular, tornando a rede de parentesco decisiva no contexto das relações familiares. No entanto, a extensão vertical do grupo familiar não se vincula à genealogia ou ao uso do sobrenome, conferido pelo nome da família. Como não há status ou poder a ser transmitido, a noção de família para os pobres associa-se àqueles em quem se pode confiar, sendo necessário um vínculo mais preciso que o de sangue para demarcar quem é parente ou não. Nessa perspectiva, a noção de extensão de família entre os pobres define-se a partir do princípio",
     "alternativas": [
-        "(A) da obrigação moral.",
-        "(B) da liberdade de escolha.",
-        "(C) do bem-estar coletivo.",
-        "(D) da igualdade.",
-        "(E) do mérito."
+      "(A) da obrigação moral.",
+      "(B) da liberdade de escolha.",
+      "(C) do bem-estar coletivo.",
+      "(D) da igualdade.",
+      "(E) do mérito."
     ],
     "resposta": "A",
     "comentario": ""
-},
-{
+  },
+  {
     "ids": 1377,
     "ano": 2017,
     "banca": "VUNESP",
@@ -28546,16 +28546,16 @@
     "modalidade": "Múltipla-Escolha",
     "enunciado": "A violência contra a mulher vem se constituindo uma das mais graves formas de violação dos direitos humanos no Brasil. Conforme Rocha (2002), violentadas por serem mulheres defrontam-se com a benevolência e a legitimidade social resultante da garantia de impunidade aos seus agressores. A causa do problema se encontra nas relações entre homens e mulheres, caracterizadas por desigualdade, hierarquização e dominação. A violência é componente do processo de normatização das condutas masculina e feminina e atua como mecanismo regulador das relações sociais, para conservar as relações de gênero e preservar",
     "alternativas": [
-        "(A) as articulações interpessoais naturais.",
-        "(B) a ordem social hegemônica.",
-        "(C) o padrão familiar.",
-        "(D) o seu caráter peculiar.",
-        "(E) a instituição do casamento."
+      "(A) as articulações interpessoais naturais.",
+      "(B) a ordem social hegemônica.",
+      "(C) o padrão familiar.",
+      "(D) o seu caráter peculiar.",
+      "(E) a instituição do casamento."
     ],
     "resposta": "B",
     "comentario": ""
-},
-{
+  },
+  {
     "ids": 1378,
     "ano": 2017,
     "banca": "VUNESP",
@@ -28567,16 +28567,16 @@
     "modalidade": "Múltipla-Escolha",
     "enunciado": "Casamento e separação são situações muito próximas uma da outra, no entanto, possuem significados antagônicos. A separação, em razão do término de um casamento, guarda similaridade com outras situações marcadas por perdas pelas quais as pessoas passam durante suas vidas. Como destaca Maldonado (2009), a partir dos estudos do sociólogo Zigmunt Bauman, na época em que vivemos, nada é feito para durar para sempre, ou seja, o mundo contemporâneo imprime uma característica de provisoriedade à vida cotidiana. Nessa linha de raciocínio, conforme afirmação da citada estudiosa, “investir num casamento para durar uma eternidade já deixou de ser uma meta para muita gente”. Ainda, fases de mudança na vida originam-se de um incômodo que precisa ser superado e, no momento que a mudança deixa de representar uma catástrofe, esta passa a ser compreendida como",
     "alternativas": [
-        "(A) provisória.",
-        "(B) uma inconsequência.",
-        "(C) temerária.",
-        "(D) uma oportunidade.",
-        "(E) dispensável."
+      "(A) provisória.",
+      "(B) uma inconsequência.",
+      "(C) temerária.",
+      "(D) uma oportunidade.",
+      "(E) dispensável."
     ],
     "resposta": "D",
     "comentario": ""
-},
-{
+  },
+  {
     "ids": 1379,
     "ano": 2017,
     "banca": "VUNESP",
@@ -28588,16 +28588,16 @@
     "modalidade": "Múltipla-Escolha",
     "enunciado": "Conforme estabelecido no Código Civil (artigo 1.694), podem os parentes, os cônjuges ou companheiros pedir uns aos outros os alimentos de que necessitem para viver de modo compatível com sua condição social, inclusive para atender as necessidades de sua educação. Proporcionais às necessidades do reclamante e dos recursos da pessoa obrigada, os alimentos serão apenas os indispensáveis à subsistência do primeiro. De acordo com o artigo 1.696 do Código Civil, o direito à prestação de alimentos é recíproco entre pais e filhos e extensivo a todos os ascendentes, sendo que, na falta deles,",
     "alternativas": [
-        "(A) será cessada qualquer responsabilidade.",
-        "(B) deve-se recorrer às políticas públicas.",
-        "(C) recairá a obrigação nos mais próximos em grau.",
-        "(D) será definido pela livre escolha do juiz.",
-        "(E) concorrerão entidades beneficentes."
+      "(A) será cessada qualquer responsabilidade.",
+      "(B) deve-se recorrer às políticas públicas.",
+      "(C) recairá a obrigação nos mais próximos em grau.",
+      "(D) será definido pela livre escolha do juiz.",
+      "(E) concorrerão entidades beneficentes."
     ],
     "resposta": "C",
     "comentario": ""
-},
-{
+  },
+  {
     "ids": 1380,
     "ano": 2017,
     "banca": "VUNESP",
@@ -28609,16 +28609,16 @@
     "modalidade": "Múltipla-Escolha",
     "enunciado": "O Livro IV do Código Civil Brasileiro, que trata do direito da família, determina, em seu artigo 1.634, inciso VII, com a nova redação dada pela Lei n° 13.058/2014, que compete a ambos os pais, qualquer que seja a sua situação conjugal, representar os filhos judicial e extrajudicialmente até os 16 (dezesseis) anos nos atos da vida civil e assisti-los, após essa idade, nos atos em que forem partes, suprimindo-lhes o consentimento, entre outras prerrogativas. Essa é uma das competências relativas ao pleno exercício",
     "alternativas": [
-        "(A) da autoridade responsável.",
-        "(B) dos direitos de filiação.",
-        "(C) da capacidade suspensiva.",
-        "(D) do regime conjugal.",
-        "(E) do poder familiar."
+      "(A) da autoridade responsável.",
+      "(B) dos direitos de filiação.",
+      "(C) da capacidade suspensiva.",
+      "(D) do regime conjugal.",
+      "(E) do poder familiar."
     ],
     "resposta": "",
     "comentario": ""
-},
-{
+  },
+  {
     "ids": 1381,
     "ano": 2017,
     "banca": "VUNESP",
@@ -28630,16 +28630,16 @@
     "modalidade": "Múltipla-Escolha",
     "enunciado": "O Estatuto da Criança e do Adolescente (ECA), Lei n° 8.069/1990, inaugura uma nova compreensão e uma perspectiva de abordagem que superam a visão de “menor em situação irregular” imposta pelo anterior Código de Menores. De acordo com o ECA, criança e adolescente são sujeitos de direitos. Nesse sentido, o estatuto estabelece que a criança e o adolescente têm direito à proteção à vida e à saúde, mediante a efetivação de políticas sociais públicas que permitam o nascimento e o desenvolvimento sadio e harmonioso, em condições dignas de existência. Conforme estabelece o artigo 13 do referido estatuto, os casos de suspeita ou confirmação de castigo físico, de tratamento cruel ou degradante e de maus-tratos contra criança ou adolescente serão obrigatoriamente comunicados",
     "alternativas": [
-        "(A) ao Delegado de Polícia.",
-        "(B) à autoridade judiciária.",
-        "(C) ao Conselho Tutelar da respectiva localidade.",
-        "(D) ao Conselho de Direitos do município.",
-        "(E) ao Conselho de Assistência Social."
+      "(A) ao Delegado de Polícia.",
+      "(B) à autoridade judiciária.",
+      "(C) ao Conselho Tutelar da respectiva localidade.",
+      "(D) ao Conselho de Direitos do município.",
+      "(E) ao Conselho de Assistência Social."
     ],
     "resposta": "C",
     "comentario": ""
-},
-{
+  },
+  {
     "ids": 1382,
     "ano": 2017,
     "banca": "VUNESP",
@@ -28651,16 +28651,16 @@
     "modalidade": "Múltipla-Escolha",
     "enunciado": "Na sociedade brasileira, a garantia de direitos da criança e do adolescente é de responsabilidade das diferentes instituições de âmbito público e de representações da sociedade civil e ainda das disseminadoras de direitos. A superação da forma fragmentada e localizada do cumprimento dessa responsabilidade requisitou a construção de um projeto de estruturação de um Sistema de Garantias, no sentido de integrar as diversas instâncias da sociedade e do poder estatal. Organização, intercâmbio de serviços e disposição dos participantes de atuarem integralmente são algumas das características que devem nortear a constituição e o funcionamento desse sistema. Porém, em razão da especificidade das diferentes instituições participantes, a definição daquela que deverá ser responsável pelo direcionamento em cada um dos diferentes momentos de atuação requer uma dinâmica",
     "alternativas": [
-        "(A) acumulativa.",
-        "(B) conjunta.",
-        "(C) dependente.",
-        "(D) assimétrica.",
-        "(E) qualificada."
+      "(A) acumulativa.",
+      "(B) conjunta.",
+      "(C) dependente.",
+      "(D) assimétrica.",
+      "(E) qualificada."
     ],
     "resposta": "D",
     "comentario": ""
-},
-{
+  },
+  {
     "ids": 1383,
     "ano": 2017,
     "banca": "VUNESP",
@@ -28672,16 +28672,16 @@
     "modalidade": "Múltipla-Escolha",
     "enunciado": "As medidas de proteção à criança e ao adolescente são aplicáveis sempre que os direitos reconhecidos no ECA forem ameaçados ou violados. São várias as medidas previstas, tais como o encaminhamento aos pais ou responsável mediante termo de responsabilidade, orientação, apoio e acompanhamento temporários, matrícula e frequência obrigatórias em estabelecimento oficial de ensino fundamental, entre outras. Conforme estabelece o artigo 102 do ECA, todas as medidas de proteção serão acompanhadas",
     "alternativas": [
-        "(A) das providências possíveis.",
-        "(B) da colocação em família substituta.",
-        "(C) do consentimento dos responsáveis.",
-        "(D) da definição de um tutor.",
-        "(E) da regularização do registro civil."
+      "(A) das providências possíveis.",
+      "(B) da colocação em família substituta.",
+      "(C) do consentimento dos responsáveis.",
+      "(D) da definição de um tutor.",
+      "(E) da regularização do registro civil."
     ],
     "resposta": "E",
     "comentario": ""
-},
-{
+  },
+  {
     "ids": 1384,
     "ano": 2017,
     "banca": "VUNESP",
@@ -28693,16 +28693,16 @@
     "modalidade": "Múltipla-Escolha",
     "enunciado": "Diante da barbárie que caracteriza o cenário da infância e da adolescência brasileiras excluídas socialmente, é imprescindível exigir-se que todas as ações, os programas e as políticas públicas, as decisões judiciais e a legislação se expressem a partir da perspectiva dos direitos e que se integrem em um Sistema de Garantia dos Direitos da Criança e do Adolescente, adotando estratégias efetivas para a realização plena dos direitos deste segmento etário e a redução dos níveis de desigualdades. Nesse sentido, o ECA estabelece as medidas de proteção à criança e ao adolescente, que poderão ser aplicadas isolada ou cumulativamente bem como substituídas a qualquer tempo. De acordo com previsões explicitadas no artigo 100 do ECA, na aplicação das medidas, serão consideradas as necessidades pedagógicas, preferindo-se aquelas que visem",
     "alternativas": [
-        "(A) ao processo de autonomia gradativa da criança ou do adolescente.",
-        "(B) ao melhor desempenho escolar.",
-        "(C) ao fortalecimento dos vínculos familiares e comunitários.",
-        "(D) à construção da consciência identitária.",
-        "(E) à participação proativa no mundo social e político."
+      "(A) ao processo de autonomia gradativa da criança ou do adolescente.",
+      "(B) ao melhor desempenho escolar.",
+      "(C) ao fortalecimento dos vínculos familiares e comunitários.",
+      "(D) à construção da consciência identitária.",
+      "(E) à participação proativa no mundo social e político."
     ],
     "resposta": "C",
     "comentario": ""
-},
-{
+  },
+  {
     "ids": 1385,
     "ano": 2017,
     "banca": "VUNESP",
@@ -28714,16 +28714,16 @@
     "modalidade": "Múltipla-Escolha",
     "enunciado": "A colocação em família substituta é feita mediante guarda, tutela ou adoção, de acordo com normativas prescritas no ECA. Sempre que possível, a criança ou o adolescente será previamente ouvido por equipe interprofissional, respeitado seu estágio de desenvolvimento e seu grau de compreensão sobre as implicações da medida, e terá sua opinião devidamente considerada. De acordo com o artigo 28, § 2° do ECA, com redação dada pela Lei n° 12.010/2009, a necessidade de consentimento colhido em audiência aplica-se ao caso de maior de",
     "alternativas": [
-        "(A) 12 anos.",
-        "(B) 9 anos.",
-        "(C) 8 anos.",
-        "(D) 11 anos.",
-        "(E) 10 anos."
+      "(A) 12 anos.",
+      "(B) 9 anos.",
+      "(C) 8 anos.",
+      "(D) 11 anos.",
+      "(E) 10 anos."
     ],
     "resposta": "A",
     "comentario": ""
-},
-{
+  },
+  {
     "ids": 1386,
     "ano": 2017,
     "banca": "VUNESP",
@@ -28735,16 +28735,16 @@
     "modalidade": "Múltipla-Escolha",
     "enunciado": "O acolhimento familiar, uma modalidade formal de defesa de direitos, surgiu no Brasil com o objetivo de evitar o encaminhamento de crianças e adolescentes a instituições. É possível destacar avanços recentes em sua efetivação, porém há, ainda, muito a ser superado para que essa proposta se concretize enquanto uma política pública em âmbito nacional. Importante iniciativa é a criação do Programa de Atenção Integral à Família (PAIF), no contexto do Sistema Único de Assistência Social (SUAS). Trata-se da busca de formas alternativas de cuidado para crianças em situação de violação de direitos, medidas estas de caráter",
     "alternativas": [
-        "(A) abrangente.",
-        "(B) temporário.",
-        "(C) permanente.",
-        "(D) negociável.",
-        "(E) decisório."
+      "(A) abrangente.",
+      "(B) temporário.",
+      "(C) permanente.",
+      "(D) negociável.",
+      "(E) decisório."
     ],
     "resposta": "B",
     "comentario": ""
-},
-{
+  },
+  {
     "ids": 1387,
     "ano": 2017,
     "banca": "VUNESP",
@@ -28756,13 +28756,1033 @@
     "modalidade": "Múltipla-Escolha",
     "enunciado": "Lançado no ano de 2006, o Plano Nacional de Promoção, Proteção e Defesa do Direito de Crianças e Adolescentes à Convivência Familiar e Comunitária traz explícita a mudança do olhar e do fazer as políticas públicas para a infância, a adolescência e a juventude, no sentido de que tais políticas devem promover a inclusão social e buscar a superação das vulnerabilidades sociais. Nessa perspectiva, o Plano indica a necessidade de políticas extensivas aos demais atores sociais do Sistema de Garantia de Direitos, “... implicando a capacidade de ver as crianças e os adolescentes como sujeitos de direitos e de maneira indissociável de seu contexto sociofamiliar e comunitário”, retratando a tendência da ideia de",
     "alternativas": [
-        "(A) focalização nesse segmento.",
-        "(B) centralidade da família.",
-        "(C) multidimensionalidade específica.",
-        "(D) práticas institucionalizantes.",
-        "(E) transformação social."
+      "(A) focalização nesse segmento.",
+      "(B) centralidade da família.",
+      "(C) multidimensionalidade específica.",
+      "(D) práticas institucionalizantes.",
+      "(E) transformação social."
     ],
     "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 1388,
+    "ano": 2017,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Sertãozinho - SP",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "O sistema capitalista é uma estrutura social desigual: supõe a propriedade privada dos meios de produção, a exploração de uma classe por outra, a economia de mercado, o trabalho assalariado e a expulsão dos trabalhadores excedentes às necessidades do capitalismo. A desigualdade nesse sistema não se resolve apenas com uma distribuição fracionada da riqueza ou socialização parcial dos bens produzidos, mas com",
+    "alternativas": [
+      "(A)  a sobreposição de forças antagônicas.",
+      "(B) a supremacia de uma dada realidade.",
+      "(C) a superação da ordem capitalista.",
+      "(D) o controle de massas populares em oposição.",
+      "(E) o alcance das políticas sociais integradas."
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 1389,
+    "ano": 2017,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Sertãozinho - SP",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "As imposições sociais, econômicas e políticas, os mecanismos institucionais e os processos relacionais podem produzir ofensas à dignidade humana e às condições de vida dos indivíduos e grupos sociais, tornando-os vulneráveis. Nessa perspectiva, a vulnerabilidade pode ser estrutural, conjuntural ou relacional e diz respeito à exposição ao risco pessoal ou social. Já pobreza e vulnerabilidade são universos cujas concepções revelam visões e abordagens diferenciadas. Sendo assim, o enfoque monetário da pobreza concentra-se nos resultados produzidos pelo sistema, enquanto que a concepção de vulnerabilidade que lida com a queda do bem estar e com os riscos orienta-se para",
+    "alternativas": [
+      "(A) as situações-sociais-problema.",
+      "(B) o método.",
+      "(C) as relações subjetivas.",
+      "(D) os processos.",
+      "(E) o foco interativo."
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 1390,
+    "ano": 2017,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Sertãozinho - SP",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "“Todos e todas devem usufruir dos direitos assegurados pelo ordenamento jurídico brasileiro à proteção social não contributiva de assistência social efetiva com dignidade e respeito”. Este é o primeiro dos dez direitos socioassistenciais do Sistema Único de Assistência Social, dentre os quais também está o direito",
+    "alternativas": [
+      "(A) de equidade social e de manifestação pública.",
+      "(B) à inviolabilidade da integridade física, psíquica e moral.",
+      "(C) de buscar refúgio, auxílio e orientação.",
+      "(D) de organização e participação em entidades sociais.",
+      "(E) da participação social protagônica."
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 1391,
+    "ano": 2017,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Sertãozinho - SP",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A assistência social é uma política social pública, como o são a saúde, a previdência, a educação, significando portanto, ação coletiva que tem por função concretizar direitos sociais demandados pela sociedade e previstos nas leis. Por meio das políticas públicas são formulados e desenvolvidos os programas de distribuição de bens e serviços, regulados e providos pelo Estado, com a participação e o controle da sociedade. A assistência social, como uma das políticas da Seguridade Social brasileira, compõe a rede de proteção social, juntamente com a saúde e a previdência, não estando dissociada das demais políticas socioeconômicas e muito menos agiria para desmantelá-las, como quer a ideologia liberal com a sua proposta de",
+    "alternativas": [
+      "(A) inserção sociaoassistencial.",
+      "(B) ampliação dos direitos sociais.",
+      "(C) erradicação da vulnerabilidade.",
+      "(D) integração das políticas sociais.",
+      "(E) focalização na pobreza extrema."
+    ],
+    "resposta": "E",
+    "comentario": ""
+  },
+  {
+    "ids": 1392,
+    "ano": 2017,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Sertãozinho - SP",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Um modelo de proteção social não contributiva resulta não só de implantação de novos programas de governo, mas de mudanças efetivas baseadas na noção de cidadão usuário de seus direitos e na primazia da responsabilidade do Estado. A proteção social é um sistema público e as ações neste campo envolvem a política de assistência social, que tem por direção o desenvolvimento humano e social e os direitos de cidadania. Na perspectiva de constituição desse sistema público voltado para a garantia de condições dignas de vida, as relações entre os serviços, programas, projetos e benefícios socioassistenciais com outras políticas do campo social e econômico deve ser de",
+    "alternativas": [
+      "(A) especificidade e aproximação.",
+      "(B) completude e articulação.",
+      "(C) reciprocidade e subordinação.",
+      "(D) exclusividade e contribuição.",
+      "(E) alteridade e sustentação."
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 1393,
+    "ano": 2017,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Sertãozinho - SP",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A operacionalização da assistência social em rede, com base no território, constitui um dos eixos estruturantes da Política Nacional de Assistência Social. No Sistema Único da Assistência Social – SUAS, o princípio da territorialização da rede socioassistencial baseia-se na oferta capilar de serviços e na sua localização nos territórios com incidência de vulnerabilidades e riscos sociais e pessoais para a população, a partir da lógica da proximidade do cidadão. O SUAS incorpora uma noção ampliada de território, compreendido como o terreno das políticas públicas, no qual se expressam as manifestações da questão social. Trata-se de uma concepção de território que ultrapassa a dimensão geográfica, sendo entendido como resultado da interação entre os homens e",
+    "alternativas": [
+      "(A) espaço da gestão setorializada.",
+      "(B) expressão máxima das reivindicações.",
+      "(C) identificação de condições reversíveis.",
+      "(D) lócus privilegiado de superações.",
+      "(E) síntese das relações sociais."
+    ],
+    "resposta": "E",
+    "comentario": ""
+  },
+  {
+    "ids": 1394,
+    "ano": 2017,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Sertãozinho - SP",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Qualquer política que vise reforçar o papel da família na provisão social tem que considerar as novas estruturas familiares, compreendidas como síntese de múltiplas determinações sócio-históricas, econômicas e culturais. Deve considerar também os reflexos que as famílias sofrem em razão das contradições da sociedade capitalista e das imposições do neoliberalismo às políticas públicas estatais. No que se refere à intervenção profissional, é estratégico evidenciar a ideologia que fundamenta essa política, bem como as possibilidades de contribuição do grupo familiar. Nessa perspectiva, a revalorização da família na política de assistência social pode significar a",
+    "alternativas": [
+      "(A) sua responsabilização pela própria proteção.",
+      "(B) sobreposição do público em relação ao privado.",
+      "(C) autonomia desse grupo frente às vulnerabilidades sociais.",
+      "(D) retomada dos modelos familiares pregressos.",
+      "(E) conscientização de sua competência socioeconômica."
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 1395,
+    "ano": 2017,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Sertãozinho - SP",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Assistência social, saúde, educação, segurança alimentar, trabalho e habitação, como políticas públicas, estão entre as áreas que precisam integrar o atendimento à população em situação de rua, juntamente com os esforços da sociedade civil. De acordo com a Política Nacional para a População em Situação de Rua (Decreto no 7053/2009 – art. 8o ), o padrão básico de qualidade, segurança e conforto da rede de acolhimento temporário deverá observar limite de capacidade, regras de funcionamento e convivência, acessibilidade, salubridade e distribuição geográfica das unidades de acolhimento, respeitado o direito de permanência da população em situação de rua, preferencialmente",
+    "alternativas": [
+      "(A) em moradias seletivas.",
+      "(B) próximos à terminais urbanos e intermunicipais.",
+      "(C) nas cidades ou nos centros urbanos.",
+      "(D) distantes de centros comerciais.",
+      "(E) em áreas rurais."
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 1396,
+    "ano": 2017,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Sertãozinho - SP",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A violência sexual contra crianças e adolescentes envolve relações complexas de poder, evidenciando a dominação econômica, política, cultural e simbólica do adulto sobre essas pessoas. Pesquisas indicam trata-se de uma violência multifacetada, global e interconectada, que ocorre no espaço doméstico, institucional e até virtual. Desde 2013, o Plano Nacional de Enfrentamento da Violência Sexual contra Crianças e Adolescentes destaca alguns atores específicos que têm a atribuição institucional de fiscalizar, investigar e responsabilizar a violência sexual contra essas pessoas. O Plano reconhece também a importância da prevenção, definindo como objetivo: assegurar ações contra o abuso e/ou exploração sexual de crianças e adolescentes, fundamentalmente pela educação,",
+    "alternativas": [
+      "(A) identificação e repressão.",
+      "(B) sensibilização e autodefesa.",
+      "(C) assistência e acolhimento institucional.",
+      "(D) averiguação e destituição do poder familiar.",
+      "(E) tratamento e superação."
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 1397,
+    "ano": 2017,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Sertãozinho - SP",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Previstos desde 1993 pela Lei Orgânica de Assistência Social (LOAS), os benefícios eventuais constituem um direito social legalmente assegurado aos cidadãos brasileiros no âmbito da proteção social básica do Sistema Único de Assistência Social (SUAS). As concessões do auxílio-natalidade e auxílio-funeral foram transferidas da previdência para a assistência social, permanecendo esquecidos por mais de uma década. Somente a Renda Mensal Vitalícia, que ficou sob responsabilidade da União, conseguiu, a partir de 1996, ser regulamentada, passando porém a prestar atenção similar por meio",
+    "alternativas": [
+      "(A) da Renda Suplementar Permanente.",
+      "(B) do Programa Bolsa Família.",
+      "(C) da Renda Mínima de Cidadania.",
+      "(D) do Benefício de Prestação Continuada.",
+      "(E) do Programa Primeiro Emprego."
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 1398,
+    "ano": 2017,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Sertãozinho - SP",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A Lei no 8.662, de 7 de junho 1993, dispõe sobre a profissão de assistente social e define como livre o exercício da profissão em todo o território nacional, observadas as condições nela estabelecidas. Como atribuição privativa do assistente social, a referida Lei estabelece em seu art. 5o (VI):",
+    "alternativas": [
+      "(A)  treinamento, avaliação e supervisão direta de estagiários de Serviço Social.",
+      "(B) planejamento, organização e execução de benefícios e serviços sociais.",
+      "(C) orientação social a indivíduos, grupos e à população em geral.",
+      "(D) assessoria e apoio aos movimentos sociais e da categoria profissional.",
+      "(E) monitoramento de situações demandantes de benefícios."
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 1399,
+    "ano": 2017,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Sertãozinho - SP",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Conforme Resolução CFESS no 493/2006, o assistente social deve informar por escrito ao CRESS (Conselho Regional de Serviço Social) do âmbito de sua jurisdição, as situações de inadequação das condições éticas, físicas e técnicas do exercício profissional. Antes porém, o assistente social deve cumprir exigências previstas na referida Resolução, sob pena de notificação e de apuração de sua responsabilidade ética. O procedimento a ser adotado, conforme determina o art. 7o da citada Resolução, é o de informar por escrito à entidade, instituição ou órgão que trabalha ou presta serviços, sob qualquer modalidade, acerca das inadequações constatadas,",
+    "alternativas": [
+      "(A)  resguardando-se por meio do depoimento de testemunhas.",
+      "(B) sugerindo alternativas para melhoria dos serviços prestados.",
+      "(C) propondo suspensão temporária de suas atividades.",
+      "(D) divulgando a comunicação entre os usuários de seus serviços.",
+      "(E) interditando imediatamente o espaço de atendimento."
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 1400,
+    "ano": 2017,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Sertãozinho - SP",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Dentre as alterações da Lei no 12.435/2012 em relação à Lei Orgânica da Assistência Social (Lei no 8.742/1993) está a de instituição de Programas que passaram a compor o Sistema Único de Assistência Social (SUAS). Um dos serviços que integra a proteção social básica consistindo na oferta de ações e serviços socioassistenciais de prestação continuada nos CRAS (Centros de Referência de Assistência Social), por meio do trabalho social com famílias em situação de vulnerabilidade social, é o",
+    "alternativas": [
+      "(A) Serviço de Prevenção à Vulnerabilidade e Risco social e pessoal.",
+      "(B) Serviço de Convívio e Fortalecimento de Vínculos (SCFV).",
+      "(C) Serviço de Acolhimento Institucional.",
+      "(D) Serviço de Proteção e Atendimento Integral à Família (PAIF).",
+      "(E)  Serviço de Proteção Social Especial para Pessoas com Deficiência, Idosas e suas Famílias."
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 1401,
+    "ano": 2017,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Sertãozinho - SP",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "No ano de 2005 a Norma Operacional Básica do Sistema Único da Assistência Social (NOB-SUAS) disciplinou a gestão pública da Política Nacional de Assistência Social no território brasileiro. A nova NOB-SUAS de 2012, entre outros avanços, definiu o Pacto de Aprimoramento do SUAS, instrumento pelo qual se materializam as metas e as prioridades nacionais no âmbito do SUAS. O acompanhamento do Pacto prevê a adoção do Plano de Providências, a ser elaborado pelos Estados, Distrito Federal e Municípios, constituindo-se em instrumento de planejamento das ações para a superação de dificuldades dos entes federados.Decorrente deste, conforme estabelece o art. 41 (§ 1o ) da NOB-SUAS 2012, definiu-se outro instrumento de planejamento do assessoramento técnico e, quando for o caso, financeiro, que é o",
+    "alternativas": [
+      "(A) Relatório de Monitoramento.",
+      "(B) Programa de Manutenção.",
+      "(C) Plano de Apoio.",
+      "(D) Planilha Técnica/Financeira.",
+      "(E) Projeto de Alinhamento."
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 1402,
+    "ano": 2017,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Sertãozinho - SP",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A Tipificação Nacional dos Serviços Socioassistenciais estabeleceu os conteúdos essenciais, o público a ser atendido, os propósitos e os resultados esperados de cada serviço das proteções básica e especial, possibilitando a sua padronização em todo território nacional. Voltado para famílias e pessoas que estão em situação de risco social ou tiveram seus direitos violados, o Serviço de Proteção e Atendimento Especializado a Famílias e Indivíduos (PAEFI) deve ser ofertado, obrigatoriamente, no Centro de Referência Especializado de Assistência Social (CREAS). De a acordo com a normativa da tipificação, também pode ser desenvolvido no CREAS ou em unidade específica referenciada ao CREAS o Serviço",
+    "alternativas": [
+      "(A) de Atenção Especializada a Mulheres vítimas de violência.",
+      "(B) de Acolhimento em Família Acolhedora.",
+      "(C) Especializado em Abordagem Social.",
+      "(D) Especializado para Pessoas em Situação de Rua.",
+      "(E) de proteção em situações de calamidades públicas e de emergências."
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 1403,
+    "ano": 2017,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Sertãozinho - SP",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "O Estatuto da Criança e do Adolescente representou uma mudança paradigmática no que se refere ao Direito Juvenil e o ingresso das crianças e adolescentes no Estado Democrático de Direito, em igualdade com o cidadão adulto, ressalvadas as peculiaridades de sua idade e capacidade. O ECA reconhece a existência desse novo sujeito político e social, detentor de atenção prioritária, independente de sua condição social ou econômica, etnia, religião e cultura, legitimando a Doutrina",
+    "alternativas": [
+      "(A) de Proteção Integral.",
+      "(B) Restaurativa.",
+      "(C) de Participação Social.",
+      "(D) Construtivista.",
+      "(E) da Situação Regular."
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 1404,
+    "ano": 2017,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Sertãozinho - SP",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "O Estatuto do Idoso define, entre as linhas de ação da política de atendimento, os serviços especiais de prevenção e atendimento às vítimas de negligência, maus- -tratos, exploração, abuso, crueldade e opressão. O Estatuto considera violência contra o idoso qualquer ação ou omissão praticada em local público ou privado que lhe cause morte, dano ou sofrimento físico ou psicológico. De acordo com o art. 19 da referida Lei, nos casos de suspeita ou confirmação de violência praticada contra idosos, impõe-se aos serviços de saúde públicos e privados a obrigatoriedade de comunicação do fato. Especificamente, em se tratando da autoridade sanitária, a comunicação deve ser efetuada por meio",
+    "alternativas": [
+      "(A) do disque 100.",
+      "(B) de relatório médico.",
+      "(C) de prova testemunhal.",
+      "(D) de denúncia formal.",
+      "(E) da notificação compulsória."
+    ],
+    "resposta": "E",
+    "comentario": ""
+  },
+  {
+    "ids": 1405,
+    "ano": 2017,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Sertãozinho - SP",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "O reconhecimento de que a convivência familiar e comunitária é fundamental para o desenvolvimento da criança e do adolescente está presente na Constituição Federal, no ECA e em outras legislações nacionais e internacionais. O Plano Nacional de promoção, proteção e defesa dos direitos de crianças e adolescentes à convivência familiar e comunitária destaca o rigor na aplicação de medida de proteção que indique o afastamento da criança e do adolescente de seu contexto familiar. Em consonância com a legislação em vigor, o referido Plano estabelece dentre suas diretrizes que o afastamento da família de origem deve ser medida",
+    "alternativas": [
+      "(A) paliativa, ocasional.",
+      "(B) rara, excepcional.",
+      "(C) necessária, exclusiva.",
+      "(D) ordinária, estável.",
+      "(E) flexível, cumulativa."
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 1406,
+    "ano": 2017,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Sertãozinho - SP",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "É correto afirmar que inimputabilidade não implica impunidade; o ECA estabelece medidas de responsabilização compatíveis com a condição peculiar de pessoa em desenvolvimento ao adolescente autor de ato infracional. As medidas socioeducativas previstas pelo Estatuto constituem procedimento especial, de caráter sancionatório, com finalidade pedagógico-educativa. O Sistema Nacional de Atendimento Socioeducativo (Sinase) ao regulamentar tais medidas, estabelece princípios, regras e critérios que envolvem a sua execução, bem como os planos, programas, avaliação e acompanhamento do atendimento socieducativo. De acordo com o art. 35 (VII) da Lei no 12.594/2012, um dos princípios da execução das medidas socioeducativas é",
+    "alternativas": [
+      "(A)  legalidade, podendo o adolescente receber tratamento mais gravoso do que o conferido ao adulto.",
+      "(B)  regularidade da intervenção judicial, favorecendo-se meios para a mediação de conflitos.",
+      "(C)  atenção a práticas que obrigatoriamente atendam às demandas do adolescente.",
+      "(D)  padronização, considerando-se a função exemplar em vista da prevenção à reincidência do ato.",
+      "(E)  mínima intervenção, restrita ao necessário para a realização dos objetivos da medida."
+    ],
+    "resposta": "E",
+    "comentario": ""
+  },
+  {
+    "ids": 1407,
+    "ano": 2017,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Sertãozinho - SP",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "O assistente social, em qualquer manifestação técnica sobre matéria de Serviço Social, deve atuar com ampla autonomia, respeitadas as normas legais, técnicas e éticas de sua profissão. A Resolução CFESS no 557/2009 (art. 4o  – § 1o ) define que ao manifestar-se sobre objeto de intervenção técnica conjunta com outra categoria profissional e/ou equipe multiprofissional, o assistente social deve delimitar o âmbito de sua atuação, seu objeto, instrumentos utilizados, análise social e outros componentes que devem estar contemplados na opinião técnica,",
+    "alternativas": [
+      "(A) compartilhando informações de forma irrestrita.",
+      "(B) complementando os conteúdos do outro profissional.",
+      "(C) elaborando relatório específico e sigiloso.",
+      "(D) destacando a sua área de conhecimento separadamente.",
+      "(E) aderindo ao consenso dos profissionais envolvidos."
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 1408,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "No que diz respeito à intersetorialidade das políticas públicas, é correto afirmar que",
+    "alternativas": [
+        "(A) passou a ser um dos requisitos para a implementação das políticas setoriais, visando à sua efetividade por meio da articulação entre instituições governamentais e entre essas e a sociedade civil.",
+        "(B) é uma estratégia que surge para reforçar a integração e a agilidade das políticas sociais, com vistas a implementar o assistencialismo direto.",
+        "(C) sobressai enquanto caminho de perspectiva para a política pública, a fim de desarticular as políticas sociais, urbanas, econômicas de forma a atuarem em outros territórios prioritários da política da cidade.",
+        "(D) resume-se em compor projetos que continuem sendo formulados e realizados setorialmente."
+    ],
+    "resposta": "A",
+    "comentario": ""
+},
+{
+    "ids": 1409,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A notificação é um importante instrumento de proteção aos direitos de crianças e adolescentes e também um importante instrumento para se conhecer a real magnitude do evento. Sobre a notificação, é correto afirmar que",
+    "alternativas": [
+        "(A) a que é feita à Epidemiologia faz parte de uma das dimensões da linha de cuidado. É dever exclusivo do Assistente Social realizá-la, conforme estabelecido pelo ECA e regulamentado pelo Ministério da Saúde.",
+        "(B) é feita preenchendo em uma via a “Ficha de Notificação/investigação individual de violência doméstica, sexual e/ou outras violências” que é o instrumento de coleta epidemiológica padronizado pelo Ministério da Saúde. Após o preenchimento, encaminhar ao Conselho Tutelar.",
+        "(C) somente os casos confirmados de violência contra crianças e adolescentes devem ser notificados, conforme preconizado pelo ECA e pelo Ministério da Saúde.",
+        "(D) a que é feita ao Conselho Tutelar se dá através do preenchimento da ficha de Notificação Protetiva, mas em situação de risco de vida, o contato com o Conselho Tutelar deve ser imediato, por telefone."
+    ],
+    "resposta": "D",
+    "comentario": ""
+},
+{
+    "ids": 1410,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Acerca dos casos suspeitos ou confirmados de violência contra a mulher, é correto afirmar que",
+    "alternativas": [
+        "(A) o atendimento à mulher vítima de violência é somente papel da Equipe de Saúde da Família e a coordenação do caso é uma responsabilidade do profissional que se constituir como referência (vínculo com a mulher).",
+        "(B) é necessário que sejam acompanhados pela Equipe de Saúde da Família de referência da mulher, e também por outros profissionais de apoio do Centro de Saúde, tais como: assistente social, psicólogo e ginecologista.",
+        "(C) tais casos só poderão ser atendidos pelos profissionais do Núcleo de apoio de Saúde da Família (NASF) e as equipes de saúde mental de referência da unidade.",
+        "(D) o atendimento inicial tem como objetivo identificar e localizar o agressor."
+    ],
+    "resposta": "B",
+    "comentario": ""
+},
+{
+    "ids": 1411,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "De acordo com a Portaria Conjunta SMSA/SMASAC n.º 0001/2017, excepcionalmente, na inviabilidade do cuidado da mãe com a criança, após esgotadas todas as possibilidades de apoio, proteção e cuidado, a Maternidade, a SMSA e a SMASAC, por meio da SUASS, deverão conjuntamente: I. aplicar as medidas protetivas pertinentes. II. orientar e encaminhar a puérpera para a Defensoria Pública. III. manter o acompanhamento da puérpera e da criança pela Unidade de Saúde, Assistência Social e Rede Intersetorial no território. É correto o contido em",
+    "alternativas": [
+        "(A) I e II, apenas.",
+        "(B) I e III, apenas.",
+        "(C) II e III, apenas.",
+        "(D) I, II e III."
+    ],
+    "resposta": "C",
+    "comentario": ""
+},
+{
+    "ids": 1412,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "No que se refere à vulnerabilidade, assinale a alternativa correta.",
+    "alternativas": [
+        "(A) O ser humano vulnerável é aquele que, conforme conceito compartilhado pelas áreas da saúde e assistência social, sofrerá danos por possuir desvantagens para a mobilidade social.",
+        "(B) É uma condição natural que não permite contestações.",
+        "(C) O estado de vulnerabilidade associa situações e contextos individuais e, sobretudo, coletivos.",
+        "(D) Concepções mais centradas nos sujeitos como autores de sua própria vulnerabilidade são aceitas no bojo das teorias que defendem que o ser humano desenvolve capacidades e adquire ativos tidos como os meios externos e concretos de lidar com adversidade."
+    ],
+    "resposta": "C",
+    "comentario": ""
+},
+{
+    "ids": 1413,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "O Serviço de Atenção Domiciliar (SAD) tem como objetivos: I. redução da demanda por atendimento hospitalar. II. redução do período de permanência de usuários internados. III. humanização da atenção à saúde, com a ampliação da autonomia dos usuários e a desinstitucionalização e a otimização dos recursos financeiros e estruturais da RAS. É correto o que se afirma em",
+    "alternativas": [
+        "(A) II, apenas.",
+        "(B) I e III, apenas.",
+        "(C) II e III, apenas.",
+        "(D) I, II e III."
+    ],
+    "resposta": "D",
+    "comentario": ""
+},
+{
+    "ids": 1414,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Sobre os determinantes sociais da saúde, analise as proposições abaixo.I. O conceito surgiu a partir de uma série de documentos publicados nos anos 1970 e no início do anos 1980, os quais destacavam as limitações das intervenções orientadas pelo risco de doença. II. Explicam a maior parte das iniquidades sanitárias, as diferenças injustas e evitáveis observadas na situação sanitária dos países, expressando formas perversas de organização societária, priorizando a saúde como bem comercial e não como valor universal. III. Contém uma dimensão objetiva (condições materiais necessárias à subsistência, relacionadas à nutrição, à habitação, ao saneamento básico e às condições do meio ambiente), e uma dimensão subjetiva que se refere à interpretação e à forma como as pessoas vivem e enfrentam estes processos a partir de uma intersubjetividade coletiva, um dos fatores que confirmam o componente social dos determinantes. É correto o que se afirma em",
+    "alternativas": [
+        "(A) I e II, apenas.",
+        "(B) I e III, apenas.",
+        "(C) II e III, apenas.",
+        "(D) I, II e III."
+    ],
+    "resposta": "D",
+    "comentario": ""
+},
+{
+    "ids": 1415,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "O Nasf constitui-se como um dispositivo estratégico para a melhoria da qualidade da Atenção Básica. Sobre suas especificidades, analise as proposições abaixo. I. O trabalho do Nasf é orientado pelo referencial teórico-metodológico do apoio matricial. Aplicado à AB, isso significa, em síntese, uma estratégia de organização do trabalho em saúde que acontece a partir da integração de equipes de Saúde da Família (com perfil generalista) envolvidas na atenção às situações/problemas comuns de dado território com equipes ou profissionais com outros núcleos de conhecimento diferentes dos profissionais das equipes de AB. II. O Nasf constitui-se em retaguarda especializada para as equipes de Atenção Básica/Saúde da Família, atuando no lócus da própria AB. III. O Nasf faz parte da Atenção Básica e se constitui como um serviço com espaço físico independente. IV. O Nasf desenvolve trabalho compartilhado e colaborativo exclusivamente na dimensão clínicoassistencial. É correto o contido apenas em:",
+    "alternativas": [
+        "(A) I e IV.",
+        "(B) II e IV.",
+        "(C) I e II.",
+        "(D) I e III."
+    ],
+    "resposta": "C",
+    "comentario": ""
+},
+{
+    "ids": 1416,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A dinâmica de grupo é um recurso que pode ser utilizado pelo Assistente Social em diferentes momentos de sua intervenção. Acerca do assunto, assinale a alternativa correta.",
+    "alternativas": [
+        "(A) É uma técnica que utiliza jogos e brincadeiras, com vistas a permitir que os membros do grupo se tornem mais extrovertidos e confiantes.",
+        "(B) O Assistente Social age apenas como um observador, um agente que observa situações e situações do grupo.",
+        "(C) Requer por parte do profissional tanto habilidades teóricas (a escolha do tema e como ele será trabalhado), como uma postura política democrática (que deixa o grupo produzir).",
+        "(D) No campo da assistência social, atua como uma forma de garantir controles coletivos e manipular comportamentos valendo-se das relações grupais."
+    ],
+    "resposta": "C",
+    "comentario": ""
+},
+{
+    "ids": 1417,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Constituem direitos do/a assistente social, EXCETO",
+    "alternativas": [
+        "(A) liberdade na realização de seus estudos e pesquisas, resguardados os direitos de participação de indivíduos ou grupos envolvidos em seus trabalhos",
+        "(B) ampla autonomia no exercício da Profissão, não sendo obrigado a prestar serviços profissionais incompatíveis com as suas atribuições, cargos ou funções.",
+        "(C) pronunciamento em matéria de sua especialidade, sobretudo quando se tratar de assuntos de interesse da população.",
+        "(D) inviolabilidade do local de trabalho e respectivos arquivos e documentação, desde que não haja sigilo profissional."
+    ],
+    "resposta": "D",
+    "comentario": ""
+},
+{
+    "ids": 1418,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "É uma exposição do trabalho realizado e das informações adquiridas durante a execução de determinada atividade. Pode ser referente a qualquer um dos instrumentos face a face, bem como pode descrever todas as atividades desenvolvidas pelo profissional (relatório de atividades). Tal descrição refere-se ao:",
+    "alternativas": [
+        "(A) Livro de Registro.",
+        "(B) Diário de Campo.",
+        "(C) Parecer Social.",
+        "(D) Relatório Social."
+    ],
+    "resposta": "D",
+    "comentario": ""
+},
+{
+    "ids": 1419,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Sobre os instrumentos de trabalho indiretos ou “por escrito”, analise as proposições abaixo. I. Não, necessariamente, precisam ser utilizados após a utilização do instrumental face a face. II. Torna possível ao Assistente Social sistematizar a prática. III. Os instrumentos de trabalho por escrito, não raramente, implicam que outros profissionais e/ou outras instituições desenvolverão ações interventivas a partir da intervenção do Assistente Social. É correto o que se afirma em",
+    "alternativas": [
+        "(A) II, apenas.",
+        "(B) I e III, apenas.",
+        "(C) II e III, apenas.",
+        "(D) I, II e III."
+    ],
+    "resposta": "C",
+    "comentario": ""
+},
+{
+    "ids": 1420,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "No que se refere ao Sigilo Profissional, é correto afirmar que",
+    "alternativas": [
+        "(A) somente em trabalho multidisciplinar poderão ser prestadas quaisquer informações.",
+        "(B) só é admissível quando se tratarem de situações cuja gravidade possa, envolvendo ou não fato delituoso, trazer prejuízo aos interesses do/a usuário/a, de terceiros/as e da coletividade.",
+        "(C) só é admissível quando se tratarem de situações cuja gravidade possa trazer prejuízo aos interesses do/a usuário/a.",
+        "(D) só é admissível quando se tratarem de situações que envolvam fato delituoso."
+    ],
+    "resposta": "B",
+    "comentario": ""
+},
+{
+    "ids": 1421,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "As mulheres vítimas de abuso sexual e estupro devem ser encaminhadas para os hospitais/maternidades de referência ao atendimento às vítimas de violência. Acerca do assunto, é correto afirmar que",
+    "alternativas": [
+        "(A) o ambulatório hospitalar de violência sexual acompanha a mulher junto de uma equipe multidisciplinar durante os três primeiros meses após o evento.",
+        "(B) depois da alta do ambulatório o serviço deve fazer a contra-referência do atendimento para os Centros de Saúde, para garantir a devida continuidade do atendimento e a vigilância dessas mulheres pelas Equipes de Saúde da Família de referência.",
+        "(C) a internação hospitalar é indicada somente quando não há risco de feminicídio.",
+        "(D) antes disso, essas vítimas necessitam passar pelo IML, para a coleta dos vestígios e realização da anamnese específica."
+    ],
+    "resposta": "B",
+    "comentario": ""
+},
+{
+    "ids": 1422,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Em conformidade com a Política Nacional de Atenção Integral à Saúde das Pessoas Privadas de Liberdade no Sistema Prisional, assinale a alternativa INCORRETA.",
+    "alternativas": [
+        "(A) Garantir o direito à saúde para todas as pessoas privadas de liberdade no Sistema Prisional é o principal objetivo da Pnaisp.",
+        "(B) Visa à garantia do acesso dessa população ao Sistema Único de Saúde (SUS), em segundo plano.",
+        "(C) A unidade de saúde prisional será um ponto de atenção da Rede de Atenção à Saúde do SUS, qualificando a atenção básica no âmbito prisional e articulando com outros dispositivos dessa Rede no território.",
+        "(D) Caso não haja ambiência na unidade prisional, a Unidade Básica de Saúde do território poderá se responsabilizar por essas ações."
+    ],
+    "resposta": "B",
+    "comentario": ""
+},
+{
+    "ids": 1423,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Sobre a política de saúde mental de Belo Horizonte assinale a alternativa INCORRETA.",
+    "alternativas": [
+        "(A) O trabalho de assistência à saúde mental segue a lógica antimanicomial, que valoriza o cuidado em liberdade, busca a conquista da cidadania e a reinserção social. A perspectiva é a construção de ações coletivas e intersetoriais.",
+        "(B) Os recursos financeiros até então destinados aos hospitais psiquiátricos estão sendo investidos na rede de serviços substitutiva dos leitos desativados.",
+        "(C) No CERSAM Centro de Referência em Saúde Mental, o tratamento busca a estabilização do quadro clínico, a reconstrução da vida pessoal, o suporte necessário aos familiares, o convívio e a reinserção social.",
+        "(D) O CERSAM oferece exclusivamente atendimentos coletivos, com a presença constante de equipe multiprofissional, oficinas e atividades de cultura e lazer."
+    ],
+    "resposta": "D",
+    "comentario": ""
+},
+{
+    "ids": 1424,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "No Brasil, o processo de Reforma Psiquiátrica teve início no ano de 1978, por meio de",
+    "alternativas": [
+        "(A) denúncia de médicos psiquiatras ao Ministério da Saúde, dos abusos e violações cometidos nos hospitais psiquiátricos.",
+        "(B) medidas adotadas pelo novo governo, afim de acabar com a institucionalização.",
+        "(C) pesquisas feitas em outros países que a adotaram e estavam colhendo resultados satisfatórios.",
+        "(D) imposição da classe de empresários, na época, que viam no novo modelo uma forma de ganhar dinheiro."
+    ],
+    "resposta": "A",
+    "comentario": ""
+},
+{
+    "ids": 1425,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A atenção integral à saúde de adolescentes em conflito com a lei será organizada e estruturada na Rede de Atenção à Saúde, garantindo-se na Atenção Básica: I. o aleitamento materno junto às adolescentes, sobretudo às adolescentes puérperas e mães em situação de privação de liberdade, seguindo-se as diretrizes da Rede Cegonha. II. a articulação com a RAPS, inclusive por meio dos Núcleos de Apoio à Saúde da Família (NASF), para possibilitar avaliações psicossociais que visem à identificação de situações de sofrimento psíquico, transtornos mentais e problemas decorrentes do uso de álcool e outras drogas, para a realização de intervenções terapêuticas. III. o acesso à assistência de média e alta complexidade na rede de atenção do SUS. É correto o que se afirma em",
+    "alternativas": [
+        "(A) I e II, apenas.",
+        "(B) I e III, apenas.",
+        "(C) II e III, apenas.",
+        "(D) I, II e III."
+    ],
+    "resposta": "A",
+    "comentario": ""
+},
+{
+    "ids": 1426,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A atenção integral à saúde de adolescentes em conflito com a lei será organizada e estruturada na Rede de Atenção à Saúde, garantindo-se na Atenção Básica: I. o aleitamento materno junto às adolescentes, sobretudo às adolescentes puérperas e mães em situação de privação de liberdade, seguindo-se as diretrizes da Rede Cegonha. II. a articulação com a RAPS, inclusive por meio dos Núcleos de Apoio à Saúde da Família (NASF), para possibilitar avaliações psicossociais que visem à identificação de situações de sofrimento psíquico, transtornos mentais e problemas decorrentes do uso de álcool e outras drogas, para a realização de intervenções terapêuticas. III. o acesso à assistência de média e alta complexidade na rede de atenção do SUS. É correto o que se afirma em",
+    "alternativas": [
+        "(A) I e II, apenas.",
+        "(B) I e III, apenas.",
+        "(C) II e III, apenas.",
+        "(D) I, II e III."
+    ],
+    "resposta": "A",
+    "comentario": ""
+},
+{
+    "ids": 1427,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "No que se refere à visita domiciliar, assinale a alternativa INCORRETA.",
+    "alternativas": [
+        "(A) Trata-se de um instrumento que tem como principal objetivo conhecer as condições e modos de vida da população usuária em sua realidade cotidiana, ou seja, no local onde ela estabelece suas relações do dia a dia: em seu domicílio.",
+        "(B) É um instrumento que, ao final, aproxima a instituição que está atendendo ao usuário de sua realidade, via Assistente Social.",
+        "(C) Sempre tem uma postura autoritária, controladora e fiscalizadora, afinal, quando a instituição se propõe a ir até a casa do usuário, ela está adentrando no terreno do privado. A residência é o espaço privado da família que lá vive.",
+        "(D) Como os demais instrumentos, a visita domiciliar não é exclusividade do Assistente Social."
+    ],
+    "resposta": "C",
+    "comentario": ""
+},
+{
+    "ids": 1428,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Sobre a vulnerabilidade na saúde, analise as proposições abaixo. I. Em saúde, a utilização do termo vulnerabilidade começou no início dos anos 1970, com os estudos sobre a síndrome da imunodeficiência adquirida (aids), compartilhando conceituações da área dos Direitos Humanos. A adoção do conceito de vulnerabilidade em substituição ao de grupo de risco, aconteceu indicando a redução das chances e formas de acometimento pela doença pela totalidade da população. II. A saúde reconhece a preponderância das conjunturas macrossociais sem desconsiderar a dimensão pessoal requisitada para o enfrentamento das situações vulnerabilizantes. III. A conjugação de componentes relacionados ao tipo das informações recebidas pelos sujeitos, aos recursos e oportunidades para a obtenção e manuseio destas informações permite alcançar a feição sintética do conceito de vulnerabilidade que, em saúde, pretende superar a feição analítica do conceito de risco vinculando-se a diferentes referenciais ético-políticos. É correto o que se afirma em",
+    "alternativas": [
+        "(A) II, apenas.",
+        "(B) I e III, apenas.",
+        "(C) II e III, apenas.",
+        "(D) I, II e III."
+    ],
+    "resposta": "A",
+    "comentario": ""
+},
+{
+    "ids": 1429,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "O apoio matricial em saúde objetiva assegurar retaguarda especializada a equipes e profissionais encarregados da atenção a problemas de saúde. Sobre o assunto, é correto afirmar que",
+    "alternativas": [
+        "(A) trata-se de uma metodologia de trabalho substitutiva àquela prevista em sistemas hierarquizados.",
+        "(B) trata-se exclusivamente de um arranjo organizacional do trabalho em saúde, objetivando ampliar as possibilidades de realizar-se clínica ampliada e integração dialógica entre mesmas especialidades e profissões.",
+        "(C) depende da construção compartilhada de diretrizes clínicas e sanitárias entre os componentes de uma equipe de referência e os especialistas que oferecem apoio matricial.",
+        "(D) tem o intuito de delegar todo o poder à equipe interdisciplinar."
+    ],
+    "resposta": "C",
+    "comentario": ""
+},
+{
+    "ids": 1430,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Acerca das especificidades da população em situação de rua, analise as proposições abaixo e, considerando V para verdadeiro e F para falso, assinale a alternativa que apresenta a sequência correta. ( ) Problemas nos pés são comuns nessa população por passarem muitas horas por dia em pé nas ruas ou andando. ( ) O local em que as pessoas em situação de rua encontram para se deitar, assim como a posição como deitam, costuma provocar edemas e estase venosa, que, combinados com picadas de insetos e machucados, podem levar a ulcerações e celulite. ( ) A principal porta de entrada dessas pessoas no SUS são os serviços de Atenção Primária, quando procuram por ele.",
+    "alternativas": [
+        "(A) V / F / F",
+        "(B) F / V / V",
+        "(C) V / V / F",
+        "(D) V / F / V"
+    ],
+    "resposta": "C",
+    "comentario": ""
+},
+{
+    "ids": 1431,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Em meados da década de 1980, o Brasil é atravessado pelo projeto neoliberal. Considerando o impacto na área social e da saúde, analise as proposições abaixo. I. Consolidou-se o modelo médico-assistencial privatista, criando um forte sistema privado e com baixa regulação do Estado, fortalecendo uma política de atenção médica supletiva e consolidando um financiamento sem dependência direta do Estado, tendo sua expansão através do mau funcionamento e da baixa qualidade dos serviços do setor público. II. Criaram-se dois projetos políticos na área da saúde: o projeto público, pautado na política assistencialista, de contenção de gastos e centralização da responsabilidade para a sociedade e o projeto de Reforma Sanitária, orientado pela rede privada, fruto de movimentos sociais. III. A proposta da Reforma Sanitária sugeria uma orientação pública de atendimento, fruto dos movimentos sociais da época, trazendo premissas de universalidade ao acesso, dimensão do atendimento humanizado, bem como direções de participação social e democratização. É correto o que se afirma em",
+    "alternativas": [
+        "(A) I e II, apenas.",
+        "(B) I e III, apenas.",
+        "(C) II e III, apenas.",
+        "(D) I, II e III."
+    ],
+    "resposta": "B",
+    "comentario": ""
+},
+{
+    "ids": 1432,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Acerca da vulnerabilidade na assistência social, assinale a alternativa correta.",
+    "alternativas": [
+        "(A) A partir dos anos 1990, inicia um esforço teórico para a compreensão do fenômeno da pobreza e suas consequências nas variáveis puramente econômicas. Essa é a tônica levada a cabo por organismos internacionais, incorporando o conceito de vulnerabilidade, de cariz menos amplo, às políticas sociais brasileiras, reformulando a política pública de assistência social.",
+        "(B) A vulnerabilidade se instala em maior grau nas populações pobres, nas sociedades capitalistas contemporâneas, em que as relações sociais se desenvolvem por modos marcadamente complexos, fazendo com que a questão econômica seja determinante.",
+        "(C) Não é possível associar a vulnerabilidade à precariedade no acesso à garantia de direitos e proteção social.",
+        "(D) O termo vulnerabilidade, no escopo da assistência social, se destaca pela aptidão com que engloba situações entre a iminência de um risco e a desvinculação ou desfiliação social, de fato."
+    ],
+    "resposta": "D",
+    "comentario": ""
+},
+{
+    "ids": 1433,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Sobre o acolhimento da mulher em situação de violência, analise as assertivas abaixo, considerando V para verdadeiro e F para falso e, em seguida, assinale a alternativa que apresenta a sequência correta. ( ) Por acolher, entende-se o conjunto de medidas, posturas e atitudes dos profissionais de saúde que garantam credibilidade e consideração à mulher em situação de violência. ( ) O acolhimento pressupõe receber e escutar essas mulheres, com respeito e solidariedade, buscando-se formas de compreender suas demandas e expectativas sem julgamentos pessoais e/ou religiosos. ( ) O profissional deve se ater especificamente aos sinais físicos e incluir no diagnóstico diferencial a possibilidade da mulher estar vivendo uma situação de violência.",
+    "alternativas": [
+        "(A) V / V / V",
+        "(B) V / V / F",
+        "(C) V / F / V",
+        "(D) F / V / V"
+    ],
+    "resposta": "B",
+    "comentario": ""
+},
+{
+    "ids": 1434,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Por meio dos serviços, programas e projetos socioassistenciais básicos e/ou regionais, de Proteção Social Básica e Especial, identificarão gestantes em uso prejudicial de drogas, em situação de rua, dentre outras situações de vulnerabilidade e risco social e pessoal, promovendo a acolhida, a escuta e encaminhamentos iniciais para inserção destas e de suas famílias na rede de proteção social, de acordo com as necessidades socioassistenciais constatadas:",
+    "alternativas": [
+        "(A) Rede SUAS/BH.",
+        "(B) CERSAM’S.",
+        "(C) Centro POP.",
+        "(D) SMASAC"
+    ],
+    "resposta": "A",
+    "comentario": ""
+},
+{
+    "ids": 1435,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Sobre o papel do Assistente Social na atenção básica, analise as assertivas abaixo. I. Tem um papel importante na promoção do acesso da população à saúde como direito adquirido, de forma universal, realizando seu serviço de modo que o usuário tenha informações claras ao procurar o serviço, um atendimento humanizado, acesso aos serviços de média e alta complexidade. II. Contribui junto às Equipes de Saúde da Família em discussões das interferências sociais no processo saúde-doença, desconstruindo a relação de atendimento em saúde meramente curativo, clínico individual e médico centrado. III. O Assistente Social tem como tarefa exclusiva possibilitar o acesso, promover a cidadania, a inclusão social; modificar a realidade das famílias, melhorando sua qualidade de vida e suprindo necessidades concretas de saúde. É correto o que se afirma em",
+    "alternativas": [
+        "(A) I e II, apenas.",
+        "(B) I e III, apenas.",
+        "(C) II e III, apenas.",
+        "(D) I, II e III."
+    ],
+    "resposta": "A",
+    "comentario": ""
+},
+{
+    "ids": 1436,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "De acordo com a Portaria Conjunta SMSA/SMASAC n.º 0001/2017, a Rede da Saúde dará especial atenção, buscando a adesão ao pré-natal, às gestantes em situação de vulnerabilidade e risco social e pessoal, com a adoção das seguintes ações: I. realizar a busca ativa. II. acolher quando presentes na unidade e buscar estratégias para redução de barreiras de acesso enfrentadas por estas mulheres. III. promover a discussão do caso junto a Equipe de Saúde da Família (ESF) e, se necessário, promover a discussão do caso com as equipes de matriciamento no território, quais sejam: Saúde Mental, NASF e profissionais de apoio, com vistas ao cuidado integral e singular. É correto o contido em",
+    "alternativas": [
+        "(A) I e II, apenas.",
+        "(B) I e III, apenas.",
+        "(C) II e III, apenas.",
+        "(D) I, II e III."
+    ],
+    "resposta": "D",
+    "comentario": ""
+},
+{
+    "ids": 1437,
+    "ano": 2021,
+    "banca": "RBO",
+    "concurso": "Prefeitura de Belo Horizonte - MG",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A organização das ações de atenção integral à saúde de adolescentes em conflito com a lei será realizada de acordo com os seguintes princípios, dentre outros: I. enfrentamento ao estigma e preconceito. II. respeito à condição peculiar dos adolescentes como pessoas em desenvolvimento. III. garantia do acesso parcial e integralidade na Rede de Atenção à Saúde, observando-se o princípio da completude institucional. IV. permeabilidade das instituições socioeducativas à comunidade e ao controle social. É correto o contido em",
+    "alternativas": [
+        "(A) I e II, apenas.",
+        "(B) III e IV, apenas.",
+        "(C) I, II e IV, apenas.",
+        "(D) I, II, III e IV."
+    ],
+    "resposta": "C",
     "comentario": ""
 }
 ]

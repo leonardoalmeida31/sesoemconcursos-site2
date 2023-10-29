@@ -212,6 +212,7 @@ function Home() {
 
           // Atualize o estado desempenhoPorDisciplina com as informações recuperadas
           setDesempenhoPorDisciplina(desempenhoSalvo);
+        
 
           // Recupere as informações de desempenho total do documento do usuário
           const desempenhoTotalSalvo = userData.desempenhoTotal || {
@@ -281,6 +282,7 @@ function Home() {
               erros: 0,
             },
             desempenhoPorDisciplina: {}, // Defina um objeto vazio como valor padrão
+            desempenhoPorBanca: {}, // Defina um objeto vazio como valor padrão
             cliques: 0,
           });
 
@@ -379,6 +381,8 @@ function Home() {
   const [acertos, setAcertos] = useState(0);
   const [erros, setErros] = useState(0);
   const [desempenhoPorDisciplina, setDesempenhoPorDisciplina] = useState({});
+  const [desempenhoPorBanca, setDesempenhoPorBanca] = useState({});
+
 
   const [desempenhoTotal, setDesempenhoTotal] = useState({
     acertos: 0,
@@ -417,6 +421,17 @@ function Home() {
           },
         };
       });
+      setDesempenhoPorBanca((prevDesempenho) => {
+        const banca = question.banca;
+        return {
+          ...prevDesempenho,
+          [banca]: {
+            acertos: (prevDesempenho[banca]?.acertos || 0) + 1,
+            erros: prevDesempenho[banca]?.erros || 0,
+          },
+        };
+      });
+
     } else {
       setRespostaCorreta(false); // A resposta do usuário está incorreta
       setErros(erros + 1); // Incrementa o número de erros
@@ -435,6 +450,16 @@ function Home() {
           },
         };
       });
+      setDesempenhoPorBanca((prevDesempenho) => {
+        const banca = question.banca;
+        return {
+          ...prevDesempenho,
+          [banca]: {
+            acertos: prevDesempenho[banca]?.acertos || 0,
+            erros: (prevDesempenho[banca]?.erros || 0) + 1,
+          },
+        };
+      })
     }
     // Salvar as informações de desempenho no Firebase
     if (user) {
@@ -453,6 +478,7 @@ function Home() {
 
         // Atualize as informações de desempenho no documento do usuário
         await setDoc(userRef, { desempenhoPorDisciplina }, { merge: true });
+        await setDoc(userRef, { desempenhoPorBanca }, { merge: true });
         await updateDoc(userRef, { desempenhoTotal });
 
         if (!user) {
@@ -472,6 +498,8 @@ function Home() {
 
           // Atualize o estado local com os cliques atualizados
           setCliques(newCliques);
+          // Atualize o desempenho por "banca" no Firebase
+          await updateDoc(userRef, { desempenhoPorBanca });
         } else {
           verificarResposta(question);
         }
@@ -522,6 +550,7 @@ function Home() {
 
     // Verificar se a disciplina já está no estado de desempenho
     const disciplina = question.disciplina;
+    const banca = question.banca;
 
     if (alternativaSelecionada === respostaCorreta) {
     } else {
@@ -837,13 +866,13 @@ function Home() {
                       Suporte WhatsApp
                     </a>
                   </MenuItem>
-                  
+
                   <MenuItem>
                     <Typography onClick={signOut} sx={{ color: "black" }}>
                       Sair/Trocar Conta
                     </Typography>
                   </MenuItem>
-                  
+
                 </Menu>
               </Box>
             </Toolbar>
@@ -979,7 +1008,7 @@ function Home() {
         {user ? (
 
           <Box >
-          
+
             {questoesPagina.map((question) => (
               <div key={question.id} className="question-container">
                 <Box className="cabecalho-disciplina">
@@ -998,76 +1027,76 @@ function Home() {
                   </p>
                   <p><span style={{ color: "black" }}>&nbsp;&nbsp;Órgão: </span>&nbsp;  {question.concurso}</p>
                 </Box>
-                <p className="enunciado">{question.enunciado}</p>
-                <ul>
-                  {question.alternativas.map((alternativa, index) => {
-                    const letraAlternativa =
-                      alternativa.match(/^\(([A-E])\)/)[1];
-                    const isSelected =
-                      alternativaSelecionada[question.ids] === index;
-                    const isRiscada =
-                      alternativasRiscadasPorQuestao[question.ids]?.[index] ||
-                      false;
+                  <p className="enunciado">{question.enunciado}</p>
+                  <ul>
+                    {question.alternativas.map((alternativa, index) => {
+                      const letraAlternativa =
+                        alternativa.match(/^\(([A-E])\)/)[1];
+                      const isSelected =
+                        alternativaSelecionada[question.ids] === index;
+                      const isRiscada =
+                        alternativasRiscadasPorQuestao[question.ids]?.[index] ||
+                        false;
 
-                    return (
-                      <li
-                        className={`alternativa ${isSelected ? "selecionada" : ""
-                          } ${isRiscada ? "riscado" : ""}`}
-                        key={index}
-                        onClick={() =>
-                          handleAlternativaClick(question.ids, index)
-                        }
-                      >
-                        <Box
-                          className={`icon-container ${isRiscada ? "riscado" : ""
-                            }`}
+                      return (
+                        <li
+                          className={`alternativa ${isSelected ? "selecionada" : ""
+                            } ${isRiscada ? "riscado" : ""}`}
+                          key={index}
+                          onClick={() =>
+                            handleAlternativaClick(question.ids, index)
+                          }
                         >
-                          <ContentCutRoundedIcon style={{ color: '#1c5253', fontSize: "small" }}
-                            className={`tesoura-icon ${isRiscada ? "riscado" : ""
+                          <Box
+                            className={`icon-container ${isRiscada ? "riscado" : ""
                               }`}
+                          >
+                            <ContentCutRoundedIcon style={{ color: '#1c5253', fontSize: "small" }}
+                              className={`tesoura-icon ${isRiscada ? "riscado" : ""
+                                }`}
 
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleRiscarAlternativa(question.ids, index);
-                            }}
-                          />
-                        </Box>
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleRiscarAlternativa(question.ids, index);
+                              }}
+                            />
+                          </Box>
 
-                        <span
-                          className={`letra-alternativa-circle ${isSelected ? "selecionada" : ""
-                            }`}
-                        >
-                          {letraAlternativa}
-                        </span>
-                        {alternativa.replace(/^\(([A-E])\)/, "")}
-                      </li>
-                    );
-                  })}
-                </ul>
-                <div className="button-feedback-container">
-                  <button
-                    className="button-responder"
-                    onClick={() => handleRespostaClick(question)}
-                    disabled={
-                      (paymentInfo === null || paymentInfo === 0) &&
-                      cliques >= 15
-                    }
-                  >
-                    Responder
-                  </button>
+                          <span
+                            className={`letra-alternativa-circle ${isSelected ? "selecionada" : ""
+                              }`}
+                          >
+                            {letraAlternativa}
+                          </span>
+                          {alternativa.replace(/^\(([A-E])\)/, "")}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                  <div className="button-feedback-container">
+                    <button
+                      className="button-responder"
+                      onClick={() => handleRespostaClick(question)}
+                      disabled={
+                        (paymentInfo === null || paymentInfo === 0) &&
+                        cliques >= 15
+                      }
+                    >
+                      Responder
+                    </button>
 
-                  {resultados[question.ids] === true && (
-                    <p className="resposta-correta">Parabéns! Você acertou!</p>
-                  )}
-                  {resultados[question.ids] === false && (
-                    <p className="resposta-incorreta">
-                      Você Errou! Resposta: {question.resposta}
-                    </p>
-                  )}
-                </div>
+                    {resultados[question.ids] === true && (
+                      <p className="resposta-correta">Parabéns! Você acertou!</p>
+                    )}
+                    {resultados[question.ids] === false && (
+                      <p className="resposta-incorreta">
+                        Você Errou! Resposta: {question.resposta}
+                      </p>
+                    )}
+                  </div>
                 </Box>
-                
-                <IconButton sx={{ color: "#1c5253", padding: "0.700em"}}
+
+                <IconButton sx={{ color: "#1c5253", padding: "0.700em" }}
                   className="button-comentario"
                   onClick={() => toggleComentario(question.ids)}
                 >
@@ -1083,7 +1112,7 @@ function Home() {
                     <Typography sx={{ fontSize: '0.550em', color: "#1c5253", marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500' }} color="error">Meu Desempenho</Typography>
                   </Link>
                 </IconButton>
-               
+
                 <Container className="linha-horizontal-comentario"></Container>
 
                 <Container
@@ -1117,9 +1146,9 @@ function Home() {
                     {question.comentario}
 
                   </p>
-                  
+
                 </Container>
-                
+
               </div>
             ))}
             {paymentInfo === null && (
@@ -1167,15 +1196,15 @@ function Home() {
         )}
 
         {user && (
-        <Box className="Rodapé">
-           
-          <Box className="Box-Rodapé">
+          <Box className="Rodapé">
+
+            <Box className="Box-Rodapé">
               <p className="Texto-Rodapé">
                 <Link to="/" style={{ textDecoration: "none", color: "white" }}>
                   SESOEMCONCURSOS.COM.BR
                 </Link>
               </p>
-             
+
               <p className="Texto-Rodapé">
                 <Link
                   to="https://api.whatsapp.com/send?phone=5574981265381"
@@ -1227,7 +1256,7 @@ function Home() {
             </Box>
 
             <Box className="Box-Rodapé">
-            <p className="Texto-Rodapé">
+              <p className="Texto-Rodapé">
                 <Link
                   to="https://www.instagram.com/sesoemconcursos/"
                   target="_blank"
