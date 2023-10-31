@@ -531,10 +531,9 @@
     background-color:  #1c5253;
     color: #fff;
     border: none;
-    padding: 0.600em;
     font-family: Poppins;
     font-weight: 400;
-    font-size: 0.750em;
+    font-size: 0.800em;
     border-radius: 5px;
     cursor: pointer;
     margin: 0 5px;
@@ -543,10 +542,9 @@
     background-color:  #0e2c2c;
     color: #fff;
     border: none;
-    padding: 0.600em;
     font-family: Poppins;
     font-weight: 400;
-    font-size: 0.750em;
+  
     border-radius: 5px;
     cursor: pointer;
     margin: 0 5px;

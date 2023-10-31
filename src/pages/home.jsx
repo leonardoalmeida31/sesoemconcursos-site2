@@ -212,7 +212,7 @@ function Home() {
 
           // Atualize o estado desempenhoPorDisciplina com as informações recuperadas
           setDesempenhoPorDisciplina(desempenhoSalvo);
-        
+
 
           // Recupere as informações de desempenho total do documento do usuário
           const desempenhoTotalSalvo = userData.desempenhoTotal || {
@@ -675,6 +675,7 @@ function Home() {
       },
     }));
   };
+
 
   const bull = (
     <Box
@@ -1159,18 +1160,16 @@ function Home() {
 
             <Box className="pagination">
               <Button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
-                Página Anterior
+                Anterior
               </Button>
-              <span>
-                {paginaAtual} de {totalPages}
-              </span>
-              <Button
-                onClick={handleNextPage}
-              // disabled={paginaAtual >= totalPages || paymentInfo === 0 || paymentInfo === null}
-              >
-                Próxima Página
+              <Typography sx={{fontFamily: "Poppins", fontSize: "0.850em", fontWeight: "500", padding: "0.500em", textAlign: "center"}}>
+                {paginaAtual.toLocaleString('pt-BR')} de {totalPages.toLocaleString('pt-BR')}
+              </Typography>
+              <Button onClick={handleNextPage}>
+                Próxima
               </Button>
             </Box>
+
           </Box>
         ) : (
           <Box className="login">

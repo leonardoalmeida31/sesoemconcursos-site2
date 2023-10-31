@@ -43,7 +43,7 @@
     align-items: center;
   }
   .div-filter2 {
-    width: 22.07em; /* Largura padrão para cada filtro */
+    width: 22.08em; /* Largura padrão para cada filtro */
     margin-right: 0.450em; /* Espaçamento entre os filtros */
     margin-left: 0.300em; /* Espaçamento entre os filtros */
     justify-content: center;  
@@ -89,7 +89,7 @@
   }
   .filter-input {
     width: 100%;
-    padding: 5px;
+    padding: 7px;
     font-size: 0.865em;
     border-radius: 5px;
     justify-content: center;
@@ -146,3 +146,5 @@
   .clear-button:hover {
     background-color: rgb(179, 0, 45);
   }
+
+  

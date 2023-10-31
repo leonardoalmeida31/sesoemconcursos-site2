@@ -464,7 +464,7 @@ function MeuPerfil() {
               },
               colors: ['#1c5253', '#B22222'],
               backgroundColor: 'white',
-              pieHole: 0.4, // Defina o tamanho do buraco no gráfico (valores de 0 a 1)
+               // Defina o tamanho do buraco no gráfico (valores de 0 a 1)
             }}
           />
         </div>
@@ -527,6 +527,7 @@ function MeuPerfil() {
                 },
                 colors: ['#1c5253', '#B22222'],
                 backgroundColor: 'white',
+                fontSize: 10,
                 pieHole: 0.4, // Defina o tamanho do buraco no gráfico (valores de 0 a 1)
               }}
             />
@@ -595,6 +596,7 @@ function MeuPerfil() {
                 },
                 colors: ['#1c5253', '#B22222'],
                 backgroundColor: 'white',
+                fontSize: 10,
                 pieHole: 0.4, // Defina o tamanho do buraco no gráfico (valores de 0 a 1)
               }}
             />

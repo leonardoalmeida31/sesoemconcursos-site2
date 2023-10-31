@@ -3,6 +3,8 @@ import Select from "react-select";
 import "./FiltroMulti.css";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import { getDocs, collection } from "firebase/firestore";
 
 import { getDatabase, ref, onValue } from 'firebase/database'
@@ -146,12 +148,14 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
     setFilteredQuestoes(filteredQuestoes);
     onFilterChange(filteredQuestoes);
     setPaginaAtual(1); // Redefina a página para 1 usando a prop
+
   };
 
   // Antes de renderizar o componente Select "Banca", ordene o array bancaOptions em ordem alfabética.
   const sortedBancaOptions = bancaOptions.slice().sort((a, b) => a.label.localeCompare(b.label));
   const sortedDisciplinaOptions = disciplinaOptions.slice().sort((a, b) => a.label.localeCompare(b.label));
   const sortedAnoOptions = anoOptions.slice().sort((a, b) => b.label - a.label);
+
 
 
   return (
@@ -176,6 +180,13 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           options={sortedDisciplinaOptions}
           isMulti={true}
           placeholder="Disciplina"
+          styles={{
+            option: (provided, state) => ({
+              ...provided,
+              backgroundColor: state.isFocused ? "#1C5253" : "white",
+              color: state.isFocused ? "white" : "black",
+            }),
+          }}
         />
       </div>
       <div className="div-filter">
@@ -187,6 +198,13 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           isMulti={true}
           placeholder="Assunto"
           isDisabled={selectedDisciplinas.length === 0}
+          styles={{
+            option: (provided, state) => ({
+              ...provided,
+              backgroundColor: state.isFocused ? "#1C5253" : "white",
+              color: state.isFocused ? "white" : "black",
+            }),
+          }}
         />
       </div>
       <div className="div-filter">
@@ -197,6 +215,13 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           options={sortedBancaOptions}
           isMulti={true}
           placeholder="Banca"
+          styles={{
+            option: (provided, state) => ({
+              ...provided,
+              backgroundColor: state.isFocused ? "#1C5253" : "white",
+              color: state.isFocused ? "white" : "black",
+            }),
+          }}
         />
       </div>
       <div className="div-filter">
@@ -209,6 +234,13 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           options={modalidadeOptions}
           isMulti={true}
           placeholder="Modalidade"
+          styles={{
+            option: (provided, state) => ({
+              ...provided,
+              backgroundColor: state.isFocused ? "#1C5253" : "white",
+              color: state.isFocused ? "white" : "black",
+            }),
+          }}
         />
       </div>
 
@@ -220,6 +252,13 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           options={sortedAnoOptions}
           isMulti={true}
           placeholder="Ano"
+          styles={{
+            option: (provided, state) => ({
+              ...provided,
+              backgroundColor: state.isFocused ? "#1C5253" : "white",
+              color: state.isFocused ? "white" : "black",
+            }),
+          }}
         />
       </div>
       <div className="div-filter">
@@ -230,6 +269,13 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           options={areaOptions}
           isMulti={true}
           placeholder="Área"
+          styles={{
+            option: (provided, state) => ({
+              ...provided,
+              backgroundColor: state.isFocused ? "#1C5253" : "white",
+              color: state.isFocused ? "white" : "black",
+            }),
+          }}
         />
       </div>
       <div>
@@ -239,6 +285,7 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           </button>
         </div>
       </div>
+
     </div>
   );
 }
