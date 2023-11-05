@@ -12,6 +12,7 @@ import Discursivas from './pages/Discursivas.jsx'
 import PixFeito from './pages/PixFeito.jsx'
 import CadastroD from './pages/CadastroD.jsx'
 import Assinatura from './pages/Assinatura.jsx'
+import PlanosDeEstudos from './pages/PlanosDeEstudos.jsx'
 
 
 
@@ -30,6 +31,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/PixFeito" element={<PixFeito />} />
         <Route path="/CadastroD" element={<CadastroD />} />
         <Route path="/Assinatura" element={<Assinatura />} />
+        <Route path="/PlanosDeEstudos" element={<PlanosDeEstudos />} />
        
       
       </Routes>
