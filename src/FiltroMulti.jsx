@@ -144,6 +144,8 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
         );
       })
 
+      // Embaralhar aleatoriamente as questões
+  const shuffledQuestoes = filteredQuestoes.sort(() => Math.random() - 0.5);
 
     setFilteredQuestoes(filteredQuestoes);
     onFilterChange(filteredQuestoes);
@@ -155,7 +157,6 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
   const sortedBancaOptions = bancaOptions.slice().sort((a, b) => a.label.localeCompare(b.label));
   const sortedDisciplinaOptions = disciplinaOptions.slice().sort((a, b) => a.label.localeCompare(b.label));
   const sortedAnoOptions = anoOptions.slice().sort((a, b) => b.label - a.label);
-
 
 
   return (

@@ -42,7 +42,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import IconButton from "@mui/material/IconButton";
 import Depoimentos from "./Depoimentos.jsx";
-
+import EstatisticasQuestao from "./EstatisticasQuestao.jsx";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Menu from "@mui/material/Menu";
@@ -65,7 +65,7 @@ import {
   onSnapshot,
   serverTimestamp,
   query,
-  where,
+  where, increment 
 } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getDatabase, ref, onValue } from "firebase/database";
@@ -315,7 +315,7 @@ function Home() {
           ...questionData[key],
         }));
 
-        shuffleArray(questionArray);
+        //shuffleArray(questionArray);
         setQuestions(questionArray);
       }
     });
@@ -389,6 +389,50 @@ function Home() {
     erros: 0,
   });
 
+  const saveUserResponses = async (questionId, respostaSelecionada) => {
+    try {
+      const collectionRef = collection(db, "alternativasRespondidas");
+      const userResponseRef = doc(collectionRef, questionId.toString());
+  
+      const userResponseDoc = await getDoc(userResponseRef);
+      if (userResponseDoc.exists()) {
+        const responseData = userResponseDoc.data();
+  
+        // Verifica se a alternativa já foi respondida antes
+        if (responseData.respostaCounts && responseData.respostaCounts[respostaSelecionada] !== undefined) {
+          // Se a alternativa já foi respondida, incrementa o contador
+          responseData.respostaCounts[respostaSelecionada]++;
+        } else {
+          // Se for a primeira vez que essa alternativa é respondida, inicializa o contador
+          if (!responseData.respostaCounts) {
+            responseData.respostaCounts = {};
+          }
+          responseData.respostaCounts[respostaSelecionada] = 1;
+        }
+  
+        // Atualiza o documento com os dados atualizados
+        await setDoc(userResponseRef, responseData);
+        console.log("Resposta do usuário salva com sucesso!");
+      } else {
+        // Se o documento não existe, cria um novo documento com a resposta selecionada
+        const newResponseData = {
+          questionId: questionId,
+          respostaSelecionada: respostaSelecionada,
+          respostaCounts: {
+            [respostaSelecionada]: 1,
+          },
+          // Outros dados relevantes que você queira armazenar
+        };
+  
+        await setDoc(userResponseRef, newResponseData);
+        console.log("Resposta do usuário salva com sucesso!");
+      }
+    } catch (error) {
+      console.error("Erro ao salvar a resposta do usuário:", error);
+    }
+  };
+  
+
   const [cliques, setCliques] = useState(null);
   const handleRespostaClick = async (question) => {
     // Verifique se a resposta do usuário está correta
@@ -396,7 +440,10 @@ function Home() {
     const respostaCorreta = question.resposta.charCodeAt(0) - 65;
     const questaoId = question.ids;
 
+
     const resultadoQuestao = respostaUsuario === respostaCorreta;
+    // Salvar as respostas do usuário no Firebase
+    saveUserResponses(questaoId, respostaUsuario);
 
     // Atualize o estado dos resultados com o resultado da questão
     setResultados((prevResultados) => ({
@@ -707,6 +754,8 @@ function Home() {
       </CardActions>
     </React.Fragment>
   );
+
+
 
   return (
     <div className="Home">
@@ -1095,6 +1144,10 @@ function Home() {
                       </p>
                     )}
                   </div>
+                  
+                  
+                  <EstatisticasQuestao key={question.id} questionId={question.ids} />
+
                 </Box>
 
                 <IconButton sx={{ color: "#1c5253", padding: "0.700em" }}
@@ -1148,6 +1201,7 @@ function Home() {
 
                   </p>
 
+               
                 </Container>
 
               </div>
