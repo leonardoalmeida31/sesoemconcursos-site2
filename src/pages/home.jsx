@@ -65,7 +65,7 @@ import {
   onSnapshot,
   serverTimestamp,
   query,
-  where, increment 
+  where, increment
 } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getDatabase, ref, onValue } from "firebase/database";
@@ -315,7 +315,7 @@ function Home() {
           ...questionData[key],
         }));
 
-        //shuffleArray(questionArray);
+        shuffleArray(questionArray);
         setQuestions(questionArray);
       }
     });
@@ -393,11 +393,11 @@ function Home() {
     try {
       const collectionRef = collection(db, "alternativasRespondidas");
       const userResponseRef = doc(collectionRef, questionId.toString());
-  
+
       const userResponseDoc = await getDoc(userResponseRef);
       if (userResponseDoc.exists()) {
         const responseData = userResponseDoc.data();
-  
+
         // Verifica se a alternativa já foi respondida antes
         if (responseData.respostaCounts && responseData.respostaCounts[respostaSelecionada] !== undefined) {
           // Se a alternativa já foi respondida, incrementa o contador
@@ -409,7 +409,7 @@ function Home() {
           }
           responseData.respostaCounts[respostaSelecionada] = 1;
         }
-  
+
         // Atualiza o documento com os dados atualizados
         await setDoc(userResponseRef, responseData);
         console.log("Resposta do usuário salva com sucesso!");
@@ -423,7 +423,7 @@ function Home() {
           },
           // Outros dados relevantes que você queira armazenar
         };
-  
+
         await setDoc(userResponseRef, newResponseData);
         console.log("Resposta do usuário salva com sucesso!");
       }
@@ -431,7 +431,7 @@ function Home() {
       console.error("Erro ao salvar a resposta do usuário:", error);
     }
   };
-  
+
 
   const [cliques, setCliques] = useState(null);
   const handleRespostaClick = async (question) => {
@@ -1144,28 +1144,40 @@ function Home() {
                       </p>
                     )}
                   </div>
-                  
-                  
-                  <EstatisticasQuestao key={question.id} questionId={question.ids} />
+
+
+
+
+                </Box >
+
+                <Box sx={{ display: "flex", flexDirection: "row", color: "#1c5253", alignItems: "flex-start", overflowX: 'auto', maxWidth: '100%', overflowY: 'hidden', }}>
+                  <IconButton
+                    sx={{ color: '#1c5253', padding: '0.700em' }}
+                    className="button-comentario"
+                    onClick={() => toggleComentario(question.ids)}
+                  >
+                    <QuestionAnswerOutlinedIcon fontSize="small" sx={{ color: '#1c5253', backgroundColor: 'transparent' }} />
+                    <Typography sx={{ fontSize: '0.550em', color: '#1c5253', marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500' }} color="error">
+                      Comentários
+                    </Typography>
+                  </IconButton>
+
+                  <IconButton sx={{ color: '#1c5253', padding: '0.700em' }}>
+                    <Link to="/MeuPerfil" target="_blank" style={{ display: 'flex', textDecoration: 'none' }}>
+                      <PollOutlinedIcon fontSize="small" sx={{ color: '#1c5253', backgroundColor: 'transparent' }} />
+                      <Typography sx={{ fontSize: '0.550em', color: '#1c5253', marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500' }} color="error">
+                        Meu Desempenho
+                      </Typography>
+                    </Link>
+                  </IconButton>
+
+                  {paymentInfo !== null && (
+                    <EstatisticasQuestao key={question.id} questionId={question.ids} />
+                  )}
+
 
                 </Box>
 
-                <IconButton sx={{ color: "#1c5253", padding: "0.700em" }}
-                  className="button-comentario"
-                  onClick={() => toggleComentario(question.ids)}
-                >
-                  {" "}
-                  <QuestionAnswerOutlinedIcon fontSize="small" sx={{ color: "#1c5253", backgroundColor: 'transparent' }} />
-                  <Typography sx={{ fontSize: '0.550em', color: "#1c5253", marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500' }} color="error">Comentários
-                  </Typography>
-                </IconButton>
-
-                <IconButton sx={{ color: "#1c5253", marginLeft: '0.500em', padding: "0.700em" }}>
-                  <Link to="/MeuPerfil" target="_blank" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-                    <PollOutlinedIcon fontSize="small" sx={{ color: "#1c5253", backgroundColor: 'transparent' }} />
-                    <Typography sx={{ fontSize: '0.550em', color: "#1c5253", marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500' }} color="error">Meu Desempenho</Typography>
-                  </Link>
-                </IconButton>
 
                 <Container className="linha-horizontal-comentario"></Container>
 
@@ -1201,7 +1213,7 @@ function Home() {
 
                   </p>
 
-               
+
                 </Container>
 
               </div>
@@ -1216,7 +1228,7 @@ function Home() {
               <Button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
                 Anterior
               </Button>
-              <Typography sx={{fontFamily: "Poppins", fontSize: "0.850em", fontWeight: "500", padding: "0.500em", textAlign: "center"}}>
+              <Typography sx={{ fontFamily: "Poppins", fontSize: "0.850em", fontWeight: "500", padding: "0.500em", textAlign: "center" }}>
                 {paginaAtual.toLocaleString('pt-BR')} de {totalPages.toLocaleString('pt-BR')}
               </Typography>
               <Button onClick={handleNextPage}>
