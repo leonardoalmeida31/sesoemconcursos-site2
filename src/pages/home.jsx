@@ -1150,7 +1150,7 @@ function Home() {
 
                 </Box >
 
-                <Box sx={{ display: "flex", flexDirection: "row", color: "#1c5253", alignItems: "flex-start", overflowX: 'auto', maxWidth: '100%', overflowY: 'hidden', }}>
+                <Box sx={{ display: "flex", flexDirection: "row", color: "#1c5253", alignItems: "flex-start", overflowX: 'auto', maxWidth: '100%', overflowY: 'hidden', justifyContent: 'flex-start', }}>
                   <IconButton
                     sx={{ color: '#1c5253', padding: '0.700em' }}
                     className="button-comentario"
