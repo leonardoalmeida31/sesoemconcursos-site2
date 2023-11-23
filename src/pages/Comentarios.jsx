@@ -280,6 +280,8 @@ const Comentarios = ({ question, db, user }) => {
       console.error("Erro ao descurtir comentário:", error);
     }
   };
+
+  
   
   return (
     <Box className="app-container">
