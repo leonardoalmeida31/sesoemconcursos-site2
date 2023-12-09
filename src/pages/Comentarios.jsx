@@ -27,6 +27,9 @@ import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
 import { useMediaQuery } from "@mui/material";
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import ThumbDownOffAltOutlinedIcon from '@mui/icons-material/ThumbDownOffAltOutlined';
+import ReactMarkdown from 'react-markdown';
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 
 const Comentarios = ({ question, db, user }) => {
@@ -80,14 +83,12 @@ const Comentarios = ({ question, db, user }) => {
   };
 
 
-  const handleCommentChange = (e) => {
-    const questionId = e.target.getAttribute("data-questionid");
-    setCurrentQuestionId(questionId);
-    setComentario(e.target.value);
+  const handleCommentChange = (content, delta, source, editor) => {
+    setComentario(editor.getHTML());
   };
 
   const handleCommentSubmit = async () => {
-    if (!currentQuestionId || comentario.trim() === "") {
+    if (!question.id || !comentario.trim()) {
       console.error("O questionId não está definido ou o comentário está vazio.");
       return;
     }
@@ -95,20 +96,20 @@ const Comentarios = ({ question, db, user }) => {
     try {
       const comentariosRef = collection(db, "comentarios");
       await addDoc(comentariosRef, {
-        questionsId: currentQuestionId,
+        questionsId: question.id,
         text: comentario,
         timestamp: serverTimestamp(),
         user: user.uid,
         displayName: user.displayName,
         userPhotoURL: user.photoURL,
-        likes: 0, // Inicialmente, não há curtidas
-        dislikes: 0, // Inicialmente, não há descurtidas
+        likes: 0,
+        dislikes: 0,
       });
 
       // Atualize a lista de comentários para a questão atual
       const q = query(
         comentariosRef,
-        where("questionsId", "==", currentQuestionId)
+        where("questionsId", "==", question.id)
       );
       const comentariosSnapshot = await getDocs(q);
 
@@ -128,7 +129,7 @@ const Comentarios = ({ question, db, user }) => {
 
       setComments((prevComments) => ({
         ...prevComments,
-        [currentQuestionId]: comentarioData,
+        [question.id]: comentarioData,
       }));
 
       setComentario("");
@@ -197,14 +198,14 @@ const Comentarios = ({ question, db, user }) => {
       const comentariosRef = collection(db, "comentarios");
       const commentDoc = doc(comentariosRef, commentId);
       const commentSnapshot = await getDoc(commentDoc);
-  
+
       if (!commentSnapshot.exists()) {
         console.error("O comentário não existe.");
         return;
       }
-  
+
       const commentData = commentSnapshot.data();
-  
+
       // Verifique se o usuário já curtiu o comentário
       if (!commentData.likesBy || !commentData.likesBy.includes(user.uid)) {
         // Atualize o Firestore para registrar a curtida
@@ -212,7 +213,7 @@ const Comentarios = ({ question, db, user }) => {
           likes: commentData.likes + 1,
           likesBy: [...(commentData.likesBy || []), user.uid],
         });
-  
+
         // Atualize o estado local
         setLikes((prevLikes) => ({
           ...prevLikes,
@@ -224,7 +225,7 @@ const Comentarios = ({ question, db, user }) => {
           likes: commentData.likes - 1,
           likesBy: commentData.likesBy.filter((userId) => userId !== user.uid),
         });
-  
+
         // Atualize o estado local para refletir a remoção da curtida
         setLikes((prevLikes) => ({
           ...prevLikes,
@@ -235,21 +236,21 @@ const Comentarios = ({ question, db, user }) => {
       console.error("Erro ao curtir comentário:", error);
     }
   };
-  
+
 
   const handleDislikeComment = async (commentId) => {
     try {
       const comentariosRef = collection(db, "comentarios");
       const commentDoc = doc(comentariosRef, commentId);
       const commentSnapshot = await getDoc(commentDoc);
-  
+
       if (!commentSnapshot.exists()) {
         console.error("O comentário não existe.");
         return;
       }
-  
+
       const commentData = commentSnapshot.data();
-  
+
       // Verifique se o usuário já descurtiu o comentário
       if (!commentData.dislikesBy || !commentData.dislikesBy.includes(user.uid)) {
         // Atualize o Firestore para registrar a descurtida
@@ -257,7 +258,7 @@ const Comentarios = ({ question, db, user }) => {
           dislikes: commentData.dislikes + 1,
           dislikesBy: [...(commentData.dislikesBy || []), user.uid],
         });
-  
+
         // Atualize o estado local
         setDislikes((prevDislikes) => ({
           ...prevDislikes,
@@ -269,7 +270,7 @@ const Comentarios = ({ question, db, user }) => {
           dislikes: commentData.dislikes - 1,
           dislikesBy: commentData.dislikesBy.filter((userId) => userId !== user.uid),
         });
-  
+
         // Atualize o estado local para refletir a remoção da descurtida
         setDislikes((prevDislikes) => ({
           ...prevDislikes,
@@ -281,8 +282,44 @@ const Comentarios = ({ question, db, user }) => {
     }
   };
 
-  
-  
+
+  const handleBoldText = () => {
+    const textArea = document.getElementById("comment-input");
+    const startPos = textArea.selectionStart;
+    const endPos = textArea.selectionEnd;
+    const selectedText = textArea.value.substring(startPos, endPos);
+
+    const newText =
+      textArea.value.substring(0, startPos) +
+      `<b>${selectedText}</b>` +
+      textArea.value.substring(endPos);
+
+    setComentario(newText);
+  };
+
+  const modules = {
+    toolbar: {
+      container: [
+        [{ 'header': [1, 2, false] }],
+        ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+        [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+       
+        ['clean'],
+        [{ 'color': [] }, { 'background': [] }], // Adicione as opções de seleção de cores
+      ],
+    },
+  };
+
+  const styles = {
+    backgroundColor: "#FFFFFF", // Defina a cor de fundo como branco
+    color: "#000000", // Defina a cor do texto como preto
+   
+    border: "1px solid #ccc", // Adicione uma borda
+    borderRadius: "7px", // Adicione bordas arredondadas
+    padding: "10px", // Adicione preenchimento interno
+    // Adicione outros estilos conforme necessário
+  };
+
   return (
     <Box className="app-container">
       <Typography variant="h7">Comentários relevantes</Typography>
@@ -290,7 +327,7 @@ const Comentarios = ({ question, db, user }) => {
         {comments[question.id] &&
           comments[question.id].map((comentario) => (
 
-            <ListItem sx={{ width: '100%', display: 'flex', alignItems: 'flex-start'}} key={comentario.id} className="comment">
+            <ListItem sx={{ width: '100%', display: 'flex', alignItems: 'flex-start' }} key={comentario.id} className="comment">
               <ListItemAvatar >
                 <Avatar style={{ width: '2em', height: '2em', }} src={comentario.userPhotoURL}>{comentario.displayName[0]}</Avatar>
               </ListItemAvatar>
@@ -298,38 +335,51 @@ const Comentarios = ({ question, db, user }) => {
               <Box className="comment-content">
                 <ListItemText
                   primary={comentario.displayName}
-                  secondaryTypographyProps={{ variant: 'body1', color: 'textSecondary', paddingTop: '1em', fontSize: '1em', fontFamily: 'Poppins', color: 'black', }}
-                  secondary={comentario.text}
-                  primaryTypographyProps={{ style: { fontSize: '1em', fontFamily: 'Poppins', color: '#1c5253', } }}
+                  primaryTypographyProps={{
+                    style: { fontSize: '1em', fontFamily: 'Poppins', color: '#1c5253' },
+                  }}
+                  secondary={
+                    <Typography
+                      variant="body1"
+                      color="textSecondary"
+                      sx={{
+                        paddingTop: '1em',
+                        fontSize: '1em',
+                        fontFamily: 'Poppins',
+                        color: 'black',
+                      }}
+                      dangerouslySetInnerHTML={{ __html: comentario.text }}
+                    />
+                  }
                 />
                 <p className="comment-time">
                   {new Date(comentario.timestamp).toLocaleString()}
                 </p>
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'left',  }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'left', }}>
                   <IconButton
-                  sx={{ color:"#1c5253", }}
-                    
+                    sx={{ color: "#1c5253", }}
+
                     aria-label="Curtir"
-                    onClick={() => handleLikeComment(comentario.id)} 
-                   
+                    onClick={() => handleLikeComment(comentario.id)}
+
                   >
-                    < ThumbUpOutlinedIcon fontSize="small"/>
+                    < ThumbUpOutlinedIcon fontSize="small" />
                   </IconButton>
-                  <Typography  sx={{marginRight: '1em', fontSize: '0.900em', color:"#1c5253"}}  color="primary"> Ajudou ({likes[comentario.id]})
+                  <Typography sx={{ marginRight: '1em', fontSize: '0.900em', color: "#1c5253" }} color="primary"> Ajudou ({likes[comentario.id]})
                   </Typography>
                   <IconButton
-                    sx={{ color:"#1c5253"}}
+                    sx={{ color: "#1c5253" }}
                     aria-label="Descurtir"
                     onClick={() => handleDislikeComment(comentario.id)}
                   >
-                    <ThumbDownOffAltOutlinedIcon fontSize="small"/>
+                    <ThumbDownOffAltOutlinedIcon fontSize="small" />
                   </IconButton>
-                  <Typography sx={{ fontSize: '0.900em', color:"#1c5253"}}  color="error"> Não ajudou  ({dislikes[comentario.id]})
+                  <Typography sx={{ fontSize: '0.900em', color: "#1c5253" }} color="error"> Não ajudou  ({dislikes[comentario.id]})
                   </Typography>
                 </Box>
 
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'left',  }}>
-               
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'left', }}>
+
                   <IconButton
                     color="error"
                     aria-label="Excluir Comentário"
@@ -337,46 +387,36 @@ const Comentarios = ({ question, db, user }) => {
                     disabled={comentario.user !== user.uid}
                   >
                     <HighlightOffIcon fontSize="small" />
-                  </IconButton >  <Typography  sx={{ fontSize: '0.900em', }}  >
+                  </IconButton >  <Typography sx={{ fontSize: '0.900em', }}  >
                   </Typography>
-              
-                </Box>
-                
 
+                </Box>
 
               </Box>
-
 
             </ListItem>
           ))}
       </List>
 
-      <Box mt={2} className="comment-input-container">
-        {" "}
-        <TextareaAutosize
-          className="comment-input"
-          placeholder="Digite seu comentário"
-          variant="outlined"
-
+      <Box className="comment-input-container">
+        <ReactQuill
+          theme="snow"
           value={comentario}
-          data-questionid={question.id}
-
-          onChange={(e) => {
-            handleTextareaHeight(e);
-            handleCommentChange(e);
-          }}
+          onChange={handleCommentChange}
+          modules={modules}
+          style={styles}
         />
+
 
 
         <Box mt={1}>
           <Button
             variant="contained"
-            style={{ backgroundColor: "#1c5253", color: "white" }} // Defina a cor de fundo e a cor do texto
+            style={{ backgroundColor: "#1c5253", color: "white" }}
             onClick={handleCommentSubmit}
           >
             Adicionar Comentário
           </Button>
-
         </Box>
       </Box>
     </Box>

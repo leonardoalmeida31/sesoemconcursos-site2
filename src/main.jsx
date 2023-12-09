@@ -17,6 +17,7 @@ import PlanosDeEstudos from './pages/PlanosDeEstudos.jsx'
 
 
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Router>
     <React.StrictMode>

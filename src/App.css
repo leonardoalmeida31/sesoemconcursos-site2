@@ -171,7 +171,7 @@
     font-size: 0.875em; /* 14 px de font */
     font-weight: 400;
     font-family: Poppins;
-    margin-top: 1.5em;
+  
     margin-left: 1em;
     margin-right: 0.200em;
     white-space: pre-line; /* Adiciona quebras de linha */
@@ -257,6 +257,7 @@
     align-items: center;
     margin-left: 20px;
     margin-top: 30px;
+    background-color: #1c525341;
   }
   .resposta-correta {
     color: #1c5253; /* Cor verde para acerto */
@@ -598,6 +599,7 @@
     font-size: 0.800em; /*12px font */
     font-weight: 500;
     width: 100%;
+   
     position: relative; /* Adicione essa propriedade para controlar a posição da linha */
   }
  

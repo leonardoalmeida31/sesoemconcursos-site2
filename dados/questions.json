@@ -41055,5 +41055,1593 @@
     ],
     "resposta": "D",
     "comentario": ""
+  },
+  {
+    "ids": 1986,
+    "ano": 2023,
+    "banca": "FGV",
+    "concurso": "DPE-RS",
+    "cargo": "Assistente Social",
+    "disciplina": "Estatuto da Pessoa com Deficiência",
+    "assunto": "Do Acesso à Justiça (arts. 79 ao 87)",
+    "area": "Estadual",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Serafim assumiu o cargo de defensor público em uma cidade do interior do Brasil. Para se locomover, ele necessita fazer uso de cadeira de rodas, e, ao chegar ao Fórum da cidade, descobriu que não havia rampas para acesso às dependências do edifício. Ao solicitar ajuda, foi-lhe informado que a sala de audiências fica no terceiro andar. Não há elevador e as escadas são estreitas, impedindo o trânsito da cadeira de rodas. Tendo em vista situações como essa, o Estatuto da Pessoa com Deficiência preconiza que:",
+    "alternativas": [
+      "(A)  somente os Fóruns das capitais são obrigados a oferecer acessibilidade para pessoas com deficiência;",
+      "(B)  o poder público deve assegurar o acesso da pessoa com deficiência à justiça, em igualdade de oportunidades com as demais pessoas;",
+      "(C)  a Prefeitura da cidade deve iniciar obras de acessibilidade imediatamente, e o trabalho será realizado na modalidade remota durante as obras;",
+      "(D)  as audiências serão transferidas para o andar térreo até que as condições de acessibilidade sejam providenciadas;",
+      "(E)  a pessoa com deficiência deverá ser transferida para trabalhar em local onde haja acessibilidade."
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 1987,
+    "ano": 2023,
+    "banca": "FGV",
+    "concurso": "DPE-RS",
+    "cargo": "Assistente Social",
+    "disciplina": "Código Penal",
+    "assunto": "Não definido",
+    "area": "Estadual",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Paula teve fotos suas de cunho íntimo divulgadas para colegas de seu curso na universidade por um ex-namorado que, inconformado com o término do relacionamento, invadiu o computador de Paula e subtraiu as fotos. O aumento de casos dessa natureza motivou a promulgação da Lei nº 12.737/2012, cuja redação prevê os crimes que decorrem do uso indevido de informações e materiais pessoais que dizem respeito à:",
+    "alternativas": [
+      "(A) tipificação criminal de delitos cibernéticos;",
+      "(B) interrupção ou perturbação do serviço informático;",
+      "(C) privacidade de uma pessoa na internet;",
+      "(D) mecanismos remotos de comunicação;",
+      "(E) invasão de dispositivo informático alheio."
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 1988,
+    "ano": 2023,
+    "banca": "FGV",
+    "concurso": "DPE-RS",
+    "cargo": "Assistente Social",
+    "disciplina": "Código Penal",
+    "assunto": "Não definido",
+    "area": "Estadual",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A Lei nº 13.104, de 9 de março de 2015, é uma importante conquista para as mulheres, pois prevê o feminicídio como circunstância qualificadora do crime de homicídio. De acordo com essa Lei, a pena do feminicídio é aumentada de 1/3 até a metade se o crime for praticado:\nI. por motivo fútil; II. na presença de descendente ou de ascendente da vítima III. contra pessoa menor de 16 anos.\nEstá correto o que se afirma em:",
+    "alternativas": [
+      "(A) somente I;",
+      "(B) somente II;",
+      "(C) somente I e II;",
+      "(D) somente II e III;",
+      "(E) I, II e III."
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 1989,
+    "ano": 2023,
+    "banca": "FGV",
+    "concurso": "DPE-RS",
+    "cargo": "Assistente Social",
+    "disciplina": "Estatuto da Pessoa Idosa",
+    "assunto": "02. Dos Direitos Fundamentais (arts. 8º ao 42)",
+    "area": "Estadual",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Rui tem 82 anos de idade e está de posse de suas faculdades mentais. Recentemente ele descobriu que tem uma doença degenerativa e resolveu iniciar um tratamento alternativo, mas seus filhos não concordam. Perante o Estatuto da Pessoa Idosa:",
+    "alternativas": [
+      "(A)  à pessoa idosa que esteja no domínio de suas faculdades mentais é assegurado o direito de optar pelo tratamento de saúde;",
+      "(B)  os filhos de Rui são seus responsáveis legais e devem decidir por ele, uma vez que Rui tem mais de 80 anos;",
+      "(C)  Rui poderá escolher livremente seu tratamento, desde que reconhecido pelo Conselho Federal de Medicina;",
+      "(D)  caberá ao profissional de saúde responsável pelo tratamento da pessoa idosa direcionar o melhor tratamento;",
+      "(E)   o Conselho Municipal da Pessoa Idosa tem competência para atuar e arbitrar nessa situação."
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 1990,
+    "ano": 2023,
+    "banca": "FGV",
+    "concurso": "DPE-RS",
+    "cargo": "Assistente Social",
+    "disciplina": "Lei Orgânica da Assistência Social - LOAS",
+    "assunto": "01. Das Definições e dos Objetivos (arts. 1º ao 3º)",
+    "area": "Estadual",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Vinícius é assistente social e trabalha em um CRAS. Foi procurado por Lucas, um indivíduo que está com 66 anos de idade. Lucas relata que não consegue trabalho e, com isso, encontra-se sem condições de subsistência. Não tem familiares próximos a quem recorrer.\nVinícius informa que, de acordo com a Assistência Social, Lucas:",
+    "alternativas": [
+      "(A) tem direito ao Benefício de Prestação Continuada;",
+      "(B) poderá requerer uma pensão especial ao INSS;",
+      "(C) deverá recorrer aos programas sociais da filantropia;",
+      "(D) não faz jus a nenhuma política de proteção social antes dos 70 anos;",
+      "(E) deve retribuir as políticas protetivas a que auferir com trabalho."
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 1991,
+    "ano": 2023,
+    "banca": "FGV",
+    "concurso": "DPE-RS",
+    "cargo": "Assistente Social",
+    "disciplina": "Estatuto da Pessoa Idosa",
+    "assunto": "04. Da Política de Atendimento ao Idoso (arts. 46 ao 68)",
+    "area": "Estadual",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "As entidades que desenvolvem programas de institucionalização de longa permanência para a pessoa idosa adotarão, dentre outros, o princípio do(a):",
+    "alternativas": [
+      "(A) direito à assistência religiosa àqueles que desejarem, de acordo com suas crenças;",
+      "(B) participação da pessoa idosa nas atividades comunitárias, de caráter interno e externo;",
+      "(C)  prevenção e atendimento às vítimas de negligência, maus-tratos, exploração, abuso, crueldade e opressão;",
+      "(D) proteção jurídico-social por entidades de defesa dos direitos das pessoas idosas;",
+      "(E) fornecimento de vestuário adequado, se for instituição pública, e alimentação suficiente."
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 1992,
+    "ano": 2023,
+    "banca": "FGV",
+    "concurso": "DPE-RS",
+    "cargo": "Assistente Social",
+    "disciplina": "Estatuto da Pessoa Idosa",
+    "assunto": "09. Dos Crimes",
+    "area": "Estadual",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Impedir ou dificultar o acesso de pessoa idosa a operações bancárias, aos meios de transporte, ao direito de contratar ou, por qualquer outro meio ou instrumento necessário, ao exercício da cidadania, por motivo de idade constitui:",
+    "alternativas": [
+      "(A) infração leve;",
+      "(B) delito grave;",
+      "(C) preconceito;",
+      "(D) injúria;",
+      "(E) crime em espécie."
+    ],
+    "resposta": "E",
+    "comentario": ""
+  },
+  {
+    "ids": 1993,
+    "ano": 2023,
+    "banca": "FGV",
+    "concurso": "DPE-RS",
+    "cargo": "Assistente Social",
+    "disciplina": "Política Nacional de Busca de Pessoas Desaparecidas",
+    "assunto": "Não definido",
+    "area": "Estadual",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Alice cuida de Sofia, uma menina com 5 anos de idade. Ao chegar à escola, Alice percebe que Sofia não está na instituição. Após uma busca exaustiva, chega-se à conclusão de que a criança está desaparecida. O desaparecimento deve ser comunicado:",
+    "alternativas": [
+      "(A) somente após 48 horas de sua ocorrência;",
+      "(B)  ao Juizado Especial da Criança;",
+      "(C) ao Conselho Tutelar;",
+      "(D) mediante autorização dos pais da criança;",
+      "(E) à Delegacia da Infância e da Juventude."
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 1994,
+    "ano": 2023,
+    "banca": "FGV",
+    "concurso": "DPE-RS",
+    "cargo": "Assistente Social",
+    "disciplina": "Estatuto da Criança e do Adolescente - ECA",
+    "assunto": "02. Art. 7. ao Art.  18-B - Dos Direitos Fundamentais:  Direito à Vida, à Saúde, à Liberdade, ao Respeito e à Dignidade",
+    "area": "Estadual",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Um marco importante na instituição do Estatuto da Criança e do Adolescente é a concepção que considera a criança e o adolescente como:",
+    "alternativas": [
+      "(A) pequenos adultos;",
+      "(B) indivíduos biologicamente incompletos;",
+      "(C) pessoas demandantes de vínculos familiares;",
+      "(D) sujeitos de direitos;",
+      "(E) identidades em construção."
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 1995,
+    "ano": 2023,
+    "banca": "FGV",
+    "concurso": "DPE-RS",
+    "cargo": "Assistente Social",
+    "disciplina": "Plano Nacional de Convivência Familiar e Comunitária",
+    "assunto": "Não definido",
+    "area": "Estadual",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "O Plano Nacional de Convivência Familiar e Comunitária avalia que o desenvolvimento da criança e do adolescente é continuamente influenciado pelo contexto no qual estes estão inseridos. Nesse sentido, uma das estratégias da comunidade que contribui para a proteção da criança e do adolescente, e para famílias em situação de vulnerabilidade social, é a constituição de:",
+    "alternativas": [
+      "(A)  políticas públicas voltadas para a família, a comunidade e o espaço coletivo a partir de forte protagonismo e investimento do Estado;",
+      "(B)  organização de moradores que têm como função cuidar das crianças e adolescentes na ausência de seus pais ou responsáveis;",
+      "(C)  redes espontâneas de solidariedade entre vizinhos: a família recebe apoio em situações de crise como morte, incêndio ou doenças;",
+      "(D)  espaços de acolhimento nas comunidades que propiciem as condições adequadas para a socialização e o desenvolvimento integral dos indivíduos;",
+      "(E)  serviços de atenção e proteção à criança, ao adolescente e à família, capazes de prover orientação e de dialogar com pais e responsáveis, fortalecendo a família."
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 1996,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "IAPEN - AC",
+    "cargo": "Assistente Social",
+    "disciplina": "Noções de Informática",
+    "assunto": "Sistema Operacional: Windows",
+    "area": "Estadual",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Sobre o nome do assistente virtual que acompanha o Windows 10 e o Windows 11, assinale a alternativa correta.",
+    "alternativas": [
+      "(A) Pro Assist",
+      "(B) Alexa",
+      "(C) Cortana",
+      "(D) Siri"
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 1997,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "IAPEN - AC",
+    "cargo": "Assistente Social",
+    "disciplina": "Noções de Informática",
+    "assunto": "Sistema Operacional: Windows",
+    "area": "Estadual",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Quanto aos principais aplicativos do Windows 10, analise as afirmativas abaixo.\n1. As Notas Autoadesivas são um aplicativo do Windows 10 que permite criar lembretes na tela do computador com cores e tamanhos diferentes.\n2. A Calculadora é um aplicativo do Windows 10 que permite realizar diversos cálculos matemáticos, além de conversões de unidades e moedas.\nAssinale a alternativa correta.",
+    "alternativas": [
+      "(A) As duas afirmativas são verdadeiras",
+      "(B) A afirmativa 1 é verdadeira e a 2 é falsa",
+      "(C) A afirmativa 2 é verdadeira e a 1 é falsa",
+      "(D) As duas afirmativas são falsas"
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 1998,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "IAPEN - AC",
+    "cargo": "Assistente Social",
+    "disciplina": "Noções de Informática",
+    "assunto": "Correio Eletrônico (cliente de e-mail e webmail) e etc...",
+    "area": "Estadual",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Relacione os números abaixo com as respectivas letras quanto aos principais aplicativos de Correio Eletrônico.\n\n1. Thunderbird. 2. Outlook. 3. Gmail.\n\nA. Um dos aplicativos mais populares e utilizados para enviar e receber e-mails na Internet.\nB. Aplicativo gratuito de correio eletrônico desenvolvido pela Fundação Mozilla.\nC. Software que conta com integração com Skype e OneDrive.",
+    "alternativas": [
+      "(A) 1A - 2B - 3C",
+      "(B) 1B - 2C - 3A",
+      "(C)  1C - 2A - 3B",
+      "(D) 1B - 2A - 3C"
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 1999,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "IAPEN - AC",
+    "cargo": "Assistente Social",
+    "disciplina": "Noções de Informática",
+    "assunto": "Extensão de Arquivo",
+    "area": "Estadual",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Quanto às principais extensões de arquivos, analise as afirmativas abaixo.\n\nI. A extensão .avi é uma das mais utilizadas para arquivos de vídeo que podem ter diferentes codecs e formatos internos.\nII. A extensão .png é usada para arquivos de imagens que suportam transparência e compressão sem perdas.\nIII. A extensão .txt é usada para arquivos simples de texto criados pelo bloco de notas do Windows.\n\nAssinale a alternativa correta.",
+    "alternativas": [
+      "(A) Apenas I e II são tecnicamente verdadeiras",
+      "(B)  Apenas II e III são tecnicamente verdadeiras",
+      "(C) Apenas I e III são tecnicamente verdadeiras",
+      "(D)  I, II e III são tecnicamente verdadeiras"
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 2000,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "IAPEN - AC",
+    "cargo": "Assistente Social",
+    "disciplina": "Noções de Informática",
+    "assunto": "Windows Explorer: conceitos de organização de pastas e arquivos",
+    "area": "Estadual",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Quanto aos conceitos de organização de pastas e arquivos, analise as afirmativas abaixo e dê valores Verdadeiro (V) ou Falso (F).\n\n( ) O símbolo ? é usado para representar um único caractere na pesquisa por arquivos e pastas no Windows Explorer.\n( ) As pastas: Downloads, Documentos, Imagens e Música são exemplos de pastas padrão do Windows 10.\n( ) Para renomear uma pasta ou um arquivo, basta clicar duas vezes sobre ele e digitar o novo nome.\n\nAssinale a alternativa que apresenta a sequência correta de cima para baixo.",
+    "alternativas": [
+      "(A) V - F - F",
+      "(B) V - V - F",
+      "(C) F - V - V",
+      "(D) F - F - V"
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 2001,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "IAPEN - AC",
+    "cargo": "Assistente Social",
+    "disciplina": "Noções de Informática",
+    "assunto": "Segurança da Informação",
+    "area": "Estadual",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Leia a frase abaixo referente a dispositivos para armazenamento de dados, cópia de segurança e procedimentos de backup.\n\n\"Um tipo de cópia de segurança é ______, que copia todos os dados selecionados na primeira vez e depois só copia os dados que foram alterados desde a última cópia. Esse tipo de cópia economiza espaço e tempo, mas requer mais cuidado na hora de restaurar os dados\".\n\nAssinale a alternativa que preencha corretamente a lacuna.",
+    "alternativas": [
+      "(A) o diferencial",
+      "(B) o dinâmico",
+      "(C)  a incremental",
+      "(D) o estático"
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 2002,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "IAPEN - AC",
+    "cargo": "Assistente Social",
+    "disciplina": "Noções de Informática",
+    "assunto": "Navegadores (Browser)",
+    "area": "Estadual",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Assinale a alternativa correta sobre conceitos gerais sobre Internet: ferramentas e aplicativos de navegação (browser).",
+    "alternativas": [
+      "(A)  URL é uma sequência de caracteres que identifica a data da publicação de uma página web na internet",
+      "(B)  URL é uma sequência de caracteres que identifica o tipo do conteúdo de uma página web na internet",
+      "(C)  URL é uma sequência de caracteres que identifica o endereço único de uma página web na internet",
+      "(D)  URL é uma sequência de caracteres que identifica o nome do autor de uma página web na internet"
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 2003,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "IAPEN - AC",
+    "cargo": "Assistente Social",
+    "disciplina": "Noções de Informática",
+    "assunto": "Microsoft Office: Word, Excel, PowerPoint e etc...",
+    "area": "Estadual",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Relacione as duas colunas quanto aos principais aplicativos para edição de textos, planilhas eletrônicas e editor de apresentações:\n\n(1) Tabela dinâmica  (2) Mala direta (3) Transição de slides\n\n(A) Microsoft Excel (B) Microsoft PowerPoint (C) Microsoft Word",
+    "alternativas": [
+      "(A) 1A - 2C - 3B",
+      "(B) 1B - 2C - 3A",
+      "(C) 1A - 2B - 3C",
+      "(D) 1C - 2A - 3B"
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 2004,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "IAPEN - AC",
+    "cargo": "Assistente Social",
+    "disciplina": "Noções de Informática",
+    "assunto": "Segurança da Informação",
+    "area": "Estadual",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Quanto ao Malware e Antivírus, analise as afirmativas abaixo e assinale a alternativa correta.\n\n1. Um antivírus nunca irá interferir no desempenho do sistema, pelo contrário, logo após a instalação de antivírus percebe-se melhorias no sistema.\n2. Um antivírus deve ser executado, e atualizado, apenas quando o usuário suspeitar que o sistema está infectado.",
+    "alternativas": [
+      "(A) As duas afirmativas são verdadeiras",
+      "(B) A afirmativa 1 é verdadeira e a 2 é falsa",
+      "(C) A afirmativa 2 é verdadeira e a 1 é falsa",
+      "(D) As duas afirmativas são falsas"
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 2005,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "IAPEN - AC",
+    "cargo": "Assistente Social",
+    "disciplina": "Noções de Informática",
+    "assunto": "Teclas de atalho",
+    "area": "Estadual",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A área de transferência é um recurso do sistema operacional que permite armazenar temporariamente dados copiados ou recortados de um aplicativo como o Microsoft Word, Excel e PowerPoint, e colá-los em outro. Existem alguns atalhos de teclado que usam a área de transferência para facilitar essas operações tais como:\n\n1. Ctrl+V 2. Ctrl+X 3. Ctrl+B 4. Ctrl+C\n\nDa relação apresentada:",
+    "alternativas": [
+      "(A) existem somente o 1, 2 e 3",
+      "(B) existem somente o 1, 2 e 4",
+      "(C) existem somente o 2, 3 e 4",
+      "(D) existem somente o 1, 3 e 4"
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 2006,
+    "ano": 2023,
+    "banca": "Instituto Consulplan",
+    "concurso": "Prefeitura de Astolfo Dutra - MG",
+    "cargo": "Assistente Social 30 horas",
+    "disciplina": "Fundamentos históricos e teórico-metodológicos do Serviço Social",
+    "assunto": "02. Movimento de Reconceituação do Serviço Social",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Sobre o serviço social na América Latina e a formação profissional do assistente social na sociedade brasileira, analise as afirmativas a seguir.\n\nI. O movimento de reconceituação, dominado pela contestação ao tradicionalismo profissional, implicou um questionamento global da profissão, de seus fundamentos ideoteóricos, de suas raízes sociopolíticas, da direção social da prática profissional e de seu modus operandi.\n\nII. A reconceituação do serviço social é um processo de desconstrução de um paradigma dominante na formulação teórica e prática do serviço social.\n\nIII. A existência de forças políticas, expressas massivamente no III Congresso Brasileiro de Assistentes Sociais (CBAS), forças acadêmico-profissionais acumuladas pelo serviço social latino-americano e assistentes brasileiros são decisivas na “virada” do serviço social e remontam ao movimento de sua reconceituação, que cria bases materiais, intelectuais e políticas à renovação.\n\nEstá correto o que se afirma em",
+    "alternativas": [
+      "(A) I, II e III.",
+      "(B) I, apenas.",
+      "(C) II, apenas.",
+      "(D) II e III, apenas."
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 2007,
+    "ano": 2023,
+    "banca": "Instituto Consulplan",
+    "concurso": "Prefeitura de Astolfo Dutra - MG",
+    "cargo": "Assistente Social 30 horas",
+    "disciplina": "Planejamento Social",
+    "assunto": "01. Planos, Programas, Projetos e Planificação",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Temos hoje uma grande demanda municipal, estadual e federal em todo o país para o planejamento, a gestão e a formulação de políticas públicas nos marcos jurídico-políticos da Constituição de 1988 [...] O serviço social vem alçando funções de comando e liderança em vários espaços do Poder Judiciário, Executivo e Legislativo, precisando estar preparado para os trabalhos de gestão e planejamento que lhe atribuem.  (TEIXEIRA, 2009, p. 1-2.)\n\nSobre a organização de planos, programas e projetos sociais e, ainda, da avaliação de programas sociais na prática profissional do assistente social, assinale a afirmativa INCORRETA.",
+    "alternativas": [
+      "(A)  Programa é o documento que indica um conjunto de projetos, cujos resultados permitem alcançar o objetivo maior de uma política pública.",
+      "(B)  Planejamento é, muitas vezes, confundido com plano, programa ou projeto, que são apenas os meios pelos quais o planejamento se expressa.",
+      "(C)  Projeto é a menor unidade do processo de planejamento; trata-se de um instrumento técnico-administrativo de execução de empreendimentos específicos, direcionados para as mais variadas atividades interventivas e de pesquisa nos espaços público e privado.",
+      "(D)  O conceito de participação no planejamento é pacífico; pois se vê na formação profissional e nos estudos sobre programas e serviços que a ultrapassagem do planejamento tradicional se dá pelo planejamento participativo, o que resolve plenamente a questão da democracia do plano."
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 2008,
+    "ano": 2023,
+    "banca": "Instituto Consulplan",
+    "concurso": "Prefeitura de Astolfo Dutra - MG",
+    "cargo": "Assistente Social 30 horas",
+    "disciplina": "Trabalho e Serviço Social",
+    "assunto": "Serviço Social e Saúde do Trabalhador",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Analisar a saúde do trabalhador exige, na contemporaneidade, a compreensão do impacto do regime de acumulação flexível como resposta do capital e do capitalismo, seus rebatimentos nas relações de trabalho, bem como a compreensão das respostas articuladas pelo Estado, valendo-se de reformas neoliberais.   (ABRAMIDES, M. B. C; CABRAL, M. S. R, 2003.)\n\nSobre o serviço social e a saúde do trabalhador diante das mudanças na produção, organização e gestão do trabalho, assinale a afirmativa INCORRETA.",
+    "alternativas": [
+      "(A)  O objeto da saúde do trabalhador pode ser definido como o processo de saúde e doença dos homens em sua relação com o trabalho.",
+      "(B)  O fordismo tem como práticas gerenciais e empregatícias o just in time/kanban, polivalência operária, automação/autoativação, controle de qualidade total.",
+      "(C)  As modificações ocorridas pela diferenciação dos processos de trabalho na produção: fordismo, taylorismo e toyotismo ou acumulação flexível pressupõem, na ordem do capital, formas diferenciadas de exploração.",
+      "(D)  A saúde do trabalhador, diretamente vinculada ao processo de relações sociais de produção, apontou para a necessidade de uma discussão, de um debate e de uma intervenção na área denominada saúde do trabalhador na rede pública de serviços de saúde no Brasil a partir da década de 80."
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 2009,
+    "ano": 2023,
+    "banca": "Instituto Consulplan",
+    "concurso": "Prefeitura de Astolfo Dutra - MG",
+    "cargo": "Assistente Social 30 horas",
+    "disciplina": "Dimensão Teórico-Metodológica, Ético-Política e Técnico-Operativa",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A formação profissional do serviço social implica uma capacitação teórico-metodológica, ético-política e técnico-operativa, visando o fortalecimento da articulação entre tais dimensões e, ainda, se expressa na potencialidade das respostas profissionais. Sobre as dimensões estruturantes da formação profissional em serviço social, assinale a afirmativa INCORRETA.",
+    "alternativas": [
+      "(A)  A dimensão técnico-operativa é a forma da profissão aparecer, pela qual é conhecida e reconhecida; dela emana a imagem social da profissão e sua autoimagem.",
+      "(B)  A dimensão ético-política do serviço social é parte de uma prática social voltada para a criação de novos valores, que é, também, o processo de criação de uma nova hegemonia no quadro das relações sociais.",
+      "(C)  A dimensão teórico-metodológica nos capacita para operar a passagem das características singulares de uma situação que se manifesta no cotidiano profissional do assistente social para uma interpretação à luz da universalidade da teoria e o retorno a elas.",
+      "(D)  A dimensão ético-política dá visibilidade social à profissão, já que dela depende a resolutividade da situação, que, às vezes, é mera reprodução do instituído, e outras, constitui a dimensão do novo, e se constitui no modo de aparecer da profissão, como profissão interventiva no âmbito da chamada “questão social”."
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 2010,
+    "ano": 2023,
+    "banca": "Instituto Consulplan",
+    "concurso": "Prefeitura de Astolfo Dutra - MG",
+    "cargo": "Assistente Social 30 horas",
+    "disciplina": "Planejamento Social",
+    "assunto": "01. Planos, Programas, Projetos e Planificação",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Sobre administração e planejamento em serviço social, marque V para as afirmativas verdadeiras e F para as falsas.\n\n( ) O termo “planejamento”, na perspectiva lógico-racional, refere-se ao processo permanente e metódico de abordagem racional e científica de questões que se colocam no mundo social; refere-se, ao mesmo tempo, à seleção das atividades necessárias para atender questões determinadas, à otimização de seu inter-relacionamento, considerando os condicionantes impostos a cada caso (recursos, prazos, dentre outros).\n\n( ) O programa é o aprofundamento do plano, no qual são apresentados os objetivos setoriais que deverão constituir os seus objetivos gerais. É o documento que detalha a política e suas diretrizes fundamentais.\n\n( ) Um plano descreve, sinteticamente, as decisões de caráter mais amplo/geral, ou seja, expõe somente as suas grandes linhas de atuação política, além de indicar estratégias e diretrizes pretendidas e quem desempenha cada função.\n\nA sequência está correta em",
+    "alternativas": [
+      "(A) V, V, V.",
+      "(B) V, F, V.",
+      "(C) V, F, F.",
+      "(D) F, V, V."
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 2011,
+    "ano": 2023,
+    "banca": "Instituto Consulplan",
+    "concurso": "Prefeitura de Astolfo Dutra - MG",
+    "cargo": "Assistente Social 30 horas",
+    "disciplina": "Políticas Sociais",
+    "assunto": "03. Noções Gerais de Políticas Sociais",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Sobre as Políticas de Seguridade Social, assinale a afirmativa INCORRETA.",
+    "alternativas": [
+      "(A) A seguridade social deve obedecer à universalidade da cobertura e do atendimento.",
+      "(B)  A proteção social no Brasil está inserida na concepção de seguridade social, isto é, no conjunto de seguranças sociais que uma sociedade, de forma solidária, garante a seus membros.",
+      "(C)  A seguridade social compreende um conjunto integrado de ações de iniciativa dos poderes públicos e da sociedade, destinado a assegurar o direito relativo à saúde, à previdência e à Assistência Social.",
+      "(D)  A seguridade brasileira pós-1988 incorporou a orientação das políticas de proteção social nos países desenvolvidos e que seguiram a tradição beveridgiana; sendo assim, no Brasil, a adoção da concepção de seguridade social, como um sistema de proteção integrado e universal, aconteceu de forma plena do ponto de vista da sua organização administrativa e financeira e do acesso."
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 2012,
+    "ano": 2023,
+    "banca": "Instituto Consulplan",
+    "concurso": "Prefeitura de Astolfo Dutra - MG",
+    "cargo": "Assistente Social 30 horas",
+    "disciplina": "Lei Orgânica da Assistência Social - LOAS",
+    "assunto": "Assuntos Mesclados da LOAS",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Sobre a Lei nº 8.742/1993, que dispõe sobre a organização da Assistência Social e dá outras providências, analise as afirmativas a seguir.\n\nI. A gestão das ações na área de Assistência Social fica organizada sob a forma de sistema descentralizado e participativo, denominado Sistema Único de Assistência Social (SUAS).\n\nII. A proteção social básica se refere ao conjunto de serviços, programas, projetos e benefícios da Assistência Social que visa prevenir situações de vulnerabilidade e risco social por meio do desenvolvimento de potencialidades e aquisições e do fortalecimento de vínculos familiares e comunitários.\n\nIII. Conforme previsto, fica instituído o Serviço de Proteção e Atendimento Integral à Família (PAIF), registro público eletrônico com a finalidade de coletar, processar, sistematizar e disseminar informações para a identificação e a caracterização socioeconômica das famílias de baixa renda, nos termos do regulamento.\n\nEstá correto o que se afirma em",
+    "alternativas": [
+      "(A) I, II e III.",
+      "(B) I e II, apenas.",
+      "(C) I e III, apenas.",
+      "(D) II e III, apenas."
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 2013,
+    "ano": 2023,
+    "banca": "Instituto Consulplan",
+    "concurso": "Prefeitura de Astolfo Dutra - MG",
+    "cargo": "Assistente Social 30 horas",
+    "disciplina": "Questão Social",
+    "assunto": "Questão Social segundo Iamamoto",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Os assistentes sociais trabalham com a questão social nas suas mais variadas expressões cotidianas, tais como os indivíduos que as experimentam no trabalho, na família, na área habitacional, na saúde, na assistência social pública etc.\n(IAMAMOTO, 1997.)\n\nEm relação à questão social, assinale a afirmativa INCORRETA.",
+    "alternativas": [
+      "(A) As suas múltiplas expressões são o objeto do trabalho cotidiano do assistente social.",
+      "(B) Na lei geral da produção capitalista se encontra a gênese da “questão social” no modo de produção.",
+      "(C)  O serviço social tem nas questões sociais a base de sua fundação como especialização do seu singular processo de trabalho.",
+      "(D)  A partir de 1834, com a Lei Revisora das Leis dos Pobres, ou Nova Lei dos Pobres (Poor Law Amendment), a pobreza é atribuída a causas individuais e psicológicas, jamais a aspectos estruturais do sistema social."
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 2014,
+    "ano": 2023,
+    "banca": "Instituto Consulplan",
+    "concurso": "Prefeitura de Astolfo Dutra - MG",
+    "cargo": "Assistente Social 30 horas",
+    "disciplina": "Estatuto da Criança e do Adolescente - ECA",
+    "assunto": "01. Art. 1º ao Art. 6º - Disposições Preliminares",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Considerando que o Estatuto da Criança e do Adolescente (ECA) aponta a garantia de prioridade, analise as afirmativas a seguir.\n\nI. Primazia de receber proteção e socorro em quaisquer circunstâncias.  II. Precedência de atendimento nos serviços públicos ou de relevância pública. III. Preferência na formulação e execução das políticas sociais públicas. IV. Destinação privilegiada de recursos públicos nas áreas relacionadas à proteção da infância e juventude.\n\nRefere-se à garantia de prioridade o que se afirma em",
+    "alternativas": [
+      "(A) I, II, III e IV.",
+      "(B) II e IV, apenas.",
+      "(C) III e IV, apenas.",
+      "(D) I, II e III, apenas."
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 2015,
+    "ano": 2023,
+    "banca": "Instituto Consulplan",
+    "concurso": "Prefeitura de Astolfo Dutra - MG",
+    "cargo": "Assistente Social 30 horas",
+    "disciplina": "Estatuto da Pessoa Idosa",
+    "assunto": "Assuntos Mesclados do Estatuto",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A Lei nº 10.741/2003 – Estatuto da Pessoa Idosa, destina-se a regular os direitos assegurados às pessoas com idade igual ou superior a sessenta anos, que gozam de todos os direitos fundamentais inerentes à pessoa humana. Sobre as informações extraídas do Estatuto da Pessoa Idosa, assinale a INCORRETA.",
+    "alternativas": [
+      "(A)  O envelhecimento é um direito personalíssimo e a sua proteção um direito social, nos termos de tal normativa e da legislação vigente.",
+      "(B)  Todo cidadão tem o dever de comunicar à autoridade competente qualquer forma de violação a tal normativa que tenha testemunhado ou de que tenha conhecimento.",
+      "(C)  O direito ao respeito consiste na inviolabilidade da integridade física, psíquica e moral, abrangendo a preservação da imagem, da identidade, da autonomia, de valores, ideias e crenças, dos espaços e dos objetos pessoais.",
+      "(D)  A garantia de prioridade compreende preferência na formulação e na execução de políticas sociais públicas específicas; o princípio e a diretriz previstos na Lei Orgânica da Assistência Social, na Política Nacional da Pessoa Idosa."
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 2016,
+    "ano": 2023,
+    "banca": "Instituto Consulplan",
+    "concurso": "Prefeitura de Astolfo Dutra - MG",
+    "cargo": "Assistente Social – S.M.E",
+    "disciplina": "Políticas Sociais",
+    "assunto": "03. Noções Gerais de Políticas Sociais",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Sobre a Política de Seguridade Social no Brasil, assinale a afirmativa correta.",
+    "alternativas": [
+      "(A) O modelo de seguridade social brasileiro é sustentado, predominantemente, na lógica da universalidade.",
+      "(B)  A seguridade social brasileira, pós-Constituição Federal de 1988, avançou no fortalecimento da lógica social.",
+      "(C)  A seguridade social, no Brasil, constitui uma proteção social que restringe e limita a lógica de produção e reprodução do capitalismo.",
+      "(D)  A seguridade social brasileira se caracteriza como um sistema híbrido, que articula direitos derivados do trabalho, com direitos seletivos e universais."
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 2017,
+    "ano": 2023,
+    "banca": "Instituto Consulplan",
+    "concurso": "Prefeitura de Astolfo Dutra - MG",
+    "cargo": "Assistente Social – S.M.E",
+    "disciplina": "Serviço Social na Educação",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A área da educação tem se tornado um crescente espaço sócio-ocupacional para atuação do assistente social. Sobre a educação, a partir da perspectiva do serviço social, assinale a afirmativa correta.",
+    "alternativas": [
+      "(A)  Os assistentes sociais devem recusar a compreensão da política educacional como um modo historicamente determinado de oferta e regulação dos serviços educacionais.",
+      "(B)  No capitalismo, a educação é alçada ao patamar de campo de regulação por parte do Estado e isso elimina o seu caráter ontológico, restringindo à sua dimensão escolarizada.",
+      "(C)  É imprescindível aos assistentes sociais a compreensão de que a relação entre a organização da educação escolarizada e o mundo do trabalho se dá de forma imediata e mecânica.",
+      "(D)  Os assistentes sociais devem considerar a educação como um fenômeno social, cujas práticas e seus sujeitos envolvem processos que embora se relacionem com a política educacional a ela não necessariamente se restringem."
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 2018,
+    "ano": 2023,
+    "banca": "Instituto Consulplan",
+    "concurso": "Prefeitura de Astolfo Dutra - MG",
+    "cargo": "Assistente Social – S.M.E",
+    "disciplina": "Serviço Social na Educação",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Considerando a inserção dos assistentes sociais na área da educação, assinale a afirmativa correta.",
+    "alternativas": [
+      "(A)  A inserção dos assistentes sociais na área educacional teve início nos anos 2000, após a promulgação de legislação pertinente.",
+      "(B)  O reconhecimento do significado social e institucional da inserção dos assistentes sociais junto aos sujeitos que atuam na área de educação representa um elemento decisivo para sua efetivação.",
+      "(C)  Para analisar o alcance e as possibilidades da atuação profissional na educação é preciso situá-lo fora do âmbito das mudanças que vêm ocorrendo na dinâmica entre as esferas da produção e da reprodução social.",
+      "(D)  É necessário pensar o envolvimento do assistente social em qualquer experiência educativa, desconsiderando teórica e politicamente a questão da pobreza, uma vez que sua inserção pode ser em escolas públicas e particulares."
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 2019,
+    "ano": 2023,
+    "banca": "Instituto Consulplan",
+    "concurso": "Prefeitura de Astolfo Dutra - MG",
+    "cargo": "Assistente Social – S.M.E",
+    "disciplina": "Serviço Social na Educação",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A partir das legislações específicas e do Projeto Ético-Político Profissional é possível afirmar que a intervenção do assistente social na educação também se desenvolve com a perspectiva de contribuir com o processo de democratização da educação pública. Sobre tal perspectiva, estão corretas as afirmativas a seguir, EXCETO:",
+    "alternativas": [
+      "(A)  O assistente social deve atuar buscando promover o rompimento com práticas tradicionais de controle, tutela e subalternização.",
+      "(B)  O profissional deve buscar o alargamento dos canais de participação e a ampla socialização de informações sobre direitos e serviços.",
+      "(C)  A intervenção do assistente social deve adquirir um caráter de enquadramento disciplinador visando à aceitação das situações impostas pela vida social.",
+      "(D)  A atuação do assistente social deve pautar-se pela construção de relações cooperativas que visem, em última instância, a aquisição cultural para a realização dos sujeitos."
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 2020,
+    "ano": 2023,
+    "banca": "Instituto Consulplan",
+    "concurso": "Prefeitura de Astolfo Dutra - MG",
+    "cargo": "Assistente Social – S.M.E",
+    "disciplina": "Fundamentos históricos e teórico-metodológicos do Serviço Social",
+    "assunto": "Projeto Ético-Político do Serviço Social e Diretrizes Curriculares",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Tendo em vista que o Projeto Ético Político do Serviço Social está inscrito no âmbito dos projetos coletivos profissionais, assinale a afirmativa correta.",
+    "alternativas": [
+      "(A) O projeto profissional é construído por um sujeito coletivo que constitui um universo heterogêneo.",
+      "(B)  Os projetos profissionais são estruturas dinâmicas e, por isso, não respondem às alterações no sistema de necessidades sociais sobre o qual a profissão opera.",
+      "(C)  A autoimagem de uma profissão é apresentada nos projetos profissionais; os valores que a legitimam socialmente são prerrogativas dos projetos macrossocietários.",
+      "(D)  Os projetos profissionais delimitam os principais objetivos e funções das profissões, os requisitos (teóricos, práticos e institucionais) para o exercício, mas não prescrevem normas para o comportamento dos profissionais."
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 2021,
+    "ano": 2023,
+    "banca": "Instituto Consulplan",
+    "concurso": "Prefeitura de Astolfo Dutra - MG",
+    "cargo": "Assistente Social – S.M.E",
+    "disciplina": "Serviço Social na Educação",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Em sua intervenção profissional, no âmbito socioeducativo e socioassistencial, o profissional de serviço social deverá:",
+    "alternativas": [
+      "(A) Trabalhar pela aceitação passiva frente aos limites encontrados pelas famílias atendidas.",
+      "(B) Decodificar, para a população, os direitos aos serviços sociais prestados pelas políticas sociais.",
+      "(C)  Atuar na desconstrução de ações interinstitucionais dirigidas para a mobilização da rede de proteção social local.",
+      "(D)  Desestimular a inclusão das instituições educacionais na rede de proteção social para a criança e o adolescente, pois são esferas diferentes de proteção."
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 2022,
+    "ano": 2023,
+    "banca": "Instituto Consulplan",
+    "concurso": "Prefeitura de Astolfo Dutra - MG",
+    "cargo": "Assistente Social – S.M.E",
+    "disciplina": "Estatuto da Criança e do Adolescente - ECA",
+    "assunto": "04. Art. 53. ao Art. 69. - Do Direito à Educação, à Cultura, ao Esporte e ao Lazer",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "O Estatuto da Criança e do Adolescente (ECA) estabelece o direito à educação; sobre este direito, assinale a afirmativa correta.",
+    "alternativas": [
+      "(A) É vedado às crianças e aos adolescentes o direito de contestar critérios avaliativos.",
+      "(B)  É direito dos pais ou responsáveis ter ciência do processo pedagógico, bem como participar da definição das propostas educacionais.",
+      "(C)  A criança e o adolescente têm direito à educação, visando ao pleno desenvolvimento de sua pessoa e o preparo para o exercício da cidadania, excluindo-se a qualificação para o trabalho.",
+      "(D)  A instituição de ensino, os clubes e as agremiações recreativas e os estabelecimentos congêneres estão dispensados de assegurar medidas de conscientização, prevenção e enfrentamento ao uso ou dependência de drogas ilícitas."
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 2023,
+    "ano": 2023,
+    "banca": "Instituto Consulplan",
+    "concurso": "Prefeitura de Astolfo Dutra - MG",
+    "cargo": "Assistente Social – S.M.E",
+    "disciplina": "Estatuto da Criança e do Adolescente - ECA",
+    "assunto": "04. Art. 53. ao Art. 69. - Do Direito à Educação, à Cultura, ao Esporte e ao Lazer",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A partir dos deveres do Estado, dispostos no Estatuto da Criança e do Adolescente (ECA), em relação à educação de crianças e adolescentes, assinale a afirmativa correta.",
+    "alternativas": [
+      "(A) É dever do Estado o atendimento em creche e pré-escola às crianças de dois a seis anos de idade.",
+      "(B) O Estado deve ofertar ensino noturno regular, adequado às condições do adolescente trabalhador.",
+      "(C) O acesso ao ensino obrigatório e gratuito é um direito público objetivo e, portanto, um dever do Estado.",
+      "(D)  É dever do Estado o Atendimento Educacional Especializado (EEE) aos portadores de deficiência, preferencialmente na rede especializada de ensino."
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 2024,
+    "ano": 2023,
+    "banca": "Instituto Consulplan",
+    "concurso": "Prefeitura de Astolfo Dutra - MG",
+    "cargo": "Assistente Social – S.M.E",
+    "disciplina": "Estatuto da Criança e do Adolescente - ECA",
+    "assunto": "05. Art. 70. ao Art. 85. - Da Prevenção",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "O Estatuto da Criança e do Adolescente (ECA) estabelece que é dever de todos prevenir a ocorrência de ameaça ou violação dos direitos da criança e do adolescente. Neste sentido, é correto afirmar que:",
+    "alternativas": [
+      "(A)  A União, os Estados, o Distrito Federal e os Municípios devem difundir formas violentas de educação de crianças e de adolescentes.",
+      "(B)  As famílias com crianças e adolescentes com deficiência não têm prioridade de atendimento nas ações e políticas públicas de prevenção e proteção, uma vez que a rede deve atender de forma universal.",
+      "(C)  Os entes federados devem adotar como ação o destaque, nos currículos escolares de todos os níveis de ensino, dos conteúdos relativos à prevenção, à identificação e à resposta à violência doméstica e familiar.",
+      "(D)  As entidades privadas, que atuam nas áreas da saúde e da educação, estão dispensadas de contar, em seus quadros, com pessoas capacitadas a reconhecer e a comunicar ao Conselho Tutelar suspeitas ou casos de crimes praticados contra a criança e o adolescente. A exigência recai somente sobre as entidades públicas."
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 2025,
+    "ano": 2023,
+    "banca": "Instituto Consulplan",
+    "concurso": "Prefeitura de Astolfo Dutra - MG",
+    "cargo": "Assistente Social – S.M.E",
+    "disciplina": "Lei nº 9.394/1996 - LDB",
+    "assunto": "Da Organização da Educação Nacional (arts. 8º ao 20)",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A Lei de Diretrizes e Bases da Educação (LDB) estabelece que, respeitadas as normas comuns e as do seu sistema, os estabelecimentos de ensino deverão:",
+    "alternativas": [
+      "(A)  Assumir o transporte escolar dos alunos da rede municipal. ",
+      "(B)  Prover meios para a recuperação dos alunos de menor rendimento.",
+      "(C)  Informar pai e mãe, desde que conviventes com seus filhos, sobre a frequência e rendimento dos alunos.",
+      "(D)  Comunicar ao Conselho Tutelar do município a relação dos alunos que apresentam quantidade de faltas acima de 50% do percentual permitido em Lei."
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 2026,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "CET-Santos",
+    "cargo": "Assistente Social",
+    "disciplina": "Estatuto da Pessoa Idosa",
+    "assunto": "04. Da Política de Atendimento ao Idoso (arts. 46 ao 68)",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A respeito do que dispõe o Estatuto do Idoso acerca da política de atendimento, analise as afirmativas abaixo e dê valores Verdadeiro (V) ou Falso (F).\n\n( ) As entidades governamentais de atendimento que descumprirem as determinações desta Lei ficarão sujeitas, entre outros, à proibição de atendimento a pessoas idosas a bem do interesse público.\n\n( ) As entidades não-governamentais de atendimento que descumprirem as determinações desta Lei ficarão sujeitas, entre outros, ao fechamento de unidade ou interdição de programa.\n\n( ) Na aplicação das penalidades, serão consideradas a natureza e a gravidade da infração cometida, os danos que dela provierem para a pessoa idosa, as circunstâncias agravantes ou atenuantes e os antecedentes da entidade.\n\n( ) As entidades de atendimento que descumprirem as determinações desta Lei ficarão sujeitas, entre outras, à advertência.\n\nAssinale a alternativa que apresenta a sequência correta de cima para baixo.",
+    "alternativas": [
+      "(A) V - F - V - V",
+      "(B) F - V - F - V",
+      "(C) F - F - V - V",
+      "(D) V - V - F - V"
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 2027,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "CET-Santos",
+    "cargo": "Assistente Social",
+    "disciplina": "Estatuto da Pessoa Idosa",
+    "assunto": "02. Dos Direitos Fundamentais (arts. 8º ao 42)",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Considerando o que dispõe a Lei n. 10.741, de 1º de outubro de 2003 (Estatuto do Idoso), assinale a alternativa incorreta.",
+    "alternativas": [
+      "(A)  Aos maiores de 60 (sessenta) anos fica assegurada a gratuidade dos transportes coletivos públicos urbanos e semi-urbanos, observadas as exceções previstas no Estatuto",
+      "(B)  Nos veículos de transporte coletivo cuja gratuidade em razão da idade está definida pelo Estatuto, serão reservados 10% (dez por cento) dos assentos para as pessoas idosas, devidamente identificados com a placa de reservado preferencialmente para pessoas idosas",
+      "(C)  No sistema de transporte coletivo interestadual observar-se-á, nos termos da legislação específica, a reserva de 2 (duas) vagas gratuitas por veículo para pessoas idosas com renda igual ou inferior a 2 (dois) salários mínimos",
+      "(D)  É assegurada a reserva para as pessoas idosas, nos termos da lei local, de 5% (cinco por cento) das vagas nos estacionamentos públicos e privados, as quais deverão ser posicionadas de forma a garantir a melhor comodidade à pessoa idosa"
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 2028,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "CET-Santos",
+    "cargo": "Assistente Social",
+    "disciplina": "Lei Maria da Penha",
+    "assunto": "04. Dos Procedimentos (arts. 13 a 28)",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Acerca da Lei nº 11.340, de 7 de agosto de 2006, Lei Maria da Penha, analise as afirmativas abaixo.\n\nI. Verificada a existência de risco atual ou iminente à vida ou à integridade física ou psicológica da mulher em situação de violência doméstica e familiar, ou de seus dependentes, o agressor será imediatamente afastado do lar, domicílio ou local de convivência com a ofendida e este afastamento pode ser determinado, entre outros, pelo policial, quando o Município não for sede de comarca e não houver delegado disponível no momento da denúncia.\n\nII. Nos casos de risco à integridade física da ofendida ou à efetividade da medida protetiva de urgência, não será concedida liberdade provisória ao preso.\n\nIII. Nas ações penais públicas condicionadas à representação da ofendida de que trata esta Lei, só será admitida a renúncia à representação perante o juiz, em audiência especialmente designada com tal finalidade, após o recebimento da denúncia e ouvido o Ministério Público.\n\nAssinale a alternativa correta.",
+    "alternativas": [
+      "(A) Apenas as afirmativas I e II estão corretas",
+      "(B) Apenas as afirmativas I e III estão corretas",
+      "(C) Apenas as afirmativas II e III estão corretas",
+      "(D) Apenas a afirmativa II está correta"
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 2029,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "CET-Santos",
+    "cargo": "Assistente Social",
+    "disciplina": "Lei Maria da Penha",
+    "assunto": "04. Dos Procedimentos (arts. 13 a 28)",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A respeito da Lei n. 11.340, de 7 de agosto de 2006, Lei Maria da Penha, assinale a alternativa correta.",
+    "alternativas": [
+      "(A)  É competente, por opção da ofendida, para os processos cíveis regidos por esta Lei, entre outros, o Juizado do domicílio ou residência dos pais da ofendida",
+      "(B)  As medidas protetivas de urgência poderão ser concedidas de imediato, independentemente de audiência das partes e de manifestação do Ministério Público, devendo este ser prontamente comunicado",
+      "(C)  Recebido o expediente com o pedido da ofendida, caberá ao juiz, no prazo de 24 (vinte e quatro) horas, entre outras providências, conhecer do expediente e do pedido e decidir sobre as medidas protetivas de urgência",
+      "(D)  A Lei Maria da Penha prevê, entre as medidas protetivas de urgência, que se afaste o agressor do lar, domicílio ou local de convivência com a ofendida, vedando que se determine o afastamento da ofendida do lar"
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 2030,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "CET-Santos",
+    "cargo": "Assistente Social",
+    "disciplina": "Lei Orgânica da Assistência Social - LOAS",
+    "assunto": "02. Dos Princípios e das Diretrizes (arts. 4º e 5º)",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A Lei Orgânica da Assistência (Lei número 8.742/93) indica no artigo 4º que a Assistência Social deve ser orientada por princípios. Tais princípios são citados corretamente nas afirmativas:\n\nI. Supremacia do atendimento às necessidades sociais sobre as exigências de rentabilidade econômica;\n\nII. Descentralização político-administrativa para os Estados, o Distrito Federal e os Municípios, e comando único das ações em cada esfera de governo.\n\nIII. Divulgação ampla dos benefícios, serviços, programas e projetos assistenciais, bem como dos recursos oferecidos pelo Poder Público e dos critérios para sua concessão.\n\nIV. Primazia da responsabilidade do Estado na condução da política de assistência social em cada esfera de governo.\n\nEstão corretas as afirmativas:",
+    "alternativas": [
+      "(A) I e III",
+      "(B) I e II",
+      "(C) II e IV",
+      "(D) I e IV"
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 2031,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "CET-Santos",
+    "cargo": "Assistente Social",
+    "disciplina": "Lei Orgânica da Assistência Social - LOAS",
+    "assunto": "04. Dos Benefícios (arts. 20 a 22)",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "O benefício de prestação continuada (BPC) é previsto na Lei Orgânica da Assistência Social a partir do artigo 20º. Considerando o disposto na referida legislação analise as afirmativas abaixo atribuindo para elas os valores verdadeiro (V) ou falso (F).\n\n( ) Para efeito de concessão do benefício de prestação continuada, considera-se pessoa com deficiência aquela que tem impedimento de longo prazo de natureza física, mental, intelectual ou sensorial, o qual, em interação com uma ou mais barreiras, pode obstruir sua participação plena e efetiva na sociedade em igualdade de condições com as demais pessoas.\n\n( ) O benefício de prestação continuada é a garantia de um salário-mínimo mensal à pessoa com deficiência e ao idoso com 65 (sessenta e cinco) anos ou mais que comprovem não possuir meios de prover a própria manutenção nem de tê-la provida por sua família.\n\n( ) A condição de acolhimento em instituições de longa permanência não prejudica o direito do idoso ou da pessoa com deficiência ao benefício de prestação continuada. \n\n( ) O INSS poderá celebrar parcerias para a realização da avaliação social, sob a supervisão do serviço social da autarquia.\n\nA sequência correta aos valores atribuídos está citada na afirmativa:",
+    "alternativas": [
+      "(A) V - V - F - F",
+      "(B) V - V - V - F",
+      "(C) F - V - V - F",
+      "(D) F - F - V - V"
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 2032,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "CET-Santos",
+    "cargo": "Assistente Social",
+    "disciplina": "Códido de Ética do/a A. S. + Lei 8.662/93",
+    "assunto": "05. Lei nº 8.662: art. 1º ao 3: Exercício da Profissão",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Com base na Lei de número 8.662/93, analise as afirmativas abaixo:\n\nI. Não é competência do Conselho Federal de Serviço Social (CFESS) e dos Conselhos Regionais de Serviço Social (CRESS), representar, em juízo e fora dele, os interesses gerais e individuais dos Assistentes Sociais.\n\nII. O exercício da profissão de Assistente Social requer prévio registro nos Conselhos Regionais que tenham jurisdição sobre a área de atuação do interessado nos termos desta lei.\n\nIII. A duração do trabalho do Assistente Social é de 30 (trinta) horas semanais.\n\nIV. Os Conselhos Regionais de Serviço Social (CRESS) não são dotados de autonomia administrativa e financeira, sem prejuízo de sua vinculação ao Conselho Federal, nos termos da legislação em vigor.\n\nEstão corretas as afirmativas:",
+    "alternativas": [
+      "(A) I e II",
+      "(B) II e IV",
+      "(C) I e IV",
+      "(D) II e III"
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 2033,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "CET-Santos",
+    "cargo": "Assistente Social",
+    "disciplina": "Códido de Ética do/a A. S. + Lei 8.662/93",
+    "assunto": "01. Código de Ética: Princípios Fundamentais",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "O Código de Ética do Assistente Social apresenta o seguinte trecho: “Defesa intransigente dos direitos humanos e recusa do arbítrio e do autoritarismo” O mesmo faz menção a:",
+    "alternativas": [
+      "(A) Sigilo do Assistente Social",
+      "(B) Deveres",
+      "(C) Princípios fundamentais",
+      "(D) Direitos do Assistente Social"
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 2034,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "CET-Santos",
+    "cargo": "Assistente Social",
+    "disciplina": "Estatuto da Pessoa Idosa",
+    "assunto": "01. Disposições Preliminares (arts. 1º ao 7º)",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Assinale a alternativa correta, considerando o disposto no Estatuto do Idoso.",
+    "alternativas": [
+      "(A)  Não constitui obrigação da família, da comunidade, da sociedade assegurar à pessoa idosa, com absoluta prioridade, a efetivação do direito à vida, à saúde, à alimentação, à educação, à cultura, ao esporte, ao lazer, ao trabalho, à cidadania, à liberdade, à dignidade, ao respeito e à convivência familiar e comunitária, cabendo tal responsabilidade apenas ao poder público",
+      "(B)  A pessoa idosa goza de todos os direitos fundamentais inerentes à pessoa humana, sem prejuízo da proteção integral de que trata esta Lei, assegurando-se-lhe, por lei ou por outros meios, todas as oportunidades e facilidades, para preservação de sua saúde física e mental e seu aperfeiçoamento moral, intelectual, espiritual e social, em condições de liberdade e dignidade",
+      "(C) É dever exclusivo da família prevenir a ameaça ou violação aos direitos da pessoa idosa",
+      "(D)  Não constitui obrigação do Estado, garantir à pessoa idosa a proteção à vida e à saúde, mediante efetivação de políticas sociais públicas que permitam um envelhecimento saudável e em condições de dignidade"
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 2035,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "CET-Santos",
+    "cargo": "Assistente Social",
+    "disciplina": "Lei Maria da Penha",
+    "assunto": "02. Da Violência Doméstica e Familiar Contra a Mulher (arts. 5º a 7º)",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A Lei de número 11.340/2006 indica uma série de aspectos sobre a violência cometida contra mulheres. No artigo 7º é apresentada a definição de violência psicológica sendo essa compreendida como:",
+    "alternativas": [
+      "(A)  Qualquer conduta que configure retenção, subtração, destruição parcial ou total de seus objetos, instrumentos de trabalho, documentos pessoais, bens, valores e direitos ou recursos econômicos, incluindo os destinados a satisfazer suas necessidades",
+      "(B) Qualquer conduta que configure calúnia, difamação ou injúria",
+      "(C)  Qualquer conduta que a constranja a presenciar, a manter ou a participar de relação sexual não desejada, mediante intimidação, ameaça, coação ou uso da força; que a induza a comercializar ou a utilizar, de qualquer modo, a sua sexualidade, que a impeça de usar qualquer método contraceptivo ou que a force ao matrimônio, à gravidez, ao aborto ou à prostituição, mediante coação, chantagem, suborno ou manipulação; ou que limite ou anule o exercício de seus direitos sexuais e reprodutivos",
+      "(D)  Qualquer conduta que lhe cause dano emocional e diminuição da autoestima ou que lhe prejudique e perturbe o pleno desenvolvimento ou que vise degradar ou controlar suas ações, comportamentos, crenças e decisões, mediante ameaça, constrangimento, humilhação, manipulação, isolamento, vigilância constante, perseguição contumaz, insulto, chantagem, violação de sua intimidade, ridicularização, exploração e limitação do direito de ir e vir ou qualquer outro meio que lhe cause prejuízo à saúde psicológica e à autodeterminação"
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 2036,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "CET-Santos",
+    "cargo": "Assistente Social",
+    "disciplina": "Não definido",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "O Código de Trânsito Brasileiro disciplina no artigo 24º que os órgãos e entidades executivos de trânsito dos Estados, do Distrito Federal e dos Municípios possuem algumas competências, dentre elas as citadas na afirmativas:\n\nI. Executar a fiscalização de trânsito. II. Terceirizar a fiscalização de trânsito. III. Autuar e aplicar as medidas administrativas e penalidades previstas no Código de Trânsito Brasileiro. IV. Elaborar a Política Nacional de Trânsito.\n\nEstão corretas as afirmativas:",
+    "alternativas": [
+      "(A) I e III",
+      "(B) I e II",
+      "(C) II e IV",
+      "(D) I e IV"
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 2037,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "CET-Santos",
+    "cargo": "Assistente Social",
+    "disciplina": "Lei nº 8.080/1990 - Lei Orgânica da Saúde - LOS",
+    "assunto": "02. Do Sistema Único de Saúde (art. 4º a 19-U)",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A lei de n° 8.080/90 e também conhecida por ter regulamentado o Sistema Único de Saúde no Brasil disciplina a organização desse sistema no país. De acordo com essa legislação indica, no artigo 5º, são objetivos do SUS:\n\nI. A identificação e divulgação dos fatores condicionantes e determinantes da saúde\n\nII. Concessão de assistência terapêutica integral, inclusive farmacêutica.\n\nIII. A participação na formulação da política e na execução de ações de saneamento básico.\n\nIV. A assistência às pessoas por intermédio de ações de promoção, proteção e recuperação da saúde, com a realização integrada das ações assistenciais e das atividades preventivas.\n\nEstão corretas as afirmativas:",
+    "alternativas": [
+      "(A) I e II apenas",
+      "(B) I e IV apenas",
+      "(C) II e III apenas",
+      "(D) III e IV apenas"
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 2038,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "CET-Santos",
+    "cargo": "Assistente Social",
+    "disciplina": "Lei nº 8.080/1990 - Lei Orgânica da Saúde - LOS",
+    "assunto": "02. Do Sistema Único de Saúde (art. 4º a 19-U)",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "O trecho abaixo foi extraído do artigo 8º da Lei Orgânica do Sistema Único de Saúde (Lei 8.080/90).\n\nArt. 8º As ações e serviços de saúde, executados pelo Sistema Único de Saúde (SUS), seja diretamente ou mediante participação complementar da iniciativa privada, serão organizados de forma ______e ______ em níveis de complexidade crescente.\n\nAssinale a alternativa que preencha corretamente e respectivamente as lacunas.",
+    "alternativas": [
+      "(A) regionalizada / hierarquizada",
+      "(B) centralizada / hierarquizada",
+      "(C) regionalizada / descentralizada",
+      "(D) organizada / descentralizada"
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 2039,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "CET-Santos",
+    "cargo": "Assistente Social",
+    "disciplina": "Política Nacional de Assistência Social - PNAS",
+    "assunto": "01. Princípios, Diretrizes, Objetivos e Usuários",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A Política Nacional de Assistência Social indica que a Assistência Social deve ser organizada por referências. São referências de organização do SUAS:",
+    "alternativas": [
+      "(A) Proteção social especial, proteção social básica e defesa social e institucional",
+      "(B) Vigilância social, proteção social e orçamento público",
+      "(C) Vigilância social, proteção social e defesa social e institucional",
+      "(D) Acolhida, proteção social e defesa social e institucional"
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 2040,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "CET-Santos",
+    "cargo": "Assistente Social",
+    "disciplina": "Seguridade Social",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A Constituição Federal delimitou pela consolidação do Sistema de Seguridade Social conforme destacado no artigo nº 194. Em tal texto vemos que há menção aos objetivos da Seguridade Social, sendo esses os que estão citados nas afirmativas:\n\nI. A saúde é direito de todos e dever do Estado, garantido mediante políticas sociais e econômicas que visem à redução do risco de doença e de outros agravos e ao acesso universal e igualitário às ações e serviços para sua promoção, proteção e recuperação.\n\nII. Descentralização, com direção única em cada esfera de governo\n\nIII. Uniformidade e equivalência dos benefícios e serviços às populações urbanas e rurais.\n\nIV. Seletividade e distributividade na prestação dos benefícios e serviços.\n\nEstão corretas as afirmativas:",
+    "alternativas": [
+      "(A) I e II apenas",
+      "(B) II e III apenas",
+      "(C) I e IV apenas",
+      "(D) III e IV apenas"
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 2041,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "CET-Santos",
+    "cargo": "Assistente Social",
+    "disciplina": "Não definido",
+    "assunto": "Não definido",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Moura; Vasconcelos (2018) nos indicam que há necessidade de problematizar as questões que envolvem a ocorrência de acidentes de trânsito no Brasil. Considerando o pensamento dos autores, analise as afirmativas abaixo:\n\nI. As questões oriundas de acidentes de trânsito representam um grave problema de saúde pública.\n\nII. O Brasil envolveu-se na campanha e por meio do “Pacto Nacional pela Redução dos Acidentes no Trânsito – Pacto pela Vida” mas não aderiu as propostas e estratégias lançadas pela OMS, com fim de reduzir mortes e outros prejuízos por acidentes de trânsito nos próximos dez anos.\n\nIII. As infrações cometidas no trânsito têm como característica principal seu efeito imediato e o desrespeito às normas causam consequências devastadoras, porém, isso não afeta a política de saúde no Brasil.\n\nIV. Os acidentes de trânsito resultam em um impacto significativo nos recursos da saúde e uma sobrecarga importante nos pronto-socorros públicos, principalmente no caso brasileiro.\n\nEstão corretas as afirmativas:",
+    "alternativas": [
+      "(A) I e II",
+      "(B) I e IV",
+      "(C) III e IV",
+      "(D) I e III"
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 2042,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "CET-Santos",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social na Saúde",
+    "assunto": "Equipe Multiprofissional",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Analise as afirmativas abaixo com base nas indicações de Moura; Vasconcelos (2018). \n\nI. Os acidentes de trânsito, que refletem diretamente na segurança do trânsito, devem ser compreendidos como uma expressão da questão social.\n\nII. Não compete ao assistente social dar conta dos problemas ocasionados pela questão da segurança no trânsito.\n\nIII. Os profissionais, Assistentes Sociais, inseridos na área de segurança do trânsito não têm a possibilidade de fazer reflexões e discussões no sentido de clarificar os fenômenos que estão velados na realidade, acerca da segurança no trânsito.\n\nIV. Os profissionais inseridos na área de segurança do trânsito não têm a possibilidade de fazer reflexões e discussões no sentido de clarificar os fenômenos que estão velados na realidade, acerca da segurança no trânsito, apresentando a necessidade desse direito ser efetivado visto que não é esse o seu papel.\n\nEstão corretas as afirmativas:",
+    "alternativas": [
+      "(A) I e III",
+      "(B) II e III",
+      "(C) I e IV",
+      "(D) I e II"
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 2043,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "CET-Santos",
+    "cargo": "Assistente Social",
+    "disciplina": "Estudo social, perícia social, relatório social, laudo social e parecer social",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Analise as afirmativas abaixo com base no disposto no documento “Sistematização e análise de registros da opinião técnica emitida pela/o Assistente Social em relatórios, laudos e pareceres [...] elaborado pelo CFESS no ano de 2020. \n\nI. O laudo social não tem a finalidade de esclarecer que, naquele momento e com base no estudo científico realizado, chegou-se à determinada conclusão.\n\nII. O laudo social, elaborado pela/o assistente social, é o produto/registro da perícia social realizada pela/o profissional.\n\nIII. No laudo social, em sua parte final, via de regra, registra-se o parecer conclusivo, do ponto de vista do Serviço Social.\n\nIV. No laudo social o parecer social não pode sintetizar a situação antes deve apresentar uma breve análise e apontar conclusões ou indicativos de alternativas que irão expressar o posicionamento profissional frente ao objeto de estudo.\n\nEstão corretas as afirmativas:",
+    "alternativas": [
+      "(A) I e II",
+      "(B) I e IV",
+      "(C) II e III",
+      "(D) II e IV"
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 2044,
+    "ano": 2023,
+    "banca": "IBFC",
+    "concurso": "CET-Santos",
+    "cargo": "Assistente Social",
+    "disciplina": "Planejamento Social",
+    "assunto": "03. Planejamento, Monitoramento e Avaliação de Planos, Programas e Projetos",
+    "area": "Municipal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Baptista (2015) nos apresenta indicações a respeito do conceito de avaliação. A avaliação de efetividade é apresentada pela autora como sendo aquela em que:",
+    "alternativas": [
+      "(A)  A avaliação de efetividade é analisada a partir do estudo da adequação da ação para o alcance dos objetivos e metas previstos no planejamento",
+      "(B)  A avaliação de efetividade diz respeito, mais propriamente, ao estudo do impacto do planejado sobe a situação, à adequação dos objetivos definidos para a problemática objeto da intervenção",
+      "(C) A avaliação de efetividade incide diretamente sobre a ação desenvolvida",
+      "(D)  A avaliação de efetividade deve ser crítica e estabelecer juízos de valor sobre o desempenho e os resultados que o mesmo propicia"
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 2045,
+    "ano": 2023,
+    "banca": "CS-UFG",
+    "concurso": "UFNT",
+    "cargo": "Assistente Social",
+    "disciplina": "Trabalho e Serviço Social",
+    "assunto": "Reestruturação Produtiva",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "As estratégias adotadas pela burguesia para reestabelecer seu domínio de lucratividade diante da crise do capital, na década de 1970, foram estruturadas no tripé: reestruturação produtiva,",
+    "alternativas": [
+      "(A) financeirização e ideologia neoliberal.",
+      "(B) expansão dos serviços e fordismo.",
+      "(C) toyotismo e dominação burguesa.",
+      "(D) ohnismo e neoconservadorismo."
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 2046,
+    "ano": 2023,
+    "banca": "CS-UFG",
+    "concurso": "UFNT",
+    "cargo": "Assistente Social",
+    "disciplina": "Trabalho e Serviço Social",
+    "assunto": "Não definido",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Existem diversas interpretações e matizes teóricas e políticas sobre a crise contemporânea e suas transformações na sociedade capitalista. Na perspectiva de Mészáros (2002), a crise contemporânea do capital se trata de uma crise",
+    "alternativas": [
+      "(A) orgânica.",
+      "(B) cíclica.",
+      "(C) estrutural.",
+      "(D) de subconsumo."
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 2047,
+    "ano": 2023,
+    "banca": "CS-UFG",
+    "concurso": "UFNT",
+    "cargo": "Assistente Social",
+    "disciplina": "Políticas Sociais",
+    "assunto": "02. Origem e História das Políticas Sociais no Brasil",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A partir dos anos 1990, no Brasil, foram implementadas políticas de ajuste neoliberal. Como consequência, houve o acirramento das desigualdades sociais, a desregulamentação dos direitos sociais e trabalhistas e a recomendação de políticas sociais focalizadas. Isso traz alterações para o Serviço Social, com forte tendência de redirecionar o trabalho profissional para operar a gestão",
+    "alternativas": [
+      "(A) do mínimo existencial.",
+      "(B) da pobreza.",
+      "(C) da bolsificação da miséria.",
+      "(D) do pauperismo."
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 2048,
+    "ano": 2023,
+    "banca": "CS-UFG",
+    "concurso": "UFNT",
+    "cargo": "Assistente Social",
+    "disciplina": "Políticas Sociais",
+    "assunto": "03. Noções Gerais de Políticas Sociais",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "O orçamento público – fundamental para a implementação de políticas sociais –, como a parte mais visível do fundo público, constitui um instrumento técnico e de interesses políticos, firmando-se como espaço de",
+    "alternativas": [
+      "(A)  correlação de forças sociais e políticas, em que as diferentes forças da sociedade buscam inserir seus interesses.",
+      "(B)  legitimação dos acordos coletivos entre os segmentos do capital e as forças sindicais conduzidas pela socialdemocracia.",
+      "(C)  disputas classistas em prol de um sistema tributário com base em cobrança de impostos diretos e progressivos.",
+      "(D)  legitimação do orçamento participativo em prol de uma seguridade social ampliada e um padrão de proteção universalista."
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 2049,
+    "ano": 2023,
+    "banca": "CS-UFG",
+    "concurso": "UFNT",
+    "cargo": "Assistente Social",
+    "disciplina": "Políticas Sociais",
+    "assunto": "03. Noções Gerais de Políticas Sociais",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "O tripé da seguridade social brasileira se legitima a partir da Constituição Federal de 1988, artigo 194, e conjuga direitos derivados e dependentes do trabalho (previdência) com direitos de caráter universal (saúde) e direitos seletivos (assistência). Não se instituiu um padrão de seguridade social integrado, que acabou se caracterizando como um sistema",
+    "alternativas": [
+      "(A) burocrático.",
+      "(B) heterogêneo.",
+      "(C) híbrido.",
+      "(D) particularizado."
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 2050,
+    "ano": 2023,
+    "banca": "CS-UFG",
+    "concurso": "UFNT",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social na Saúde",
+    "assunto": "Não definido",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Diante do projeto econômico consolidado no Brasil, a saúde é tensionada por dois projetos em disputas, o de reforma sanitária e o privatista, os quais colocam diferentes requisições ao Serviço Social. Dentre as requisições colocadas ao assistente social pelo projeto privatista, tem-se",
+    "alternativas": [
+      "(A) a retomada da intervenção profissional pautada no Serviço Social clínico.",
+      "(B) a prática do assistencialismo através da ideologia do favor.",
+      "(C) a realização de inquérito social para controle da vida privada do usuário.",
+      "(D) a apropriação de atividades para as quais esteja incapacitado."
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 2051,
+    "ano": 2023,
+    "banca": "CS-UFG",
+    "concurso": "UFNT",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social na Saúde",
+    "assunto": "Reforma Sanitária",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "O movimento da reforma sanitária emerge em meados da década de 1970 e coincide com o processo de renovação do Serviço Social brasileiro, postulando a melhoria da situação de saúde e o fortalecimento do setor público, em uma conjuntura de luta contra a ditadura militar. Assim, a saúde passou a assumir uma dimensão política, vinculada à democracia. Constitui marco emblemático desse movimento",
+    "alternativas": [
+      "(A) o movimento das diretas já (1984).",
+      "(B) a Assembleia Nacional Constituinte (1985).",
+      "(C) a 8ª Conferência Nacional de Saúde (1986).",
+      "(D) a Constituição Federal (1988)."
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 2052,
+    "ano": 2023,
+    "banca": "CS-UFG",
+    "concurso": "UFNT",
+    "cargo": "Assistente Social",
+    "disciplina": "Políticas Sociais",
+    "assunto": "Controle Social",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "O assistente social tem sido demandado a trabalhar diretamente com os mecanismos de controle social. Isso coloca desafios na perspectiva de uma prática comprometida com as classes subalternas. Assim, auxiliar ao controle social, observando as exigências de sua realidade, demanda do assistente social, dentre outros requisitos,",
+    "alternativas": [
+      "(A)  contribuir para a criação de mecanismos que venham desburocratizar a relação com os(as) usuários(as), no sentido de agilizar e melhorar os serviços prestados.",
+      "(B)  construir a articulação do conselho com a sociedade para fortalecer a representatividade de seus representantes e evitar a cooptação desses pela burocracia estatal.",
+      "(C)  propor uma agenda de lutas e proposições em torno de políticas públicas estatais, universais e de qualidade, articulada à transformação da sociedade.",
+      "(D)  possuir habilidade para articular a composição sem a ingerência do gestor, sugerindo a promoção de eventos participativos e amplamente divulgados, como conferência, seminários, fóruns, assembleias e outros."
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 2053,
+    "ano": 2023,
+    "banca": "CS-UFG",
+    "concurso": "UFNT",
+    "cargo": "Assistente Social",
+    "disciplina": "Códido de Ética do/a A. S. + Lei 8.662/93",
+    "assunto": "02. Código de Ética: art 1º ao 14: Direitos, Deveres e Vedações",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Dentre os direitos do(a) assistente social previstos no Código de Ética Profissional de 1993, que servem de base para o exercício profissional no cotidiano dos serviços de saúde, destaca-se",
+    "alternativas": [
+      "(A) a relatividade das decisões e opiniões técnicas nas ações interdisciplinares.",
+      "(B)  a inviolabilidade do local de trabalho e respectivos arquivos e documentação, garantindo o sigilo profissional.",
+      "(C)  o desempenho de suas atividades profissionais, com eficiência e responsabilidade, observando a legislação em vigor.",
+      "(D)  a contribuição para a criação de mecanismos que venham desburocratizar a relação com os(as) usuários(as), no sentido de agilizar e melhorar os serviços prestados."
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 2054,
+    "ano": 2023,
+    "banca": "CS-UFG",
+    "concurso": "UFNT",
+    "cargo": "Assistente Social",
+    "disciplina": "Política Nacional para a População em Situação de Rua (DECRETO Nº 7.053)",
+    "assunto": "Não definido",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "A Política Nacional para a População em Situação de Rua, Decreto nº 7.053/2009, indica, dentre outros, “proporcionar o acesso das pessoas em situação de rua aos benefícios previdenciários e assistenciais e aos programas de transferência de renda, na forma da legislação específica” como",
+    "alternativas": [
+      "(A) um propósito.",
+      "(B) uma diretriz.",
+      "(C) um princípio.",
+      "(D) um objetivo."
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 2055,
+    "ano": 2023,
+    "banca": "CS-UFG",
+    "concurso": "UFNT",
+    "cargo": "Assistente Social",
+    "disciplina": "Questão Social",
+    "assunto": "Questão Social segundo Iamamoto",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "De acordo com Marilda Vilella Iamamoto (2001), a “Questão Social” é indissociável do processo de acumulação e dos efeitos que produz sobre o conjunto das classes trabalhadoras, o que se encontra na base da exigência de políticas sociais públicas. Para a autora, a “questão social” é tributária de",
+    "alternativas": [
+      "(A) ações estratégicas adotadas por organizações caritativas na sociedade capitalista.",
+      "(B) mecanismos compensatórios de ações filantrópicas na ordem do capital.",
+      "(C) estratégias sociais adotadas pelos sindicatos de trabalhadores no capitalismo.",
+      "(D) formas assumidas pelo trabalho e pelo Estado na sociedade burguesa."
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 2056,
+    "ano": 2023,
+    "banca": "CS-UFG",
+    "concurso": "UFNT",
+    "cargo": "Assistente Social",
+    "disciplina": "Fundamentos históricos e teórico-metodológicos do Serviço Social",
+    "assunto": "01. Surgimento e Institucionalização do Serviço Social",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Para Iamamoto (2005), desde as origens até os primeiros anos da institucionalização profissional, o Serviço Social recebeu influência dos princípios e valores religiosos, com vistas a reproduzir as formas de controle social e de",
+    "alternativas": [
+      "(A) legitimação da estrutura social.",
+      "(B) naturalização da questão social.",
+      "(C) preservação da moral cristã.",
+      "(D) conciliação de classes."
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 2057,
+    "ano": 2023,
+    "banca": "CS-UFG",
+    "concurso": "UFNT",
+    "cargo": "Assistente Social",
+    "disciplina": "Fundamentos históricos e teórico-metodológicos do Serviço Social",
+    "assunto": "Projeto Ético-Político do Serviço Social e Diretrizes Curriculares",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "De acordo com José Paulo Netto (1999), o projeto ético-político do Serviço Social Brasileiro se inscreve no marco dos projetos coletivos e apresentam",
+    "alternativas": [
+      "(A)  a construção de princípios e diretrizes que se legitimam por grupos e disputas ideológicas e políticas centrados no pensamento conservador, prescrevendo normas para o comportamento dos profissionais.",
+      "(B)  a reafirmação dos processos sociais vigentes e das forças políticas hegemônicas da sociabilidade capitalista e estabelecem as bases das suas relações com os usuários de seus serviços.",
+      "(C)  a manifestação de processos contestatórios de uma dada profissão, com aportes teóricos e normativos que refletem as organizações e instituições privadas e públicas vigentes, inclusive o Estado.",
+      "(D)  a autoimagem da profissão, elegendo os valores que a legitimam socialmente, delimitando e priorizando seus objetivos e funções, formulando os seus requisitos teóricos, práticos e institucionais para o seu exercício."
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 2058,
+    "ano": 2023,
+    "banca": "CS-UFG",
+    "concurso": "UFNT",
+    "cargo": "Assistente Social",
+    "disciplina": "Fundamentos históricos e teórico-metodológicos do Serviço Social",
+    "assunto": "02. Movimento de Reconceituação do Serviço Social",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Na trajetória histórica do Serviço Social brasileiro, é possível constatar que o III Congresso Brasileiro de Assistentes Sociais, realizado em São Paulo (SP), em fins de setembro de 1979, constituiu uma referência importante para a profissão. Especialmente, porque o Serviço Social constrói a partir dele um projeto profissional de",
+    "alternativas": [
+      "(A) bases tradicionais da profissão.",
+      "(B) vertente modernizadora.",
+      "(C) vertente fenomenológica.",
+      "(D) ruptura com o conservadorismo."
+    ],
+    "resposta": "D",
+    "comentario": ""
+  },
+  {
+    "ids": 2059,
+    "ano": 2023,
+    "banca": "CS-UFG",
+    "concurso": "UFNT",
+    "cargo": "Assistente Social",
+    "disciplina": "Políticas Sociais",
+    "assunto": "03. Noções Gerais de Políticas Sociais",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Segundo Boschetti (2009), o debate em torno das políticas sociais reforça sua importância na consolidação do Estado democrático de direito, e desse modo, devem ser entendidas e avaliadas como um conjunto de programas, projetos e ações, a fim de",
+    "alternativas": [
+      "(A) garantir as necessidades humanas.",
+      "(B) universalizar direitos.",
+      "(C) minimizar a dívida social.",
+      "(D) fortalecer a cidadania."
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 2060,
+    "ano": 2023,
+    "banca": "CS-UFG",
+    "concurso": "UFNT",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social na Educação",
+    "assunto": "01. Subsídios para Atuação dos Assistentes Sociais na Educação",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "De acordo com os Subsídios para a Atuação de Assistentes Sociais na Política de Educação (CFESS), a inserção de assistentes sociais nesta política, ao longo das últimas duas décadas, responde sobretudo às requisições socioinstitucionais de",
+    "alternativas": [
+      "(A)  ampliação das condições de acesso e de permanência da população nos diferentes níveis e modalidades de educação.",
+      "(B) consolidação da política de acessibilidade das pessoas com deficiência e ações afirmativas.",
+      "(C)  implementação de serviços e programas educacionais direcionados para o combate à evasão e retenção escolar.",
+      "(D)  construção de estratégias educativas para o êxito estudantil e ações que estimulem a convivência integradora."
+    ],
+    "resposta": "A",
+    "comentario": ""
+  },
+  {
+    "ids": 2061,
+    "ano": 2023,
+    "banca": "CS-UFG",
+    "concurso": "UFNT",
+    "cargo": "Assistente Social",
+    "disciplina": "Serviço Social na Educação",
+    "assunto": "Política Nacional de Assistência Estudantil (PNAES)",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "O Programa Nacional de Assistência Estudantil – PNAES, instituído pelo Decreto nº 7.234 de 2010 e executado no âmbito do Ministério da Educação, tem como finalidade",
+    "alternativas": [
+      "(A) garantir as possibilidades de assistência estudantil aos estudantes de baixa renda na educação básica.",
+      "(B)  viabilizar programas, serviços e projetos direcionados ao desempenho acadêmico e pedagógico dos estudantes.",
+      "(C) ampliar as condições de permanência dos jovens na educação superior pública federal.",
+      "(D) instituir programas e serviços voltados para a retenção de discentes."
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 2062,
+    "ano": 2023,
+    "banca": "CS-UFG",
+    "concurso": "UFNT",
+    "cargo": "Assistente Social",
+    "disciplina": "Códido de Ética do/a A. S. + Lei 8.662/93",
+    "assunto": "RESOLUÇÃO CFESS Nº 533, de 29 de setembro de 2008",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Nos marcos da resolução nº 533, de 29 de setembro de 2008, do CFESS, o Estágio Supervisionado em Serviço Social é uma atividade curricular obrigatória que se configura a partir da",
+    "alternativas": [
+      "(A)  indicação pela parte concedente do supervisor com formação/experiência na área de conhecimento do local de realização do estágio.",
+      "(B)  avaliação por parte da unidade formadora das condições do local de estágio que deve propiciar o aprofundamento dos conhecimentos teórico-práticos.",
+      "(C)  inserção do aluno no espaço socioinstitucional, objetivando capacitá-lo para o exercício profissional, o que pressupõe supervisão sistemática.",
+      "(D)  celebração de termo de compromisso entre o aluno, a parte concedente do estágio e a instituição de ensino com vistas ao desenvolvimento do estágio."
+    ],
+    "resposta": "C",
+    "comentario": ""
+  },
+  {
+    "ids": 2063,
+    "ano": 2023,
+    "banca": "CS-UFG",
+    "concurso": "UFNT",
+    "cargo": "Assistente Social",
+    "disciplina": "Códido de Ética do/a A. S. + Lei 8.662/93",
+    "assunto": "06. Lei n º 8.662 art 4 ao 5: Competências e Atribuições Privativas",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Conforme o art. 5° da Lei n° 8.662 de 1993, a Perícia Social ou Perícia em Serviço Social é uma atribuição privativa do assistente social. A sua elaboração pressupõe",
+    "alternativas": [
+      "(A) a análise educacional.",
+      "(B) o estudo social.",
+      "(C) o parecer multiprofissional.",
+      "(D) a declaração técnica do gestor."
+    ],
+    "resposta": "B",
+    "comentario": ""
+  },
+  {
+    "ids": 2064,
+    "ano": 2023,
+    "banca": "CS-UFG",
+    "concurso": "UFNT",
+    "cargo": "Assistente Social",
+    "disciplina": "Políticas Sociais",
+    "assunto": "03. Noções Gerais de Políticas Sociais",
+    "area": "Federal",
+    "modalidade": "Múltipla-Escolha",
+    "enunciado": "Após três décadas de políticas neoliberais no Brasil, é possível constatar modificações substantivas nas políticas sociais contemporâneas, que indicam",
+    "alternativas": [
+      "(A)  afirmação de direitos sociais e ampliação das políticas sociais públicas em todos os âmbitos das necessidades sociais, com fortalecimento do pacto federativo e plena adequação da dotação orçamentária para execução dos serviços.",
+      "(B)  supressão de diretos do trabalho, corrosão dos direitos sociais e processos de privatização das políticas sociais, descentralização, focalização, subfinanciamento e desfinanciamento público.",
+      "(C)  corrosão dos direitos sociais e reafirmação da seguridade social como eixo prioritário do orçamento público e da implementação de políticas sociais.",
+      "(D)  priorização dos direitos sociais e da materialização de políticas sociais públicas e coexistência harmônica com os interesses da acumulação capitalista."
+    ],
+    "resposta": "B",
+    "comentario": ""
   }
 ]

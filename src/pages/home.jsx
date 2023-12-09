@@ -1061,22 +1061,53 @@ function Home() {
 
             {questoesPagina.map((question) => (
               <div key={question.id} className="question-container">
-                <Box className="cabecalho-disciplina">
-                  <p>
-                    ID: {question.ids}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    {question.disciplina}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    {question.assunto}
-                  </p>
+                <Box
+                  sx={{
+                    backgroundColor: '#1c5253',
+                    color: 'white',
+                    borderTopRightRadius: '7px',
+                    borderTopLeftRadius: '7px',
+                    marginTop: '2em',
+                    overflowX: 'auto',
+                    overflowY: 'hidden',
+                    maxWidth: '100%', // Garante que o Box se expanda horizontalmente
+                  }}
+                  
+                >
+                  <Typography
+                    style={{
+                      whiteSpace: 'nowrap',
+                      paddingTop: '0.800em',
+                      paddingBottom: '0.800em',
+                      alignItems: 'center',
+                      marginTop: 2,
+                      fontFamily: 'Poppins',
+                      fontSize: '0.800em',
+                      fontWeight: '400',
+                      textAlign: 'left', // Alteração para alinhar à esquerda
+                    }}
+                  >
+                    &nbsp;&nbsp;ID: {question.ids}&nbsp;&nbsp;&nbsp;{question.disciplina}&nbsp;&nbsp;&nbsp;{question.assunto}&nbsp;&nbsp;
+                  </Typography>
                 </Box>
-                <Box sx={{ borderLeft: "1px solid #1c52531e", borderRight: "1px solid #1c52531e", borderBottom: "1px solid #1c52531e" }}>  <Box className="cabecalho-orgao">
-                  <p>
-                    <span style={{ color: "black" }}>&nbsp;&nbsp;Banca:</span> &nbsp;{question.banca}
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "black" }}>Ano:</span> &nbsp;{question.ano}
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style={{ color: "black" }}>Cargo: </span>&nbsp;{question.cargo}
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  </p>
-                  <p><span style={{ color: "black" }}>&nbsp;&nbsp;Órgão: </span>&nbsp;  {question.concurso}</p>
-                </Box>
+
+                <Box sx={{ borderLeft: "1px solid #1c52531e", borderRight: "1px solid #1c52531e", borderBottom: "1px solid #1c52531e", }}>
+                  <Box
+                    sx={{
+                      overflowX: 'auto',
+                      overflowY: 'hidden',
+                      maxWidth: '100%', // Garante que o Box se expanda horizontalmente
+                    }}
+                   
+                  >
+                    <Typography style={{ whiteSpace: 'nowrap', paddingTop: '0.500em', paddingLeft: '0.300em', fontFamily: 'Poppins', fontSize: '0.800em', textAlign: 'left', color: '#1c5253', fontWeight: '500' }}>Banca: &nbsp;{question.banca}
+                      &nbsp;&nbsp;&nbsp;&nbsp;Ano: &nbsp;{question.ano}
+                      &nbsp;&nbsp;&nbsp;&nbsp;Cargo: &nbsp;{question.cargo}
+                      &nbsp;&nbsp;&nbsp;&nbsp;Órgão: &nbsp;{question.concurso}&nbsp;&nbsp;
+                    </Typography>
+                    
+                  </Box>
+                  <Box style={{ height: '2px', backgroundColor: '#1c525341', margin: '10px 0' }}></Box>
                   <p className="enunciado">{question.enunciado}</p>
                   <ul>
                     {question.alternativas.map((alternativa, index) => {
