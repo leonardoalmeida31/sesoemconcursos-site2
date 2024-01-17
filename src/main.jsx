@@ -13,6 +13,7 @@ import PixFeito from './pages/PixFeito.jsx'
 import CadastroD from './pages/CadastroD.jsx'
 import Assinatura from './pages/Assinatura.jsx'
 import PlanosDeEstudos from './pages/PlanosDeEstudos.jsx'
+import GrupoWhats from './pages/GrupoWhats.jsx'
 
 
 
@@ -33,6 +34,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/CadastroD" element={<CadastroD />} />
         <Route path="/Assinatura" element={<Assinatura />} />
         <Route path="/PlanosDeEstudos" element={<PlanosDeEstudos />} />
+        <Route path="/GrupoWhats" element={<GrupoWhats />} />
        
       
       </Routes>
