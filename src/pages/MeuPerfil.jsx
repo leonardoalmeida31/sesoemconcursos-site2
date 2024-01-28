@@ -14,8 +14,9 @@ import RefreshIcon from '@mui/icons-material/Refresh'; // Use o ícone apropriad
 import Typography from '@mui/material/Typography';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-
-
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import { Modal, Button, } from "@mui/material";
 import AutoGraphOutlinedIcon from '@mui/icons-material/AutoGraphOutlined';
 import Container from '@mui/material/Container';
 import { initializeApp } from "firebase/app";
@@ -31,9 +32,6 @@ import {
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 
-
-
-import StripeCheckout from "react-stripe-checkout";
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_REACT_APP_API_KEY,
   authDomain: import.meta.env.VITE_REACT_APP_AUTH_DOMAIN,
@@ -69,6 +67,7 @@ function MeuPerfil() {
   );
 
   const [desempenhoTotal, setDesempenhoTotal] = useState(null);
+  const [showAlert, setShowAlert] = useState(false); // Estado para controlar a exibição do alerta
 
   const fetchDesempenhoTotal = async (userId) => {
     try {
@@ -100,6 +99,8 @@ function MeuPerfil() {
 
     fetchData();
   }, [user]);
+
+  
 
 
   const [displayName, setDisplayName] = useState(null); //guarda pra exibe nome do usuario pra tela
@@ -198,10 +199,6 @@ function MeuPerfil() {
 
   const [alternativaSelecionada, setAlternativaSelecionada] = useState({});
 
-
-
-
-
   //  as respostas corretas ou incorretas são armazenadas aqui embaixo agora
   const [resultados, setResultados] = useState({});
 
@@ -280,9 +277,7 @@ function MeuPerfil() {
 
   // Calcular o número total de questões respondidas
   const totalQuestoesRespondidas =
-    (desempenhoTotal?.acertos || 0) + (desempenhoTotal?.erros || 0);
-
-
+    (desempenhoTotal?.acertos || 0) + (desempenhoTotal?.erros || 0)
 
   const [disciplinaSelecionadaParaZerar, setDisciplinaSelecionadaParaZerar] = useState(null);
 
@@ -320,32 +315,35 @@ function MeuPerfil() {
   };
 
 
+  // Função para mostrar o alerta e confirmar a ação
+  const handleZerarDesempenhoTotal = () => {
+    setShowAlert(true);
+  };
+
+  // Função para zerar o desempenho total
   const zerarDesempenhoTotal = async () => {
     if (!user) {
-      // Verifique se o usuário está autenticado
       console.log("Usuário não autenticado.");
-      // Você pode redirecionar o usuário para fazer login ou exibir uma mensagem de erro.
       return;
     }
 
     const userRef = doc(db, "users", user.uid);
 
     try {
-      // Atualize os dados no Firebase para zerar o desempenho total do usuário
       await updateDoc(userRef, { desempenhoTotal: { acertos: 0, erros: 0 } });
-
-      // Atualize o estado local para refletir o desempenho total zerado
       setDesempenhoTotal({ acertos: 0, erros: 0 });
       console.log("Desempenho total zerado com sucesso!");
     } catch (error) {
       console.error("Erro ao zerar o desempenho total:", error);
-      // Lidar com erros, exibir mensagens de erro, etc.
     }
+
+    setShowAlert(false); // Feche o alerta após a ação ser confirmada
   };
 
-
-
-
+  // Função para cancelar a ação de zerar o desempenho total
+  const cancelarZerarDesempenhoTotal = () => {
+    setShowAlert(false);
+  };
   //função de buscar desempenho e exibir por banca:
 
   useEffect(() => {
@@ -382,10 +380,6 @@ function MeuPerfil() {
 
   const bancaSelecionadaData =
     bancaSelecionada && desempenhoPorBanca[bancaSelecionada];
-
-
-
-
 
   const [bancaSelecionadaParaZerar, setBancaSelecionadaParaZerar] = useState(null);
 
@@ -435,10 +429,6 @@ function MeuPerfil() {
         <p className="nome-user2">Olá, {displayName}</p>
         {email && <p className="nome-user2">Email: {email}</p>}
 
-
-
-
-
       </Box>
 
 
@@ -474,20 +464,41 @@ function MeuPerfil() {
         </div>
 
         <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <IconButton
-            onClick={zerarDesempenhoTotal}
-            sx={{ color: "white", justifyContent: "center" }}
-            aria-label="Zerar Desempenho por Disciplina"
-          >
-            <RefreshIcon /> {/* Use o ícone apropriado */}
-            <Typography variant="body2">Zerar Desempenho Total</Typography>
-          </IconButton>
-        </Box>
+        <IconButton
+          onClick={handleZerarDesempenhoTotal} // Adicione o manipulador de clique para mostrar o alerta
+          sx={{ color: "white", justifyContent: "center" }}
+          aria-label="Zerar Desempenho Total"
+        >
+          <RefreshIcon /> {/* Use o ícone apropriado */}
+          <Typography variant="body2">Zerar Desempenho Total</Typography>
+        </IconButton>
+      </Box>
+      {/* Alerta Snackbar para confirmar a ação de zerar o desempenho total */}
+      <Snackbar
+        open={showAlert}
+        autoHideDuration={7000}
+        onClose={cancelarZerarDesempenhoTotal}
+        anchorOrigin={{ vertical: "center", horizontal: "center" }} // Defina a posição do Snackbar
+        sx={{ backgroundColor: "red" }} // Defina a cor de fundo do Snackbar
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={cancelarZerarDesempenhoTotal}
+          severity="warning"
+          sx={{ backgroundColor: "red", color: "white" }} // Defina a cor do texto do Snackbar
+        >
+          Deseja zerar o desempenho total?
+          <Button color="inherit" size="small" onClick={zerarDesempenhoTotal}>
+            Confirmar
+          </Button>
+          <Button color="inherit" size="small" onClick={cancelarZerarDesempenhoTotal}>
+            Cancelar
+          </Button>
+        </MuiAlert>
+      </Snackbar>
 
       </Box>
-
-
-
 
       <Box className="Box-select">
         <p className="disciplinaSelecionada"> Filtre seu Desempenho por Disciplina:</p>
@@ -554,9 +565,6 @@ function MeuPerfil() {
       ) : (
         <p className="disciplinaSelecionada"></p>
       )}
-
-
-
 
       <Box sx={{marginBottom: "1em"}}className="Box-select">
         <p className="disciplinaSelecionada"> Filtre seu Desempenho por Banca:</p>

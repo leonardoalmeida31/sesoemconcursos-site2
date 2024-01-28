@@ -36,6 +36,7 @@ import {
 } from "@mui/material";
 import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
 import PollOutlinedIcon from '@mui/icons-material/PollOutlined';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { TextField, TextareaAutosize } from "@mui/material";
 import Collapse from "@mui/material/Collapse";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -1060,7 +1061,7 @@ function Home() {
           <Box >
 
             {questoesPagina.map((question) => (
-              <div key={question.id} className="question-container">
+              <div key={question.id} >
                 <Box
                   sx={{
                     backgroundColor: '#1c5253',
@@ -1072,7 +1073,7 @@ function Home() {
                     overflowY: 'hidden',
                     maxWidth: '100%', // Garante que o Box se expanda horizontalmente
                   }}
-                  
+
                 >
                   <Typography
                     style={{
@@ -1098,14 +1099,14 @@ function Home() {
                       overflowY: 'hidden',
                       maxWidth: '100%', // Garante que o Box se expanda horizontalmente
                     }}
-                   
+
                   >
                     <Typography style={{ whiteSpace: 'nowrap', paddingTop: '0.500em', paddingLeft: '0.300em', fontFamily: 'Poppins', fontSize: '0.800em', textAlign: 'left', color: '#1c5253', fontWeight: '500' }}>Banca: &nbsp;{question.banca}
                       &nbsp;&nbsp;&nbsp;&nbsp;Ano: &nbsp;{question.ano}
                       &nbsp;&nbsp;&nbsp;&nbsp;Cargo: &nbsp;{question.cargo}
                       &nbsp;&nbsp;&nbsp;&nbsp;Órgão: &nbsp;{question.concurso}&nbsp;&nbsp;
                     </Typography>
-                    
+
                   </Box>
                   <Box style={{ height: '2px', backgroundColor: '#1c525341', margin: '10px 0' }}></Box>
                   <p className="enunciado">{question.enunciado}</p>
@@ -1176,9 +1177,6 @@ function Home() {
                     )}
                   </div>
 
-
-
-
                 </Box >
 
                 <Box sx={{ display: "flex", flexDirection: "row", color: "#1c5253", alignItems: "flex-start", overflowX: 'auto', maxWidth: '100%', overflowY: 'hidden', justifyContent: 'flex-start', }}>
@@ -1206,7 +1204,22 @@ function Home() {
                     <EstatisticasQuestao key={question.id} questionId={question.ids} />
                   )}
 
-
+                  <IconButton sx={{ color: '#1c5253', padding: '0.700em' }}>
+                    <a
+                      href="https://chat.whatsapp.com/E4ANUZMGtFIKajR7qqzBxI"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ display: 'flex', textDecoration: 'none' }}
+                    >
+                      <WhatsAppIcon fontSize="small" sx={{ color: '#1c5253', backgroundColor: 'transparent' }} />
+                      <Typography
+                        sx={{ fontSize: '0.550em', color: '#1c5253', marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500' }}
+                        color="error"
+                      >
+                        Grupo de Estudos
+                      </Typography>
+                    </a>
+                  </IconButton>
                 </Box>
 
 

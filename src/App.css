@@ -6,7 +6,6 @@
     align-items: center;
     justify-content: center;
    
-   
   }
   .div-menu {
     display: flex;
@@ -20,11 +19,10 @@
     margin-top: 0;
     padding: 0;
     
-   
   }
   @media (max-width: 767px) {
     .fundo-Home {
-      padding: 1em;
+      padding: 0em;
       width: 100%;
       display: flex;
       justify-content: center;
@@ -162,30 +160,28 @@
 
 .logout-button:hover {
   color: #ff6600;
-}
-
-
-  
+}  
   
   .enunciado {
     font-size: 0.875em; /* 14 px de font */
     font-weight: 400;
-    font-family: Poppins;
-  
-    margin-left: 1em;
-    margin-right: 0.200em;
+    font-family: "Poppins";
+    text-align: left;
+    margin-left: 0.700em;
+    margin-right: 0.700em;
     white-space: pre-line; /* Adiciona quebras de linha */
     justify-content: flex-start;
-    padding: 0.300em;
+
   }
   
 
   .alternativa {
     cursor: pointer;
-    padding-left: 1em; /* Adiciona espaço para a letra */
+   
     border-radius: 5px;
-    text-align: left;
-    margin: 15px;
+    text-align: "left";
+    margin: 0.700em;
+    font-family: "Poppins";
     font-size: 0.865em;
     font-weight: 400;
   }

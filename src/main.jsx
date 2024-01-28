@@ -19,6 +19,7 @@ import GrupoWhats from './pages/GrupoWhats.jsx'
 
 
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Router>
     <React.StrictMode>
@@ -35,7 +36,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/Assinatura" element={<Assinatura />} />
         <Route path="/PlanosDeEstudos" element={<PlanosDeEstudos />} />
         <Route path="/GrupoWhats" element={<GrupoWhats />} />
-       
+  
+        
       
       </Routes>
     </React.StrictMode>
