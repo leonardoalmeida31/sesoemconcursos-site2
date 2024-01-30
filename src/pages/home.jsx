@@ -1109,7 +1109,8 @@ function Home() {
 
                   </Box>
                   <Box style={{ height: '2px', backgroundColor: '#1c525341', margin: '10px 0' }}></Box>
-                  <p className="enunciado">{question.enunciado}</p>
+                  <p className="enunciado" dangerouslySetInnerHTML={{ __html: question.enunciado }}></p>
+
                   <ul>
                     {question.alternativas.map((alternativa, index) => {
                       const letraAlternativa =
@@ -1122,21 +1123,15 @@ function Home() {
 
                       return (
                         <li
-                          className={`alternativa ${isSelected ? "selecionada" : ""
-                            } ${isRiscada ? "riscado" : ""}`}
+                          className={`alternativa ${isSelected ? "selecionada" : ""} ${isRiscada ? "riscado" : ""}`}
                           key={index}
-                          onClick={() =>
-                            handleAlternativaClick(question.ids, index)
-                          }
+                          onClick={() => handleAlternativaClick(question.ids, index)}
                         >
                           <Box
-                            className={`icon-container ${isRiscada ? "riscado" : ""
-                              }`}
+                            className={`icon-container ${isRiscada ? "riscado" : ""}`}
                           >
                             <ContentCutRoundedIcon style={{ color: '#1c5253', fontSize: "small" }}
-                              className={`tesoura-icon ${isRiscada ? "riscado" : ""
-                                }`}
-
+                              className={`tesoura-icon ${isRiscada ? "riscado" : ""}`}
                               onClick={(e) => {
                                 e.stopPropagation();
                                 handleRiscarAlternativa(question.ids, index);
@@ -1145,13 +1140,13 @@ function Home() {
                           </Box>
 
                           <span
-                            className={`letra-alternativa-circle ${isSelected ? "selecionada" : ""
-                              }`}
+                            className={`letra-alternativa-circle ${isSelected ? "selecionada" : ""}`}
                           >
                             {letraAlternativa}
                           </span>
-                          {alternativa.replace(/^\(([A-E])\)/, "")}
+                          <span dangerouslySetInnerHTML={{ __html: alternativa.replace(/^\(([A-E])\)/, "") }} />
                         </li>
+
                       );
                     })}
                   </ul>
