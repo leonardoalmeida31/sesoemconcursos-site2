@@ -14,8 +14,7 @@ import CadastroD from './pages/CadastroD.jsx'
 import Assinatura from './pages/Assinatura.jsx'
 import PlanosDeEstudos from './pages/PlanosDeEstudos.jsx'
 import GrupoWhats from './pages/GrupoWhats.jsx'
-
-
+import Aulas from './pages/Aulas.jsx'
 
 
 
@@ -36,6 +35,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/Assinatura" element={<Assinatura />} />
         <Route path="/PlanosDeEstudos" element={<PlanosDeEstudos />} />
         <Route path="/GrupoWhats" element={<GrupoWhats />} />
+        <Route path="/Aulas" element={<Aulas />} />
+   
   
         
       

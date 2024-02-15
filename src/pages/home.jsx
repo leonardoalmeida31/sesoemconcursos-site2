@@ -73,6 +73,7 @@ import { getDatabase, ref, onValue } from "firebase/database";
 import "firebase/database";
 import { useParams } from "react-router-dom";
 import Comentarios from "./Comentarios.jsx";
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_REACT_APP_API_KEY,
@@ -97,7 +98,6 @@ function Home() {
   // const questionsCollectionRef = collection(db, "questions");
   const [user, setUser] = useState(null);
   const [questoesPorPagina, setQuestoesPorPagina] = useState(5); // Defina o valor padrão como 10
-
   const [questions, setQuestions] = useState([]);
   const [paginaAtual, setPaginaAtual] = useState(1);
   const [questoesFiltradas, setQuestoesFiltradas] = useState([]);
@@ -109,7 +109,6 @@ function Home() {
   const [filtroArea, setFiltroArea] = useState(null);
   const indiceInicial = (paginaAtual - 1) * questoesPorPagina;
   const isMobile = useMediaQuery('(max-width: 600px)');
-
   const [questionsToShow, setQuestionsToShow] = useState([]);
   const [maxQuestionsToDisplay, setMaxQuestionsToDisplay] = useState(0);
   const [answeredCount, setAnsweredCount] = useState(0);
@@ -785,6 +784,13 @@ function Home() {
                       <Typography textAlign="center">{page}</Typography>
                     </MenuItem>
                   ))}
+                 <MenuItem>
+                    <Link to="/Aulas" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
+                      <Typography sx={{ color: "black" }}>
+                        Aulas
+                      </Typography>
+                    </Link>
+                  </MenuItem>
                   <MenuItem>
                     <Link to="/Discursivas" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
                       <Typography sx={{ color: "black" }}>
@@ -850,6 +856,11 @@ function Home() {
                     </Button>
                   </Link>
                 ))}
+                <MenuItem>
+                  <Link to="/Aulas" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
+                    <Button sx={{ color: "white", fontSize: '0.800em' }}>Aulas</Button>
+                  </Link>
+                </MenuItem>
                 <MenuItem>
                   <Link to="/Discursivas" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
                     <Button sx={{ color: "white", fontSize: '0.800em' }}>DISCURSIVAS</Button>
@@ -1086,10 +1097,14 @@ function Home() {
                       fontSize: '0.800em',
                       fontWeight: '400',
                       textAlign: 'left', // Alteração para alinhar à esquerda
+                      display: 'inline-flex', // Exibir o conteúdo em linha
                     }}
                   >
-                    &nbsp;&nbsp;ID: {question.ids}&nbsp;&nbsp;&nbsp;{question.disciplina}&nbsp;&nbsp;&nbsp;{question.assunto}&nbsp;&nbsp;
+                    &nbsp;&nbsp;
+                    ID: {question.ids}&nbsp;&nbsp;&nbsp;{question.disciplina}
+                    <ArrowRightIcon />{question.assunto}&nbsp;&nbsp;
                   </Typography>
+
                 </Box>
 
                 <Box sx={{ borderLeft: "1px solid #1c52531e", borderRight: "1px solid #1c52531e", borderBottom: "1px solid #1c52531e", }}>
@@ -1328,7 +1343,15 @@ function Home() {
                 </Link>
               </p>
               <p className="Texto-Rodapé">Quem Somos</p>
-              <p className="Texto-Rodapé">Como usar o SESO em Concursos</p>
+              <p className="Texto-Rodapé">
+                <Link
+                  to="https://www.youtube.com/watch?v=2evADTh1FAY&t=1s"
+                  target="_blank"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  Como usar o SESO em Concursos
+                </Link>
+              </p>
             </Box>
 
             <Box className="Box-Rodapé">
@@ -1356,7 +1379,15 @@ function Home() {
                   Ranking de Desempenho
                 </Link>
               </p>
-              <p className="Texto-Rodapé">Como usar o SESO em Concursos</p>
+              <p className="Texto-Rodapé">
+                <Link
+                  to="https://www.youtube.com/watch?v=2evADTh1FAY&t=1s"
+                  target="_blank"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  Como usar o SESO em Concursos
+                </Link>
+              </p>
             </Box>
 
             <Box className="Box-Rodapé">
@@ -1369,9 +1400,21 @@ function Home() {
                   Instagram
                 </Link>
               </p>
-              <p className="Texto-Rodapé">Aulas</p>
+              <p className="Texto-Rodapé">
+                <Link to="/Aulas" style={{ textDecoration: "none", color: "white", }}>
+                  Aulas
+                </Link>
+              </p>
               <p className="Texto-Rodapé">Planos de Estudos</p>
-              <p className="Texto-Rodapé">Como usar o SESO em Concursos</p>
+              <p className="Texto-Rodapé">
+                <Link
+                  to="https://www.youtube.com/watch?v=2evADTh1FAY&t=1s"
+                  target="_blank"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  Como usar o SESO em Concursos
+                </Link>
+              </p>
             </Box>
 
             <Box className="Box-Rodapé1">
