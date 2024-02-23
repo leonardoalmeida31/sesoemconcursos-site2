@@ -50,6 +50,7 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
+import LaptopChromebookIcon from '@mui/icons-material/LaptopChromebook';
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useMediaQuery } from '@mui/material';
@@ -799,6 +800,13 @@ function Home() {
                     </Link>
                   </MenuItem>
                   <MenuItem>
+                    <Link to="/Mentorias" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
+                      <Typography sx={{ color: "black" }}>
+                        Mentoria
+                      </Typography>
+                    </Link>
+                  </MenuItem>
+                  <MenuItem>
                     <Link to="/MeuPerfil" style={{ textDecoration: "none" }}>
                       <Typography sx={{ color: "black" }}>
                         Meu Desempenho
@@ -864,6 +872,11 @@ function Home() {
                 <MenuItem>
                   <Link to="/Discursivas" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
                     <Button sx={{ color: "white", fontSize: '0.800em' }}>DISCURSIVAS</Button>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link to="/Mentorias" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
+                    <Button sx={{ color: "white", fontSize: '0.800em' }}>MENTORIA</Button>
                   </Link>
                 </MenuItem>
                 <MenuItem>
@@ -1137,7 +1150,7 @@ function Home() {
                         false;
 
                       return (
-                        <li
+                        <Typography sx={{margin: '0.500em', fontFamily: 'Poppins, Arial', fontSize: '0.900em', padding: '0.100em', color: 'black', }}
                           className={`alternativa ${isSelected ? "selecionada" : ""} ${isRiscada ? "riscado" : ""}`}
                           key={index}
                           onClick={() => handleAlternativaClick(question.ids, index)}
@@ -1145,7 +1158,7 @@ function Home() {
                           <Box
                             className={`icon-container ${isRiscada ? "riscado" : ""}`}
                           >
-                            <ContentCutRoundedIcon style={{ color: '#1c5253', fontSize: "small" }}
+                            <ContentCutRoundedIcon style={{ color: '#1c5253', fontSize: "small",  }}
                               className={`tesoura-icon ${isRiscada ? "riscado" : ""}`}
                               onClick={(e) => {
                                 e.stopPropagation();
@@ -1160,7 +1173,7 @@ function Home() {
                             {letraAlternativa}
                           </span>
                           <span dangerouslySetInnerHTML={{ __html: alternativa.replace(/^\(([A-E])\)/, "") }} />
-                        </li>
+                        </Typography>
 
                       );
                     })}
@@ -1213,6 +1226,22 @@ function Home() {
                   {paymentInfo !== null && (
                     <EstatisticasQuestao key={question.id} questionId={question.ids} />
                   )}
+                   <IconButton sx={{ color: '#1c5253', padding: '0.700em' }}>
+                    <a
+                      href="/Mentorias"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ display: 'flex', textDecoration: 'none' }}
+                    >
+                      <LaptopChromebookIcon fontSize="small" sx={{ color: '#1c5253', backgroundColor: 'transparent' }} />
+                      <Typography
+                        sx={{ fontSize: '0.550em', color: '#1c5253', marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500' }}
+                        color="error"
+                      >
+                        Faça uma Mentoria
+                      </Typography>
+                    </a>
+                  </IconButton>
 
                   <IconButton sx={{ color: '#1c5253', padding: '0.700em' }}>
                     <a
