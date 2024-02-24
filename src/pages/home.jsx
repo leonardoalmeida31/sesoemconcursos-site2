@@ -768,13 +768,13 @@ function Home() {
             <Toolbar disableGutters>
               {/*<Avatar alt="SESO Logo" src={SESOLogo}   sx={{  width: 40,  height: 40,   marginRight: "0.100em",  }}
       />*/}
-              <Typography variant="h6" noWrap component="a" href="/" sx={{ mr: 3, display: { xs: "none", md: "flex" }, fontFamily: "Poppins", fontWeight: 500, letterSpacing: ".1rem", color: "inherit", textDecoration: "none", }}
+              <Typography  noWrap component="a" href="/" sx={{ mr: 1, display: { xs: "none", md: "flex" }, fontFamily: "Poppins", fontWeight: 500, letterSpacing: "-0.01rem",  color: "inherit", textDecoration: "none", }}
               >
                 SESO em Concursos
               </Typography>
 
               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-                <IconButton size="large" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenNavMenu} color="inherit"
+                <IconButton size="medium" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenNavMenu} color="inherit"
                 >
                   <MenuIcon />
                 </IconButton>
@@ -787,46 +787,44 @@ function Home() {
                   ))}
                  <MenuItem>
                     <Link to="/Aulas" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
-                      <Typography sx={{ color: "black" }}>
-                        Aulas
-                      </Typography>
+                      <Typography sx={{ color: "black",  }}>
+                        Aulas</Typography>
                     </Link>
                   </MenuItem>
-                  <MenuItem>
+                  <MenuItem sx={{  marginRight: "-.5em"}}>
                     <Link to="/Discursivas" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
-                      <Typography sx={{ color: "black" }}>
-                        Discursivas
-                      </Typography>
+                      <Typography sx={{ color: "black", marginRight: "-.5em" }}>
+                        Discursivas</Typography>
                     </Link>
                   </MenuItem>
-                  <MenuItem>
+                  <MenuItem sx={{  marginRight: "-.5em"}}>
                     <Link to="/Mentorias" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
-                      <Typography sx={{ color: "black" }}>
+                      <Typography sx={{ color: "black",  }}>
                         Mentoria
                       </Typography>
                     </Link>
                   </MenuItem>
-                  <MenuItem>
+                  <MenuItem sx={{  marginRight: "-.5em"}}>
                     <Link to="/MeuPerfil" style={{ textDecoration: "none" }}>
-                      <Typography sx={{ color: "black" }}>
+                      <Typography sx={{ color: "black", }}>
                         Meu Desempenho
                       </Typography>
                     </Link>
                   </MenuItem>
-                  <MenuItem>
+                  <MenuItem sx={{  marginRight: "-.5em"}}>
                     <Link
                       to="/RankingDesempenho"
                       style={{ textDecoration: "none" }}
                     >
-                      <Typography sx={{ color: "black" }}>Ranking</Typography>
+                      <Typography sx={{ color: "black",  }}>Ranking</Typography>
                     </Link>
                   </MenuItem>
-                  <MenuItem>
+                  <MenuItem sx={{  marginRight: "-.5em"}}>
                     <Link
                       to="/Assinatura"
                       style={{ textDecoration: "none" }}
                     >
-                      <Typography sx={{ color: "black" }}>
+                      <Typography sx={{ color: "black", }}>
                         Assinar com Cartão
                       </Typography>
                     </Link>
@@ -836,7 +834,7 @@ function Home() {
                       to="/AssinaturaPix"
                       style={{ textDecoration: "none" }}
                     >
-                      <Typography sx={{ color: "black" }}>
+                      <Typography sx={{ color: "black",  }}>
                         Assinar com Pix
                       </Typography>
                     </Link>
@@ -844,8 +842,8 @@ function Home() {
                 </Menu>
               </Box>
 
-              <Typography variant="h6" noWrap component="a" href="/" sx={{
-                mr: 2, display: { xs: "flex", md: "none" }, flexGrow: 1, fontFamily: "Poppins", fontWeight: 500, letterSpacing: ".1rem", color: "inherit",
+              <Typography  noWrap component="a" href="/" sx={{
+                mr: 3, display: { xs: "flex", md: "none" }, flexGrow: 1, fontFamily: "Poppins", fontWeight: 500, letterSpacing: ".1rem", color: "inherit",
                 textDecoration: "none",
               }}
               >
@@ -866,22 +864,22 @@ function Home() {
                 ))}
                 <MenuItem>
                   <Link to="/Aulas" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
-                    <Button sx={{ color: "white", fontSize: '0.800em' }}>Aulas</Button>
+                    <Button sx={{ color: "white", fontSize: '0.800em', marginRight: "-.7em" }}>Aulas</Button>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/Discursivas" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
-                    <Button sx={{ color: "white", fontSize: '0.800em' }}>DISCURSIVAS</Button>
+                    <Button sx={{ color: "white", fontSize: '0.800em', marginRight: "-.7em" }}>DISCURSIVAS</Button>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/Mentorias" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
-                    <Button sx={{ color: "white", fontSize: '0.800em' }}>MENTORIA</Button>
+                    <Button sx={{ color: "white", fontSize: '0.800em', marginRight: "-.7em" }}>MENTORIA</Button>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/MeuPerfil" style={{ textDecoration: "none" }}>
-                    <Button sx={{ color: "white", fontSize: '0.800em' }}>Meu Desempenho</Button>
+                    <Button sx={{ color: "white", fontSize: '0.800em', marginRight: "-.7em" }}>Meu Desempenho</Button>
                   </Link>
                 </MenuItem>
                 <MenuItem>
@@ -889,17 +887,17 @@ function Home() {
                     to="/RankingDesempenho"
                     style={{ textDecoration: "none" }}
                   >
-                    <Button sx={{ color: "white", fontSize: '0.800em' }}>Ranking</Button>
+                    <Button sx={{ color: "white", fontSize: '0.800em', marginRight: "-.7em" }}>Ranking</Button>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/Assinatura" style={{ textDecoration: "none" }}>
-                    <Button sx={{ color: "white", fontSize: '0.800em' }}>Assinar com Cartão</Button>
+                    <Button sx={{ color: "white", fontSize: '0.800em', marginRight: "-.7em" }}>Assinar com Cartão</Button>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/AssinaturaPix" style={{ textDecoration: "none" }}>
-                    <Button sx={{ color: "white", fontSize: '0.800em' }}>Assinar com Pix</Button>
+                    <Button sx={{ color: "white", fontSize: '0.800em', marginRight: "-.7em" }}>Assinar com Pix</Button>
                   </Link>
                 </MenuItem>
               </Box>

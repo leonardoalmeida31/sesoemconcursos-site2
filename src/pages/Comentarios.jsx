@@ -30,7 +30,7 @@ import ThumbDownOffAltOutlinedIcon from '@mui/icons-material/ThumbDownOffAltOutl
 import ReactMarkdown from 'react-markdown';
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-
+import './Comentarios.css';
 
 const Comentarios = ({ question, db, user }) => {
   const [comentario, setComentario] = useState("");
@@ -283,6 +283,7 @@ const Comentarios = ({ question, db, user }) => {
   };
 
 
+
   const handleBoldText = () => {
     const textArea = document.getElementById("comment-input");
     const startPos = textArea.selectionStart;
@@ -297,29 +298,37 @@ const Comentarios = ({ question, db, user }) => {
     setComentario(newText);
   };
 
+
+  
   const modules = {
     toolbar: {
       container: [
-        [{ 'header': [1, 2, false] }],
+        [{ font: [] }],
+        [{ 'header': [1, 2, 3, 4, false] }],
         ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-        [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
        
+        [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+        ['video'], // Adicione o módulo de vídeo
         ['clean'],
         [{ 'color': [] }, { 'background': [] }], // Adicione as opções de seleção de cores
+        
       ],
     },
+
   };
 
   const styles = {
     backgroundColor: "#FFFFFF", // Defina a cor de fundo como branco
     color: "#000000", // Defina a cor do texto como preto
-   
+
     border: "1px solid #ccc", // Adicione uma borda
     borderRadius: "7px", // Adicione bordas arredondadas
     padding: "10px", // Adicione preenchimento interno
     // Adicione outros estilos conforme necessário
+    
   };
 
+  
   return (
     <Box className="app-container">
       <Typography variant="h7">Comentários relevantes</Typography>
@@ -405,6 +414,7 @@ const Comentarios = ({ question, db, user }) => {
           onChange={handleCommentChange}
           modules={modules}
           style={styles}
+       
         />
 
 
