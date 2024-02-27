@@ -759,7 +759,7 @@ function Home() {
 
 
   return (
-    <div className="Home">
+   <Box>
       {user && (
         <AppBar
           sx={{ backgroundColor: "#1c5253", marginBottom: "1em" }} position="static"
@@ -954,14 +954,15 @@ function Home() {
       )}
 
       {user && (
-        <div>
+        <Container>
           <Typography sx={{ fontSize: '0.875em', fontWeight: '400', fontFamily: 'Poppins', textAlign: "center", padding: '1em', paddingTop: '0.400em', color: "#1c5253" }}>
             A única plataforma de Questões de concursos especializada em Serviço Social
           </Typography>
           <FiltroMulti onFilterChange={setQuestoesFiltradas} setPaginaAtual={setPaginaAtual} db={db} />
-        </div>
+        </Container>
       )}
-      <Container className="fundo-Home">
+  <Container sx={{padding: '0em', maxWidth: 'false'}} className="fundo-Home">
+
         <div className="logout-button-container">
           <Modal
             open={modalOpen}
@@ -1058,7 +1059,7 @@ function Home() {
         {user && (
 
           <Box sx={{
-            marginTop: '3em', display: 'flex',
+            marginTop: '2.2em', display: 'flex',
             flexDirection: isMobile ? 'column' : 'row',
           }} border="1px solid #ccc" borderRadius={1} padding={2}>
             <Select
@@ -1450,7 +1451,7 @@ function Home() {
           </Box>
         )}
       </Container>
-    </div>
+    </Box>
   );
 }
 

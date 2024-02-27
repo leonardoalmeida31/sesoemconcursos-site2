@@ -902,18 +902,18 @@ function Aulas() {
                     <Typography sx={{ fontSize: '1em', fontWeight: 'bold', fontFamily: 'Poppins', textAlign: "center", paddingTop: '0.400em', color: "#1c5253" }}>
                         Página Oficial de Vídeo Aulas do SESO em Concursos
                     </Typography>
-                  
+
 
 
                     {paymentInfo === null ? (
                         <div>
                             <p><br></br></p>
-                          
+
                         </div>
                     ) : (
                         <>
                             <Typography sx={{ fontSize: '1em', fontWeight: 'bold', fontFamily: 'Poppins', textAlign: "center", paddingTop: '2em', color: "#1c5253" }}>
-                               ESTATUTO DA CRIANÇA E DO ADOLESCENTE:
+                                ESTATUTO DA CRIANÇA E DO ADOLESCENTE:
                             </Typography>
 
                             <Box
@@ -928,14 +928,15 @@ function Aulas() {
                                 <iframe
                                     width="854"
                                     height="480"
-                                    src="https://www.youtube.com/embed/RIXOLpIqSQc?si=LYRbvPrYZxlhSo_M"
+                                    src="https://www.youtube.com/embed/RIXOLpIqSQc?start=120"
                                     title="YouTube video player"
                                     frameBorder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     allowFullScreen
                                 ></iframe>
+
                             </Box>
-                           
+
                         </>
                     )}
                 </Box>
@@ -1036,9 +1037,9 @@ function Aulas() {
                 </div>
 
 
-           
 
-                    
+
+
 
                 {user ? (
 

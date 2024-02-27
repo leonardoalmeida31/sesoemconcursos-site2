@@ -303,19 +303,18 @@ const Comentarios = ({ question, db, user }) => {
   const modules = {
     toolbar: {
       container: [
-        [{ font: [] }],
+        [{ font: ['Poppins', 'Arial'] }], // Adicione as fontes Poppins e Arial ao seletor de fontes
         [{ 'header': [1, 2, 3, 4, false] }],
         ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-       
         [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
-        ['video'], // Adicione o módulo de vídeo
+        ['video'],
         ['clean'],
-        [{ 'color': [] }, { 'background': [] }], // Adicione as opções de seleção de cores
-        
+        [{ 'color': [] }, { 'background': [] }],
       ],
     },
-
   };
+  
+  
 
   const styles = {
     backgroundColor: "#FFFFFF", // Defina a cor de fundo como branco

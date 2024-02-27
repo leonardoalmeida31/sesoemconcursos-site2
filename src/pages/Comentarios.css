@@ -1,8 +1,8 @@
 /* Para dispositivos com largura de tela até 600px */
 @media screen and (max-width: 600px) {
     .ql-video {
-        width: 100%;
-        height: auto;
+        width: 300px;
+        height: 180px;
     }
 }
 

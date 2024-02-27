@@ -140,9 +140,11 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           );
           
 
-        const keywordsMatch =
-          keywords.trim() === "" ||
-          item.enunciado.toLowerCase().includes(keywords.toLowerCase());
+          const keywordsMatch =
+        keywords.trim() === "" ||
+        item.enunciado.toLowerCase().includes(keywords.toLowerCase()) ||
+        item.ids.toString().includes(keywords)
+
 
         return (
           disciplinaMatch &&

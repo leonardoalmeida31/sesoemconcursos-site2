@@ -3,8 +3,8 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 10px;
-    padding-left: 5.5em;
-    padding-right: 5.5em;
+    padding-left: 2.5em;
+    padding-right: 2.5em;
     padding-top: 3em;
     padding-bottom: 3em;
     border-radius: 5px;
@@ -34,16 +34,17 @@
     }
   }
   .div-filter {
-    width: 26em; /* Largura padrão para cada filtro */
+    width: 24em; /* Largura padrão para cada filtro */
     margin-right: 0.100em; /* Espaçamento entre os filtros */
     display: flex;
     flex-direction: column;
     font-size: 0.875em;
     justify-content: center;  
+    font-family: 'Poppins';
     align-items: center;
   }
   .div-filter2 {
-    width: 22.08em; /* Largura padrão para cada filtro */
+    width: 20.3em; /* Largura padrão para cada filtro */
     margin-right: 0.450em; /* Espaçamento entre os filtros */
     margin-left: 0.300em; /* Espaçamento entre os filtros */
     justify-content: center;  
@@ -119,7 +120,7 @@
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
-    font-family: Poppins;
+    font-family: 'Poppins';
     font-weight: 500;
     font-size: 0.875em; /* Tamanho de fonte responsivo em pixels */
   }
