@@ -6,7 +6,21 @@ import Box from "@mui/material/Box";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { getDocs, collection } from "firebase/firestore";
-
+import Container from "@mui/material/Container";
+import {
+  Modal,
+  Button,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  Paper,
+  ListItem,
+  List,
+  ListItemText
+} from "@mui/material";
 import { getDatabase, ref, onValue } from 'firebase/database'
 
 function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
@@ -22,7 +36,7 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
   const [filteredQuestoes, setFilteredQuestoes] = useState([]);
   const [keywords, setKeywords] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-
+  const [totalQuestions, setTotalQuestions] = useState(0); // Novo estado para armazenar o número total de questões
 
   useEffect(() => {
     const questionsRef = ref(getDatabase(firebaseApp), 'questions');
@@ -38,12 +52,15 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           }));
 
           setQuestions(questionArray);
+          setTotalQuestions(questionArray.length); // Atualize o número total de questões
+          handleFilterClick(questionArray);
         }
       });
     };
 
     fetchData();
   }, [firebaseApp]);
+
 
   const handleDisciplinasChange = (selectedDisciplinas) => {
     setSelectedDisciplinas(selectedDisciplinas);
@@ -115,8 +132,8 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
   }));
 
 
-  const handleFilterClick = () => {
-    const filteredQuestoes = questions
+  const handleFilterClick = (questionsToFilter = questions) => {
+    const filteredQuestoes = questionsToFilter
       .filter((item) => {
         const disciplinaMatch =
           selectedDisciplinas.length === 0 ||
@@ -159,13 +176,13 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
       })
 
       // Embaralhar aleatoriamente as questões
-  const shuffledQuestoes = filteredQuestoes.sort(() => Math.random() - 0.5);
+      const shuffledQuestoes = filteredQuestoes.sort(() => Math.random() - 0.5);
 
-    setFilteredQuestoes(filteredQuestoes);
-    onFilterChange(filteredQuestoes);
-    setPaginaAtual(1); // Redefina a página para 1 usando a prop
-
-  };
+      setFilteredQuestoes(filteredQuestoes);
+      onFilterChange(filteredQuestoes);
+      setPaginaAtual(1);
+  
+    };
 
   // Antes de renderizar o componente Select "Banca", ordene o array bancaOptions em ordem alfabética.
   const sortedBancaOptions = bancaOptions.slice().sort((a, b) => a.label.localeCompare(b.label));
@@ -175,7 +192,8 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
 
 
   return (
-    <div className="filter-container">
+    <Box className="filter-container" sx={{ display: 'flex', flexWrap: 'wrap' }}>
+
       <Box className="div-filter2">
         <TextField
           type="text"
@@ -311,15 +329,26 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           }}
         />
       </div>
+   
       <div>
-        <div className="div-button">
-          <button className="filter-button" onClick={handleFilterClick}>
-            Filtrar Questões
-          </button>
-        </div>
-      </div>
+        <Box sx={{ flexDirection: 'column', paddingLeft: '12em' }} className="div-button">
+        <button className="filter-button" onClick={() => handleFilterClick(questions)}>
+  Filtrar Questões
+</button>
 
-    </div>
+        </Box>
+      </div>
+  <Box sx={{ flexDirection: 'column', paddingTop: '0.500em', paddingBottom: '2em' }}>
+      <Typography sx={{ fontFamily: 'Poppins', fontSize: '0.850em', fontWeight: '400', backgroundColor: 'white', color: 'black', padding: '0.500em', borderRadius: '5px', marginBottom: '0.300em' }}>
+        {`${totalQuestions.toLocaleString()}  Questões no Site`}</Typography>
+
+      <Typography sx={{ fontFamily: 'Poppins', fontSize: '0.850em', fontWeight: '500', backgroundColor: 'white', color: 'black', padding: '0.500em', borderRadius: '5px'  }}>
+        {`${filteredQuestoes.length.toLocaleString()}  Questões filtradas`}
+      </Typography>
+    </Box>
+
+  </Box>
+    
   );
 }
 

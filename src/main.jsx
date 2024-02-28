@@ -16,6 +16,7 @@ import PlanosDeEstudos from './pages/PlanosDeEstudos.jsx'
 import GrupoWhats from './pages/GrupoWhats.jsx'
 import Aulas from './pages/Aulas.jsx'
 import Mentorias from './pages/Mentorias.jsx'
+import EstatisticasSite from './pages/EstatisticasSite.jsx'
 
 
 
@@ -38,6 +39,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/GrupoWhats" element={<GrupoWhats />} />
         <Route path="/Aulas" element={<Aulas />} />
         <Route path="/Mentorias" element={<Mentorias />} />
+        <Route path="/EstatisticasSite" element={<EstatisticasSite />} />
    
   
         
