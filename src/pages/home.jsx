@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import MenuMui from "../MenuMui.jsx";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
+import BrushIcon from '@mui/icons-material/Brush';
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
@@ -758,8 +759,206 @@ function Home() {
 
 
 
+  // Função para riscar o texto selecionado
+  function riscarTexto() {
+    var selection = window.getSelection().getRangeAt(0);
+    var selectedText = selection.extractContents();
+    var span = document.createElement("span");
+    span.style.textDecoration = "line-through";
+    span.appendChild(selectedText);
+    selection.insertNode(span);
+  }
+
+  // Função para destacar o texto selecionado
+  function destacarTexto(cor) {
+    var selection = window.getSelection().getRangeAt(0);
+    var selectedText = selection.extractContents();
+    var span = document.createElement("span");
+    span.style.backgroundColor = cor;
+    span.appendChild(selectedText);
+    selection.insertNode(span);
+  }
+
+  // Função para alterar a cor do texto selecionado
+  function alterarCorTexto(cor) {
+    var selection = window.getSelection().getRangeAt(0);
+    var selectedText = selection.extractContents();
+    var span = document.createElement("span");
+    span.style.color = cor;
+    span.appendChild(selectedText);
+    selection.insertNode(span);
+  }
+
+  // Função para apagar todas as ações realizadas em todos os textos
+  function apagarAcoes() {
+    var spans = document.querySelectorAll("span");
+    spans.forEach(function (span) {
+      span.removeAttribute("style");
+    });
+  }
+
+  // Adiciona um ouvinte de eventos para o evento de clique direito
+  document.addEventListener("contextmenu", function (event) {
+    event.preventDefault();
+
+    // Cria o menu de contexto
+    var menu = document.createElement("div");
+    menu.style.width = "auto";
+    menu.style.height = "auto";
+    menu.style.backgroundColor = "#EEF2F2";
+    menu.style.border = "2px inset #1C5253";
+    menu.style.borderRadius = "7px";
+    menu.style.padding = "10px";
+    menu.style.position = "fixed";
+    menu.style.top = event.clientY + "px";
+    menu.style.left = event.clientX + "px";
+    menu.style.zIndex = "1000";
+    // Adicionado para permitir que os botões sejam ajustados em várias linhas se necessário
+
+     // Título do menu
+     var titulo = document.createElement("div");
+     titulo.textContent = "Personalize sua Questão:";
+     titulo.style.fontWeight = "bold";
+     titulo.style.marginBottom = "10px";
+     titulo.style.fontSize = "14px";
+     titulo.style.fontFamily = "Poppins";
+     menu.appendChild(titulo);
+
+    // Adiciona opções ao menu
+    var riscar = document.createElement("img");
+    riscar.src = "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Fsinal-de-interface-de-texto-tachado.png?alt=media&token=5a05f348-7648-4441-8ac6-9e53bad0114d";
+    riscar.style.width = "30px"; // Substitua '20px' pela largura desejada
+    riscar.style.height = "30px";
+    riscar.style.marginRight = "15px";
+    riscar.addEventListener("mouseover", function () {
+      riscar.style.transition = "all 0.5s ease-in-out";
+      riscar.style.transform = "scale(1.3)";
+    });
+    
+    riscar.addEventListener("mouseout", function () {
+      riscar.style.transition = "all 0.5s ease-in-out";
+      riscar.style.transform = "scale(1)";
+    });
+    riscar.onclick = riscarTexto;
+    menu.appendChild(riscar);
+
+
+    var destacarAmarelo = document.createElement("img"); // Use 'img' em vez de 'button'
+    destacarAmarelo.src = "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Feditor-de-texto-amarelo.png?alt=media&token=0e1d4b61-2f29-4f3e-9992-f73f30a17827"; // Substitua isso pelo caminho do seu ícon
+    destacarAmarelo.style.width = "30px"; // Substitua '20px' pela largura desejada
+    destacarAmarelo.style.height = "30px"; // Substitua '20px' pela altura desejada
+    destacarAmarelo.style.marginRight = "15px";
+    destacarAmarelo.addEventListener("mouseover", function () {
+      destacarAmarelo.style.transition = "all 0.5s ease-in-out";
+      destacarAmarelo.style.transform = "scale(1.3)";
+    });
+    
+    destacarAmarelo.addEventListener("mouseout", function () {
+      destacarAmarelo.style.transition = "all 0.5s ease-in-out";
+      destacarAmarelo.style.transform = "scale(1)";
+    });
+    destacarAmarelo.onclick = function () { destacarTexto("yellow"); };
+    menu.appendChild(destacarAmarelo); // Adicionado ao menu
+
+    var destacarVermelho = document.createElement("img"); // Use 'img' em vez de 'button'
+    destacarVermelho.src = "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Feditor-de-texto-vermelho.png?alt=media&token=142759b0-73bf-4b7c-9e7b-160050b10792"; // Substitua isso pelo caminho do seu ícon
+    destacarVermelho.style.width = "30px"; // Substitua '20px' pela largura desejada
+    destacarVermelho.style.height = "30px"; // Substitua '20px' pela altura desejada
+    destacarVermelho.style.marginRight = "15px";
+    destacarVermelho.addEventListener("mouseover", function () {
+      destacarVermelho.style.transition = "all 0.5s ease-in-out";
+      destacarVermelho.style.transform = "scale(1.3)";
+    });
+    
+    destacarVermelho.addEventListener("mouseout", function () {
+      destacarVermelho.style.transition = "all 0.5s ease-in-out";
+      destacarVermelho.style.transform = "scale(1)";
+    });
+    destacarVermelho.onclick = function () { destacarTexto("red"); };
+    menu.appendChild(destacarVermelho); // Adicionado ao menu
+
+    var destacarVerde = document.createElement("img"); // Use 'img' em vez de 'button'
+    destacarVerde.src = "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Feditor-de-texto-verde.png?alt=media&token=40cf8130-2909-4daa-8472-364edc845a6c"; // Substitua isso pelo caminho do seu ícon
+    destacarVerde.style.width = "30px"; // Substitua '20px' pela largura desejada
+    destacarVerde.style.height = "30px"; // Substitua '20px' pela altura desejada
+    destacarVerde.style.marginRight = "15px";
+    destacarVerde.style.display = "inline-block";
+    destacarVerde.addEventListener("mouseover", function () {
+      destacarVerde.style.transition = "all 0.5s ease-in-out";
+      destacarVerde.style.transform = "scale(1.3)";
+    });
+    
+    destacarVerde.addEventListener("mouseout", function () {
+      destacarVerde.style.transition = "all 0.5s ease-in-out";
+      destacarVerde.style.transform = "scale(1)";
+    });
+    destacarVerde.onclick = function () { destacarTexto("#1c5253"); };
+    menu.appendChild(destacarVerde); // Adicionado ao menu
+
+    var corTextoVermelho = document.createElement("img"); // Renomeado para corTextoVermelho
+    corTextoVermelho.src = "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Ftexto-vermelho.png?alt=media&token=753fcaf4-54f9-4fc0-8d96-fa7d43679f9a";
+    corTextoVermelho.style.marginRight = "15px";
+    corTextoVermelho.style.width = "30px"; // Substitua '20px' pela largura desejada
+    corTextoVermelho.style.height = "30px"; // Substitua '20px' pela altura desejada
+    corTextoVermelho.addEventListener("mouseover", function () {
+      corTextoVermelho.style.transition = "all 0.5s ease-in-out";
+      corTextoVermelho.style.transform = "scale(1.3)";
+    });
+    
+    corTextoVermelho.addEventListener("mouseout", function () {
+      corTextoVermelho.style.transition = "all 0.5s ease-in-out";
+      corTextoVermelho.style.transform = "scale(1)";
+    });
+    corTextoVermelho.onclick = function () { alterarCorTexto("red"); };
+    menu.appendChild(corTextoVermelho); // Adicionado ao menu
+
+
+    var corTextoBranco = document.createElement("img"); // Renomeado para corTextoBranco
+    corTextoBranco.src = "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Ftexto-branco.png?alt=media&token=2e4339ad-cc35-4651-84a4-6a620047558e";
+    corTextoBranco.style.marginRight = "15px";
+    corTextoBranco.style.width = "30px"; // Substitua '20px' pela largura desejada
+    corTextoBranco.style.height = "30px"; // Substitua '20px' pela altura desejada
+    corTextoBranco.addEventListener("mouseover", function () {
+      corTextoBranco.style.transition = "all 0.5s ease-in-out";
+      corTextoBranco.style.transform = "scale(1.3)";
+    });
+    
+    corTextoBranco.addEventListener("mouseout", function () {
+      corTextoBranco.style.transition = "all 0.5s ease-in-out";
+      corTextoBranco.style.transform = "scale(1)";
+    });
+    corTextoBranco.onclick = function () { alterarCorTexto("white"); };
+    menu.appendChild(corTextoBranco); // Adicionado ao menu
+
+    // Adiciona uma opção ao menu para apagar todas as ações
+    var apagarAcoesBtn = document.createElement("img");
+    apagarAcoesBtn.src = "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Fborracha.png?alt=media&token=7cd951b9-0268-4310-9ddc-5865f78f08f2";
+    apagarAcoesBtn.style.width = "30px"; // Substitua '20px' pela largura desejada
+    apagarAcoesBtn.style.height = "30px"; // Substitua '20px' pela altura desejada
+    apagarAcoesBtn.addEventListener("mouseover", function () {
+      apagarAcoesBtn.style.transition = "all 0.6s ease-in-out";
+      apagarAcoesBtn.style.transform = "scale(1.3)";
+    });
+    
+    apagarAcoesBtn.addEventListener("mouseout", function () {
+      apagarAcoesBtn.style.transition = "all 0.5s ease-in-out";
+      apagarAcoesBtn.style.transform = "scale(1)";
+    });
+    apagarAcoesBtn.onclick = apagarAcoes;
+    menu.appendChild(apagarAcoesBtn);
+
+    // Adiciona o menu ao documento
+    document.body.appendChild(menu);
+
+    // Remove o menu quando o usuário clica em qualquer lugar
+    document.addEventListener("click", function () {
+      menu.remove();
+    }, { once: true });
+  });
+
+
   return (
-   <Box>
+    <Box>
       {user && (
         <AppBar
           sx={{ backgroundColor: "#1c5253", marginBottom: "1em" }} position="static"
@@ -768,7 +967,7 @@ function Home() {
             <Toolbar disableGutters>
               {/*<Avatar alt="SESO Logo" src={SESOLogo}   sx={{  width: 40,  height: 40,   marginRight: "0.100em",  }}
       />*/}
-              <Typography  noWrap component="a" href="/" sx={{ mr: 1, display: { xs: "none", md: "flex" }, fontFamily: "Poppins", fontWeight: 500, letterSpacing: "-0.01rem",  color: "inherit", textDecoration: "none", }}
+              <Typography noWrap component="a" href="/" sx={{ mr: 1, display: { xs: "none", md: "flex" }, fontFamily: "Poppins", fontWeight: 500, letterSpacing: "-0.01rem", color: "inherit", textDecoration: "none", }}
               >
                 SESO em Concursos
               </Typography>
@@ -785,41 +984,41 @@ function Home() {
                       <Typography textAlign="center">{page}</Typography>
                     </MenuItem>
                   ))}
-                 <MenuItem>
+                  <MenuItem>
                     <Link to="/Aulas" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
-                      <Typography sx={{ color: "black",  }}>
+                      <Typography sx={{ color: "black", }}>
                         Aulas</Typography>
                     </Link>
                   </MenuItem>
-                  <MenuItem sx={{  marginRight: "-.5em"}}>
+                  <MenuItem sx={{ marginRight: "-.5em" }}>
                     <Link to="/Discursivas" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
                       <Typography sx={{ color: "black", marginRight: "-.5em" }}>
                         Discursivas</Typography>
                     </Link>
                   </MenuItem>
-                  <MenuItem sx={{  marginRight: "-.5em"}}>
+                  <MenuItem sx={{ marginRight: "-.5em" }}>
                     <Link to="/Mentorias" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
-                      <Typography sx={{ color: "black",  }}>
+                      <Typography sx={{ color: "black", }}>
                         Mentoria
                       </Typography>
                     </Link>
                   </MenuItem>
-                  <MenuItem sx={{  marginRight: "-.5em"}}>
+                  <MenuItem sx={{ marginRight: "-.5em" }}>
                     <Link to="/MeuPerfil" style={{ textDecoration: "none" }}>
                       <Typography sx={{ color: "black", }}>
                         Meu Desempenho
                       </Typography>
                     </Link>
                   </MenuItem>
-                  <MenuItem sx={{  marginRight: "-.5em"}}>
+                  <MenuItem sx={{ marginRight: "-.5em" }}>
                     <Link
                       to="/RankingDesempenho"
                       style={{ textDecoration: "none" }}
                     >
-                      <Typography sx={{ color: "black",  }}>Ranking</Typography>
+                      <Typography sx={{ color: "black", }}>Ranking</Typography>
                     </Link>
                   </MenuItem>
-                  <MenuItem sx={{  marginRight: "-.5em"}}>
+                  <MenuItem sx={{ marginRight: "-.5em" }}>
                     <Link
                       to="/Assinatura"
                       style={{ textDecoration: "none" }}
@@ -834,7 +1033,7 @@ function Home() {
                       to="/AssinaturaPix"
                       style={{ textDecoration: "none" }}
                     >
-                      <Typography sx={{ color: "black",  }}>
+                      <Typography sx={{ color: "black", }}>
                         Assinar com Pix
                       </Typography>
                     </Link>
@@ -842,7 +1041,7 @@ function Home() {
                 </Menu>
               </Box>
 
-              <Typography  noWrap component="a" href="/" sx={{
+              <Typography noWrap component="a" href="/" sx={{
                 mr: 3, display: { xs: "flex", md: "none" }, flexGrow: 1, fontFamily: "Poppins", fontWeight: 500, letterSpacing: ".1rem", color: "inherit",
                 textDecoration: "none",
               }}
@@ -961,7 +1160,7 @@ function Home() {
           <FiltroMulti onFilterChange={setQuestoesFiltradas} setPaginaAtual={setPaginaAtual} db={db} />
         </Container>
       )}
-  <Container sx={{padding: '0em', maxWidth: 'false'}} className="fundo-Home">
+      <Container sx={{ padding: '0em', maxWidth: 'false' }} className="fundo-Home">
 
         <div className="logout-button-container">
           <Modal
@@ -1149,7 +1348,7 @@ function Home() {
                         false;
 
                       return (
-                        <Typography sx={{margin: '0.500em', fontFamily: 'Poppins, Arial', fontSize: '0.900em', padding: '0.100em', color: 'black', }}
+                        <Typography sx={{ margin: '0.500em', fontFamily: 'Poppins, Arial', fontSize: '0.900em', padding: '0.100em', color: 'black', }}
                           className={`alternativa ${isSelected ? "selecionada" : ""} ${isRiscada ? "riscado" : ""}`}
                           key={index}
                           onClick={() => handleAlternativaClick(question.ids, index)}
@@ -1157,7 +1356,7 @@ function Home() {
                           <Box
                             className={`icon-container ${isRiscada ? "riscado" : ""}`}
                           >
-                            <ContentCutRoundedIcon style={{ color: '#1c5253', fontSize: "small",  }}
+                            <ContentCutRoundedIcon style={{ color: '#1c5253', fontSize: "small", }}
                               className={`tesoura-icon ${isRiscada ? "riscado" : ""}`}
                               onClick={(e) => {
                                 e.stopPropagation();
@@ -1225,7 +1424,7 @@ function Home() {
                   {paymentInfo !== null && (
                     <EstatisticasQuestao key={question.id} questionId={question.ids} />
                   )}
-                   <IconButton sx={{ color: '#1c5253', padding: '0.700em' }}>
+                  <IconButton sx={{ color: '#1c5253', padding: '0.700em' }}>
                     <a
                       href="/Mentorias"
                       target="_blank"
@@ -1237,7 +1436,7 @@ function Home() {
                         sx={{ fontSize: '0.550em', color: '#1c5253', marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500' }}
                         color="error"
                       >
-                        Faça uma Mentoria
+                        Mentorias
                       </Typography>
                     </a>
                   </IconButton>
