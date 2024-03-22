@@ -21,6 +21,8 @@ import { loadStripe } from "@stripe/stripe-js";
 import AutoGraphOutlinedIcon from "@mui/icons-material/AutoGraphOutlined";
 import Container from "@mui/material/Container";
 import Cronometro from './Cronometro.jsx';
+
+
 import {
   Modal,
   Button,
@@ -435,6 +437,44 @@ function Home() {
   };
 
 
+  const saveUserFeedback = async (userId, questionId, isCorrect) => {
+    try {
+        const feedbackRef = collection(db, "userFeedback");
+        const querySnapshot = await getDocs(query(collection(db, "userFeedback"), where("questionId", "==", questionId)));
+        let existingDocId = null;
+
+        querySnapshot.forEach((doc) => {
+            existingDocId = doc.id;
+        });
+
+        if (existingDocId) {
+            // Atualize o documento existente com a nova resposta
+            await updateDoc(doc(feedbackRef, existingDocId), {
+                isCorrect,
+                timestamp: serverTimestamp(),
+            });
+            console.log("Resposta do usuário atualizada com sucesso!");
+        } else {
+            // Crie um novo documento para a nova resposta
+            const newFeedbackDoc = doc(feedbackRef);
+            await setDoc(newFeedbackDoc, {
+                userId,
+                questionId,
+                isCorrect,
+                timestamp: serverTimestamp(),
+            });
+            console.log("Resposta do usuário salva com sucesso!");
+        }
+    } catch (error) {
+        console.error("Erro ao salvar a resposta do usuário:", error);
+    }
+};
+
+
+
+
+
+  
   const [cliques, setCliques] = useState(null);
   const handleRespostaClick = async (question) => {
     // Verifique se a resposta do usuário está correta
@@ -446,6 +486,10 @@ function Home() {
     const resultadoQuestao = respostaUsuario === respostaCorreta;
     // Salvar as respostas do usuário no Firebase
     saveUserResponses(questaoId, respostaUsuario);
+     // Salve o feedback do usuário no Firebase
+  if (user) {
+    saveUserFeedback(user.uid, questaoId, resultadoQuestao);
+  }
 
     // Atualize o estado dos resultados com o resultado da questão
     setResultados((prevResultados) => ({
@@ -1335,6 +1379,9 @@ function Home() {
 
                   </Box>
                   <Box style={{ height: '2px', backgroundColor: '#1c525341', margin: '10px 0' }}></Box>
+                
+
+              
                   <p className="enunciado" dangerouslySetInnerHTML={{ __html: question.enunciado }}></p>
 
                   <ul>
