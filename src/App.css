@@ -163,7 +163,7 @@
 }  
   
   .enunciado {
-    font-size: 0.875em; /* 14 px de font */
+    font-size: 0.900em; /* 14 px de font */
     font-weight: 400;
     font-family: "Poppins";
     text-align: left;
@@ -174,7 +174,6 @@
 
   }
   
-
   .alternativa {
     cursor: pointer;
    background-color: #F6F6F7;

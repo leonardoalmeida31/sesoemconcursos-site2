@@ -974,6 +974,29 @@ function Home() {
     corTextoBranco.onclick = function () { alterarCorTexto("white"); };
     menu.appendChild(corTextoBranco); // Adicionado ao menu
 
+
+
+
+    var corTextoBranco = document.createElement("img"); // Renomeado para corTextoBranco
+    corTextoBranco.src = "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Ftexto-verde.png?alt=media&token=1ca89406-fd0c-4f50-8150-bf47a7c648c7";
+    corTextoBranco.style.marginRight = "15px";
+    corTextoBranco.style.width = "30px"; // Substitua '20px' pela largura desejada
+    corTextoBranco.style.height = "30px"; // Substitua '20px' pela altura desejada
+    corTextoBranco.addEventListener("mouseover", function () {
+      corTextoBranco.style.transition = "all 0.5s ease-in-out";
+      corTextoBranco.style.transform = "scale(1.3)";
+    });
+    
+    corTextoBranco.addEventListener("mouseout", function () {
+      corTextoBranco.style.transition = "all 0.5s ease-in-out";
+      corTextoBranco.style.transform = "scale(1)";
+    });
+    corTextoBranco.onclick = function () { alterarCorTexto("#1c5253"); };
+    menu.appendChild(corTextoBranco); // Adicionado ao menu
+
+
+    
+
     // Adiciona uma opção ao menu para apagar todas as ações
     var apagarAcoesBtn = document.createElement("img");
     apagarAcoesBtn.src = "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Fborracha.png?alt=media&token=7cd951b9-0268-4310-9ddc-5865f78f08f2";

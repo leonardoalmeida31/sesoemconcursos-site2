@@ -153,12 +153,12 @@ function App() {
           variant="contained"
           color="primary"
           component="a"
-          href="https://chat.whatsapp.com/BJmFHuqDVn56S28TIZJ8A0"
+          href="https://wa.me/5574981265381?text=Ol%C3%A1%2C+Quero+informa%C3%A7%C3%B5es+sobre+a+Mentoria"
           target="_blank"
           rel="noopener noreferrer"
           style={{ marginTop: "1em", justifyContent: "center" }}
         >
-          Toque aqui para entrar no Grupo
+          Toque aqui para mais Informações
         </Button>
         <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em' }}></Typography>
 
