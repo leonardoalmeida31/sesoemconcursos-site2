@@ -437,38 +437,7 @@ function Home() {
   };
 
 
-  const saveUserFeedback = async (userId, questionId, isCorrect) => {
-    try {
-        const feedbackRef = collection(db, "userFeedback");
-        const querySnapshot = await getDocs(query(collection(db, "userFeedback"), where("questionId", "==", questionId)));
-        let existingDocId = null;
-
-        querySnapshot.forEach((doc) => {
-            existingDocId = doc.id;
-        });
-
-        if (existingDocId) {
-            // Atualize o documento existente com a nova resposta
-            await updateDoc(doc(feedbackRef, existingDocId), {
-                isCorrect,
-                timestamp: serverTimestamp(),
-            });
-            console.log("Resposta do usuário atualizada com sucesso!");
-        } else {
-            // Crie um novo documento para a nova resposta
-            const newFeedbackDoc = doc(feedbackRef);
-            await setDoc(newFeedbackDoc, {
-                userId,
-                questionId,
-                isCorrect,
-                timestamp: serverTimestamp(),
-            });
-            console.log("Resposta do usuário salva com sucesso!");
-        }
-    } catch (error) {
-        console.error("Erro ao salvar a resposta do usuário:", error);
-    }
-};
+  
 
 
 
@@ -487,9 +456,7 @@ function Home() {
     // Salvar as respostas do usuário no Firebase
     saveUserResponses(questaoId, respostaUsuario);
      // Salve o feedback do usuário no Firebase
-  if (user) {
-    saveUserFeedback(user.uid, questaoId, resultadoQuestao);
-  }
+ 
 
     // Atualize o estado dos resultados com o resultado da questão
     setResultados((prevResultados) => ({
