@@ -10,18 +10,17 @@ import { Link } from "react-router-dom";
 import MenuMui from "../MenuMui.jsx";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-import BrushIcon from '@mui/icons-material/Brush';
+import BrushIcon from "@mui/icons-material/Brush";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
 import { IoMdCut } from "react-icons/io";
 import Select from "@mui/material/Select";
-import ContentCutRoundedIcon from '@mui/icons-material/ContentCutRounded';
+import ContentCutRoundedIcon from "@mui/icons-material/ContentCutRounded";
 import { loadStripe } from "@stripe/stripe-js";
 import AutoGraphOutlinedIcon from "@mui/icons-material/AutoGraphOutlined";
 import Container from "@mui/material/Container";
-import Cronometro from './Cronometro.jsx';
-
+import Cronometro from "./Cronometro.jsx";
 
 import {
   Modal,
@@ -35,11 +34,11 @@ import {
   Paper,
   ListItem,
   List,
-  ListItemText
+  ListItemText,
 } from "@mui/material";
-import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
-import PollOutlinedIcon from '@mui/icons-material/PollOutlined';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import QuestionAnswerOutlinedIcon from "@mui/icons-material/QuestionAnswerOutlined";
+import PollOutlinedIcon from "@mui/icons-material/PollOutlined";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { TextField, TextareaAutosize } from "@mui/material";
 import Collapse from "@mui/material/Collapse";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -53,10 +52,10 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
-import LaptopChromebookIcon from '@mui/icons-material/LaptopChromebook';
+import LaptopChromebookIcon from "@mui/icons-material/LaptopChromebook";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { useMediaQuery } from '@mui/material';
+import { useMediaQuery } from "@mui/material";
 import { initializeApp } from "firebase/app";
 import {
   getDocs,
@@ -70,14 +69,15 @@ import {
   onSnapshot,
   serverTimestamp,
   query,
-  where, increment
+  where,
+  increment,
 } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getDatabase, ref, onValue } from "firebase/database";
 import "firebase/database";
 import { useParams } from "react-router-dom";
 import Comentarios from "./Comentarios.jsx";
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_REACT_APP_API_KEY,
@@ -112,7 +112,7 @@ function Home() {
   const [filtroModalidade, setFiltroModalidade] = useState(null);
   const [filtroArea, setFiltroArea] = useState(null);
   const indiceInicial = (paginaAtual - 1) * questoesPorPagina;
-  const isMobile = useMediaQuery('(max-width: 600px)');
+  const isMobile = useMediaQuery("(max-width: 600px)");
   const [questionsToShow, setQuestionsToShow] = useState([]);
   const [maxQuestionsToDisplay, setMaxQuestionsToDisplay] = useState(0);
   const [answeredCount, setAnsweredCount] = useState(0);
@@ -216,7 +216,6 @@ function Home() {
 
           // Atualize o estado desempenhoPorDisciplina com as informações recuperadas
           setDesempenhoPorDisciplina(desempenhoSalvo);
-
 
           // Recupere as informações de desempenho total do documento do usuário
           const desempenhoTotalSalvo = userData.desempenhoTotal || {
@@ -324,7 +323,7 @@ function Home() {
       }
     });
 
-    return () => { };
+    return () => {};
   }, []);
 
   useEffect(() => {
@@ -387,7 +386,6 @@ function Home() {
   const [desempenhoPorDisciplina, setDesempenhoPorDisciplina] = useState({});
   const [desempenhoPorBanca, setDesempenhoPorBanca] = useState({});
 
-
   const [desempenhoTotal, setDesempenhoTotal] = useState({
     acertos: 0,
     erros: 0,
@@ -403,7 +401,10 @@ function Home() {
         const responseData = userResponseDoc.data();
 
         // Verifica se a alternativa já foi respondida antes
-        if (responseData.respostaCounts && responseData.respostaCounts[respostaSelecionada] !== undefined) {
+        if (
+          responseData.respostaCounts &&
+          responseData.respostaCounts[respostaSelecionada] !== undefined
+        ) {
           // Se a alternativa já foi respondida, incrementa o contador
           responseData.respostaCounts[respostaSelecionada]++;
         } else {
@@ -436,37 +437,218 @@ function Home() {
     }
   };
 
+  const saveUserResponsesWithDate = async (
+    userId,
+    questionId,
+    respostaSelecionada,
+    dataResposta,
+    correta
+  ) => {
+    try {
+      const responsesCollectionRef = collection(db, "respostasUsuario");
+      const userResponseRef = doc(
+        responsesCollectionRef,
+        `${userId}_${questionId}`
+      );
 
-  
+      const respostaLetra = converterNumeroParaLetra(respostaSelecionada);
 
+      const userResponseDoc = await getDoc(userResponseRef);
+      if (userResponseDoc.exists()) {
+        const responseData = userResponseDoc.data();
 
+        if (!responseData.historicoRespostas) {
+          responseData.historicoRespostas = [];
+        }
+        responseData.historicoRespostas.push({
+          userId, // Incluindo o ID do usuário na resposta
+          dataResposta,
+          respostaSelecionada: respostaLetra,
+          correta,
+        });
 
+        await setDoc(userResponseRef, responseData, { merge: true });
+        console.log(
+          "Resposta do usuário com data e resultado salva com sucesso!"
+        );
+      } else {
+        const newResponseData = {
+          userId, // Incluindo o ID do usuário na resposta
+          questionId: questionId,
+          historicoRespostas: [
+            {
+              dataResposta,
+              respostaSelecionada: respostaLetra,
+              correta,
+            },
+          ],
+        };
 
+        await setDoc(userResponseRef, newResponseData);
+        console.log(
+          "Resposta do usuário com data e resultado salva com sucesso!"
+        );
+      }
+    } catch (error) {
+      console.error(
+        "Erro ao salvar a resposta do usuário com data e resultado:",
+        error
+      );
+    }
+  };
 
-  
+  const converterNumeroParaLetra = (numero) => {
+    const letras = ["A", "B", "C", "D", "E"];
+    return letras[numero];
+  };
+
   const [cliques, setCliques] = useState(null);
+  // const handleRespostaClick = async (question) => {
+  //   // Verifique se a resposta do usuário está correta
+  //   const respostaUsuario = alternativaSelecionada[question.ids];
+  //   const respostaCorreta = question.resposta.charCodeAt(0) - 65;
+  //   const questaoId = question.ids;
+
+  //   const resultadoQuestao = respostaUsuario === respostaCorreta;
+  //   // Salvar as respostas do usuário no Firebase
+  //   saveUserResponses(questaoId, respostaUsuario);
+  //   // Salve o feedback do usuário no Firebase
+
+  //   // Atualize o estado dos resultados com o resultado da questão
+  //   setResultados((prevResultados) => ({
+  //     ...prevResultados,
+  //     [questaoId]: resultadoQuestao,
+  //   }));
+
+  //   if (respostaUsuario === respostaCorreta) {
+  //     setRespostaCorreta(true); // A resposta do usuário está correta
+  //     setAcertos(acertos + 1); // Incrementa o número de acertos
+  //     setDesempenhoTotal((prevDesempenhoTotal) => ({
+  //       ...prevDesempenhoTotal,
+  //       acertos: prevDesempenhoTotal.acertos + 1,
+  //     }));
+  //     setDesempenhoPorDisciplina((prevDesempenho) => {
+  //       const disciplina = question.disciplina;
+  //       return {
+  //         ...prevDesempenho,
+  //         [disciplina]: {
+  //           acertos: (prevDesempenho[disciplina]?.acertos || 0) + 1,
+  //           erros: prevDesempenho[disciplina]?.erros || 0,
+  //         },
+  //       };
+  //     });
+  //     setDesempenhoPorBanca((prevDesempenho) => {
+  //       const banca = question.banca;
+  //       return {
+  //         ...prevDesempenho,
+  //         [banca]: {
+  //           acertos: (prevDesempenho[banca]?.acertos || 0) + 1,
+  //           erros: prevDesempenho[banca]?.erros || 0,
+  //         },
+  //       };
+  //     });
+  //   } else {
+  //     setRespostaCorreta(false); // A resposta do usuário está incorreta
+  //     setErros(erros + 1); // Incrementa o número de erros
+  //     setDesempenhoTotal((prevDesempenhoTotal) => ({
+  //       ...prevDesempenhoTotal,
+  //       erros: prevDesempenhoTotal.erros + 1,
+  //     }));
+
+  //     setDesempenhoPorDisciplina((prevDesempenho) => {
+  //       const disciplina = question.disciplina;
+  //       return {
+  //         ...prevDesempenho,
+  //         [disciplina]: {
+  //           acertos: prevDesempenho[disciplina]?.acertos || 0,
+  //           erros: (prevDesempenho[disciplina]?.erros || 0) + 1,
+  //         },
+  //       };
+  //     });
+  //     setDesempenhoPorBanca((prevDesempenho) => {
+  //       const banca = question.banca;
+  //       return {
+  //         ...prevDesempenho,
+  //         [banca]: {
+  //           acertos: prevDesempenho[banca]?.acertos || 0,
+  //           erros: (prevDesempenho[banca]?.erros || 0) + 1,
+  //         },
+  //       };
+  //     });
+  //   }
+  //   // Salvar as informações de desempenho no Firebase
+  //   if (user) {
+  //     const userRef = doc(db, "users", user.uid);
+
+  //     // Obtenha o documento do usuário
+  //     const userDoc = await getDoc(userRef);
+
+  //     if (userDoc.exists()) {
+  //       const userData = userDoc.data();
+  //       const expirationDate = userData.expirationDate;
+  //       const cliquesDoUsuario = userData.cliques || 0;
+
+  //       // Recupere as informações de desempenho do documento do usuário
+  //       const desempenhoSalvo = userData.desempenhoPorDisciplina;
+
+  //       // Atualize as informações de desempenho no documento do usuário
+  //       await setDoc(userRef, { desempenhoPorDisciplina }, { merge: true });
+  //       await setDoc(userRef, { desempenhoPorBanca }, { merge: true });
+  //       await updateDoc(userRef, { desempenhoTotal });
+
+  //       if (!user) {
+  //         // O usuário não está autenticado, redirecione para a página de login ou mostre uma mensagem
+  //         console.log("Usuário não autenticado.");
+  //         return;
+  //       }
+
+  //       // Verificar se a assinatura é igual a zero ou nula
+  //       if (paymentInfo === null || paymentInfo === 0 || cliques < 15) {
+  //         // Sua lógica de processamento da resposta aqui
+  //         verificarResposta(question);
+
+  //         // Atualize os cliques no Firebase Firestore
+  //         const newCliques = cliques + 1;
+  //         await updateDoc(userRef, { cliques: newCliques });
+
+  //         // Atualize o estado local com os cliques atualizados
+  //         setCliques(newCliques);
+  //         // Atualize o desempenho por "banca" no Firebase
+  //         await updateDoc(userRef, { desempenhoPorBanca });
+  //       } else {
+  //         verificarResposta(question);
+  //       }
+  //     }
+  //   }
+  // };
+
   const handleRespostaClick = async (question) => {
-    // Verifique se a resposta do usuário está correta
     const respostaUsuario = alternativaSelecionada[question.ids];
     const respostaCorreta = question.resposta.charCodeAt(0) - 65;
     const questaoId = question.ids;
-
+    const dataResposta = new Date().toISOString(); // Obtém a data atual em formato ISO
 
     const resultadoQuestao = respostaUsuario === respostaCorreta;
-    // Salvar as respostas do usuário no Firebase
-    saveUserResponses(questaoId, respostaUsuario);
-     // Salve o feedback do usuário no Firebase
- 
+    const correta = resultadoQuestao; // Armazena se a resposta foi correta ou não
 
-    // Atualize o estado dos resultados com o resultado da questão
+    // Salvar as respostas do usuário no Firebase
+    await saveUserResponses(questaoId, respostaUsuario);
+    await saveUserResponsesWithDate(
+      user.uid,
+      questaoId,
+      respostaUsuario,
+      dataResposta,
+      correta
+    );
+
     setResultados((prevResultados) => ({
       ...prevResultados,
       [questaoId]: resultadoQuestao,
     }));
 
     if (respostaUsuario === respostaCorreta) {
-      setRespostaCorreta(true); // A resposta do usuário está correta
-      setAcertos(acertos + 1); // Incrementa o número de acertos
+      setRespostaCorreta(true);
+      setAcertos(acertos + 1);
       setDesempenhoTotal((prevDesempenhoTotal) => ({
         ...prevDesempenhoTotal,
         acertos: prevDesempenhoTotal.acertos + 1,
@@ -491,15 +673,13 @@ function Home() {
           },
         };
       });
-
     } else {
-      setRespostaCorreta(false); // A resposta do usuário está incorreta
-      setErros(erros + 1); // Incrementa o número de erros
+      setRespostaCorreta(false);
+      setErros(erros + 1);
       setDesempenhoTotal((prevDesempenhoTotal) => ({
         ...prevDesempenhoTotal,
         erros: prevDesempenhoTotal.erros + 1,
       }));
-
       setDesempenhoPorDisciplina((prevDesempenho) => {
         const disciplina = question.disciplina;
         return {
@@ -519,52 +699,83 @@ function Home() {
             erros: (prevDesempenho[banca]?.erros || 0) + 1,
           },
         };
-      })
+      });
     }
-    // Salvar as informações de desempenho no Firebase
-    if (user) {
-      const userRef = doc(db, "users", user.uid);
 
-      // Obtenha o documento do usuário
-      const userDoc = await getDoc(userRef);
+    const userRef = doc(db, "users", user.uid);
+    const userDoc = await getDoc(userRef);
 
-      if (userDoc.exists()) {
-        const userData = userDoc.data();
-        const expirationDate = userData.expirationDate;
-        const cliquesDoUsuario = userData.cliques || 0;
+    if (userDoc.exists()) {
+      const userData = userDoc.data();
+      const cliquesDoUsuario = userData.cliques || 0;
 
-        // Recupere as informações de desempenho do documento do usuário
-        const desempenhoSalvo = userData.desempenhoPorDisciplina;
+      await setDoc(userRef, { desempenhoPorDisciplina }, { merge: true });
+      await setDoc(userRef, { desempenhoPorBanca }, { merge: true });
+      await updateDoc(userRef, { desempenhoTotal });
 
-        // Atualize as informações de desempenho no documento do usuário
-        await setDoc(userRef, { desempenhoPorDisciplina }, { merge: true });
-        await setDoc(userRef, { desempenhoPorBanca }, { merge: true });
-        await updateDoc(userRef, { desempenhoTotal });
+      if (paymentInfo === null || paymentInfo === 0 || cliques < 15) {
+        verificarResposta(question);
 
-        if (!user) {
-          // O usuário não está autenticado, redirecione para a página de login ou mostre uma mensagem
-          console.log("Usuário não autenticado.");
-          return;
-        }
-
-        // Verificar se a assinatura é igual a zero ou nula
-        if (paymentInfo === null || paymentInfo === 0 || cliques < 15) {
-          // Sua lógica de processamento da resposta aqui
-          verificarResposta(question);
-
-          // Atualize os cliques no Firebase Firestore
-          const newCliques = cliques + 1;
-          await updateDoc(userRef, { cliques: newCliques });
-
-          // Atualize o estado local com os cliques atualizados
-          setCliques(newCliques);
-          // Atualize o desempenho por "banca" no Firebase
-          await updateDoc(userRef, { desempenhoPorBanca });
-        } else {
-          verificarResposta(question);
-        }
+        const newCliques = cliques + 1;
+        await updateDoc(userRef, { cliques: newCliques });
+        setCliques(newCliques);
+        await updateDoc(userRef, { desempenhoPorBanca });
+      } else {
+        verificarResposta(question);
       }
     }
+  };
+
+  const [userResponses, setUserResponses] = useState([]);
+
+  useEffect(() => {
+    if (user) {
+      fetchUserQuestionResponses(user.uid);
+    }
+  }, [user]);
+
+  const fetchUserQuestionResponses = async (userId) => {
+    const questionResponses = [];
+    try {
+      const responsesCollectionRef = collection(db, "respostasUsuario");
+      const userResponsesQuerySnapshot = await getDocs(
+        query(responsesCollectionRef, where("userId", "==", userId))
+      );
+      userResponsesQuerySnapshot.forEach((doc) => {
+        const response = doc.data();
+        response.historicoRespostas.forEach((history) => {
+          questionResponses.push({
+            questionId: response.questionId,
+            respostaSelecionada: history.respostaSelecionada,
+            dataResposta: history.dataResposta,
+            correta: history.correta,
+          });
+        });
+      });
+      setUserResponses(questionResponses);
+    } catch (error) {
+      console.error("Erro ao buscar as respostas do usuário:", error);
+    }
+  };
+
+  // Organiza as respostas por questionId
+  const respostasPorQuestao = questoesPagina.reduce((acc, question) => {
+    acc[question.ids] = userResponses.filter(
+      (response) => response.questionId === question.ids
+    );
+    return acc;
+  }, {});
+
+  const formatDate = (dateString) => {
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    };
+    return new Date(dateString).toLocaleDateString("pt-BR", options);
   };
 
   const inicializarCliques = async () => {
@@ -627,7 +838,7 @@ function Home() {
     }));
   };
 
-  const handleCheckout = async ({ }) => {
+  const handleCheckout = async ({}) => {
     const stripe = await stripePromise;
 
     try {
@@ -650,7 +861,7 @@ function Home() {
     }
   };
 
-  const handleCheckoutS = async ({ }) => {
+  const handleCheckoutS = async ({}) => {
     const stripe = await stripePromise;
 
     try {
@@ -672,7 +883,7 @@ function Home() {
       console.error("Erro ao iniciar o checkout:", err);
     }
   };
-  const handleCheckoutA = async ({ }) => {
+  const handleCheckoutA = async ({}) => {
     const stripe = await stripePromise;
 
     try {
@@ -736,7 +947,6 @@ function Home() {
     }));
   };
 
-
   const bull = (
     <Box
       component="span"
@@ -767,8 +977,6 @@ function Home() {
       </CardActions>
     </React.Fragment>
   );
-
-
 
   // Função para riscar o texto selecionado
   function riscarTexto() {
@@ -826,18 +1034,19 @@ function Home() {
     menu.style.zIndex = "1000";
     // Adicionado para permitir que os botões sejam ajustados em várias linhas se necessário
 
-     // Título do menu
-     var titulo = document.createElement("div");
-     titulo.textContent = "Personalize sua Questão:";
-     titulo.style.fontWeight = "bold";
-     titulo.style.marginBottom = "10px";
-     titulo.style.fontSize = "14px";
-     titulo.style.fontFamily = "Poppins";
-     menu.appendChild(titulo);
+    // Título do menu
+    var titulo = document.createElement("div");
+    titulo.textContent = "Personalize sua Questão:";
+    titulo.style.fontWeight = "bold";
+    titulo.style.marginBottom = "10px";
+    titulo.style.fontSize = "14px";
+    titulo.style.fontFamily = "Poppins";
+    menu.appendChild(titulo);
 
     // Adiciona opções ao menu
     var riscar = document.createElement("img");
-    riscar.src = "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Fsinal-de-interface-de-texto-tachado.png?alt=media&token=5a05f348-7648-4441-8ac6-9e53bad0114d";
+    riscar.src =
+      "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Fsinal-de-interface-de-texto-tachado.png?alt=media&token=5a05f348-7648-4441-8ac6-9e53bad0114d";
     riscar.style.width = "30px"; // Substitua '20px' pela largura desejada
     riscar.style.height = "30px";
     riscar.style.marginRight = "15px";
@@ -845,7 +1054,7 @@ function Home() {
       riscar.style.transition = "all 0.5s ease-in-out";
       riscar.style.transform = "scale(1.3)";
     });
-    
+
     riscar.addEventListener("mouseout", function () {
       riscar.style.transition = "all 0.5s ease-in-out";
       riscar.style.transform = "scale(1)";
@@ -853,9 +1062,9 @@ function Home() {
     riscar.onclick = riscarTexto;
     menu.appendChild(riscar);
 
-
     var destacarAmarelo = document.createElement("img"); // Use 'img' em vez de 'button'
-    destacarAmarelo.src = "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Feditor-de-texto-amarelo.png?alt=media&token=0e1d4b61-2f29-4f3e-9992-f73f30a17827"; // Substitua isso pelo caminho do seu ícon
+    destacarAmarelo.src =
+      "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Feditor-de-texto-amarelo.png?alt=media&token=0e1d4b61-2f29-4f3e-9992-f73f30a17827"; // Substitua isso pelo caminho do seu ícon
     destacarAmarelo.style.width = "30px"; // Substitua '20px' pela largura desejada
     destacarAmarelo.style.height = "30px"; // Substitua '20px' pela altura desejada
     destacarAmarelo.style.marginRight = "15px";
@@ -863,16 +1072,19 @@ function Home() {
       destacarAmarelo.style.transition = "all 0.5s ease-in-out";
       destacarAmarelo.style.transform = "scale(1.3)";
     });
-    
+
     destacarAmarelo.addEventListener("mouseout", function () {
       destacarAmarelo.style.transition = "all 0.5s ease-in-out";
       destacarAmarelo.style.transform = "scale(1)";
     });
-    destacarAmarelo.onclick = function () { destacarTexto("yellow"); };
+    destacarAmarelo.onclick = function () {
+      destacarTexto("yellow");
+    };
     menu.appendChild(destacarAmarelo); // Adicionado ao menu
 
     var destacarVermelho = document.createElement("img"); // Use 'img' em vez de 'button'
-    destacarVermelho.src = "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Feditor-de-texto-vermelho.png?alt=media&token=142759b0-73bf-4b7c-9e7b-160050b10792"; // Substitua isso pelo caminho do seu ícon
+    destacarVermelho.src =
+      "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Feditor-de-texto-vermelho.png?alt=media&token=142759b0-73bf-4b7c-9e7b-160050b10792"; // Substitua isso pelo caminho do seu ícon
     destacarVermelho.style.width = "30px"; // Substitua '20px' pela largura desejada
     destacarVermelho.style.height = "30px"; // Substitua '20px' pela altura desejada
     destacarVermelho.style.marginRight = "15px";
@@ -880,16 +1092,19 @@ function Home() {
       destacarVermelho.style.transition = "all 0.5s ease-in-out";
       destacarVermelho.style.transform = "scale(1.3)";
     });
-    
+
     destacarVermelho.addEventListener("mouseout", function () {
       destacarVermelho.style.transition = "all 0.5s ease-in-out";
       destacarVermelho.style.transform = "scale(1)";
     });
-    destacarVermelho.onclick = function () { destacarTexto("red"); };
+    destacarVermelho.onclick = function () {
+      destacarTexto("red");
+    };
     menu.appendChild(destacarVermelho); // Adicionado ao menu
 
     var destacarVerde = document.createElement("img"); // Use 'img' em vez de 'button'
-    destacarVerde.src = "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Feditor-de-texto-verde.png?alt=media&token=40cf8130-2909-4daa-8472-364edc845a6c"; // Substitua isso pelo caminho do seu ícon
+    destacarVerde.src =
+      "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Feditor-de-texto-verde.png?alt=media&token=40cf8130-2909-4daa-8472-364edc845a6c"; // Substitua isso pelo caminho do seu ícon
     destacarVerde.style.width = "30px"; // Substitua '20px' pela largura desejada
     destacarVerde.style.height = "30px"; // Substitua '20px' pela altura desejada
     destacarVerde.style.marginRight = "15px";
@@ -898,16 +1113,19 @@ function Home() {
       destacarVerde.style.transition = "all 0.5s ease-in-out";
       destacarVerde.style.transform = "scale(1.3)";
     });
-    
+
     destacarVerde.addEventListener("mouseout", function () {
       destacarVerde.style.transition = "all 0.5s ease-in-out";
       destacarVerde.style.transform = "scale(1)";
     });
-    destacarVerde.onclick = function () { destacarTexto("#1c5253"); };
+    destacarVerde.onclick = function () {
+      destacarTexto("#1c5253");
+    };
     menu.appendChild(destacarVerde); // Adicionado ao menu
 
     var corTextoVermelho = document.createElement("img"); // Renomeado para corTextoVermelho
-    corTextoVermelho.src = "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Ftexto-vermelho.png?alt=media&token=753fcaf4-54f9-4fc0-8d96-fa7d43679f9a";
+    corTextoVermelho.src =
+      "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Ftexto-vermelho.png?alt=media&token=753fcaf4-54f9-4fc0-8d96-fa7d43679f9a";
     corTextoVermelho.style.marginRight = "15px";
     corTextoVermelho.style.width = "30px"; // Substitua '20px' pela largura desejada
     corTextoVermelho.style.height = "30px"; // Substitua '20px' pela altura desejada
@@ -915,17 +1133,19 @@ function Home() {
       corTextoVermelho.style.transition = "all 0.5s ease-in-out";
       corTextoVermelho.style.transform = "scale(1.3)";
     });
-    
+
     corTextoVermelho.addEventListener("mouseout", function () {
       corTextoVermelho.style.transition = "all 0.5s ease-in-out";
       corTextoVermelho.style.transform = "scale(1)";
     });
-    corTextoVermelho.onclick = function () { alterarCorTexto("red"); };
+    corTextoVermelho.onclick = function () {
+      alterarCorTexto("red");
+    };
     menu.appendChild(corTextoVermelho); // Adicionado ao menu
 
-
     var corTextoBranco = document.createElement("img"); // Renomeado para corTextoBranco
-    corTextoBranco.src = "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Ftexto-branco.png?alt=media&token=2e4339ad-cc35-4651-84a4-6a620047558e";
+    corTextoBranco.src =
+      "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Ftexto-branco.png?alt=media&token=2e4339ad-cc35-4651-84a4-6a620047558e";
     corTextoBranco.style.marginRight = "15px";
     corTextoBranco.style.width = "30px"; // Substitua '20px' pela largura desejada
     corTextoBranco.style.height = "30px"; // Substitua '20px' pela altura desejada
@@ -933,19 +1153,19 @@ function Home() {
       corTextoBranco.style.transition = "all 0.5s ease-in-out";
       corTextoBranco.style.transform = "scale(1.3)";
     });
-    
+
     corTextoBranco.addEventListener("mouseout", function () {
       corTextoBranco.style.transition = "all 0.5s ease-in-out";
       corTextoBranco.style.transform = "scale(1)";
     });
-    corTextoBranco.onclick = function () { alterarCorTexto("white"); };
+    corTextoBranco.onclick = function () {
+      alterarCorTexto("white");
+    };
     menu.appendChild(corTextoBranco); // Adicionado ao menu
 
-
-
-
     var corTextoBranco = document.createElement("img"); // Renomeado para corTextoBranco
-    corTextoBranco.src = "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Ftexto-verde.png?alt=media&token=1ca89406-fd0c-4f50-8150-bf47a7c648c7";
+    corTextoBranco.src =
+      "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Ftexto-verde.png?alt=media&token=1ca89406-fd0c-4f50-8150-bf47a7c648c7";
     corTextoBranco.style.marginRight = "15px";
     corTextoBranco.style.width = "30px"; // Substitua '20px' pela largura desejada
     corTextoBranco.style.height = "30px"; // Substitua '20px' pela altura desejada
@@ -953,27 +1173,27 @@ function Home() {
       corTextoBranco.style.transition = "all 0.5s ease-in-out";
       corTextoBranco.style.transform = "scale(1.3)";
     });
-    
+
     corTextoBranco.addEventListener("mouseout", function () {
       corTextoBranco.style.transition = "all 0.5s ease-in-out";
       corTextoBranco.style.transform = "scale(1)";
     });
-    corTextoBranco.onclick = function () { alterarCorTexto("#1c5253"); };
+    corTextoBranco.onclick = function () {
+      alterarCorTexto("#1c5253");
+    };
     menu.appendChild(corTextoBranco); // Adicionado ao menu
-
-
-    
 
     // Adiciona uma opção ao menu para apagar todas as ações
     var apagarAcoesBtn = document.createElement("img");
-    apagarAcoesBtn.src = "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Fborracha.png?alt=media&token=7cd951b9-0268-4310-9ddc-5865f78f08f2";
+    apagarAcoesBtn.src =
+      "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Fborracha.png?alt=media&token=7cd951b9-0268-4310-9ddc-5865f78f08f2";
     apagarAcoesBtn.style.width = "30px"; // Substitua '20px' pela largura desejada
     apagarAcoesBtn.style.height = "30px"; // Substitua '20px' pela altura desejada
     apagarAcoesBtn.addEventListener("mouseover", function () {
       apagarAcoesBtn.style.transition = "all 0.6s ease-in-out";
       apagarAcoesBtn.style.transform = "scale(1.3)";
     });
-    
+
     apagarAcoesBtn.addEventListener("mouseout", function () {
       apagarAcoesBtn.style.transition = "all 0.5s ease-in-out";
       apagarAcoesBtn.style.transform = "scale(1)";
@@ -985,33 +1205,63 @@ function Home() {
     document.body.appendChild(menu);
 
     // Remove o menu quando o usuário clica em qualquer lugar
-    document.addEventListener("click", function () {
-      menu.remove();
-    }, { once: true });
+    document.addEventListener(
+      "click",
+      function () {
+        menu.remove();
+      },
+      { once: true }
+    );
   });
-
 
   return (
     <Box>
       {user && (
         <AppBar
-          sx={{ backgroundColor: "#1c5253", marginBottom: "1em" }} position="static"
+          sx={{ backgroundColor: "#1c5253", marginBottom: "1em" }}
+          position="static"
         >
           <Container maxWidth="x1">
             <Toolbar disableGutters>
               {/*<Avatar alt="SESO Logo" src={SESOLogo}   sx={{  width: 40,  height: 40,   marginRight: "0.100em",  }}
       />*/}
-              <Typography noWrap component="a" href="/" sx={{ mr: 1, display: { xs: "none", md: "flex" }, fontFamily: "Poppins", fontWeight: 500, letterSpacing: "-0.01rem", color: "inherit", textDecoration: "none", }}
+              <Typography
+                noWrap
+                component="a"
+                href="/"
+                sx={{
+                  mr: 1,
+                  display: { xs: "none", md: "flex" },
+                  fontFamily: "Poppins",
+                  fontWeight: 500,
+                  letterSpacing: "-0.01rem",
+                  color: "inherit",
+                  textDecoration: "none",
+                }}
               >
                 SESO em Concursos
               </Typography>
 
               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-                <IconButton size="medium" aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenNavMenu} color="inherit"
+                <IconButton
+                  size="medium"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleOpenNavMenu}
+                  color="inherit"
                 >
                   <MenuIcon />
                 </IconButton>
-                <Menu id="menu-appbar" anchorEl={anchorElNav} anchorOrigin={{ vertical: "bottom", horizontal: "left", }} keepMounted transformOrigin={{ vertical: "top", horizontal: "left", }} open={Boolean(anchorElNav)} onClose={handleCloseNavMenu} sx={{ display: { xs: "block", md: "none" }, }}
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorElNav}
+                  anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                  keepMounted
+                  transformOrigin={{ vertical: "top", horizontal: "left" }}
+                  open={Boolean(anchorElNav)}
+                  onClose={handleCloseNavMenu}
+                  sx={{ display: { xs: "block", md: "none" } }}
                 >
                   {pages.map((page) => (
                     <MenuItem key={page} onClick={handleCloseNavMenu}>
@@ -1019,27 +1269,34 @@ function Home() {
                     </MenuItem>
                   ))}
                   <MenuItem>
-                    <Link to="/Aulas" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
-                      <Typography sx={{ color: "black", }}>
-                        Aulas</Typography>
+                    <Link
+                      to="/Aulas"
+                      style={{ textDecoration: "none", fontFamily: "Poppins" }}
+                    >
+                      <Typography sx={{ color: "black" }}>Aulas</Typography>
                     </Link>
                   </MenuItem>
                   <MenuItem sx={{ marginRight: "-.5em" }}>
-                    <Link to="/Discursivas" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
+                    <Link
+                      to="/Discursivas"
+                      style={{ textDecoration: "none", fontFamily: "Poppins" }}
+                    >
                       <Typography sx={{ color: "black", marginRight: "-.5em" }}>
-                        Discursivas</Typography>
-                    </Link>
-                  </MenuItem>
-                  <MenuItem sx={{ marginRight: "-.5em" }}>
-                    <Link to="/Mentorias" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
-                      <Typography sx={{ color: "black", }}>
-                        Mentoria
+                        Discursivas
                       </Typography>
                     </Link>
                   </MenuItem>
                   <MenuItem sx={{ marginRight: "-.5em" }}>
+                    <Link
+                      to="/Mentorias"
+                      style={{ textDecoration: "none", fontFamily: "Poppins" }}
+                    >
+                      <Typography sx={{ color: "black" }}>Mentoria</Typography>
+                    </Link>
+                  </MenuItem>
+                  <MenuItem sx={{ marginRight: "-.5em" }}>
                     <Link to="/MeuPerfil" style={{ textDecoration: "none" }}>
-                      <Typography sx={{ color: "black", }}>
+                      <Typography sx={{ color: "black" }}>
                         Meu Desempenho
                       </Typography>
                     </Link>
@@ -1049,15 +1306,12 @@ function Home() {
                       to="/RankingDesempenho"
                       style={{ textDecoration: "none" }}
                     >
-                      <Typography sx={{ color: "black", }}>Ranking</Typography>
+                      <Typography sx={{ color: "black" }}>Ranking</Typography>
                     </Link>
                   </MenuItem>
                   <MenuItem sx={{ marginRight: "-.5em" }}>
-                    <Link
-                      to="/Assinatura"
-                      style={{ textDecoration: "none" }}
-                    >
-                      <Typography sx={{ color: "black", }}>
+                    <Link to="/Assinatura" style={{ textDecoration: "none" }}>
+                      <Typography sx={{ color: "black" }}>
                         Assinar com Cartão
                       </Typography>
                     </Link>
@@ -1067,7 +1321,7 @@ function Home() {
                       to="/AssinaturaPix"
                       style={{ textDecoration: "none" }}
                     >
-                      <Typography sx={{ color: "black", }}>
+                      <Typography sx={{ color: "black" }}>
                         Assinar com Pix
                       </Typography>
                     </Link>
@@ -1075,10 +1329,20 @@ function Home() {
                 </Menu>
               </Box>
 
-              <Typography noWrap component="a" href="/" sx={{
-                mr: 3, display: { xs: "flex", md: "none" }, flexGrow: 1, fontFamily: "Poppins", fontWeight: 500, letterSpacing: ".1rem", color: "inherit",
-                textDecoration: "none",
-              }}
+              <Typography
+                noWrap
+                component="a"
+                href="/"
+                sx={{
+                  mr: 3,
+                  display: { xs: "flex", md: "none" },
+                  flexGrow: 1,
+                  fontFamily: "Poppins",
+                  fontWeight: 500,
+                  letterSpacing: ".1rem",
+                  color: "inherit",
+                  textDecoration: "none",
+                }}
               >
                 SESO em Concursos
               </Typography>
@@ -1096,23 +1360,64 @@ function Home() {
                   </Link>
                 ))}
                 <MenuItem>
-                  <Link to="/Aulas" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
-                    <Button sx={{ color: "white", fontSize: '0.800em', marginRight: "-.7em" }}>Aulas</Button>
+                  <Link
+                    to="/Aulas"
+                    style={{ textDecoration: "none", fontFamily: "Poppins" }}
+                  >
+                    <Button
+                      sx={{
+                        color: "white",
+                        fontSize: "0.800em",
+                        marginRight: "-.7em",
+                      }}
+                    >
+                      Aulas
+                    </Button>
                   </Link>
                 </MenuItem>
                 <MenuItem>
-                  <Link to="/Discursivas" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
-                    <Button sx={{ color: "white", fontSize: '0.800em', marginRight: "-.7em" }}>DISCURSIVAS</Button>
+                  <Link
+                    to="/Discursivas"
+                    style={{ textDecoration: "none", fontFamily: "Poppins" }}
+                  >
+                    <Button
+                      sx={{
+                        color: "white",
+                        fontSize: "0.800em",
+                        marginRight: "-.7em",
+                      }}
+                    >
+                      DISCURSIVAS
+                    </Button>
                   </Link>
                 </MenuItem>
                 <MenuItem>
-                  <Link to="/Mentorias" style={{ textDecoration: "none", fontFamily: "Poppins", }}>
-                    <Button sx={{ color: "white", fontSize: '0.800em', marginRight: "-.7em" }}>MENTORIA</Button>
+                  <Link
+                    to="/Mentorias"
+                    style={{ textDecoration: "none", fontFamily: "Poppins" }}
+                  >
+                    <Button
+                      sx={{
+                        color: "white",
+                        fontSize: "0.800em",
+                        marginRight: "-.7em",
+                      }}
+                    >
+                      MENTORIA
+                    </Button>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/MeuPerfil" style={{ textDecoration: "none" }}>
-                    <Button sx={{ color: "white", fontSize: '0.800em', marginRight: "-.7em" }}>Meu Desempenho</Button>
+                    <Button
+                      sx={{
+                        color: "white",
+                        fontSize: "0.800em",
+                        marginRight: "-.7em",
+                      }}
+                    >
+                      Meu Desempenho
+                    </Button>
                   </Link>
                 </MenuItem>
                 <MenuItem>
@@ -1120,17 +1425,41 @@ function Home() {
                     to="/RankingDesempenho"
                     style={{ textDecoration: "none" }}
                   >
-                    <Button sx={{ color: "white", fontSize: '0.800em', marginRight: "-.7em" }}>Ranking</Button>
+                    <Button
+                      sx={{
+                        color: "white",
+                        fontSize: "0.800em",
+                        marginRight: "-.7em",
+                      }}
+                    >
+                      Ranking
+                    </Button>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/Assinatura" style={{ textDecoration: "none" }}>
-                    <Button sx={{ color: "white", fontSize: '0.800em', marginRight: "-.7em" }}>Assinar com Cartão</Button>
+                    <Button
+                      sx={{
+                        color: "white",
+                        fontSize: "0.800em",
+                        marginRight: "-.7em",
+                      }}
+                    >
+                      Assinar com Cartão
+                    </Button>
                   </Link>
                 </MenuItem>
                 <MenuItem>
                   <Link to="/AssinaturaPix" style={{ textDecoration: "none" }}>
-                    <Button sx={{ color: "white", fontSize: '0.800em', marginRight: "-.7em" }}>Assinar com Pix</Button>
+                    <Button
+                      sx={{
+                        color: "white",
+                        fontSize: "0.800em",
+                        marginRight: "-.7em",
+                      }}
+                    >
+                      Assinar com Pix
+                    </Button>
                   </Link>
                 </MenuItem>
               </Box>
@@ -1178,7 +1507,6 @@ function Home() {
                       Sair/Trocar Conta
                     </Typography>
                   </MenuItem>
-
                 </Menu>
               </Box>
             </Toolbar>
@@ -1188,14 +1516,31 @@ function Home() {
 
       {user && (
         <Container>
-          <Typography sx={{ fontSize: '0.875em', fontWeight: '400', fontFamily: 'Poppins', textAlign: "center", padding: '1em', paddingTop: '0.400em', color: "#1c5253" }}>
-            A única plataforma de Questões de concursos especializada em Serviço Social
+          <Typography
+            sx={{
+              fontSize: "0.875em",
+              fontWeight: "400",
+              fontFamily: "Poppins",
+              textAlign: "center",
+              padding: "1em",
+              paddingTop: "0.400em",
+              color: "#1c5253",
+            }}
+          >
+            A única plataforma de Questões de concursos especializada em Serviço
+            Social
           </Typography>
-          <FiltroMulti onFilterChange={setQuestoesFiltradas} setPaginaAtual={setPaginaAtual} db={db} />
+          <FiltroMulti
+            onFilterChange={setQuestoesFiltradas}
+            setPaginaAtual={setPaginaAtual}
+            db={db}
+          />
         </Container>
       )}
-      <Container sx={{ padding: '0em', maxWidth: 'false' }} className="fundo-Home">
-
+      <Container
+        sx={{ padding: "0em", maxWidth: "false" }}
+        className="fundo-Home"
+      >
         <div className="logout-button-container">
           <Modal
             open={modalOpen}
@@ -1290,16 +1635,25 @@ function Home() {
         </div>
 
         {user && (
-
-          <Box sx={{
-            marginTop: '2.2em', display: 'flex',
-            flexDirection: isMobile ? 'column' : 'row',
-          }} border="1px solid #ccc" borderRadius={1} padding={2}>
+          <Box
+            sx={{
+              marginTop: "2.2em",
+              display: "flex",
+              flexDirection: isMobile ? "column" : "row",
+            }}
+            border="1px solid #ccc"
+            borderRadius={1}
+            padding={2}
+          >
             <Select
               value={questoesPorPagina}
               onChange={(e) => setQuestoesPorPagina(Number(e.target.value))}
               size="small"
-              sx={{ backgroundColor: '#f2f2f2', fontSize: '0.800em', fontFamily: 'Poppins' }}
+              sx={{
+                backgroundColor: "#f2f2f2",
+                fontSize: "0.800em",
+                fontFamily: "Poppins",
+              }}
             >
               <MenuItem value={1}>1 Questão por página</MenuItem>
               <MenuItem value={5}>5 Questões por página</MenuItem>
@@ -1307,72 +1661,91 @@ function Home() {
               <MenuItem value={15}>15 Questões por página</MenuItem>
               <MenuItem value={20}>20 Questões por página</MenuItem>
             </Select>
-
             <Cronometro /> {/* Renderize o componente Cronometro aqui */}
-
-          </Box>)}
+          </Box>
+        )}
 
         {user ? (
-
-          <Box >
-
+          <Box>
             {questoesPagina.map((question) => (
-              <div key={question.id} >
+              <div key={question.id}>
                 <Box
                   sx={{
-                    backgroundColor: '#1c5253',
-                    color: 'white',
-                    borderTopRightRadius: '7px',
-                    borderTopLeftRadius: '7px',
-                    marginTop: '2em',
-                    overflowX: 'auto',
-                    overflowY: 'hidden',
-                    maxWidth: '100%', // Garante que o Box se expanda horizontalmente
+                    backgroundColor: "#1c5253",
+                    color: "white",
+                    borderTopRightRadius: "7px",
+                    borderTopLeftRadius: "7px",
+                    marginTop: "2em",
+                    overflowX: "auto",
+                    overflowY: "hidden",
+                    maxWidth: "100%", // Garante que o Box se expanda horizontalmente
                   }}
-
                 >
                   <Typography
                     style={{
-                      whiteSpace: 'nowrap',
-                      paddingTop: '0.800em',
-                      paddingBottom: '0.800em',
-                      alignItems: 'center',
+                      whiteSpace: "nowrap",
+                      paddingTop: "0.800em",
+                      paddingBottom: "0.800em",
+                      alignItems: "center",
                       marginTop: 2,
-                      fontFamily: 'Poppins',
-                      fontSize: '0.800em',
-                      fontWeight: '400',
-                      textAlign: 'left', // Alteração para alinhar à esquerda
-                      display: 'inline-flex', // Exibir o conteúdo em linha
+                      fontFamily: "Poppins",
+                      fontSize: "0.800em",
+                      fontWeight: "400",
+                      textAlign: "left", // Alteração para alinhar à esquerda
+                      display: "inline-flex", // Exibir o conteúdo em linha
                     }}
                   >
-                    &nbsp;&nbsp;
-                    ID: {question.ids}&nbsp;&nbsp;&nbsp;{question.disciplina}
-                    <ArrowRightIcon />{question.assunto}&nbsp;&nbsp;
+                    &nbsp;&nbsp; ID: {question.ids}&nbsp;&nbsp;&nbsp;
+                    {question.disciplina}
+                    <ArrowRightIcon />
+                    {question.assunto}&nbsp;&nbsp;
                   </Typography>
-
                 </Box>
-
-                <Box sx={{ borderLeft: "1px solid #1c52531e", borderRight: "1px solid #1c52531e", borderBottom: "1px solid #1c52531e", }}>
+                <Box
+                  sx={{
+                    borderLeft: "1px solid #1c52531e",
+                    borderRight: "1px solid #1c52531e",
+                    borderBottom: "1px solid #1c52531e",
+                  }}
+                >
                   <Box
                     sx={{
-                      overflowX: 'auto',
-                      overflowY: 'hidden',
-                      maxWidth: '100%', // Garante que o Box se expanda horizontalmente
+                      overflowX: "auto",
+                      overflowY: "hidden",
+                      maxWidth: "100%", // Garante que o Box se expanda horizontalmente
                     }}
-
                   >
-                    <Typography style={{ whiteSpace: 'nowrap', paddingTop: '0.500em', paddingLeft: '0.300em', fontFamily: 'Poppins', fontSize: '0.800em', textAlign: 'left', color: '#1c5253', fontWeight: '500' }}>Banca: &nbsp;{question.banca}
+                    <Typography
+                      style={{
+                        whiteSpace: "nowrap",
+                        paddingTop: "0.500em",
+                        paddingLeft: "0.300em",
+                        fontFamily: "Poppins",
+                        fontSize: "0.800em",
+                        textAlign: "left",
+                        color: "#1c5253",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Banca: &nbsp;{question.banca}
                       &nbsp;&nbsp;&nbsp;&nbsp;Ano: &nbsp;{question.ano}
                       &nbsp;&nbsp;&nbsp;&nbsp;Cargo: &nbsp;{question.cargo}
-                      &nbsp;&nbsp;&nbsp;&nbsp;Órgão: &nbsp;{question.concurso}&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;Órgão: &nbsp;{question.concurso}
+                      &nbsp;&nbsp;
                     </Typography>
-
                   </Box>
-                  <Box style={{ height: '2px', backgroundColor: '#1c525341', margin: '10px 0' }}></Box>
-                
+                  <Box
+                    style={{
+                      height: "2px",
+                      backgroundColor: "#1c525341",
+                      margin: "10px 0",
+                    }}
+                  ></Box>
 
-              
-                  <p className="enunciado" dangerouslySetInnerHTML={{ __html: question.enunciado }}></p>
+                  <p
+                    className="enunciado"
+                    dangerouslySetInnerHTML={{ __html: question.enunciado }}
+                  ></p>
 
                   <ul>
                     {question.alternativas.map((alternativa, index) => {
@@ -1385,16 +1758,32 @@ function Home() {
                         false;
 
                       return (
-                        <Typography sx={{ margin: '0.500em', fontFamily: 'Poppins, Arial', fontSize: '0.900em', padding: '0.100em', color: 'black', }}
-                          className={`alternativa ${isSelected ? "selecionada" : ""} ${isRiscada ? "riscado" : ""}`}
+                        <Typography
+                          sx={{
+                            margin: "0.500em",
+                            fontFamily: "Poppins, Arial",
+                            fontSize: "0.900em",
+                            padding: "0.100em",
+                            color: "black",
+                          }}
+                          className={`alternativa ${
+                            isSelected ? "selecionada" : ""
+                          } ${isRiscada ? "riscado" : ""}`}
                           key={index}
-                          onClick={() => handleAlternativaClick(question.ids, index)}
+                          onClick={() =>
+                            handleAlternativaClick(question.ids, index)
+                          }
                         >
                           <Box
-                            className={`icon-container ${isRiscada ? "riscado" : ""}`}
+                            className={`icon-container ${
+                              isRiscada ? "riscado" : ""
+                            }`}
                           >
-                            <ContentCutRoundedIcon style={{ color: '#1c5253', fontSize: "small", }}
-                              className={`tesoura-icon ${isRiscada ? "riscado" : ""}`}
+                            <ContentCutRoundedIcon
+                              style={{ color: "#1c5253", fontSize: "small" }}
+                              className={`tesoura-icon ${
+                                isRiscada ? "riscado" : ""
+                              }`}
                               onClick={(e) => {
                                 e.stopPropagation();
                                 handleRiscarAlternativa(question.ids, index);
@@ -1403,13 +1792,18 @@ function Home() {
                           </Box>
 
                           <span
-                            className={`letra-alternativa-circle ${isSelected ? "selecionada" : ""}`}
+                            className={`letra-alternativa-circle ${
+                              isSelected ? "selecionada" : ""
+                            }`}
                           >
                             {letraAlternativa}
                           </span>
-                          <span dangerouslySetInnerHTML={{ __html: alternativa.replace(/^\(([A-E])\)/, "") }} />
+                          <span
+                            dangerouslySetInnerHTML={{
+                              __html: alternativa.replace(/^\(([A-E])\)/, ""),
+                            }}
+                          />
                         </Typography>
-
                       );
                     })}
                   </ul>
@@ -1426,7 +1820,9 @@ function Home() {
                     </button>
 
                     {resultados[question.ids] === true && (
-                      <p className="resposta-correta">Parabéns! Você acertou!</p>
+                      <p className="resposta-correta">
+                        Parabéns! Você acertou!
+                      </p>
                     )}
                     {resultados[question.ids] === false && (
                       <p className="resposta-incorreta">
@@ -1434,43 +1830,98 @@ function Home() {
                       </p>
                     )}
                   </div>
-
-                </Box >
-
-                <Box sx={{ display: "flex", flexDirection: "row", color: "#1c5253", alignItems: "flex-start", overflowX: 'auto', maxWidth: '100%', overflowY: 'hidden', justifyContent: 'flex-start', }}>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    color: "#1c5253",
+                    alignItems: "flex-start",
+                    overflowX: "auto",
+                    maxWidth: "100%",
+                    overflowY: "hidden",
+                    justifyContent: "flex-start",
+                  }}
+                >
                   <IconButton
-                    sx={{ color: '#1c5253', padding: '0.700em' }}
+                    sx={{ color: "#1c5253", padding: "0.700em" }}
                     className="button-comentario"
                     onClick={() => toggleComentario(question.ids)}
                   >
-                    <QuestionAnswerOutlinedIcon fontSize="small" sx={{ color: '#1c5253', backgroundColor: 'transparent' }} />
-                    <Typography sx={{ fontSize: '0.550em', color: '#1c5253', marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500' }} color="error">
+                    <QuestionAnswerOutlinedIcon
+                      fontSize="small"
+                      sx={{ color: "#1c5253", backgroundColor: "transparent" }}
+                    />
+                    <Typography
+                      sx={{
+                        fontSize: "0.550em",
+                        color: "#1c5253",
+                        marginLeft: "0.500em",
+                        fontFamily: "Poppins",
+                        fontWeight: "500",
+                      }}
+                      color="error"
+                    >
                       Comentários
                     </Typography>
                   </IconButton>
 
-                  <IconButton sx={{ color: '#1c5253', padding: '0.700em' }}>
-                    <Link to="/MeuPerfil" target="_blank" style={{ display: 'flex', textDecoration: 'none' }}>
-                      <PollOutlinedIcon fontSize="small" sx={{ color: '#1c5253', backgroundColor: 'transparent' }} />
-                      <Typography sx={{ fontSize: '0.550em', color: '#1c5253', marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500' }} color="error">
+                  <IconButton sx={{ color: "#1c5253", padding: "0.700em" }}>
+                    <Link
+                      to="/MeuPerfil"
+                      target="_blank"
+                      style={{ display: "flex", textDecoration: "none" }}
+                    >
+                      <PollOutlinedIcon
+                        fontSize="small"
+                        sx={{
+                          color: "#1c5253",
+                          backgroundColor: "transparent",
+                        }}
+                      />
+                      <Typography
+                        sx={{
+                          fontSize: "0.550em",
+                          color: "#1c5253",
+                          marginLeft: "0.500em",
+                          fontFamily: "Poppins",
+                          fontWeight: "500",
+                        }}
+                        color="error"
+                      >
                         Meu Desempenho
                       </Typography>
                     </Link>
                   </IconButton>
 
                   {paymentInfo !== null && (
-                    <EstatisticasQuestao key={question.id} questionId={question.ids} />
+                    <EstatisticasQuestao
+                      key={question.id}
+                      questionId={question.ids}
+                    />
                   )}
-                  <IconButton sx={{ color: '#1c5253', padding: '0.700em' }}>
+                  <IconButton sx={{ color: "#1c5253", padding: "0.700em" }}>
                     <a
                       href="/Mentorias"
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={{ display: 'flex', textDecoration: 'none' }}
+                      style={{ display: "flex", textDecoration: "none" }}
                     >
-                      <LaptopChromebookIcon fontSize="small" sx={{ color: '#1c5253', backgroundColor: 'transparent' }} />
+                      <LaptopChromebookIcon
+                        fontSize="small"
+                        sx={{
+                          color: "#1c5253",
+                          backgroundColor: "transparent",
+                        }}
+                      />
                       <Typography
-                        sx={{ fontSize: '0.550em', color: '#1c5253', marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500' }}
+                        sx={{
+                          fontSize: "0.550em",
+                          color: "#1c5253",
+                          marginLeft: "0.500em",
+                          fontFamily: "Poppins",
+                          fontWeight: "500",
+                        }}
                         color="error"
                       >
                         Mentorias
@@ -1478,16 +1929,28 @@ function Home() {
                     </a>
                   </IconButton>
 
-                  <IconButton sx={{ color: '#1c5253', padding: '0.700em' }}>
+                  <IconButton sx={{ color: "#1c5253", padding: "0.700em" }}>
                     <a
                       href="https://chat.whatsapp.com/E4ANUZMGtFIKajR7qqzBxI"
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={{ display: 'flex', textDecoration: 'none' }}
+                      style={{ display: "flex", textDecoration: "none" }}
                     >
-                      <WhatsAppIcon fontSize="small" sx={{ color: '#1c5253', backgroundColor: 'transparent' }} />
+                      <WhatsAppIcon
+                        fontSize="small"
+                        sx={{
+                          color: "#1c5253",
+                          backgroundColor: "transparent",
+                        }}
+                      />
                       <Typography
-                        sx={{ fontSize: '0.550em', color: '#1c5253', marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500' }}
+                        sx={{
+                          fontSize: "0.550em",
+                          color: "#1c5253",
+                          marginLeft: "0.500em",
+                          fontFamily: "Poppins",
+                          fontWeight: "500",
+                        }}
                         color="error"
                       >
                         Grupo de Estudos
@@ -1495,10 +1958,7 @@ function Home() {
                     </a>
                   </IconButton>
                 </Box>
-
-
                 <Container className="linha-horizontal-comentario"></Container>
-
                 <Container
                   className="campo-comentario"
                   style={{
@@ -1506,12 +1966,19 @@ function Home() {
                     overflowX: "auto", // Adiciona a rolagem horizontal quando necessário
                   }}
                 >
-
-                  <Box sx={{ paddingBottom: '2em', marginTop: '3em', marginBottom: '3em', backgroundColor: 'transparent' }} className={
-                    comentariosVisiveis[question.ids]
-                      ? "comentario visivel"
-                      : "comentarios"
-                  } >
+                  <Box
+                    sx={{
+                      paddingBottom: "2em",
+                      marginTop: "3em",
+                      marginBottom: "3em",
+                      backgroundColor: "transparent",
+                    }}
+                    className={
+                      comentariosVisiveis[question.ids]
+                        ? "comentario visivel"
+                        : "comentarios"
+                    }
+                  >
                     <Comentarios question={question} db={db} user={user} />
                   </Box>
 
@@ -1526,14 +1993,33 @@ function Home() {
                       overflowX: "auto", // Adiciona a rolagem horizontal quando necessário
                     }}
                   >
-
                     {question.comentario}
-
                   </p>
-
-
                 </Container>
-
+                <div>
+                  <ul>
+                    {respostasPorQuestao[question.ids] &&
+                    respostasPorQuestao[question.ids].length > 0 ? (
+                      respostasPorQuestao[question.ids].map(
+                        (response, index) => (
+                          <li key={index}>
+                            <p>
+                              Data da Resposta:{" "}
+                              {new Date(response.dataResposta).toLocaleString()}
+                            </p>
+                            <p>
+                              Resposta do Usuário:{" "}
+                              {response.respostaSelecionada}
+                            </p>
+                            <p>Correta: {response.correta ? "Sim" : "Não"}</p>
+                          </li>
+                        )
+                      )
+                    ) : (
+                      <p></p>
+                    )}
+                  </ul>
+                </div>
               </div>
             ))}
             {paymentInfo === null && (
@@ -1546,14 +2032,20 @@ function Home() {
               <Button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
                 Anterior
               </Button>
-              <Typography sx={{ fontFamily: "Poppins", fontSize: "0.850em", fontWeight: "500", padding: "0.500em", textAlign: "center" }}>
-                {paginaAtual.toLocaleString('pt-BR')} de {totalPages.toLocaleString('pt-BR')}
+              <Typography
+                sx={{
+                  fontFamily: "Poppins",
+                  fontSize: "0.850em",
+                  fontWeight: "500",
+                  padding: "0.500em",
+                  textAlign: "center",
+                }}
+              >
+                {paginaAtual.toLocaleString("pt-BR")} de{" "}
+                {totalPages.toLocaleString("pt-BR")}
               </Typography>
-              <Button onClick={handleNextPage}>
-                Próxima
-              </Button>
+              <Button onClick={handleNextPage}>Próxima</Button>
             </Box>
-
           </Box>
         ) : (
           <Box className="login">
@@ -1580,7 +2072,6 @@ function Home() {
 
         {user && (
           <Box className="Rodapé">
-
             <Box className="Box-Rodapé">
               <p className="Texto-Rodapé">
                 <Link to="/" style={{ textDecoration: "none", color: "white" }}>
@@ -1629,7 +2120,7 @@ function Home() {
                 </Link>
               </p>
               <p className="Texto-Rodapé">
-                <Link to="/" style={{ textDecoration: "none", color: "white", }}>
+                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
                   Questões
                 </Link>
               </p>
@@ -1665,7 +2156,10 @@ function Home() {
                 </Link>
               </p>
               <p className="Texto-Rodapé">
-                <Link to="/Aulas" style={{ textDecoration: "none", color: "white", }}>
+                <Link
+                  to="/Aulas"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
                   Aulas
                 </Link>
               </p>
