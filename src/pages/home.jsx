@@ -445,23 +445,20 @@ function Home() {
     correta
   ) => {
     try {
-      const responsesCollectionRef = collection(db, "respostasUsuario");
-      const userResponseRef = doc(
-        responsesCollectionRef,
-        `${userId}_${questionId}`
-      );
+      const userResponseRef = doc(collection(db, "respostasUsuario"), userId);
 
       const respostaLetra = converterNumeroParaLetra(respostaSelecionada);
-
       const userResponseDoc = await getDoc(userResponseRef);
+
       if (userResponseDoc.exists()) {
         const responseData = userResponseDoc.data();
 
         if (!responseData.historicoRespostas) {
           responseData.historicoRespostas = [];
         }
+
         responseData.historicoRespostas.push({
-          userId, // Incluindo o ID do usuário na resposta
+          questionId,
           dataResposta,
           respostaSelecionada: respostaLetra,
           correta,
@@ -473,10 +470,10 @@ function Home() {
         );
       } else {
         const newResponseData = {
-          userId, // Incluindo o ID do usuário na resposta
-          questionId: questionId,
+          userId,
           historicoRespostas: [
             {
+              questionId,
               dataResposta,
               respostaSelecionada: respostaLetra,
               correta,
@@ -496,6 +493,66 @@ function Home() {
       );
     }
   };
+
+  // const saveUserResponsesWithDate = async (
+  //   userId,
+  //   questionId,
+  //   respostaSelecionada,
+  //   dataResposta,
+  //   correta
+  // ) => {
+  //   try {
+  //     const responsesCollectionRef = collection(db, "respostasUsuario");
+  //     const userResponseRef = doc(
+  //       responsesCollectionRef,
+  //       `${userId}_${questionId}`
+  //     );
+
+  //     const respostaLetra = converterNumeroParaLetra(respostaSelecionada);
+
+  //     const userResponseDoc = await getDoc(userResponseRef);
+  //     if (userResponseDoc.exists()) {
+  //       const responseData = userResponseDoc.data();
+
+  //       if (!responseData.historicoRespostas) {
+  //         responseData.historicoRespostas = [];
+  //       }
+  //       responseData.historicoRespostas.push({
+  //         userId, // Incluindo o ID do usuário na resposta
+  //         dataResposta,
+  //         respostaSelecionada: respostaLetra,
+  //         correta,
+  //       });
+
+  //       await setDoc(userResponseRef, responseData, { merge: true });
+  //       console.log(
+  //         "Resposta do usuário com data e resultado salva com sucesso!"
+  //       );
+  //     } else {
+  //       const newResponseData = {
+  //         userId, // Incluindo o ID do usuário na resposta
+  //         questionId: questionId,
+  //         historicoRespostas: [
+  //           {
+  //             dataResposta,
+  //             respostaSelecionada: respostaLetra,
+  //             correta,
+  //           },
+  //         ],
+  //       };
+
+  //       await setDoc(userResponseRef, newResponseData);
+  //       console.log(
+  //         "Resposta do usuário com data e resultado salva com sucesso!"
+  //       );
+  //     }
+  //   } catch (error) {
+  //     console.error(
+  //       "Erro ao salvar a resposta do usuário com data e resultado:",
+  //       error
+  //     );
+  //   }
+  // };
 
   const converterNumeroParaLetra = (numero) => {
     const letras = ["A", "B", "C", "D", "E"];
@@ -735,36 +792,69 @@ function Home() {
   }, [user]);
 
   const fetchUserQuestionResponses = async (userId) => {
-    const questionResponses = [];
     try {
-      const responsesCollectionRef = collection(db, "respostasUsuario");
-      const userResponsesQuerySnapshot = await getDocs(
-        query(responsesCollectionRef, where("userId", "==", userId))
-      );
-      userResponsesQuerySnapshot.forEach((doc) => {
-        const response = doc.data();
-        response.historicoRespostas.forEach((history) => {
-          questionResponses.push({
-            questionId: response.questionId,
+      const userResponseRef = doc(collection(db, "respostasUsuario"), userId);
+      const userResponseDoc = await getDoc(userResponseRef);
+
+      if (userResponseDoc.exists()) {
+        const responseData = userResponseDoc.data();
+        const questionResponses = responseData.historicoRespostas.map(
+          (history) => ({
+            questionId: history.questionId,
             respostaSelecionada: history.respostaSelecionada,
             dataResposta: history.dataResposta,
             correta: history.correta,
-          });
-        });
-      });
-      setUserResponses(questionResponses);
+          })
+        );
+
+        setUserResponses(questionResponses);
+      } else {
+        console.log("Nenhuma resposta encontrada para o usuário.");
+      }
     } catch (error) {
       console.error("Erro ao buscar as respostas do usuário:", error);
     }
   };
 
+  // const fetchUserQuestionResponses = async (userId) => {
+  //   const questionResponses = [];
+  //   try {
+  //     const responsesCollectionRef = collection(db, "respostasUsuario");
+  //     const userResponsesQuerySnapshot = await getDocs(
+  //       query(responsesCollectionRef, where("userId", "==", userId))
+  //     );
+  //     userResponsesQuerySnapshot.forEach((doc) => {
+  //       const response = doc.data();
+  //       response.historicoRespostas.forEach((history) => {
+  //         questionResponses.push({
+  //           questionId: response.questionId,
+  //           respostaSelecionada: history.respostaSelecionada,
+  //           dataResposta: history.dataResposta,
+  //           correta: history.correta,
+  //         });
+  //       });
+  //     });
+  //     setUserResponses(questionResponses);
+  //   } catch (error) {
+  //     console.error("Erro ao buscar as respostas do usuário:", error);
+  //   }
+  // };
+
   // Organiza as respostas por questionId
+
   const respostasPorQuestao = questoesPagina.reduce((acc, question) => {
     acc[question.ids] = userResponses.filter(
       (response) => response.questionId === question.ids
     );
     return acc;
   }, {});
+
+  // const respostasPorQuestao = questoesPagina.reduce((acc, question) => {
+  //   acc[question.ids] = userResponses.filter(
+  //     (response) => response.questionId === question.ids
+  //   );
+  //   return acc;
+  // }, {});
 
   const formatDate = (dateString) => {
     const options = {
@@ -1996,6 +2086,30 @@ function Home() {
                     {question.comentario}
                   </p>
                 </Container>
+                {/* <div>
+                  <ul>
+                    {respostasPorQuestao[question.ids] &&
+                    respostasPorQuestao[question.ids].length > 0 ? (
+                      respostasPorQuestao[question.ids].map(
+                        (response, index) => (
+                          <li key={index}>
+                            <p>
+                              Data da Resposta:{" "}
+                              {new Date(response.dataResposta).toLocaleString()}
+                            </p>
+                            <p>
+                              Resposta do Usuário:{" "}
+                              {response.respostaSelecionada}
+                            </p>
+                            <p>Correta: {response.correta ? "Sim" : "Não"}</p>
+                          </li>
+                        )
+                      )
+                    ) : (
+                      <p></p>
+                    )}
+                  </ul>
+                </div> */}
                 <div>
                   <ul>
                     {respostasPorQuestao[question.ids] &&
