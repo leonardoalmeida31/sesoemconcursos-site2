@@ -111,18 +111,21 @@
   }
   
   .filter-button {
-    padding: 0.700em;
+    padding-right: 2em;
+    padding-left: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
     flex-direction: column;
     background-color: #1C5253;
     color: white;
     border: none;
-    margin-left: 7px;
+    
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
     font-family: 'Poppins';
-    font-weight: 500;
-    font-size: 0.875em; /* Tamanho de fonte responsivo em pixels */
+    font-weight: 400;
+    font-size: 0.9em; /* Tamanho de fonte responsivo em pixels */
   }
   .div-button {
    

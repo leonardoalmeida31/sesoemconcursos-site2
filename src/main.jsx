@@ -18,6 +18,8 @@ import Aulas from './pages/Aulas.jsx'
 import Mentorias from './pages/Mentorias.jsx'
 import EstatisticasSite from './pages/EstatisticasSite.jsx'
 import Usuarios from './pages/Usuarios.jsx'
+import SESODados from './pages/SESODados.jsx'
+import ChartsCamila from './pages/ChartsCamila.jsx'
 
 
 
@@ -42,7 +44,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/Mentorias" element={<Mentorias />} />
         <Route path="/EstatisticasSite" element={<EstatisticasSite />} />
         <Route path="/Usuarios" element={<Usuarios />} />
-   
+        <Route path="/SESODados" element={<SESODados />} />
+        <Route path="/ChartsCamila" element={<ChartsCamila />} />
+    
+
+        
+        
   
         
       

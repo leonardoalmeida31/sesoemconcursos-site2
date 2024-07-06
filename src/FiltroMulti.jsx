@@ -19,7 +19,7 @@ import {
   Paper,
   ListItem,
   List,
-  ListItemText
+  ListItemText, Grid
 } from "@mui/material";
 import { getDatabase, ref, onValue } from 'firebase/database'
 
@@ -151,16 +151,16 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           selectedAnos.length === 0 || selectedAnos.some((selected) => selected.value === item.ano);
         const areaMatch =
           selectedAreas.length === 0 || selectedAreas.some((selected) => selected.value === item.area);
-          const concursoMatch =
+        const concursoMatch =
           selectedConcursos.length === 0 || selectedConcursos.some(
             (selected) => selected.label === item.concurso
           );
-          
 
-          const keywordsMatch =
-        keywords.trim() === "" ||
-        item.enunciado.toLowerCase().includes(keywords.toLowerCase()) ||
-        item.ids.toString().includes(keywords)
+
+        const keywordsMatch =
+          keywords.trim() === "" ||
+          item.enunciado.toLowerCase().includes(keywords.toLowerCase()) ||
+          item.ids.toString().includes(keywords)
 
 
         return (
@@ -175,14 +175,14 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
         );
       })
 
-      // Embaralhar aleatoriamente as questões
-      const shuffledQuestoes = filteredQuestoes.sort(() => Math.random() - 0.5);
+    // Embaralhar aleatoriamente as questões
+    const shuffledQuestoes = filteredQuestoes.sort(() => Math.random() - 0.5);
 
-      setFilteredQuestoes(filteredQuestoes);
-      onFilterChange(filteredQuestoes);
-      setPaginaAtual(1);
-  
-    };
+    setFilteredQuestoes(filteredQuestoes);
+    onFilterChange(filteredQuestoes);
+    setPaginaAtual(1);
+
+  };
 
   // Antes de renderizar o componente Select "Banca", ordene o array bancaOptions em ordem alfabética.
   const sortedBancaOptions = bancaOptions.slice().sort((a, b) => a.label.localeCompare(b.label));
@@ -192,9 +192,8 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
 
 
   return (
-    <Box className="filter-container" sx={{ display: 'flex', flexWrap: 'wrap' }}>
-
-      <Box className="div-filter2">
+    <Grid maxWidth={'x1'}  container spacing={2} sx={{ display: 'flex', flexWrap: 'wrap', justifyContent:'left', padding: '1.5em', backgroundColor: '#F8F8F8', marginTop: '0.5em', borderRadius:'10px', justifyContent:'center' }}>
+      <Grid item xs={12} sm={6} md={4} lg={3.92} sx={{marginRight: '0.2em'}}>
         <TextField
           type="text"
           className="filter-input"
@@ -202,158 +201,282 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           value={keywords}
           onChange={(e) => setKeywords(e.target.value)}
           size="small"
-          InputProps={{ style: { fontSize: '0.885em', color: 'black' } }} // Altere o valor do fontSize conforme necessário
+          InputProps={{ style: { fontSize: '0.885em', color: 'black' } }}
+          fullWidth
         />
-      </Box>
+      </Grid>
 
-      <div className="div-filter">
+      <Grid item xs={12} sm={6} md={4} lg={4}>
         <Select
           className="filter-select"
           value={selectedDisciplinas}
           onChange={handleDisciplinasChange}
           options={sortedDisciplinaOptions}
-          isMulti={true}
+          isMulti
           placeholder="Disciplina"
           styles={{
+            placeholder: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh',
+              color: '#888'  // Cor do placeholder
+            }),
+            singleValue: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            }),
+            multiValue: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            }),
             option: (provided, state) => ({
               ...provided,
               backgroundColor: state.isFocused ? "#1C5253" : "white",
               color: state.isFocused ? "white" : "black",
-            }),
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            })
           }}
         />
-      </div>
-      <div className="div-filter">
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={4} lg={4}>
         <Select
           className="filter-select"
           value={selectedAssuntos}
           onChange={handleAssuntosChange}
           options={assuntoOptions}
-          isMulti={true}
+          isMulti
           placeholder="Assunto"
           isDisabled={selectedDisciplinas.length === 0}
           styles={{
+            placeholder: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh',
+              color: '#888'  // Cor do placeholder
+            }),
+            singleValue: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            }),
+            multiValue: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            }),
             option: (provided, state) => ({
               ...provided,
               backgroundColor: state.isFocused ? "#1C5253" : "white",
               color: state.isFocused ? "white" : "black",
-            }),
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            })
           }}
         />
-      </div>
-      <div className="div-filter">
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={4} lg={4}>
         <Select
           className="filter-select"
           value={selectedBancas}
           onChange={(selectedOptions) => setSelectedBancas(selectedOptions)}
           options={sortedBancaOptions}
-          isMulti={true}
+          isMulti
           placeholder="Banca"
           styles={{
+            placeholder: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh',
+              color: '#888'  // Cor do placeholder
+            }),
+            singleValue: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            }),
+            multiValue: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            }),
             option: (provided, state) => ({
               ...provided,
               backgroundColor: state.isFocused ? "#1C5253" : "white",
               color: state.isFocused ? "white" : "black",
-            }),
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            })
           }}
         />
-      </div>
-      <div className="div-filter">
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={4} lg={4}>
         <Select
           className="filter-select"
           value={selectedModalidades}
-          onChange={(selectedOptions) =>
-            setSelectedModalidades(selectedOptions)
-          }
+          onChange={(selectedOptions) => setSelectedModalidades(selectedOptions)}
           options={modalidadeOptions}
-          isMulti={true}
+          isMulti
           placeholder="Modalidade"
           styles={{
+            placeholder: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh',
+              color: '#888'  // Cor do placeholder
+            }),
+            singleValue: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            }),
+            multiValue: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            }),
             option: (provided, state) => ({
               ...provided,
               backgroundColor: state.isFocused ? "#1C5253" : "white",
               color: state.isFocused ? "white" : "black",
-            }),
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            })
           }}
         />
-      </div>
+      </Grid>
 
-      <div className="div-filter">
+      <Grid item xs={12} sm={6} md={4} lg={4}>
         <Select
           className="filter-select"
           value={selectedAnos}
           onChange={(selectedOptions) => setSelectedAnos(selectedOptions)}
           options={sortedAnoOptions}
-          isMulti={true}
+          isMulti
           placeholder="Ano"
           styles={{
+            placeholder: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh',
+              color: '#888'  // Cor do placeholder
+            }),
+            singleValue: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            }),
+            multiValue: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            }),
             option: (provided, state) => ({
               ...provided,
               backgroundColor: state.isFocused ? "#1C5253" : "white",
               color: state.isFocused ? "white" : "black",
-            }),
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            })
           }}
         />
-      </div>
-      <div className="div-filter">
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={4} lg={4}>
         <Select
           className="filter-select"
           value={selectedAreas}
           onChange={(selectedOptions) => setSelectedAreas(selectedOptions)}
           options={areaOptions}
-          isMulti={true}
+          isMulti
           placeholder="Área"
           styles={{
+            placeholder: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh',
+              color: '#888'  // Cor do placeholder
+            }),
+            singleValue: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            }),
+            multiValue: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            }),
             option: (provided, state) => ({
               ...provided,
               backgroundColor: state.isFocused ? "#1C5253" : "white",
               color: state.isFocused ? "white" : "black",
-            }),
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            })
           }}
         />
-      </div>
-      <div className="div-filter">
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={4} lg={4}>
         <Select
           className="filter-select"
           value={selectedConcursos}
           onChange={(selectedOptions) => setSelectedConcursos(selectedOptions)}
           options={sortedConcursoOptions}
-          isMulti={true}
+          isMulti
           placeholder="Instituição"
           styles={{
+            placeholder: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh',
+              color: '#888'  // Cor do placeholder
+            }),
+            singleValue: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            }),
+            multiValue: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            }),
             option: (provided, state) => ({
               ...provided,
               backgroundColor: state.isFocused ? "#1C5253" : "white",
               color: state.isFocused ? "white" : "black",
-            }),
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            })
           }}
         />
-      </div>
-   
-      <div>
-        <Box sx={{ flexDirection: 'column', paddingLeft: '12em' }} className="div-button">
+      </Grid>
+
+      <Grid item xs={12} sm={12} md={12} lg={4} sx={{ display: 'flex', justifyContent: 'right' }}>
         <button className="filter-button" onClick={() => handleFilterClick(questions)}>
-  Filtrar Questões
-</button>
+          Filtrar Questões
+        </button>
+      </Grid>
 
-        </Box>
-      </div>
-  <Box sx={{ flexDirection: 'column', paddingTop: '0.500em', paddingBottom: '2em' }}>
-      <Typography sx={{ fontFamily: 'Poppins', fontSize: '0.850em', fontWeight: '400', backgroundColor: 'white', color: 'black', padding: '0.500em', borderRadius: '5px', marginBottom: '0.300em' }}>
-        {`${totalQuestions.toLocaleString()}  Questões no Site`}</Typography>
+      <Grid item xs={12} sm={12} md={12} lg={3} sx={{ textAlign: 'center', marginTop: '1em' }}>
+        <Typography sx={{ fontFamily: 'Poppins', fontSize: '0.8em', fontWeight: '400', backgroundColor: 'white', color: 'black', padding: '0.500em', borderRadius: '5px', marginBottom: '0.300em' }}>
+          {`${totalQuestions.toLocaleString()} Questões no Site`}
+        </Typography>
 
-      <Typography sx={{ fontFamily: 'Poppins', fontSize: '0.850em', fontWeight: '500', backgroundColor: 'white', color: 'black', padding: '0.500em', borderRadius: '5px'  }}>
-        {`${filteredQuestoes.length.toLocaleString()}  Questões filtradas`}
-      </Typography>
-    </Box>
-
-  </Box>
-    
+        <Typography sx={{ fontFamily: 'Poppins', fontSize: '0.8em', fontWeight: '500', backgroundColor: 'white', color: 'black', padding: '0.500em', borderRadius: '5px' }}>
+          {`${filteredQuestoes.length.toLocaleString()} Questões filtradas`}
+        </Typography>
+      </Grid>
+    </Grid>
   );
-}
-
-
-
+};
 
 export default FiltroMulti;
 

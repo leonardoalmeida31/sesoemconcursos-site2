@@ -34,7 +34,7 @@ import {
   Paper,
   ListItem,
   List,
-  ListItemText,
+  ListItemText, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle,
 } from "@mui/material";
 import QuestionAnswerOutlinedIcon from "@mui/icons-material/QuestionAnswerOutlined";
 import PollOutlinedIcon from "@mui/icons-material/PollOutlined";
@@ -323,7 +323,7 @@ function Home() {
       }
     });
 
-    return () => {};
+    return () => { };
   }, []);
 
   useEffect(() => {
@@ -928,7 +928,7 @@ function Home() {
     }));
   };
 
-  const handleCheckout = async ({}) => {
+  const handleCheckout = async ({ }) => {
     const stripe = await stripePromise;
 
     try {
@@ -951,7 +951,7 @@ function Home() {
     }
   };
 
-  const handleCheckoutS = async ({}) => {
+  const handleCheckoutS = async ({ }) => {
     const stripe = await stripePromise;
 
     try {
@@ -973,7 +973,7 @@ function Home() {
       console.error("Erro ao iniciar o checkout:", err);
     }
   };
-  const handleCheckoutA = async ({}) => {
+  const handleCheckoutA = async ({ }) => {
     const stripe = await stripePromise;
 
     try {
@@ -1304,14 +1304,70 @@ function Home() {
     );
   });
 
+
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setOpen(true);
+    }, 5000); // 5000 ms = 5 segundos
+
+    // Cleanup do timer se o componente desmontar antes dos 5 segundos
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
   return (
-    <Box>
+    <Container maxWidth="xl">
+
       {user && (
+
+        <Container>
+
+          <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
+
+            <DialogContent sx={{ backgroundColor: '#1c3232' }}>
+              <DialogContentText sx={{ fontSize: '0.8em', color: 'white', fontFamily: 'Poppins, Sans serif', fontWeight: '600', padding: '0.5em', textAlign: 'center' }}>
+                TEM VÍDEO NOVO DE QUESTÕES COMENTADAS NO NOSSO CANAL DO YOUTUBE.
+              </DialogContentText>
+              <DialogContentText sx={{ fontSize: '0.9em', color: 'white', fontFamily: 'Poppins, Sans serif', fontWeight: '600', padding: '0.5em', textAlign: 'center' }}>
+                VENHA ASSISTIR AGORA MESMO!!!
+              </DialogContentText>
+
+              <div style={{ position: 'relative', paddingBottom: '20em', height: 0 }}>
+                <iframe
+                  style={{ position: 'relative', top: 0, left: 0, width: '100%', height: '30vh' }}
+                  src="https://www.youtube.com/embed/vT57uCGhRLY?"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title="Video"
+                ></iframe>
+              </div>
+            </DialogContent>
+            <DialogActions sx={{ backgroundColor: '#1c3232' }}>
+              <Button onClick={handleClose} color="primary">
+                Fechar
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </Container>
+
+
+      )}
+
+
+      {user && (
+
         <AppBar
           sx={{ backgroundColor: "#1c5253", marginBottom: "1em" }}
           position="static"
         >
-          <Container maxWidth="x1">
+          <Container maxWidth="xl">
             <Toolbar disableGutters>
               {/*<Avatar alt="SESO Logo" src={SESOLogo}   sx={{  width: 40,  height: 40,   marginRight: "0.100em",  }}
       />*/}
@@ -1605,20 +1661,14 @@ function Home() {
       )}
 
       {user && (
-        <Container>
+        <Container maxWidth="xl">
+
           <Typography
             sx={{
-              fontSize: "0.875em",
-              fontWeight: "400",
-              fontFamily: "Poppins",
-              textAlign: "center",
-              padding: "1em",
-              paddingTop: "0.400em",
-              color: "#1c5253",
+              fontSize: "2vh", fontWeight: "600", fontFamily: "Poppins", textAlign: "center", padding: "1em", paddingTop: "0.5em", color: "#1c5253",
             }}
           >
-            A única plataforma de Questões de concursos especializada em Serviço
-            Social
+            A ÚNICA PLATAFORMA DE QUESTÕES DE CONCURSOS ESPECIALIZADA EM SERVIÇO SOCIAL
           </Typography>
           <FiltroMulti
             onFilterChange={setQuestoesFiltradas}
@@ -1627,7 +1677,7 @@ function Home() {
           />
         </Container>
       )}
-      <Container
+      <Container maxWidth="xl"
         sx={{ padding: "0em", maxWidth: "false" }}
         className="fundo-Home"
       >
@@ -1756,7 +1806,7 @@ function Home() {
         )}
 
         {user ? (
-          <Box>
+          <Grid>
             {questoesPagina.map((question) => (
               <div key={question.id}>
                 <Box
@@ -1798,11 +1848,11 @@ function Home() {
                     borderBottom: "1px solid #1c52531e",
                   }}
                 >
-                  <Box
+                  <Grid
                     sx={{
                       overflowX: "auto",
                       overflowY: "hidden",
-                      maxWidth: "100%", // Garante que o Box se expanda horizontalmente
+                      maxWidth: "100%", // Garante que o Grid se expanda horizontalmente
                     }}
                   >
                     <Typography
@@ -1823,7 +1873,7 @@ function Home() {
                       &nbsp;&nbsp;&nbsp;&nbsp;Órgão: &nbsp;{question.concurso}
                       &nbsp;&nbsp;
                     </Typography>
-                  </Box>
+                  </Grid>
                   <Box
                     style={{
                       height: "2px",
@@ -1852,28 +1902,25 @@ function Home() {
                           sx={{
                             margin: "0.500em",
                             fontFamily: "Poppins, Arial",
-                            fontSize: "0.900em",
+                            fontSize: '0.9em',
                             padding: "0.100em",
                             color: "black",
                           }}
-                          className={`alternativa ${
-                            isSelected ? "selecionada" : ""
-                          } ${isRiscada ? "riscado" : ""}`}
+                          className={`alternativa ${isSelected ? "selecionada" : ""
+                            } ${isRiscada ? "riscado" : ""}`}
                           key={index}
                           onClick={() =>
                             handleAlternativaClick(question.ids, index)
                           }
                         >
                           <Box
-                            className={`icon-container ${
-                              isRiscada ? "riscado" : ""
-                            }`}
+                            className={`icon-container ${isRiscada ? "riscado" : ""
+                              }`}
                           >
                             <ContentCutRoundedIcon
                               style={{ color: "#1c5253", fontSize: "small" }}
-                              className={`tesoura-icon ${
-                                isRiscada ? "riscado" : ""
-                              }`}
+                              className={`tesoura-icon ${isRiscada ? "riscado" : ""
+                                }`}
                               onClick={(e) => {
                                 e.stopPropagation();
                                 handleRiscarAlternativa(question.ids, index);
@@ -1882,9 +1929,8 @@ function Home() {
                           </Box>
 
                           <span
-                            className={`letra-alternativa-circle ${
-                              isSelected ? "selecionada" : ""
-                            }`}
+                            className={`letra-alternativa-circle ${isSelected ? "selecionada" : ""
+                              }`}
                           >
                             {letraAlternativa}
                           </span>
@@ -2049,7 +2095,7 @@ function Home() {
                   </IconButton>
                 </Box>
                 <Container className="linha-horizontal-comentario"></Container>
-                <Container
+                <Container maxWidth="xl"
                   className="campo-comentario"
                   style={{
                     // Impede que o texto quebre para a próxima linha
@@ -2110,7 +2156,7 @@ function Home() {
                     )}
                   </ul>
                 </div> */}
-                <div>
+                {/* <div>
                   <ul>
                     {respostasPorQuestao[question.ids] &&
                     respostasPorQuestao[question.ids].length > 0 ? (
@@ -2133,7 +2179,7 @@ function Home() {
                       <p></p>
                     )}
                   </ul>
-                </div>
+                </div>*/}
               </div>
             ))}
             {paymentInfo === null && (
@@ -2160,7 +2206,7 @@ function Home() {
               </Typography>
               <Button onClick={handleNextPage}>Próxima</Button>
             </Box>
-          </Box>
+          </Grid>
         ) : (
           <Box className="login">
             <p>SESO em Concursos</p>
@@ -2295,7 +2341,7 @@ function Home() {
           </Box>
         )}
       </Container>
-    </Box>
+    </Container>
   );
 }
 
