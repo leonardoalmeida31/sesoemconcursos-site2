@@ -20,6 +20,7 @@ import EstatisticasSite from './pages/EstatisticasSite.jsx'
 import Usuarios from './pages/Usuarios.jsx'
 import SESODados from './pages/SESODados.jsx'
 import ChartsCamila from './pages/ChartsCamila.jsx'
+import TestePix from './pages/TestePix.jsx'
 
 
 
@@ -46,6 +47,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/Usuarios" element={<Usuarios />} />
         <Route path="/SESODados" element={<SESODados />} />
         <Route path="/ChartsCamila" element={<ChartsCamila />} />
+        <Route path="/TestePix" element={<TestePix />} />
     
 
         

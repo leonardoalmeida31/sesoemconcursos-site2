@@ -1328,7 +1328,7 @@ function Home() {
 
         <Container>
 
-          <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
+         {/*<Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
 
             <DialogContent sx={{ backgroundColor: '#1c3232' }}>
               <DialogContentText sx={{ fontSize: '0.8em', color: 'white', fontFamily: 'Poppins, Sans serif', fontWeight: '600', padding: '0.5em', textAlign: 'center' }}>
@@ -1355,6 +1355,7 @@ function Home() {
               </Button>
             </DialogActions>
           </Dialog>
+          */} 
         </Container>
 
 
