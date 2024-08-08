@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Box, Button, Typography, Paper, Card, CardContent, Container, Grid, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import { Box, Button, Typography, Paper, Card, CardContent, Container, Grid, Dialog, DialogActions, DialogContent, DialogTitle, IconButton } from '@mui/material';
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore, doc, updateDoc } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
+import imagemSvg from "../img/img-login-1.svg";
+import { Padding } from '@mui/icons-material';
+import VerifiedTwoToneIcon from '@mui/icons-material/VerifiedTwoTone';
 
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_REACT_APP_API_KEY,
@@ -138,34 +141,88 @@ const TestePix = () => {
     };
 
     return (
-        <Container maxWidth="md">
+        <Container maxWidth="xl" sx={{backgroundColor: '#EEF2F2', padding: '1em', borderRadius: '15px', height: '100%'}}>
             {user ? (
                 <Grid container spacing={4} justifyContent="center" sx={{ mt: 4 }}>
-                    <Grid item xs={12} sm={6}>
-                        <Paper elevation={3} sx={{ padding: 4, textAlign: 'center' }}>
-                            <Typography variant="h5" gutterBottom>
-                                Plano SEMESTRAL
+                    <Grid item xs={12} sm={5}>
+                        <Paper elevation={3} sx={{ padding: 4,  borderRadius: '15px', alignItems: 'center', background: 'radial-gradient(circle, #2e5457, #2c5254, #2f5659, #182828 )', }}>
+                            <Typography sx={{fontFamily: 'Poppins', fontWeight: '600', fontSize: '1.5em', textAlign: 'center', color: 'white'}}>
+                                PLANO SEMESTRAL SESO EM CONCURSOS
                             </Typography>
-                            <Typography variant="h6" gutterBottom>
-                                R$ 1,00
+                            <Typography  sx={{fontFamily: 'Poppins', fontWeight: '600', fontSize: '3em', textAlign: 'center', color: 'white', padding: '0.3em'}}>
+                                R$ 60,00
                             </Typography>
-                            <Typography variant="body1" paragraph>
-                                Acesso por 180 dias.
+                            <IconButton>
+                            <Typography sx={{fontFamily: 'Poppins', fontWeight: '400', fontSize: '0.8em',  color: 'black', textAlign: 'left', color: 'white'}}> <VerifiedTwoToneIcon  sx={{color: '#1AAE6D',  fontSize: '1em', marginRight: '0.3em'}}/>
+                                Estude com Questões Ilimitadas
                             </Typography>
-                            <Button variant="contained" color="primary" onClick={() => createPixPayment(1.00, "Semestral SESO em Concursos")}>
+                            </IconButton>
+                            <IconButton>
+                            <Typography sx={{fontFamily: 'Poppins', fontWeight: '400', fontSize: '0.8em',  color: 'black', textAlign: 'left', color: 'white'}}> <VerifiedTwoToneIcon  sx={{color: '#1AAE6D',  fontSize: '1em', marginRight: '0.3em'}}/>
+                               Mais de 4 mil questões comentadas por Assistentes Sociais
+                            </Typography>
+                            </IconButton>
+
+                            <IconButton>
+                            <Typography sx={{fontFamily: 'Poppins', fontWeight: '400', fontSize: '0.8em',  color: 'black', textAlign: 'left', color: 'white'}}> <VerifiedTwoToneIcon  sx={{color: '#1AAE6D',  fontSize: '1em', marginRight: '0.3em'}}/>
+                              Centenas de Questões Discursivas/Dissertativas
+                            </Typography>
+                            </IconButton>
+
+                            <IconButton>
+                            <Typography sx={{fontFamily: 'Poppins', fontWeight: '400', fontSize: '0.8em',  color: 'black', textAlign: 'left', color: 'white'}}> <VerifiedTwoToneIcon  sx={{color: '#1AAE6D',  fontSize: '1em', marginRight: '0.3em'}}/>
+                              Acompanhe seu desempenho com Ciência de Dados
+                            </Typography>
+                            </IconButton>
+
+                            <IconButton>
+                            <Typography sx={{fontFamily: 'Poppins', fontWeight: '400', fontSize: '0.8em',  color: 'black', textAlign: 'left', color: 'white'}}> <VerifiedTwoToneIcon  sx={{color: '#1AAE6D',  fontSize: '1em', marginRight: '0.3em'}}/>
+                              Filtros Personalizados para o seu Concurso
+                            </Typography>
+                            </IconButton>
+
+                            <IconButton>
+                            <Typography sx={{fontFamily: 'Poppins', fontWeight: '400', fontSize: '0.8em',  color: 'black', textAlign: 'left', color: 'white'}}> <VerifiedTwoToneIcon  sx={{color: '#1AAE6D',  fontSize: '1em', marginRight: '0.3em'}}/>
+                              Uma aula de Mentoria Liberada
+                            </Typography>
+                            </IconButton>
+
+                            <IconButton>
+                            <Typography sx={{fontFamily: 'Poppins', fontWeight: '400', fontSize: '0.8em',  color: 'black', textAlign: 'left', color: 'white'}}> <VerifiedTwoToneIcon  sx={{color: '#1AAE6D',  fontSize: '1em', marginRight: '0.3em'}}/>
+                             Analise suas estatísticas de desempenho
+                            </Typography>
+                            </IconButton>
+
+                            <IconButton>
+                            <Typography sx={{fontFamily: 'Poppins', fontWeight: '400', fontSize: '0.8em',  color: 'black', textAlign: 'left', color: 'white'}}> <VerifiedTwoToneIcon  sx={{color: '#1AAE6D',  fontSize: '1em', marginRight: '0.3em'}}/>
+                             Assinatura Válida por 06 meses
+                            </Typography>
+                            </IconButton>
+
+                            <IconButton>
+                            <Typography sx={{fontFamily: 'Poppins', fontWeight: '400', fontSize: '0.8em',  color: 'black', textAlign: 'left', color: 'white'}}> <VerifiedTwoToneIcon  sx={{color: '#1AAE6D',  fontSize: '1em', marginRight: '0.3em'}}/>
+                            Suporte no WhatsApp com Assistente Social para tirar dúvidas
+                            </Typography>
+                            </IconButton>
+                          
+                            <Grid sx={{justifyContent: 'center',  textAlign: 'center', }}>
+                            <Button sx={{padding: '1em 3em', marginTop: '1em', fontWeight: '600', backgroundColor: '#1AAE6D'}} variant="contained" color="primary" onClick={() => createPixPayment(1.00, "Semestral SESO em Concursos")}>
                                 Assinar Plano Semestral 
                             </Button>
                             {qrCode1 && (
                                 <Box mt={2}>
-                                    <Typography variant="body1">QR Code:</Typography>
-                                    <Box component="img" src={`data:image/png;base64,${qrCodeBase641}`} alt="QR Code Plano Básico" sx={{ width: '200px', height: '200px' }} />
+                                    <Typography sx={{fontFamily: 'Poppins', fontWeight: '500', fontSize: '1em',  color: 'black', textAlign: 'center', color: 'white', padding: '0.5em'}}  >ESCANEIE O QR CODE ABAIXO<br></br> E REALIZE O PAGAMENTO</Typography>
+                                    <Box component="img" src={`data:image/png;base64,${qrCodeBase641}`} alt="QR Code Plano Básico" sx={{ width: '300px', height: '300px' }} />
                                 </Box>
                             )}
                             {paymentStatus1 && <Typography variant="body1">{paymentStatus1}</Typography>}
+
+                            </Grid>
+                           
                         </Paper>
                     </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <Paper elevation={3} sx={{ padding: 4, textAlign: 'center' }}>
+                    <Grid item xs={12} sm={5} sx={{}}>
+                        <Paper elevation={3} sx={{ padding: 4, textAlign: 'center', borderRadius: '15px' }}>
                             <Typography variant="h5" gutterBottom>
                                 Plano ANUAL
                             </Typography>
@@ -189,22 +246,29 @@ const TestePix = () => {
                     </Grid>
                 </Grid>
             ) : (
-                <Card sx={{ maxWidth: 345, mt: 4, mx: 'auto' }}>
-                    <CardContent sx={{ textAlign: 'center' }}>
-                        <Typography variant="h6" gutterBottom>
+                <Card className="login" sx={{ maxWidth: 'xl'}}>
+                    
+                    <CardContent sx={{ textAlign: 'center', color: 'white', fontFamily: 'Poppins', fontSize: '1.3em' }}>
+                        <Typography  >
                             SESO em Concursos
                         </Typography>
+                        <img
+              src={imagemSvg}
+              alt="Descrição da imagem"
+              width="30%"
+              height="30%"
+            />
                         <Typography variant="body2" color="textSecondary" component="p">
                             Faça login com sua conta do Google para escolher um plano de assinatura.
                         </Typography>
-                        <Button
+                        <button className="login-button"
                             variant="contained"
                             color="secondary"
                             onClick={signInWithGoogle}
-                            sx={{ mt: 2 }}
+                            sx={{ mt: 2,  }}
                         >
                             Entrar com o Google
-                        </Button>
+                        </button>
                     </CardContent>
                 </Card>
             )}
