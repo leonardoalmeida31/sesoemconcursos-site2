@@ -644,7 +644,7 @@ function Assinatura() {
                                     </MenuItem>
                                     <MenuItem>
                                         <Link
-                                            to="/AssinaturaPix"
+                                            to="/AssinarPIX"
                                             style={{ textDecoration: "none" }}
                                         >
                                             <Typography sx={{ color: "black" }}>
@@ -699,7 +699,7 @@ function Assinatura() {
                                     </Button>
                                 </MenuItem>
                                 <MenuItem>
-                                    <Link to="/AssinaturaPix" style={{ textDecoration: "none" }}>
+                                    <Link to="/AssinarPIX" style={{ textDecoration: "none" }}>
                                         <Button sx={{ color: "white" }}>Assinar com Pix</Button>
                                     </Link>
                                 </MenuItem>

@@ -20,7 +20,10 @@ import EstatisticasSite from './pages/EstatisticasSite.jsx'
 import Usuarios from './pages/Usuarios.jsx'
 import SESODados from './pages/SESODados.jsx'
 import ChartsCamila from './pages/ChartsCamila.jsx'
-import TestePix from './pages/TestePix.jsx'
+import AssinarPIX from './pages/AssinarPIX.jsx'
+import AssinarCartao from './pages/AssinarCartao.jsx'
+import AssinarCartaoTeste from './pages/AssinarCartaoTeste.jsx'
+import PegarWhats from './pages/PegarWhats.jsx'
 
 
 
@@ -47,8 +50,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/Usuarios" element={<Usuarios />} />
         <Route path="/SESODados" element={<SESODados />} />
         <Route path="/ChartsCamila" element={<ChartsCamila />} />
-        <Route path="/TestePix" element={<TestePix />} />
+        <Route path="/AssinarPIX" element={<AssinarPIX />} />
+        <Route path="/AssinarCartao" element={<AssinarCartao />} />
+        <Route path="/AssinarCartaoTeste" element={<AssinarCartaoTeste />} />
+        <Route path="/PegarWhats" element={<PegarWhats />} />
     
+        
 
         
         
