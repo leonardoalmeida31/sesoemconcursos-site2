@@ -1,0 +1,6 @@
+.carousel-image {
+    width: 100%;        /* A imagem ocupará 100% da largura do seu contêiner */
+    max-width:  400px;  /* Defina um tamanho máximo se desejar limitar a largura */
+    height: auto;      /* A altura será ajustada automaticamente para manter a proporção */
+    border-radius: 8px; /* Bordas arredondadas, se desejado */
+}

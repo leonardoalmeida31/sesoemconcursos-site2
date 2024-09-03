@@ -164,7 +164,7 @@
 }  
   
   .enunciado {
-    font-size:  0.9em;
+    font-size:  1.1em;
     font-weight: 'normal';
     font-family: "Poppins";
     text-align: left;
@@ -180,7 +180,7 @@
    background-color: #F6F6F7;
     border-radius: 5px;
     text-align: "left";
-    margin: 0.700em;
+
     font-family: "Poppins";
   
     font-weight: 400;
@@ -284,7 +284,7 @@
   
   .linha-horizontal-comentario {
     border-top: 2px solid #1c52531e;
-    
+    width: '100vh';
     margin-bottom: 0px;
   }
   

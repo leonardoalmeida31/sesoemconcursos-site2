@@ -37,7 +37,7 @@ import {
   Paper,
   ListItem,
   List,
-  ListItemText,Dialog , DialogTitle , DialogContent , DialogActions , DialogContentText
+  ListItemText, Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText
 } from "@mui/material";
 import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
 import PollOutlinedIcon from '@mui/icons-material/PollOutlined';
@@ -447,13 +447,13 @@ function Home() {
   };
 
 
-  
 
 
 
 
 
-  
+
+
   const [cliques, setCliques] = useState(null);
   const handleRespostaClick = async (question) => {
     // Verifique se a resposta do usuário está correta
@@ -465,8 +465,8 @@ function Home() {
     const resultadoQuestao = respostaUsuario === respostaCorreta;
     // Salvar as respostas do usuário no Firebase
     saveUserResponses(questaoId, respostaUsuario);
-     // Salve o feedback do usuário no Firebase
- 
+    // Salve o feedback do usuário no Firebase
+
 
     // Atualize o estado dos resultados com o resultado da questão
     setResultados((prevResultados) => ({
@@ -836,14 +836,14 @@ function Home() {
     menu.style.zIndex = "1000";
     // Adicionado para permitir que os botões sejam ajustados em várias linhas se necessário
 
-     // Título do menu
-     var titulo = document.createElement("div");
-     titulo.textContent = "Personalize sua Questão:";
-     titulo.style.fontWeight = "bold";
-     titulo.style.marginBottom = "10px";
-     titulo.style.fontSize = "14px";
-     titulo.style.fontFamily = "Poppins";
-     menu.appendChild(titulo);
+    // Título do menu
+    var titulo = document.createElement("div");
+    titulo.textContent = "Personalize sua Questão:";
+    titulo.style.fontWeight = "bold";
+    titulo.style.marginBottom = "10px";
+    titulo.style.fontSize = "14px";
+    titulo.style.fontFamily = "Poppins";
+    menu.appendChild(titulo);
 
     // Adiciona opções ao menu
     var riscar = document.createElement("img");
@@ -855,7 +855,7 @@ function Home() {
       riscar.style.transition = "all 0.5s ease-in-out";
       riscar.style.transform = "scale(1.3)";
     });
-    
+
     riscar.addEventListener("mouseout", function () {
       riscar.style.transition = "all 0.5s ease-in-out";
       riscar.style.transform = "scale(1)";
@@ -873,7 +873,7 @@ function Home() {
       destacarAmarelo.style.transition = "all 0.5s ease-in-out";
       destacarAmarelo.style.transform = "scale(1.3)";
     });
-    
+
     destacarAmarelo.addEventListener("mouseout", function () {
       destacarAmarelo.style.transition = "all 0.5s ease-in-out";
       destacarAmarelo.style.transform = "scale(1)";
@@ -890,7 +890,7 @@ function Home() {
       destacarVermelho.style.transition = "all 0.5s ease-in-out";
       destacarVermelho.style.transform = "scale(1.3)";
     });
-    
+
     destacarVermelho.addEventListener("mouseout", function () {
       destacarVermelho.style.transition = "all 0.5s ease-in-out";
       destacarVermelho.style.transform = "scale(1)";
@@ -908,13 +908,31 @@ function Home() {
       destacarVerde.style.transition = "all 0.5s ease-in-out";
       destacarVerde.style.transform = "scale(1.3)";
     });
-    
+
     destacarVerde.addEventListener("mouseout", function () {
       destacarVerde.style.transition = "all 0.5s ease-in-out";
       destacarVerde.style.transform = "scale(1)";
     });
     destacarVerde.onclick = function () { destacarTexto("#1c5253"); };
     menu.appendChild(destacarVerde); // Adicionado ao menu
+
+    var destacarAzul = document.createElement("img"); // Use 'img' em vez de 'button'
+    destacarAzul.src = "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Fimage.png?alt=media&token=629bac6a-56b9-42c1-b4f2-0bb6e522b4df"; // Substitua isso pelo caminho do seu ícon
+    destacarAzul.style.width = "30px"; // Substitua '20px' pela largura desejada
+    destacarAzul.style.height = "30px"; // Substitua '20px' pela altura desejada
+    destacarAzul.style.marginRight = "15px";
+    destacarAzul.style.display = "inline-block";
+    destacarAzul.addEventListener("mouseover", function () {
+      destacarAzul.style.transition = "all 0.5s ease-in-out";
+      destacarAzul.style.transform = "scale(1.3)";
+    });
+
+    destacarAzul.addEventListener("mouseout", function () {
+      destacarAzul.style.transition = "all 0.5s ease-in-out";
+      destacarAzul.style.transform = "scale(1)";
+    });
+    destacarAzul.onclick = function () { destacarTexto("#86BEDA"); };
+    menu.appendChild(destacarAzul); // Adicionado ao menu
 
     var corTextoVermelho = document.createElement("img"); // Renomeado para corTextoVermelho
     corTextoVermelho.src = "https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2Ftexto-vermelho.png?alt=media&token=753fcaf4-54f9-4fc0-8d96-fa7d43679f9a";
@@ -925,7 +943,7 @@ function Home() {
       corTextoVermelho.style.transition = "all 0.5s ease-in-out";
       corTextoVermelho.style.transform = "scale(1.3)";
     });
-    
+
     corTextoVermelho.addEventListener("mouseout", function () {
       corTextoVermelho.style.transition = "all 0.5s ease-in-out";
       corTextoVermelho.style.transform = "scale(1)";
@@ -943,7 +961,7 @@ function Home() {
       corTextoBranco.style.transition = "all 0.5s ease-in-out";
       corTextoBranco.style.transform = "scale(1.3)";
     });
-    
+
     corTextoBranco.addEventListener("mouseout", function () {
       corTextoBranco.style.transition = "all 0.5s ease-in-out";
       corTextoBranco.style.transform = "scale(1)";
@@ -963,7 +981,7 @@ function Home() {
       corTextoBranco.style.transition = "all 0.5s ease-in-out";
       corTextoBranco.style.transform = "scale(1.3)";
     });
-    
+
     corTextoBranco.addEventListener("mouseout", function () {
       corTextoBranco.style.transition = "all 0.5s ease-in-out";
       corTextoBranco.style.transform = "scale(1)";
@@ -972,7 +990,7 @@ function Home() {
     menu.appendChild(corTextoBranco); // Adicionado ao menu
 
 
-    
+
 
     // Adiciona uma opção ao menu para apagar todas as ações
     var apagarAcoesBtn = document.createElement("img");
@@ -983,7 +1001,7 @@ function Home() {
       apagarAcoesBtn.style.transition = "all 0.6s ease-in-out";
       apagarAcoesBtn.style.transform = "scale(1.3)";
     });
-    
+
     apagarAcoesBtn.addEventListener("mouseout", function () {
       apagarAcoesBtn.style.transition = "all 0.5s ease-in-out";
       apagarAcoesBtn.style.transform = "scale(1)";
@@ -1001,11 +1019,13 @@ function Home() {
   });
 
 
+  
+
 
 
 
   //WHATS PEGAR NUMERO:
- 
+
   useEffect(() => {
     const checkWhatsappNumber = async () => {
       if (user) {
@@ -1032,29 +1052,59 @@ function Home() {
     }
   };
 
+
+
+
+  async function salvarResposta(userId, questionId, alternativa, acertou) {
+    const docRef = doc(db, "respostasContar", `${userId}_${questionId}`);
+    const dataResposta = new Date().toISOString();
+
+    // Verificar se já existe uma resposta para esta questão
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        // Sobrescreve o documento existente
+        await setDoc(docRef, {
+            userId,
+            questionId,
+            dataResposta,
+            alternativa,
+            resultado: acertou ? "acertou" : "errou"
+        });
+    } else {
+        // Cria um novo documento
+        await setDoc(docRef, {
+            userId,
+            questionId,
+            dataResposta,
+            alternativa,
+            resultado: acertou ? "acertou" : "errou"
+        });
+    }
+}
   return (
-    <Box>
-        {user && (
-      <Dialog open={open} onClose={() => setOpen(false)}>
-            <DialogTitle>Adicionar Número do WhatsApp</DialogTitle>
-            <DialogContent>
-              <DialogContentText>Por favor, adicione seu número de WhatsApp para atualizar o seu cadastro.</DialogContentText>
-              <TextField autoFocus margin="dense" id="whatsapp" label="Digite o seu Número do WhatsApp" type="text" fullWidth variant="standard" value={whatsappNumber} onChange={(e) => setWhatsappNumber(e.target.value)} />
-            </DialogContent>
-            <DialogActions>
-          {/* <Button onClick={() => setOpen(false)}>Cancelar</Button> */}
-              <Button onClick={handleSaveWhatsappNumber}>Salvar</Button>
-            </DialogActions>
-          </Dialog>
-        )}
+    <Box >
       {user && (
-        
+        <Dialog open={open} onClose={() => setOpen(false)}>
+          <DialogTitle>Adicionar Número do WhatsApp</DialogTitle>
+          <DialogContent>
+            <DialogContentText>Por favor, adicione seu número de WhatsApp para atualizar o seu cadastro.</DialogContentText>
+            <TextField autoFocus margin="dense" id="whatsapp" label="Digite o seu Número do WhatsApp" type="text" fullWidth variant="standard" value={whatsappNumber} onChange={(e) => setWhatsappNumber(e.target.value)} />
+          </DialogContent>
+          <DialogActions>
+            {/* <Button onClick={() => setOpen(false)}>Cancelar</Button> */}
+            <Button onClick={handleSaveWhatsappNumber}>Salvar</Button>
+          </DialogActions>
+        </Dialog>
+      )}
+      {user && (
+
         <AppBar
           sx={{ backgroundColor: "#1c5253", marginBottom: "1em" }} position="static"
         >
-          <Container maxWidth="x1">
-        
-            
+          <Container maxWidth="xl">
+
+
             <Toolbar disableGutters>
               {/*<Avatar alt="SESO Logo" src={SESOLogo}   sx={{  width: 40,  height: 40,   marginRight: "0.100em",  }}
       />*/}
@@ -1121,7 +1171,7 @@ function Home() {
                   </MenuItem>
                   <MenuItem>
                     <Link
-                      to="/AssinaturaPix"
+                      to="/AssinarPIX"
                       style={{ textDecoration: "none" }}
                     >
                       <Typography sx={{ color: "black", }}>
@@ -1186,7 +1236,7 @@ function Home() {
                   </Link>
                 </MenuItem>
                 <MenuItem>
-                  <Link to="/AssinaturaPix" style={{ textDecoration: "none" }}>
+                  <Link to="/AssinarPIX" style={{ textDecoration: "none" }}>
                     <Button sx={{ color: "white", fontSize: '0.800em', marginRight: "-.7em" }}>Assinar com Pix</Button>
                   </Link>
                 </MenuItem>
@@ -1244,14 +1294,14 @@ function Home() {
       )}
 
       {user && (
-        <Container>
+        <Container maxWidth='xl'>
           <Typography sx={{ fontSize: '0.875em', fontWeight: '400', fontFamily: 'Poppins', textAlign: "center", padding: '1em', paddingTop: '0.400em', color: "#1c5253" }}>
             A única plataforma de Questões de concursos especializada em Serviço Social
           </Typography>
           <FiltroMulti onFilterChange={setQuestoesFiltradas} setPaginaAtual={setPaginaAtual} db={db} />
         </Container>
       )}
-      <Container sx={{ padding: '0em', maxWidth: 'false' }} className="fundo-Home">
+      <Container maxWidth="xl" sx={{ padding: '0em', maxWidth: 'false' }} className="fundo-Home">
 
         <div className="logout-button-container">
           <Modal
@@ -1369,6 +1419,8 @@ function Home() {
 
           </Box>)}
 
+        
+
         {user ? (
 
           <Box >
@@ -1396,7 +1448,7 @@ function Home() {
                       alignItems: 'center',
                       marginTop: 2,
                       fontFamily: 'Poppins',
-                      fontSize: '0.800em',
+                      fontSize: '1em',
                       fontWeight: '400',
                       textAlign: 'left', // Alteração para alinhar à esquerda
                       display: 'inline-flex', // Exibir o conteúdo em linha
@@ -1418,17 +1470,18 @@ function Home() {
                     }}
 
                   >
-                    <Typography style={{ whiteSpace: 'nowrap', paddingTop: '0.500em', paddingLeft: '0.300em', fontFamily: 'Poppins', fontSize: '0.800em', textAlign: 'left', color: '#1c5253', fontWeight: '500' }}>Banca: &nbsp;{question.banca}
+                    <Typography style={{ whiteSpace: 'nowrap', paddingTop: '0.500em', paddingLeft: '0.300em', fontFamily: 'Poppins', fontSize: '1em', textAlign: 'left', color: '#1c5253', fontWeight: '500' }}>Banca: &nbsp;{question.banca}
                       &nbsp;&nbsp;&nbsp;&nbsp;Ano: &nbsp;{question.ano}
                       &nbsp;&nbsp;&nbsp;&nbsp;Cargo: &nbsp;{question.cargo}
                       &nbsp;&nbsp;&nbsp;&nbsp;Órgão: &nbsp;{question.concurso}&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;Data da Prova: &nbsp;{question.dataProva}&nbsp;&nbsp;
                     </Typography>
 
                   </Box>
                   <Box style={{ height: '2px', backgroundColor: '#1c525341', margin: '10px 0' }}></Box>
-                
 
-              
+
+
                   <p className="enunciado" dangerouslySetInnerHTML={{ __html: question.enunciado }}></p>
 
                   <ul>
@@ -1442,7 +1495,7 @@ function Home() {
                         false;
 
                       return (
-                        <Typography sx={{ margin: '0.500em', fontFamily: 'Poppins, Arial', fontSize: '0.900em', padding: '0.100em', color: 'black', }}
+                        <Typography sx={{ margin: '0.500em', fontFamily: 'Poppins, Arial', fontSize: '0.900em', padding: '0.300em', color: 'black', fontSize: '1.1em', marginBottom: '0.8em' }}
                           className={`alternativa ${isSelected ? "selecionada" : ""} ${isRiscada ? "riscado" : ""}`}
                           key={index}
                           onClick={() => handleAlternativaClick(question.ids, index)}
@@ -1554,7 +1607,7 @@ function Home() {
                 </Box>
 
 
-                <Container className="linha-horizontal-comentario"></Container>
+                <Box className="linha-horizontal-comentario"></Box>
 
                 <Container
                   className="campo-comentario"
@@ -1599,6 +1652,7 @@ function Home() {
               </Box>
             )}
 
+
             <Box className="pagination">
               <Button onClick={handlePreviousPage} disabled={paginaAtual === 1}>
                 Anterior
@@ -1610,8 +1664,28 @@ function Home() {
                 Próxima
               </Button>
             </Box>
-
+            <div style={{ position: 'relative', paddingBottom: '150%', height: 0, overflow: 'hidden' }}>
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfYXx_jP8jrWzMGGs-qVhvn7YDuVeHzhfv4OMwQDdU7DT79lA/viewform?embedded=true"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          border: 'none',
+        }}
+        frameBorder="0"
+        marginHeight="0"
+        marginWidth="0"
+        title="Google Form"
+      >
+        A carregar…
+      </iframe>
+    </div>
+    
           </Box>
+          
         ) : (
           <Box className="login">
             <p>SESO em Concursos</p>

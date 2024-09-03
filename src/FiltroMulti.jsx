@@ -192,7 +192,7 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
 
 
   return (
-    <Grid maxWidth={'x1'}  container spacing={2} sx={{ display: 'flex', flexWrap: 'wrap', justifyContent:'left', padding: '1.5em', backgroundColor: '#F8F8F8', marginTop: '0.5em', borderRadius:'10px', justifyContent:'center' }}>
+    <Grid maxWidth='xl'  container spacing={2} sx={{ display: 'flex', flexWrap: 'wrap', justifyContent:'left', padding: '1.5em', backgroundColor: '#F8F8F8', marginTop: '0.5em', borderRadius:'10px', justifyContent:'center' }}>
       <Grid item xs={12} sm={6} md={4} lg={3.92} sx={{marginRight: '0.2em'}}>
         <TextField
           type="text"
@@ -466,11 +466,11 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
       </Grid>
 
       <Grid item xs={12} sm={12} md={12} lg={3} sx={{ textAlign: 'center', marginTop: '1em' }}>
-        <Typography sx={{ fontFamily: 'Poppins', fontSize: '0.8em', fontWeight: '400', backgroundColor: 'white', color: 'black', padding: '0.500em', borderRadius: '5px', marginBottom: '0.300em' }}>
+        <Typography sx={{ fontFamily: 'Poppins', fontSize: '0.9em', fontWeight: '400', backgroundColor: 'white', color: 'black', padding: '0.500em', borderRadius: '5px', marginBottom: '0.300em' }}>
           {`${totalQuestions.toLocaleString()} Questões no Site`}
         </Typography>
 
-        <Typography sx={{ fontFamily: 'Poppins', fontSize: '0.8em', fontWeight: '500', backgroundColor: 'white', color: 'black', padding: '0.500em', borderRadius: '5px' }}>
+        <Typography sx={{ fontFamily: 'Poppins', fontSize: '0.9em', fontWeight: '500', backgroundColor: 'white', color: 'black', padding: '0.500em', borderRadius: '5px' }}>
           {`${filteredQuestoes.length.toLocaleString()} Questões filtradas`}
         </Typography>
       </Grid>
