@@ -23,7 +23,7 @@ import Container from "@mui/material/Container";
 import Cronometro from './Cronometro.jsx';
 import PegarWhats from './PegarWhats.jsx';
 
-
+import AnuncioCursos from './AnuncioCursos.jsx';
 
 import {
   Modal,
@@ -1084,6 +1084,11 @@ function Home() {
 }
   return (
     <Box >
+         {user && (
+          <AnuncioCursos/>
+
+        )}
+        
       {user && (
         <Dialog open={open} onClose={() => setOpen(false)}>
           <DialogTitle>Adicionar Número do WhatsApp</DialogTitle>
@@ -1103,6 +1108,8 @@ function Home() {
           sx={{ backgroundColor: "#1c5253", marginBottom: "1em" }} position="static"
         >
           <Container maxWidth="xl">
+
+         
 
 
             <Toolbar disableGutters>
@@ -1664,7 +1671,9 @@ function Home() {
                 Próxima
               </Button>
             </Box>
-            <div style={{ position: 'relative', paddingBottom: '150%', height: 0, overflow: 'hidden' }}>
+          
+           {/* 
+           <div style={{ position: 'relative', paddingBottom: '150%', height: 0, overflow: 'hidden' }}>
       <iframe
         src="https://docs.google.com/forms/d/e/1FAIpQLSfYXx_jP8jrWzMGGs-qVhvn7YDuVeHzhfv4OMwQDdU7DT79lA/viewform?embedded=true"
         style={{
@@ -1682,7 +1691,9 @@ function Home() {
       >
         A carregar…
       </iframe>
-    </div>
+    </div> 
+    
+    */}
     
           </Box>
           

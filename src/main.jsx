@@ -27,6 +27,8 @@ import PegarWhats from './pages/PegarWhats.jsx'
 
 import AssinarMensal from './pages/AssinarMensal.jsx'
 import CursoCEP from './pages/CursoCEP.jsx'
+import AnuncioCursos from './pages/AnuncioCursos.jsx'
+
 
 
 
@@ -60,6 +62,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/PegarWhats" element={<PegarWhats />} />
         <Route path="/AssinarMensal" element={<AssinarMensal />} />
         <Route path="/CursoCEP" element={<CursoCEP />} />
+        <Route path="/AnuncioCursos" element={<AnuncioCursos />} />
     
         
         
