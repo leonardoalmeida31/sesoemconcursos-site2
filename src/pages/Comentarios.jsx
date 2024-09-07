@@ -329,7 +329,7 @@ const Comentarios = ({ question, db, user }) => {
 
   
   return (
-    <Box className="app-container">
+    <Box  item xs={12} xl={12}  className="app-container">
       <Typography sx={{fontFamily: 'Poppins', fontWeight: '500', backgroundColor: 'white', padding: '0.700em', borderRadius: '7px', fontSize: '1em'}}> Faça um Comentário na Questão para ajudar outros colegas. </Typography>
     
       <List className="comment-list">

@@ -72,7 +72,7 @@ import {
   onSnapshot,
   serverTimestamp,
   query,
-  where, increment
+  where, increment,
 } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getDatabase, ref, onValue } from "firebase/database";
@@ -448,88 +448,102 @@ function Home() {
 
 
 
+  const [feedbackLocal, setFeedbackLocal] = useState({});
+  const [feedbackFirebase, setFeedbackFirebase] = useState(null); // Para armazenar o feedback do Firebase
 
+  useEffect(() => {
+    const carregarRespostas = async () => {
+      if (user) {
+        const userRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userRef);
 
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          const respostasSalvas = userData.respostas || {};
 
+          // Converter o timestamp do Firestore para um objeto Date
+          const respostasConvertidas = Object.keys(respostasSalvas).reduce((acc, key) => {
+            const resposta = respostasSalvas[key];
+            return {
+              ...acc,
+              [key]: {
+                resultado: resposta.resultado, // Mantenha o resultado
+                data: resposta.data ? resposta.data.toDate() : null, // Data convertida
+                respostaCorreta: resposta.respostaCorreta // Resposta correta para feedback
+              }
+            };
+          }, {});
+
+          setResultados(respostasConvertidas); // Atualiza o estado com as respostas convertidas
+        }
+      }
+    };
+
+    carregarRespostas(); // Chama a função para carregar as respostas
+  }, [user]);
 
 
 
   const [cliques, setCliques] = useState(null);
   const handleRespostaClick = async (question) => {
-    // Verifique se a resposta do usuário está correta
     const respostaUsuario = alternativaSelecionada[question.ids];
     const respostaCorreta = question.resposta.charCodeAt(0) - 65;
     const questaoId = question.ids;
-
-
     const resultadoQuestao = respostaUsuario === respostaCorreta;
-    // Salvar as respostas do usuário no Firebase
-    saveUserResponses(questaoId, respostaUsuario);
-    // Salve o feedback do usuário no Firebase
 
-
-    // Atualize o estado dos resultados com o resultado da questão
-    setResultados((prevResultados) => ({
-      ...prevResultados,
-      [questaoId]: resultadoQuestao,
+    // Atualize o feedback local
+    // Atualize o estado com o feedback local
+    setFeedbackLocal((prevFeedback) => ({
+      ...prevFeedback,
+      [question.ids]: {
+        resultado: resultadoQuestao,
+        respostaCorreta: question.resposta, // Supondo que question.resposta contém a resposta correta
+      },
     }));
 
-    if (respostaUsuario === respostaCorreta) {
-      setRespostaCorreta(true); // A resposta do usuário está correta
-      setAcertos(acertos + 1); // Incrementa o número de acertos
-      setDesempenhoTotal((prevDesempenhoTotal) => ({
-        ...prevDesempenhoTotal,
-        acertos: prevDesempenhoTotal.acertos + 1,
-      }));
-      setDesempenhoPorDisciplina((prevDesempenho) => {
-        const disciplina = question.disciplina;
-        return {
-          ...prevDesempenho,
-          [disciplina]: {
-            acertos: (prevDesempenho[disciplina]?.acertos || 0) + 1,
-            erros: prevDesempenho[disciplina]?.erros || 0,
-          },
-        };
-      });
-      setDesempenhoPorBanca((prevDesempenho) => {
-        const banca = question.banca;
-        return {
-          ...prevDesempenho,
-          [banca]: {
-            acertos: (prevDesempenho[banca]?.acertos || 0) + 1,
-            erros: prevDesempenho[banca]?.erros || 0,
-          },
-        };
-      });
+    // Atualize o estado de resultados com o resultado e a data
+    setResultados((prevResultados) => ({
+      ...prevResultados,
+      [questaoId]: { resultado: resultadoQuestao, data: new Date().toISOString() },
+    }));
 
+    // Atualizar acertos/erros e desempenho
+    if (resultadoQuestao) {
+      setRespostaCorreta(true);
+      setAcertos(acertos + 1);
+      setDesempenhoTotal((prev) => ({ ...prev, acertos: prev.acertos + 1 }));
+      setDesempenhoPorDisciplina((prev) => ({
+        ...prev,
+        [question.disciplina]: {
+          acertos: (prev[question.disciplina]?.acertos || 0) + 1,
+          erros: prev[question.disciplina]?.erros || 0,
+        },
+      }));
+      setDesempenhoPorBanca((prev) => ({
+        ...prev,
+        [question.banca]: {
+          acertos: (prev[question.banca]?.acertos || 0) + 1,
+          erros: prev[question.banca]?.erros || 0,
+        },
+      }));
     } else {
-      setRespostaCorreta(false); // A resposta do usuário está incorreta
-      setErros(erros + 1); // Incrementa o número de erros
-      setDesempenhoTotal((prevDesempenhoTotal) => ({
-        ...prevDesempenhoTotal,
-        erros: prevDesempenhoTotal.erros + 1,
+      setRespostaCorreta(false);
+      setErros(erros + 1);
+      setDesempenhoTotal((prev) => ({ ...prev, erros: prev.erros + 1 }));
+      setDesempenhoPorDisciplina((prev) => ({
+        ...prev,
+        [question.disciplina]: {
+          acertos: prev[question.disciplina]?.acertos || 0,
+          erros: (prev[question.disciplina]?.erros || 0) + 1,
+        },
       }));
-
-      setDesempenhoPorDisciplina((prevDesempenho) => {
-        const disciplina = question.disciplina;
-        return {
-          ...prevDesempenho,
-          [disciplina]: {
-            acertos: prevDesempenho[disciplina]?.acertos || 0,
-            erros: (prevDesempenho[disciplina]?.erros || 0) + 1,
-          },
-        };
-      });
-      setDesempenhoPorBanca((prevDesempenho) => {
-        const banca = question.banca;
-        return {
-          ...prevDesempenho,
-          [banca]: {
-            acertos: prevDesempenho[banca]?.acertos || 0,
-            erros: (prevDesempenho[banca]?.erros || 0) + 1,
-          },
-        };
-      })
+      setDesempenhoPorBanca((prev) => ({
+        ...prev,
+        [question.banca]: {
+          acertos: prev[question.banca]?.acertos || 0,
+          erros: (prev[question.banca]?.erros || 0) + 1,
+        },
+      }));
     }
     // Salvar as informações de desempenho no Firebase
     if (user) {
@@ -542,6 +556,20 @@ function Home() {
         const userData = userDoc.data();
         const expirationDate = userData.expirationDate;
         const cliquesDoUsuario = userData.cliques || 0;
+
+        const respostaData = {
+          questaoId,
+          respostaUsuario,
+          resultado: resultadoQuestao,
+          respostaCorreta: question.resposta,
+          data: serverTimestamp(), // Usando o timestamp do Firebase
+        };
+
+        await setDoc(userRef, {
+          respostas: {
+            [questaoId]: respostaData
+          }
+        }, { merge: true });
 
         // Recupere as informações de desempenho do documento do usuário
         const desempenhoSalvo = userData.desempenhoPorDisciplina;
@@ -1019,7 +1047,7 @@ function Home() {
   });
 
 
-  
+
 
 
 
@@ -1063,32 +1091,32 @@ function Home() {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-        // Sobrescreve o documento existente
-        await setDoc(docRef, {
-            userId,
-            questionId,
-            dataResposta,
-            alternativa,
-            resultado: acertou ? "acertou" : "errou"
-        });
+      // Sobrescreve o documento existente
+      await setDoc(docRef, {
+        userId,
+        questionId,
+        dataResposta,
+        alternativa,
+        resultado: acertou ? "acertou" : "errou"
+      });
     } else {
-        // Cria um novo documento
-        await setDoc(docRef, {
-            userId,
-            questionId,
-            dataResposta,
-            alternativa,
-            resultado: acertou ? "acertou" : "errou"
-        });
+      // Cria um novo documento
+      await setDoc(docRef, {
+        userId,
+        questionId,
+        dataResposta,
+        alternativa,
+        resultado: acertou ? "acertou" : "errou"
+      });
     }
-}
+  }
   return (
     <Box >
-         {user && (
-          <AnuncioCursos/>
+      {user && (
+        <AnuncioCursos />
 
-        )}
-        
+      )}
+
       {user && (
         <Dialog open={open} onClose={() => setOpen(false)}>
           <DialogTitle>Adicionar Número do WhatsApp</DialogTitle>
@@ -1109,7 +1137,7 @@ function Home() {
         >
           <Container maxWidth="xl">
 
-         
+
 
 
             <Toolbar disableGutters>
@@ -1426,7 +1454,7 @@ function Home() {
 
           </Box>)}
 
-        
+
 
         {user ? (
 
@@ -1487,6 +1515,16 @@ function Home() {
                   </Box>
                   <Box style={{ height: '2px', backgroundColor: '#1c525341', margin: '10px 0' }}></Box>
 
+                  {resultados[question.ids]?.resultado !== undefined && (
+                    <div>
+                      <p className={resultados[question.ids]?.resultado ? "resposta-correta1" : "resposta-incorreta1"}>
+                        {resultados[question.ids]?.resultado ? 'Você acertou essa Questão em:' : 'Você errou essa Questão em'}
+                        &nbsp;{resultados[question.ids]?.data ? resultados[question.ids]?.data.toLocaleString('pt-BR') : 'Data inválida'} &nbsp;
+                      </p>
+                    </div>
+                  )}
+
+
 
 
                   <p className="enunciado" dangerouslySetInnerHTML={{ __html: question.enunciado }}></p>
@@ -1542,14 +1580,22 @@ function Home() {
                       Responder
                     </button>
 
-                    {resultados[question.ids] === true && (
-                      <p className="resposta-correta">Parabéns! Você acertou!</p>
+                    {feedbackLocal[question.ids] && (
+                      <div className="feedback-local">
+                        {feedbackLocal[question.ids].resultado ? (
+                          <p className="resposta-correta">Você acertou!</p>
+                        ) : (
+                          <p className="resposta-incorreta">
+                            Você errou! Resposta correta: {feedbackLocal[question.ids].respostaCorreta}
+                          </p>
+                        )}
+                      </div>
                     )}
-                    {resultados[question.ids] === false && (
-                      <p className="resposta-incorreta">
-                        Você Errou! Resposta: {question.resposta}
-                      </p>
-                    )}
+
+
+
+
+
                   </div>
 
                 </Box >
@@ -1616,19 +1662,27 @@ function Home() {
 
                 <Box className="linha-horizontal-comentario"></Box>
 
-                <Container
+                <Grid 
                   className="campo-comentario"
+                  container
+                  direction="column" // Define os elementos na vertical
                   style={{
-                    // Impede que o texto quebre para a próxima linha
                     overflowX: "auto", // Adiciona a rolagem horizontal quando necessário
                   }}
                 >
-
-                  <Box sx={{ paddingBottom: '2em', marginTop: '3em', marginBottom: '3em', backgroundColor: 'transparent' }} className={
-                    comentariosVisiveis[question.ids]
-                      ? "comentario visivel"
-                      : "comentarios"
-                  } >
+                  <Box 
+                    sx={{
+                      paddingBottom: '2em',
+                      marginTop: '3em',
+                      marginBottom: '3em',
+                      backgroundColor: 'transparent'
+                    }}
+                    className={
+                      comentariosVisiveis[question.ids]
+                        ? "comentario visivel"
+                        : "comentarios"
+                    }
+                  >
                     <Comentarios question={question} db={db} user={user} />
                   </Box>
 
@@ -1639,17 +1693,13 @@ function Home() {
                         : "comentario"
                     }
                     style={{
-                      // Impede que o texto quebre para a próxima linha
                       overflowX: "auto", // Adiciona a rolagem horizontal quando necessário
                     }}
                   >
-
                     {question.comentario}
-
                   </p>
+                </Grid>
 
-
-                </Container>
 
               </div>
             ))}
@@ -1671,8 +1721,84 @@ function Home() {
                 Próxima
               </Button>
             </Box>
-          
-           {/* 
+
+            <Grid item xs={12} xl={6} sx={{ display: 'flex', justifyContent: 'left', padding: '2em' }}>
+
+              <Grid item xs={12}  >
+
+                {/* Avatar para tamanho xs */}
+                <Grid item xs={12} sm={12} sx={{ display: { xs: 'flex', xl: 'none' }, justifyContent: 'center' }}>
+
+
+
+                  <Avatar
+                    alt="Avatar for XS"
+                    src="https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/ANUNCIOS-CURSOS-FOTOS-SITE%2Fcurso%20c%C3%B3digo%20de%20%C3%A9tica%20600x600%20(3).png?alt=media&token=981da548-4efe-473e-a61e-99d957996088"
+                    sx={{
+                      width: '100%',
+                      height: '100%',
+                      transition: 'transform 0.3s ease-in-out',
+                      '&:hover': {
+                        transform: 'scale(1.1)',
+                      },
+                      paddingTop: '1em',
+                      paddingBottom: '1em',
+                      borderRadius: 0,
+                    }}
+                  />
+
+                </Grid>
+
+                {/* Avatar para tamanho xl */}
+                <Grid item xs={12} xl={12} sx={{ display: { xs: 'none', xl: 'flex' }, justifyContent: 'left' }}>
+
+                  <Avatar
+                    alt="Avatar for XL"
+                    src="https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/ANUNCIOS-CURSOS-FOTOS-SITE%2Fcurso%20c%C3%B3digo%20de%20%C3%A9tica%20600x600%20(3).png?alt=media&token=981da548-4efe-473e-a61e-99d957996088"
+                    sx={{
+                      width: '18em',
+                      height: '100%',
+                      transition: 'transform 0.3s ease-in-out',
+                      '&:hover': {
+                        transform: 'scale(1.1)',
+                      },
+                      paddingTop: '1em',
+                      borderRadius: 0,
+                    }}
+                  />
+
+
+
+                </Grid>
+                <Grid sx={{ marginTop: '1em' }}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    sx={{
+                      backgroundColor: '#2D6A4F',
+                      padding: { sm: '1.5em 3em', xs: '0.5em 2em' },
+                      borderRadius: '60px',
+                      width: '100%',
+                      '&:hover': {
+                        backgroundColor: '#1B4D3E',
+                      },
+                    }}
+                    href="https://sesoemconcursos.com.br/CursoCEP"
+                    target="_blank" // Abre o link em uma nova aba
+                    rel="noopener noreferrer" // Melhora a segurança ao abrir links externos
+                  >
+                    <Typography sx={{ fontSize: { sm: '1em', xs: '1em' }, fontWeight: '600' }}>
+                      QUERO CONHECER
+                    </Typography>
+                  </Button>
+
+                </Grid>
+
+              </Grid>
+            </Grid>
+
+            {/* 
            <div style={{ position: 'relative', paddingBottom: '150%', height: 0, overflow: 'hidden' }}>
       <iframe
         src="https://docs.google.com/forms/d/e/1FAIpQLSfYXx_jP8jrWzMGGs-qVhvn7YDuVeHzhfv4OMwQDdU7DT79lA/viewform?embedded=true"
@@ -1694,9 +1820,9 @@ function Home() {
     </div> 
     
     */}
-    
+
           </Box>
-          
+
         ) : (
           <Box className="login">
             <p>SESO em Concursos</p>

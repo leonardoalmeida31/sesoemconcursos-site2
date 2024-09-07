@@ -160,15 +160,60 @@ const Vendas = () => {
 
     ];
 
+    const link = "https://wa.me/5574981265381?text=OL%C3%81%2C%20EU%20QUERO%20MAIS%20INFORMA%C3%87%C3%95ES%20SOBRE%20O%20CURSO%20DO%20C%C3%93DIGO%20DE%20%C3%89TICA"; // Substitua pelo seu link desejado
+
+    const link2 = "https://pay.hotmart.com/P95158303T"; // Substitua pelo seu link desejado
 
 
+   
     return (
-        <ThemeProvider  theme={theme} >
+        <ThemeProvider theme={theme} >
             <Container maxWidth='x1' sx={{ backgroundColor: '#3A4D44' }}>
-                <Grid  maxWidth='x1'>
+                <Grid maxWidth='x1'>
                     <Grid container spacing={2} alignItems="center" justifyContent="center">
                         {/* Header */}
                         <Grid item xs={12}>
+
+                            <Grid item xs={12} sm={12} sx={{ display: { xs: 'flex', xl: 'none' }, justifyContent: 'center' }}>
+
+                                <Avatar
+                                    alt="Avatar for XS"
+                                    src="https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/ANUNCIOS-CURSOS-FOTOS-SITE%2Fcurso%20c%C3%B3digo%20de%20%C3%A9tica%20MOCKUP1%20(1).png?alt=media&token=4781f570-e296-41e1-894a-0a42fc6a5fec"
+                                    sx={{
+                                        width: '100%',
+                                        height: '100%',
+                                        transition: 'transform 0.3s ease-in-out',
+                                        '&:hover': {
+                                            transform: 'scale(1.1)',
+                                        },
+                                        paddingTop: '1em',
+                                        paddingBottom: '1em',
+                                        borderRadius: 0,
+
+                                    }}
+                                />
+
+                            </Grid>
+
+                            {/* Avatar para tamanho xl */}
+                            <Grid item xs={12} xl={12} sx={{ display: { xs: 'none', xl: 'flex' }, justifyContent: 'center' }}>
+
+                                    <Avatar
+                                        alt="Avatar for XL"
+                                        src="https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/ANUNCIOS-CURSOS-FOTOS-SITE%2Fcurso%20c%C3%B3digo%20de%20%C3%A9tica%20MOCKUP1%20(1).png?alt=media&token=4781f570-e296-41e1-894a-0a42fc6a5fec"
+                                        sx={{
+                                            width: 500,
+                                            height: '100%',
+                                            transition: 'transform 0.3s ease-in-out',
+                                            '&:hover': {
+                                                transform: 'scale(1.1)',
+                                            },
+                                            paddingTop: '1em',
+                                            borderRadius: 0,
+                                        }}
+                                    />
+                     
+                            </Grid>
                             <Box textAlign="center" sx={{ padding: { sm: '40px 20px', xs: '0px' } }}>
                                 <Typography
                                     sx={{ color: 'white', fontSize: { xs: '1.2em', sm: '2.7em', }, fontWeight: '600', }}
@@ -179,6 +224,8 @@ const Vendas = () => {
                                     O ÚNICO CURSO COM AULAS QUE COBRE TODO O CONTEÚDO DA LEI!
                                 </Typography>
                             </Box>
+
+
                         </Grid>
 
                         {/* Course Details */}
@@ -321,13 +368,13 @@ const Vendas = () => {
 
                         {/* Módulos do Curso */}
                         <Grid item xs={12}>
-                            <Box sx={{ padding: '40px 20px', backgroundColor: '#4A4F3A', borderRadius: '8px', padding: '2em' }}>
+                            <Box sx={{ padding: { sm: '40px 20px', xs: '0px' }, backgroundColor: '#4A4F3A', borderRadius: '8px', textAlign: 'center' }}>
                                 <Typography sx={{ fontSize: { xs: '1.2em', sm: '2em', }, textAlign: 'center', fontWeight: '600', paddingBottom: '1em', color: 'white' }}>
                                     MÓDULOS DO CURSO
                                 </Typography>
                                 <Grid container item xs={12} sx={{ display: 'flex', justifyContent: 'center', padding: '1em', marginBottom: '2em', flexDirection: { xs: 'column', md: 'row' } }}>
-                                    <Grid container item xs={12} md={4} sx={{ backgroundColor: '#F37022', borderRadius: '8px', marginBottom: { xs: '2em', md: '0' }, marginRight: { md: '2em' }, alignItems: 'center' }}>
-                                        <Box sx={{ textAlign: 'center', padding: '2em 0em' }}>
+                                    <Grid container item xs={12} md={4} sx={{ backgroundColor: '#F37022', borderRadius: '8px', marginBottom: { xs: '2em', md: '0' }, marginRight: { md: '2em' }, }}>
+                                        <Box sx={{ textAlign: 'center', padding: { sm: '2em', xs: '0px' }, }}>
                                             <LiveTvRoundedIcon sx={{ fontSize: 50, color: 'black' }} />
                                             <Typography sx={{ color: 'white', fontSize: { xs: '1.2em', sm: '1.8em', }, alignItems: 'center', textAlign: 'center' }}>
                                                 + 16 AULAS
@@ -338,7 +385,7 @@ const Vendas = () => {
                                         </Box>
                                     </Grid>
                                     <Grid container item xs={12} md={4} sx={{ backgroundColor: '#F37022', borderRadius: '8px', marginBottom: { xs: '2em', md: '0' }, padding: '1em' }}>
-                                        <Box sx={{ textAlign: 'center', padding: '2em 0em' }}>
+                                        <Box sx={{ textAlign: 'center', padding: { sm: '2em', xs: '0px' }, }}>
                                             <MenuBookIcon sx={{ fontSize: 50, color: 'black', textAlign: 'center' }} />
                                             <Typography sx={{ color: 'white', fontSize: { xs: '1.2em', sm: '1.8em', }, alignItems: 'center', textAlign: 'center' }}>
                                                 + 200 QUESTÕES COMENTADAS
@@ -349,7 +396,7 @@ const Vendas = () => {
                                         </Box>
                                     </Grid>
                                     <Grid container item xs={12} md={4} sx={{ backgroundColor: '#F37022', borderRadius: '8px', marginLeft: { md: '2em' }, padding: '1em' }}>
-                                        <Box sx={{ textAlign: 'center', padding: '2em 0em' }}>
+                                        <Box sx={{ textAlign: 'center', padding: { sm: '2em', xs: '0px' }, }}>
                                             <UpdateIcon sx={{ fontSize: 50, color: 'black', textAlign: 'center' }} />
                                             <Typography sx={{ color: 'white', fontSize: { xs: '1.2em', sm: '1.8em', }, alignItems: 'center', textAlign: 'center' }}>
                                                 + GRAVAÇÕES ATÉ DEZEMBRO DE 2025
@@ -433,103 +480,134 @@ const Vendas = () => {
                             </Box>
                         </Grid>
 
-                        <Grid maxWidth='x1' item xs={12}>
-                            <Box
-                                sx={{
-                                    padding: {sm:'40px 20px', xs:'0px'},
-                                    backgroundColor: '#F37022',
-                                    borderRadius: '12px',
-                                    padding: {sm:'2em', xs: '0.6em'},
-                                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
-                                    justifyContent: 'center'
-                                }}
-                            >
-                                <Typography
-                                    sx={{
-                                        fontSize: {sm:'2.5em', xs: '1.1em'},
-                                        textAlign: 'center',
-                                        fontWeight: 'bold',
-                                        paddingTop: {xs:'2em', sm: '0em'},
-                                        color: 'white',
-                                    }}
-                                >
-                                    COMPRE AGORA MESMO ANTES QUE ACABE ESTE DESCONTO!!!
-                                </Typography>
-
-                                <Grid
-                                    container
-                                    item
-                                    xs={12}
-                                    md={12}
-                                    sx={{
-                                        display: 'flex',
-                                        justifyContent: 'center',
-                                        padding: '1em',
-                                 
-                                    }}
-                                >
-
-                                    <Box sx={{ textAlign: 'center', padding: {sm:'3em 1em', xs: '0em'}, paddingBottom: {xs:'2em', sm: '0em'}, }}>
-                                        <Typography
+                        <Grid container maxWidth="x1" sx={{
+                            padding: { sm: '40px 20px', xs: '0px' },
+                            backgroundColor: '#F37022',
+                            display: 'flex',
+                            flexDirection: { xs: 'column', xl: 'row' }, // Alinhamento em coluna para dispositivos pequenos e em linha para grandes
+                            borderRadius: '12px',
+                        
+                            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
+                            justifyContent: 'right',
+                            marginTop: { sm: '2em', xs: '0.6em' },
+                            marginBottom: { sm: '2em', xs: '0.6em' },
+                            marginLeft: { sm: '0em', xs: '1em' },
+                        }}>
+                            {/* Seção do Avatar */}
+                            <Grid item xs={12} xl={5} sx={{ display: 'flex', justifyContent: 'center', padding: '1em' }}>
+                                <Grid item xs={12}>
+                                    {/* Avatar para tamanho xs */}
+                                    <Grid item xs={12} sm={12} sx={{ display: { xs: 'flex', xl: 'none' }, justifyContent: 'center' }}>
+                           
+                                        <Avatar
+                                            alt="Avatar for XS"
+                                            src="https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/ANUNCIOS-CURSOS-FOTOS-SITE%2Fcurso%20c%C3%B3digo%20de%20%C3%A9tica%20600x600%20(3).png?alt=media&token=981da548-4efe-473e-a61e-99d957996088"
                                             sx={{
-                                                color: 'black',
-                                                fontSize: {sm:'2em', xs: '1em'},
-                               
-                                                fontWeight: '500',
-                                            }}
-                                        >
-                                         por apenas 7x de
-                                        </Typography>
-
-                                        <Typography
-                                            sx={{
-                                                color: '#1B4D3E',
-                                                fontSize: {sm:'5.5em', xs: '3em'},
-                                          
-                                                fontWeight: '700',
-                                            }}
-                                        >
-                                           R$ 7,99
-                                        </Typography>
-                                    
-                                        <Typography
-                                            sx={{
-                                                color: 'black',
-                                                fontSize: {sm:'2em', xs: '1em'},
-                                                marginBottom: '1em',
-                                                fontWeight: '500',
-                                            }}
-                                        >
-                                           ou à vista por R$ 49,99
-                                        </Typography>
-
-                                        <Button
-                                            variant="contained"
-                                            color="primary"
-                                            size="large"
-                                        
-                                            sx={{
-                                                backgroundColor: '#2D6A4F',
-                                                padding: {sm:'1.5em 3em', xs: '0.5em 2em'},
-                                                
-                                                borderRadius: '60px',
-                                                width: '100%',
+                                                    width: '100%',
+                                        height: '100%',
+                                                transition: 'transform 0.3s ease-in-out',
                                                 '&:hover': {
-                                                    backgroundColor: '#1B4D3E',
+                                                    transform: 'scale(1.1)',
                                                 },
+                                                paddingTop: '1em',
+                                                paddingBottom: '1em',
+                                                borderRadius: 0,
                                             }}
-                                            onClick={handleButtonClick}
-                                        >
-                                            <Typography sx={{ fontSize: {sm:'1.6em', xs: '1.1em'}, fontWeight: '600' ,  }}>
-                                              COMPRAR COM DESCONTO AGORA
-                                            </Typography>
+                                        />
+                             
+                                    </Grid>
 
-                                        </Button>
-                                    </Box>
-
+                                    {/* Avatar para tamanho xl */}
+                                    <Grid item xs={12} xl={12} sx={{ display: { xs: 'none', xl: 'flex' }, justifyContent: 'center' }}>
+     
+                                            <Avatar
+                                                alt="Avatar for XL"
+                                                src="https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/ANUNCIOS-CURSOS-FOTOS-SITE%2Fcurso%20c%C3%B3digo%20de%20%C3%A9tica%20600x600%20(3).png?alt=media&token=981da548-4efe-473e-a61e-99d957996088"
+                                                sx={{
+                                                    width: 500,
+                                                    height: '100%',
+                                                    transition: 'transform 0.3s ease-in-out',
+                                                    '&:hover': {
+                                                        transform: 'scale(1.1)',
+                                                    },
+                                                    paddingTop: '1em',
+                                                    borderRadius: 0,
+                                                }}
+                                            />
+                                 
+                                    </Grid>
                                 </Grid>
-                            </Box>
+                            </Grid>
+
+                            {/* Seção do Preço */}
+                            <Grid item xs={12} xl={7} sx={{ display: 'flex', justifyContent: 'center', padding: '1em' }}>
+                                <Box sx={{ textAlign: 'center', padding: { sm: '3em 1em', xs: '0em' } }}>
+                                    <Typography
+                                        sx={{
+                                            fontSize: { sm: '2.5em', xs: '1.1em' },
+                                            textAlign: 'center',
+                                            fontWeight: 'bold',
+                                            paddingTop: { xs: '2em', sm: '0em' },
+                                            color: 'white',
+                                        }}
+                                    >
+                                        COMPRE AGORA MESMO ANTES QUE ACABE ESTE DESCONTO!!!
+                                    </Typography>
+
+                                    <Typography
+                                        sx={{
+                                            color: 'black',
+                                            fontSize: { sm: '2em', xs: '1em' },
+                                            fontWeight: '500',
+                                        }}
+                                    >
+                                        por apenas 7x de
+                                    </Typography>
+
+                                    <Typography
+                                        sx={{
+                                            color: '#1B4D3E',
+                                            fontSize: { sm: '5.5em', xs: '3em' },
+                                            fontWeight: '700',
+                                        }}
+                                    >
+                                        R$ 7,99
+                                    </Typography>
+
+                                    <Typography
+                                        sx={{
+                                            color: 'black',
+                                            fontSize: { sm: '2em', xs: '1em' },
+                                            marginBottom: '1em',
+                                            fontWeight: '500',
+                                        }}
+                                    >
+                                        ou à vista por R$ 49,99
+                                    </Typography>
+
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        size="large"
+                                        sx={{
+                                            backgroundColor: '#2D6A4F',
+                                            padding: { sm: '1.5em 3em', xs: '0.5em 2em' },
+                                            borderRadius: '60px',
+                                            width: '100%',
+                                            '&:hover': {
+                                                backgroundColor: '#1B4D3E',
+                                            },
+                                        }}
+                                        onClick={handleButtonClick}
+                                    >
+                                        <Typography sx={{ fontSize: { sm: '1.6em', xs: '1.1em' }, fontWeight: '600' }}>
+                                            COMPRAR COM DESCONTO AGORA
+                                        </Typography>
+                                    </Button>
+                                </Box>
+                            </Grid>
                         </Grid>
+
 
                         {/* perguntas */}
                         <Grid item xs={12}>
@@ -575,23 +653,29 @@ const Vendas = () => {
                                                 TEM MAIS DÚVIDAS?
                                             </Typography>
 
-                                            <Button
-                                                component="a"
-                                                href="https://wa.me/5599999999999"  // Substitua pelo número de WhatsApp desejado
-                                                sx={{
-                                                    backgroundColor: 'green',
-                                                    padding: '1em',
-                                                    color: 'white',
-                                                    '&:hover': {
-                                                        backgroundColor: 'darkgreen', // Altera a cor de fundo ao passar o mouse
-                                                    }
+                                            <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
+                                                <a href={link} target="_blank" rel="noopener noreferrer">
+                                                    <Avatar
+                                                        alt="Avatar for XS"
+                                                        src="https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/ANUNCIOS-CURSOS-FOTOS-SITE%2Fwhatsapp-4451-svg.webp?alt=media&token=dc61ed6c-2b45-49f4-8233-55340deb2b9a"
+                                                        sx={{
+                                                            width: 70,   // Faz com que o avatar ocupe 100% da largura do grid
+                                                            height: 70,     // Altura fixa do avatar
+                                                            transition: 'transform 0.3s ease-in-out', // Transição suave para o efeito
+                                                            '&:hover': {
+                                                                transform: 'scale(1.1)', // Aumenta o tamanho do avatar ao passar o mouse
+                                                            },
+                                                            padding: '1em',
+                                                            backgroundColor: '#364840',
 
-                                                }}
-                                            >
-                                                <Typography sx={{ fontSize: '1.2em', fontWeight: '500', padding: '0.5em' }} >
-                                                    TOQUE AQUI FALE COM O DESENVOLVEDOR DO CURSO AGORA MESMO!</Typography>
 
-                                            </Button>
+                                                        }}
+                                                    />
+                                                </a>
+                                            </Grid>
+                                            <Typography sx={{ fontSize: '1.2em', fontWeight: '500', paddingTop: '1em', color: 'white' }} >
+                                                TOQUE E FALE COM O DESENVOLVEDOR DO CURSO AGORA MESMO!</Typography>
+
 
                                         </Box>
                                     </Grid>
@@ -616,7 +700,7 @@ const Vendas = () => {
                                     <Avatar
                                         alt="Autor"
                                         src="https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/imagens%2FLEO-PERFIL-23.jpg?alt=media&token=7a13a98d-8929-410a-95af-d574b8d27bf3" // Insira a URL da foto do autor aqui
-                                        sx={{ width: {sm:'200px', height: '200px', xs:'200px', height: '200px', }, marginRight: '20px' }}
+                                        sx={{ width: { sm: '200px', height: '200px', xs: '200px', height: '200px', }, marginRight: '20px' }}
                                     />
                                 </Grid>
                                 <Grid item xs>
@@ -624,16 +708,16 @@ const Vendas = () => {
                                         SOBRE O AUTOR
                                     </Typography>
                                     <Typography sx={{ fontSize: '1em', lineHeight: '1.5em' }}>
-                                    LEONARDO ALMEIDA, é Assistente Social e Desenvolvedor da plataforma SESO em Concursos, a qual é a única plataforma de questões de concursos no Brasil ESPECIALIZADA em Serviço Social para Assistentes Sociais que estudam para concursos.
+                                        LEONARDO ALMEIDA, é Assistente Social e Desenvolvedor da plataforma SESO em Concursos, a qual é a única plataforma de questões de concursos no Brasil ESPECIALIZADA em Serviço Social para Assistentes Sociais que estudam para concursos.
                                     </Typography>
                                     <Typography sx={{ fontSize: '1em', lineHeight: '1.5em', paddingTop: '0.6em' }}>
                                         Especialista em estudos para concursos e processos seletivos municipais de assistentes sociais, conta com diversas aprovações e sucessos em concursos no estado ao qual reside: Bahia, sendo aprovado em 1º lugar no concursos e seletivos Municipais de Piritiba - BA e Capela do Alto Alegre - BA, também ficando em 2º lugar em Andorinha - BA e em 3º na prova objetiva de Filadélfia - BA, todos estes concursos realizados entre o período de 2023 a 2024.
                                     </Typography>
                                     <Typography sx={{ fontSize: '1em', lineHeight: '1.5em', paddingTop: '0.6em' }}>
-                                    Com vocação para o ensino, dedica-se atualmente a compartilhar seus métodos de estudo para concursos, visando ajudar outros profissionais que enfrentaram dificuldades na preparação, para que não precisem passar pelos mesmos desafios e possam avançar com um método eficaz, testado por quem realmente vivenciou a vida de concurseiro e trabalhador ao mesmo tempo.
+                                        Com vocação para o ensino, dedica-se atualmente a compartilhar seus métodos de estudo para concursos, visando ajudar outros profissionais que enfrentaram dificuldades na preparação, para que não precisem passar pelos mesmos desafios e possam avançar com um método eficaz, testado por quem realmente vivenciou a vida de concurseiro e trabalhador ao mesmo tempo.
                                     </Typography>
                                     <Typography sx={{ fontSize: '1em', lineHeight: '1.5em', paddingTop: '0.6em' }}>
-                                    Atualmente, também atua como Assistente Social na Secretaria de Saúde de Andorinha – BA.
+                                        Atualmente, também atua como Assistente Social na Secretaria de Saúde de Andorinha – BA.
                                     </Typography>
                                 </Grid>
                             </Grid>
@@ -642,26 +726,28 @@ const Vendas = () => {
                         {/* Seção de Compra */}
                         <Grid item xs={12}>
                             <Box textAlign="center" sx={{ padding: '40px 20px' }}>
-                            <Button
-                                            variant="contained"
-                                            color="primary"
-                                            size="large"
-                                        
-                                            sx={{
-                                                backgroundColor: '#2D6A4F',
-                                                padding: '1.5em 3em',
-                                                width: '100%',
-                                                '&:hover': {
-                                                    backgroundColor: '#1B4D3E',
-                                                },
-                                            }}
-                                            onClick={handleButtonClick}
-                                        >
-                                            <Typography sx={{ fontSize: {sm:'1.6em', xs: '0.8em'}, fontWeight: '600' }}>
-                                                TOQUE AQUI PARA COMPRAR COM DESCONTO AGORA
-                                            </Typography>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    size="large"
 
-                                        </Button>
+                                    sx={{
+                                        backgroundColor: '#F37022',
+                                        padding: { sm: '1.5em 3em', xs: '0.5em 2em' },
+
+                                        borderRadius: '60px',
+                                        width: '100%',
+                                        '&:hover': {
+                                            backgroundColor: '#1B4D3E',
+                                        },
+                                    }}
+                                    onClick={handleButtonClick}
+                                >
+                                    <Typography sx={{ fontSize: { sm: '1.6em', xs: '1.1em' }, fontWeight: '600', }}>
+                                        COMPRAR COM DESCONTO AGORA
+                                    </Typography>
+
+                                </Button>
                             </Box>
                         </Grid>
                     </Grid>
