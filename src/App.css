@@ -1013,3 +1013,18 @@ cursor: pointer;
   text-align: left;
   
 }
+
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  .print-component {
+    width: 100%; /* Ajuste conforme necessário */
+    height: auto;
+    transform: scale(0.8); /* Ajuste a escala conforme necessário */
+    transform-origin: top left;
+  }
+}

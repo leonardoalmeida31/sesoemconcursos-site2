@@ -28,8 +28,9 @@ import PegarWhats from './pages/PegarWhats.jsx'
 import AssinarMensal from './pages/AssinarMensal.jsx'
 import CursoCEP from './pages/CursoCEP.jsx'
 import AnuncioCursos from './pages/AnuncioCursos.jsx'
+import EventoEtica from './pages/EventoEtica.jsx'
 
-
+import CadastradosEventoEtica from './pages/CadastradosEventoEtica.jsx'
 
 
 
@@ -63,7 +64,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/AssinarMensal" element={<AssinarMensal />} />
         <Route path="/CursoCEP" element={<CursoCEP />} />
         <Route path="/AnuncioCursos" element={<AnuncioCursos />} />
-    
+        <Route path="/EventoEtica" element={<EventoEtica />} />
+        <Route path="/CadastradosEventoEtica" element={<CadastradosEventoEtica />} />
         
         
         

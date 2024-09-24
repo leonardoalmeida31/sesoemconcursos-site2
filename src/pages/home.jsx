@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import FiltroMulti from "../FiltroMulti.jsx";
 import { CaretRight, ChatCenteredText, ChartPie } from "@phosphor-icons/react";
 import "../App.css";
@@ -22,8 +22,13 @@ import AutoGraphOutlinedIcon from "@mui/icons-material/AutoGraphOutlined";
 import Container from "@mui/material/Container";
 import Cronometro from './Cronometro.jsx';
 import PegarWhats from './PegarWhats.jsx';
-
+import { Edit, Delete, Save, Cancel, Print } from '@mui/icons-material';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 import AnuncioCursos from './AnuncioCursos.jsx';
+//importando libs de impressão:
+import { useReactToPrint } from 'react-to-print';
+import PrintIcon from '@mui/icons-material/Print';
 
 import {
   Modal,
@@ -1047,8 +1052,97 @@ function Home() {
   });
 
 
+  const generatePDF = () => {
+    const actionCells = document.querySelectorAll('.action-buttons-cell');
+    actionCells.forEach(cell => cell.style.display = 'none');
+
+    const input = document.getElementById('pdfContent');
+    input.style.overflow = 'visible';
+    const scale = 1.5;
+
+    html2canvas(input, { scale }).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+
+      const margin = 5;
+      const pdfWidth = pdf.internal.pageSize.getWidth() - 2 * margin;
+      const pdfHeight = pdf.internal.pageSize.getHeight() - 2 * margin;
+
+      const imgWidth = canvas.width * (5 / scale);
+      const imgHeight = canvas.height * (5 / scale);
+
+      let positionY = 0;
+
+      while (positionY < imgHeight) {
+        const imgHeightForPage = Math.min(pdfHeight, imgHeight - positionY);
+
+        pdf.addImage(
+          imgData,
+          'PNG',
+          margin,
+          margin - positionY,
+          pdfWidth,
+          imgHeightForPage
+        );
+
+        positionY += pdfHeight;
+
+        if (positionY < imgHeight) {
+          pdf.addPage();
+        }
+      }
+
+      pdf.save('relatorio_liberacoes.pdf');
+      actionCells.forEach(cell => cell.style.display = '');
+    });
+  };
 
 
+  const hideButtonsForPDF = () => {
+    const buttons = document.querySelectorAll('.action-buttons');
+    buttons.forEach(button => button.style.display = 'none');
+  };
+
+  const showButtonsAfterPDF = () => {
+    const buttons = document.querySelectorAll('.action-buttons');
+    buttons.forEach(button => button.style.display = '');
+  };
+
+  const handleClickOpenConfirmDialog = (id) => {
+    setItemToDelete(id);
+    setOpenConfirmDialog(true);
+  };
+
+  const handleCloseConfirmDialog = () => {
+    setOpenConfirmDialog(false);
+    setItemToDelete(null);
+  };
+
+
+
+
+
+
+  //GERANDO IMPRESSÃO:
+  const componentRef = useRef();
+
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    beforePrint: () => {
+      const contentNode = componentRef.current;
+      if (contentNode) {
+        // Ajuste o tamanho da página para A4
+        contentNode.style.width = '210mm';  // Largura A4
+        contentNode.style.height = '297mm'; // Altura A4
+        contentNode.style.margin = '0';     // Remova margens
+
+        // Ajuste a escala para 80%
+        contentNode.style.transform = 'scale(0.7)';
+        contentNode.style.transformOrigin = 'top left';
+        contentNode.style.width = `${100 / 0.8}%`; // Ajuste de largura para manter a proporção
+      }
+    },
+  });
 
 
 
@@ -1448,9 +1542,25 @@ function Home() {
               <MenuItem value={10}>10 Questões por página</MenuItem>
               <MenuItem value={15}>15 Questões por página</MenuItem>
               <MenuItem value={20}>20 Questões por página</MenuItem>
+              <MenuItem value={50}>50 Questões por página</MenuItem>
+              <MenuItem value={100}>100 Questões por página</MenuItem>
             </Select>
 
+            <Grid sx={{ justifyContent: 'center', display: 'flex',
+            flexDirection: isMobile ? 'column' : 'row',}}>
+              <IconButton onClick={handlePrint} color="primary">
+
+                <PrintIcon sx={{ color: '#1C5253', }} />
+              </IconButton>
+
+            </Grid>
+
+
             <Cronometro /> {/* Renderize o componente Cronometro aqui */}
+
+
+
+
 
           </Box>)}
 
@@ -1458,7 +1568,7 @@ function Home() {
 
         {user ? (
 
-          <Box >
+          <Box ref={componentRef} component={Paper} id="pdfContent" >
 
             {questoesPagina.map((question) => (
               <div key={question.id} >
@@ -1662,7 +1772,7 @@ function Home() {
 
                 <Box className="linha-horizontal-comentario"></Box>
 
-                <Grid 
+                <Grid
                   className="campo-comentario"
                   container
                   direction="column" // Define os elementos na vertical
@@ -1670,7 +1780,7 @@ function Home() {
                     overflowX: "auto", // Adiciona a rolagem horizontal quando necessário
                   }}
                 >
-                  <Box 
+                  <Box
                     sx={{
                       paddingBottom: '2em',
                       marginTop: '3em',
@@ -1722,81 +1832,7 @@ function Home() {
               </Button>
             </Box>
 
-            <Grid item xs={12} xl={6} sx={{ display: 'flex', justifyContent: 'left', padding: '2em' }}>
 
-              <Grid item xs={12}  >
-
-                {/* Avatar para tamanho xs */}
-                <Grid item xs={12} sm={12} sx={{ display: { xs: 'flex', xl: 'none' }, justifyContent: 'center' }}>
-
-
-
-                  <Avatar
-                    alt="Avatar for XS"
-                    src="https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/ANUNCIOS-CURSOS-FOTOS-SITE%2Fcurso%20c%C3%B3digo%20de%20%C3%A9tica%20600x600%20(3).png?alt=media&token=981da548-4efe-473e-a61e-99d957996088"
-                    sx={{
-                      width: '100%',
-                      height: '100%',
-                      transition: 'transform 0.3s ease-in-out',
-                      '&:hover': {
-                        transform: 'scale(1.1)',
-                      },
-                      paddingTop: '1em',
-                      paddingBottom: '1em',
-                      borderRadius: 0,
-                    }}
-                  />
-
-                </Grid>
-
-                {/* Avatar para tamanho xl */}
-                <Grid item xs={12} xl={12} sx={{ display: { xs: 'none', xl: 'flex' }, justifyContent: 'left' }}>
-
-                  <Avatar
-                    alt="Avatar for XL"
-                    src="https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/ANUNCIOS-CURSOS-FOTOS-SITE%2Fcurso%20c%C3%B3digo%20de%20%C3%A9tica%20600x600%20(3).png?alt=media&token=981da548-4efe-473e-a61e-99d957996088"
-                    sx={{
-                      width: '18em',
-                      height: '100%',
-                      transition: 'transform 0.3s ease-in-out',
-                      '&:hover': {
-                        transform: 'scale(1.1)',
-                      },
-                      paddingTop: '1em',
-                      borderRadius: 0,
-                    }}
-                  />
-
-
-
-                </Grid>
-                <Grid sx={{ marginTop: '1em' }}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    sx={{
-                      backgroundColor: '#2D6A4F',
-                      padding: { sm: '1.5em 3em', xs: '0.5em 2em' },
-                      borderRadius: '60px',
-                      width: '100%',
-                      '&:hover': {
-                        backgroundColor: '#1B4D3E',
-                      },
-                    }}
-                    href="https://sesoemconcursos.com.br/CursoCEP"
-                    target="_blank" // Abre o link em uma nova aba
-                    rel="noopener noreferrer" // Melhora a segurança ao abrir links externos
-                  >
-                    <Typography sx={{ fontSize: { sm: '1em', xs: '1em' }, fontWeight: '600' }}>
-                      QUERO CONHECER
-                    </Typography>
-                  </Button>
-
-                </Grid>
-
-              </Grid>
-            </Grid>
 
             {/* 
            <div style={{ position: 'relative', paddingBottom: '150%', height: 0, overflow: 'hidden' }}>
@@ -1821,7 +1857,87 @@ function Home() {
     
     */}
 
+            {user && (
+              <Grid item xs={12} xl={6} sx={{ display: 'flex', justifyContent: 'left', padding: '2em' }}>
+
+                <Grid item xs={12}  >
+
+                  {/* Avatar para tamanho xs */}
+                  <Grid item xs={12} sm={12} sx={{ display: { xs: 'flex', xl: 'none' }, justifyContent: 'center' }}>
+
+
+
+                    <Avatar
+                      alt="Avatar for XS"
+                      src="https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/ANUNCIOS-CURSOS-FOTOS-SITE%2Fcurso%20c%C3%B3digo%20de%20%C3%A9tica%20600x600%20(3).png?alt=media&token=981da548-4efe-473e-a61e-99d957996088"
+                      sx={{
+                        width: '100%',
+                        height: '100%',
+                        transition: 'transform 0.3s ease-in-out',
+                        '&:hover': {
+                          transform: 'scale(1.1)',
+                        },
+                        paddingTop: '1em',
+                        paddingBottom: '1em',
+                        borderRadius: 0,
+                      }}
+                    />
+
+                  </Grid>
+
+                  {/* Avatar para tamanho xl */}
+                  <Grid item xs={12} xl={12} sx={{ display: { xs: 'none', xl: 'flex' }, justifyContent: 'left' }}>
+
+                    <Avatar
+                      alt="Avatar for XL"
+                      src="https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/ANUNCIOS-CURSOS-FOTOS-SITE%2Fcurso%20c%C3%B3digo%20de%20%C3%A9tica%20600x600%20(3).png?alt=media&token=981da548-4efe-473e-a61e-99d957996088"
+                      sx={{
+                        width: '18em',
+                        height: '100%',
+                        transition: 'transform 0.3s ease-in-out',
+                        '&:hover': {
+                          transform: 'scale(1.1)',
+                        },
+                        paddingTop: '1em',
+                        borderRadius: 0,
+                      }}
+                    />
+
+
+
+                  </Grid>
+                  <Grid sx={{ marginTop: '1em' }}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      size="large"
+                      sx={{
+                        backgroundColor: '#2D6A4F',
+                        padding: { sm: '1.5em 3em', xs: '0.5em 2em' },
+                        borderRadius: '60px',
+                        width: '100%',
+                        '&:hover': {
+                          backgroundColor: '#1B4D3E',
+                        },
+                      }}
+                      href="https://sesoemconcursos.com.br/CursoCEP"
+                      target="_blank" // Abre o link em uma nova aba
+                      rel="noopener noreferrer" // Melhora a segurança ao abrir links externos
+                    >
+                      <Typography sx={{ fontSize: { sm: '1em', xs: '1em' }, fontWeight: '600' }}>
+                        QUERO CONHECER
+                      </Typography>
+                    </Button>
+
+                  </Grid>
+
+                </Grid>
+              </Grid>
+            )}
+
           </Box>
+
+
 
         ) : (
           <Box className="login">

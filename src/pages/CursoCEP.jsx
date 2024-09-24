@@ -561,7 +561,7 @@ const Vendas = () => {
                                             fontWeight: '500',
                                         }}
                                     >
-                                        por apenas 7x de
+                                        por apenas 8x de
                                     </Typography>
 
                                     <Typography
@@ -571,7 +571,7 @@ const Vendas = () => {
                                             fontWeight: '700',
                                         }}
                                     >
-                                        R$ 7,99
+                                        R$ 8,51
                                     </Typography>
 
                                     <Typography
@@ -582,7 +582,8 @@ const Vendas = () => {
                                             fontWeight: '500',
                                         }}
                                     >
-                                        ou à vista por R$ 49,99
+                                        ou à vista por R$ 59,99<br></br>
+                                     
                                     </Typography>
 
                                     <Button
