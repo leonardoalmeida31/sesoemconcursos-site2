@@ -32,6 +32,8 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
   const [selectedAnos, setSelectedAnos] = useState([]);
   const [selectedAreas, setSelectedAreas] = useState([]);
   const [selectedConcursos, setSelectedConcursos] = useState([]);
+  const [selectedIds, setSelectedIds] = useState([]);
+
   const [questions, setQuestions] = useState([]);
   const [filteredQuestoes, setFilteredQuestoes] = useState([]);
   const [keywords, setKeywords] = useState("");
@@ -130,6 +132,11 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
     value: concurso,
     label: concurso,
   }));
+  const idsQuestoes = Array.from(new Set(questions.map((item) => item.ids)));
+  const idsOptions = idsQuestoes.map((ids) => ({
+    value: ids,
+    label: ids,
+  }));
 
 
   const handleFilterClick = (questionsToFilter = questions) => {
@@ -155,7 +162,10 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           selectedConcursos.length === 0 || selectedConcursos.some(
             (selected) => selected.label === item.concurso
           );
-
+          const idsMatch =
+          selectedIds.length === 0 || selectedIds.some(
+            (selected) => selected.label === item.ids
+          );
 
         const keywordsMatch =
           keywords.trim() === "" ||
@@ -171,6 +181,7 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           areaMatch &&
           concursoMatch &&
           anoMatch &&
+          idsMatch &&
           keywordsMatch
         );
       })
@@ -184,9 +195,13 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
 
   };
 
+
+
   // Antes de renderizar o componente Select "Banca", ordene o array bancaOptions em ordem alfabética.
   const sortedBancaOptions = bancaOptions.slice().sort((a, b) => a.label.localeCompare(b.label));
   const sortedConcursoOptions = concursoOptions.slice().sort((a, b) => a.label.localeCompare(b.label));
+  const sortedIdsOptions = idsOptions.sort((a, b) => Number(a.value) - Number(b.value));
+
   const sortedDisciplinaOptions = disciplinaOptions.slice().sort((a, b) => a.label.localeCompare(b.label));
   const sortedAnoOptions = anoOptions.slice().sort((a, b) => b.label - a.label);
 
@@ -431,6 +446,41 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           options={sortedConcursoOptions}
           isMulti
           placeholder="Instituição"
+          styles={{
+            placeholder: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh',
+              color: '#888'  // Cor do placeholder
+            }),
+            singleValue: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            }),
+            multiValue: (provided) => ({
+              ...provided,
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            }),
+            option: (provided, state) => ({
+              ...provided,
+              backgroundColor: state.isFocused ? "#1C5253" : "white",
+              color: state.isFocused ? "white" : "black",
+              fontFamily: 'Poppins',
+              fontSize: '1.5vh'
+            })
+          }}
+        />
+      </Grid>
+      <Grid item xs={12} sm={6} md={4} lg={4}>
+        <Select
+          className="filter-select"
+          value={selectedIds}
+          onChange={(selectedOptions) => setSelectedIds(selectedOptions)}
+          options={sortedIdsOptions}
+          isMulti
+          placeholder="Número ID"
           styles={{
             placeholder: (provided) => ({
               ...provided,
