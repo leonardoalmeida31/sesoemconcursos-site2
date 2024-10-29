@@ -40,6 +40,12 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [totalQuestions, setTotalQuestions] = useState(0); // Novo estado para armazenar o número total de questões
 
+
+  // Estado para controlar os IDs carregados progressivamente
+  const [displayedIds, setDisplayedIds] = useState([]);
+  const [batchSize, setBatchSize] = useState(20); // Quantidade inicial de IDs carregados
+  const [hasMore, setHasMore] = useState(true); // Controle de mais itens para carregar
+
   useEffect(() => {
     const questionsRef = ref(getDatabase(firebaseApp), 'questions');
 
@@ -204,6 +210,37 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
 
   const sortedDisciplinaOptions = disciplinaOptions.slice().sort((a, b) => a.label.localeCompare(b.label));
   const sortedAnoOptions = anoOptions.slice().sort((a, b) => b.label - a.label);
+
+    // Função para carregar mais IDs quando o usuário rolar
+    const loadMoreIds = () => {
+      if (displayedIds.length >= idsOptions.length) {
+        setHasMore(false);
+        return;
+      }
+      const nextBatch = idsOptions.slice(displayedIds.length, displayedIds.length + batchSize);
+      setDisplayedIds([...displayedIds, ...nextBatch]);
+    };
+  
+    useEffect(() => {
+      // Carrega os primeiros IDs ao montar o componente
+      loadMoreIds();
+    }, []);
+  
+    // Custom component para detectar scroll e carregar mais IDs
+    const MenuList = (props) => {
+      const onScroll = (event) => {
+        const bottom = event.target.scrollHeight === event.target.scrollTop + event.target.clientHeight;
+        if (bottom && hasMore) {
+          loadMoreIds();
+        }
+      };
+  
+      return (
+        <components.MenuList {...props} onScroll={onScroll}>
+          {props.children}
+        </components.MenuList>
+      );
+    };
 
 
   return (
@@ -473,7 +510,8 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           }}
         />
       </Grid>
-      <Grid item xs={12} sm={6} md={4} lg={4}>
+
+     <Grid item xs={12} sm={6} md={4} lg={4}>
         <Select
           className="filter-select"
           value={selectedIds}
@@ -507,7 +545,7 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
             })
           }}
         />
-      </Grid>
+      </Grid>  
 
       <Grid item xs={12} sm={12} md={12} lg={4} sx={{ display: 'flex', justifyContent: 'right' }}>
         <button className="filter-button" onClick={() => handleFilterClick(questions)}>

@@ -31,8 +31,8 @@ import AnuncioCursos from './pages/AnuncioCursos.jsx'
 import EventoEtica from './pages/EventoEtica.jsx'
 
 import CadastradosEventoEtica from './pages/CadastradosEventoEtica.jsx'
-
-
+import LeisPDF from './pages/LeisPDF.jsx'
+import CursoLOAS from './pages/CursoLOAS.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -66,7 +66,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/AnuncioCursos" element={<AnuncioCursos />} />
         <Route path="/EventoEtica" element={<EventoEtica />} />
         <Route path="/CadastradosEventoEtica" element={<CadastradosEventoEtica />} />
-        
+        <Route path="/LeisPDF" element={<LeisPDF />} />
+        <Route path="/CursoLOAS" element={<CursoLOAS />} />
         
         
         
