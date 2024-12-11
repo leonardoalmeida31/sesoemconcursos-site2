@@ -1,0 +1,66 @@
+.perfil-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f7f8fa;
+  border-radius: 10px;
+  font-family: "Poppins", sans-serif;
+}
+
+.perfil-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.back-arrow {
+  margin-right: 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+.arrow-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.perfil-title {
+  font-size: 24px;
+  color: #203f41;
+}
+
+.perfil-card {
+  width: 100%;
+  background-color: #cfe9eb;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.perfil-card h3 {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.perfil-card p,
+.perfil-card li {
+  font-size: 16px;
+  color: #333;
+  margin: 5px 0;
+}
+
+.perfil-card ul {
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.perfil-card strong {
+  font-weight: 600;
+  color: #222;
+}

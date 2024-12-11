@@ -1,0 +1,111 @@
+.divTotal {
+  margin: 0;
+}
+.ContainerTotal {
+  align-items: center;
+  /*background-color: #1c525317;*/
+  background: radial-gradient(circle, #203f41, #203f41, #203f41, #0d1616);
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5em;
+  padding: 1em;
+}
+.FundoGrafico {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.Box-select {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.disciplina-grafico {
+  padding: 1em;
+}
+.box-user {
+  font-family: "Poppins", sans-serif;
+  padding: 1em;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+.nome-user2 {
+  text-align: center;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.875em;
+  font-weight: 500;
+  border: none;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+}
+.nome-user2:hover {
+  color: #ff6600;
+}
+.box-grafico-geral {
+  padding: 1em;
+}
+.Select-Desempenho {
+  width: 50%; /* Defina a largura desejada aqui */
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: white;
+}
+@media (max-width: 767px) {
+  .Select-Desempenho {
+    width: 90%; /* Defina a largura desejada aqui */
+    justify-content: center;
+    align-items: center;
+  }
+}
+.disciplinaSelecionada {
+  margin-top: 3em;
+  font-weight: 500;
+  font-size: 0.825em;
+  text-align: center;
+  font-family: Poppins;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.p-desempenho-titulo {
+  font-weight: 700;
+  font-size: 2em;
+  text-align: center;
+  font-family: Poppins;
+  padding-top: 2em;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.p-desempenho-nomes {
+  font-weight: 400;
+  font-size: 0.875em;
+  text-align: left;
+  font-family: Poppins;
+  justify-content: left;
+  align-items: center;
+  color: white;
+}
+.acertos {
+  font-weight: 500;
+  font-size: 0.865em;
+  text-align: center;
+  font-family: Poppins;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.botões-filtro {
+  padding: 1em;
+  justify-content: center;
+
+  align-items: center;
+  display: flex;
+}

@@ -1,0 +1,13 @@
+@media screen and (max-width: 600px) {
+  .ql-video {
+    width: 300px;
+    height: 180px;
+  }
+}
+
+@media screen and (min-width: 601px) {
+  .ql-video {
+    width: 860px;
+    height: 460px;
+  }
+}
