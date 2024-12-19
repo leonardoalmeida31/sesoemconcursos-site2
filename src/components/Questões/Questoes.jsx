@@ -508,6 +508,11 @@ function Questao() {
 
     const totalPages = Math.ceil(questoesFiltradas.length / questoesPorPagina);
 
+    const handlePageChange = (page) => {
+        setPaginaAtual(page);
+        console.log(`Página atual: ${page}`);
+    };
+
 
     const handlePreviousPage = () => {
         if (paginaAtual > 1) {
@@ -1054,12 +1059,11 @@ function Questao() {
                             <Card variant="outlined">{card}</Card>
                         </Box>
                     )}
-                    <Pagination
-                        handleNextPage={handleNextPage}
-                        handlePreviousPage={handlePreviousPage}
-                        paginaAtual={paginaAtual}
-                        totalPages={totalPages}
-                    />
+                   <Pagination
+                handlePageChange={handlePageChange}
+                paginaAtual={paginaAtual}
+                totalPages={totalPages}
+            />
                 </Box>
             </Container>
 

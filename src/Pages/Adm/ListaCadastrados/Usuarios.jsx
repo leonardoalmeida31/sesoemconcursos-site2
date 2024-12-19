@@ -37,7 +37,7 @@ function Usuarios() {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((currentUser) => {
             if (currentUser) {
-                if (currentUser.email !== 'projetos206@gmail.com') {
+                if (currentUser.email !== 'leonardoalmeida10515@gmail.com') {
                     navigate('/');
                 } else {
                     setUser(currentUser);
