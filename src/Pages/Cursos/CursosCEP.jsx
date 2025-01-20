@@ -44,7 +44,7 @@ const CursoVenda = () => {
 
     const handleButtonClick = (e) => {
         e.preventDefault();
-        window.location.href = "https://pay.hotmart.com/P95158303T?checkoutMode=2";
+        window.location.href = "https://pay.hotmart.com/P95158303T?checkoutMode=10";
     };
 
     const courseModules = [
@@ -240,6 +240,49 @@ const CursoVenda = () => {
 
                                 </Typography>
                             </Box>
+                        </Grid>
+
+                        <Grid container direction="column" alignItems="center" spacing={2}>
+                            <Grid item>
+                                <Typography
+                                    sx={{
+                                        color: "white",
+                                        fontSize: { xs: "1.2em", sm: "2.8em" },
+                                        textAlign: "center",
+                                        fontWeight: "600",
+                                        padding: { sm: "40px 20px", xs: "0.8em" },
+                                    }}
+                                >
+                                    ASSISTA A UMA AULA DO CURSO:
+                                </Typography>
+                            </Grid>
+
+                            <Grid item sx={{ width: "100%", maxWidth: "800px", padding: 2 }}>
+                                <div
+                                    style={{
+                                        position: "relative",
+                                        width: "100%",
+                                        paddingBottom: "56.25%", // Proporção 16:9
+                                        height: 0,
+                                        overflow: "hidden",
+                                    }}
+                                >
+                                    <iframe
+                                        src="https://www.youtube.com/embed/PmQTckao8LY?si=nQEZw3ZCzWunSuVP"
+                                        title="YouTube video player"
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowFullScreen
+                                        style={{
+                                            position: "absolute",
+                                            top: 0,
+                                            left: 0,
+                                            width: "100%",
+                                            height: "100%",
+                                        }}
+                                    ></iframe>
+                                </div>
+                            </Grid>
                         </Grid>
 
                         {/* PARA QUEM */}
