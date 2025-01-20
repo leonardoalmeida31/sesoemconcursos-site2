@@ -40,6 +40,7 @@ function App() {
           />
           <Route path='/Aulas' element={<Aulas />} />
           <Route path='/Discursivas' element={<Discursivas />} />
+          
           <Route path='/MeuPerfil' element={<MeuPerfil />} />
           <Route path='/RankingDesempenho' element={<RankingDesempenho />} />
           <Route path='/Mentorias' element={<Mentorias />} />

@@ -7,6 +7,7 @@ import imagemSvg from "../../assets/img/img-login-1.svg";
 import '../../App.css';
 import Depoimentos from '../../components/Depoimentos/Depoimentos';
 import { useNavigate } from 'react-router-dom';
+import FacebookPixel from '../FacePixel/FacePixel.jsx';
 
 function Login() {
   const [user, setUser] = useState(null);

@@ -33,7 +33,7 @@ const Pagamento = () => {
             quantity: 1,
           },
         ],
-        mode: "payment",
+        mode: "subscription",
         customerEmail: user.email,
         successUrl: `https://sesoemconcursos.com.br/SuccessPage?amount=1&token=${generateUniqueToken()}`,
       });
@@ -58,7 +58,7 @@ const Pagamento = () => {
             quantity: 1,
           },
         ],
-        mode: "payment",
+        mode: "subscription",
         customerEmail: user.email,
         successUrl: `https://sesoemconcursos.com.br/SuccessPage?amount=2&token=${generateUniqueToken()}`,
       });
@@ -82,7 +82,7 @@ const Pagamento = () => {
             quantity: 1,
           },
         ],
-        mode: "payment",
+        mode: "subscription",
         customerEmail: user.email,
         successUrl: `https://sesoemconcursos.com.br/SuccessPage?amount=3&token=${generateUniqueToken()}`,
       });

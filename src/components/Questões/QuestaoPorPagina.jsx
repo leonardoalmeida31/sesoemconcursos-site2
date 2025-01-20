@@ -21,7 +21,7 @@ function QuestaoPorPagina({ questoesPorPaginaInicial = 5, onChangeQuestoesPorPag
         value={questoesPorPagina}
         onChange={handleChangeQuestoesPorPagina}
         size="small"
-        sx={{ backgroundColor: '#f2f2f2', fontSize: '0.800em', fontFamily: 'Poppins' }}
+        sx={{ backgroundColor: '#f2f2f2', fontSize: '1em', fontFamily: 'Poppins' }}
       >
         <MenuItem value={1}>1 Questão por página</MenuItem>
         <MenuItem value={5}>5 Questões por página</MenuItem>

@@ -788,8 +788,8 @@ function Questao() {
                 return `<p><strong>${alternativa.match(/^\(([A-E])\)/)[1]}:</strong> ${alternativa.replace(/^\([A-E]\)/, '')}</p>`;
             }).join("");
 
-            const respostaCorreta = question.resposta || "Resposta não encontrada"; 
-    
+            const respostaCorreta = question.resposta || "Resposta não encontrada";
+
             return `
                 <div style="padding: 1em; margin-bottom: 1em; border-bottom: 1px solid #ccc;">
                     <h3>ID: ${question.ids} - ${question.disciplina}</h3>
@@ -808,13 +808,14 @@ function Questao() {
         printWindow.document.close();
         printWindow.print();
     };
-    
-    
+
+
     return (
         <Box
             sx={{
                 maxWidth: '100%',
-                padding: isMobile ? '1em' : '2em',
+                padding: isMobile ? '0em' : '0em',
+
             }}
             className="fundo-Home"
         >
@@ -856,41 +857,69 @@ function Questao() {
 
                     <Cronometro />
 
-                </Box>
-                <Box sx={{ display: "flex", justifyContent: "right", marginBottom: "1em", marginTop: '1em' }}>
                     <Button
                         onClick={aumentarFonte}
                         sx={{
-                            marginRight: "1em",
-                            fontSize: "1.5em",
-                            fontWeight: "bold",
+                     
+                            marginTop: {
+                                xs: "1em", // Para dispositivos móveis
+                                md: "0em", // Para telas maiores (desktop)
+                            },
+                            marginBottom: {
+                                xs: "0.5em", // Para dispositivos móveis
+                                md: "0em", // Para telas maiores (desktop)
+                            },
+                            marginRight: {
+                                xs: "0em", // Para dispositivos móveis
+                                md: "0.5em", // Para telas maiores (desktop)
+                            },
+                            fontSize: {
+                                xs: "1.2em", // Para dispositivos móveis
+                                md: "1.5em", // Para telas maiores (desktop)
+                            },
+                            fontFamily: "Poppins",
+                            fontWeight: "700",
                             color: "#1c5253",
                             backgroundColor: "transparent",
                             border: "1px solid #1c5253",
                             '&:hover': {
                                 backgroundColor: "rgba(28, 82, 83, 0.1)",
-                            }
+                            },
                         }}
                     >
-                        A<span style={{ fontSize: "0.8em", fontWeight: "normal" }}>+</span>
+                        A<span style={{ fontSize: "0.9em", fontWeight: "normal" }}>+</span>
                     </Button>
                     <Button
                         onClick={diminuirFonte}
                         sx={{
-                            fontSize: "1.2em",
-                            fontWeight: "bold",
+                      
+                            fontSize: {
+                                xs: "1em", // Para dispositivos móveis
+                                md: "1.2em", // Para telas maiores (desktop)
+                            },
+                            marginBottom: {
+                                xs: "0.5em", // Para dispositivos móveis
+                                md: "0em", // Para telas maiores (desktop)
+                            },
+                            fontFamily: "Poppins",
+                            fontWeight: "700",
                             color: "#1c5253",
                             backgroundColor: "transparent",
                             border: "1px solid #1c5253",
                             '&:hover': {
                                 backgroundColor: "rgba(28, 82, 83, 0.1)",
-                            }
+                            },
                         }}
                     >
                         a<span style={{ fontSize: "0.8em", fontWeight: "normal" }}>-</span>
                     </Button>
+
+
                 </Box>
-                <Box ref={componentRef} component={Paper} id="print-section">
+                <Box sx={{ display: "flex", justifyContent: "right", marginBottom: "1em", marginTop: '1em' }}>
+
+                </Box>
+                <Box  ref={componentRef} component={Paper} id="print-section" sx={{}}>
                     {questoesPagina.map((question) => (
                         <div key={question.id}>
                             <Link to={`/questao/${question.ids}`}>
@@ -912,7 +941,7 @@ function Questao() {
                                             paddingY: '0.8em',
                                             alignItems: 'center',
                                             fontFamily: 'Poppins',
-                                            fontSize: '1em',
+                                            fontSize: '0.8em',
                                             fontWeight: '400',
                                             textAlign: 'left',
                                             display: 'inline-flex',
@@ -926,11 +955,6 @@ function Questao() {
                             </Link>
 
                             <Box
-                                sx={{
-                                    borderLeft: '1px solid #1c52531e',
-                                    borderRight: '1px solid #1c52531e',
-                                    borderBottom: '1px solid #1c52531e',
-                                }}
                             >
                                 <Box
                                     sx={{
@@ -945,7 +969,7 @@ function Questao() {
                                             paddingY: '0.5em',
                                             paddingLeft: '0.3em',
                                             fontFamily: 'Poppins',
-                                            fontSize: '1em',
+                                            fontSize: '0.8em',
                                             textAlign: 'left',
                                             color: '#1c5253',
                                             fontWeight: '500',
@@ -956,7 +980,7 @@ function Questao() {
                                     </Typography>
                                 </Box>
 
-                                <Box style={{ height: '2px', backgroundColor: '#1c525341', margin: '10px 0' }}></Box>
+                                <Box style={{ height: '2px', backgroundColor: '#1c525341', margin: '10px 0', }}></Box>
 
                                 {resultados[question.ids]?.resultado !== undefined && (
                                     <div>
@@ -990,6 +1014,8 @@ function Questao() {
                                         marginRight: "0.7em",
                                         whiteSpace: "pre-line",
                                         justifyContent: "flex-start",
+                                        overflowX: 'auto',
+
                                     }}
                                     dangerouslySetInnerHTML={{ __html: question.enunciado }}
                                 ></p>
@@ -1016,6 +1042,7 @@ function Questao() {
                                     overflowX: 'auto',
                                     maxWidth: '100%',
                                     justifyContent: 'flex-start',
+                                  
                                 }}
                             >
                                 <ComentariosQuestao
@@ -1059,11 +1086,11 @@ function Questao() {
                             <Card variant="outlined">{card}</Card>
                         </Box>
                     )}
-                   <Pagination
-                handlePageChange={handlePageChange}
-                paginaAtual={paginaAtual}
-                totalPages={totalPages}
-            />
+                    <Pagination
+                        handlePageChange={handlePageChange}
+                        paginaAtual={paginaAtual}
+                        totalPages={totalPages}
+                    />
                 </Box>
             </Container>
 

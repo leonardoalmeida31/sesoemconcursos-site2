@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { deleteDoc } from 'firebase/firestore';
 
 import { Timestamp } from 'firebase/firestore';
+import * as XLSX from "xlsx";
 
 
 function Usuarios() {
@@ -263,6 +264,43 @@ function Usuarios() {
     };
 
 
+
+
+    //exportar para excel function
+    const exportToExcel = () => {
+        const worksheetData = users.map(user => ({
+            Nome: user.displayName || "Não informado",
+            Email: user.email || "Não informado",
+            WhatsApp: user.whatsapp || "Não informado",
+        }));
+
+        const worksheet = XLSX.utils.json_to_sheet(worksheetData);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Usuários");
+
+        XLSX.writeFile(workbook, "usuarios.xlsx");
+    };
+
+    const exportToCSV = () => {
+        const header = ["Nome", "Email", "WhatsApp"];
+        const csvRows = users.map(user => [
+            `"${user.displayName || "Não informado"}"`,
+            `"${user.email || "Não informado"}"`,
+            `"${user.whatsapp || "Não informado"}"`,
+        ]);
+        const csvContent = [header, ...csvRows].map(row => row.join(",")).join("\n");
+
+        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.setAttribute("href", url);
+        link.setAttribute("download", "usuarios.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+
     return (
         <Container maxWidth="lg" sx={{ marginTop: 4 }}>
             <Grid container spacing={4} justifyContent="center" sx={{ marginBottom: '2em' }}>
@@ -288,6 +326,8 @@ function Usuarios() {
                     </Card>
                 </Grid>
             </Grid>
+
+
 
 
             <Grid container spacing={4} justifyContent="center">
@@ -340,6 +380,15 @@ function Usuarios() {
                     />
                 </Grid>
             </Grid>
+
+            <Box sx={{ margin: "1em 0", textAlign: "right" }}>
+                <Button variant="contained" color="primary" onClick={exportToExcel} sx={{ marginRight: 2 }}>
+                    Exportar para Excel
+                </Button>
+                <Button variant="contained" color="secondary" onClick={exportToCSV}>
+                    Exportar para CSV
+                </Button>
+            </Box>
 
 
             <TableContainer component={Paper} sx={{ marginTop: '2em' }}>

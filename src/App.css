@@ -45,7 +45,7 @@
 }
 @media (max-width: 767px) {
   .fundo-Home {
-    padding: 0em;
+
     width: 100%;
     display: flex;
     justify-content: center;
