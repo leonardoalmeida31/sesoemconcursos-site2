@@ -23,6 +23,8 @@ import LeisPDF from "./Pages/Aulas/Leis";
 import QuestaoDetalhes from './components/Questões/QuestãoDetalhes';
 import Perfil from './Pages/Perfil/Perfil';
 import ContadorAssinaturas from './Pages/Adm/ListaCadastrados/ContadorAssinatura';
+import CursoIdosa from './Pages/Cursos/CursoIdosa';
+
 
 function App() {
   return (
@@ -52,7 +54,8 @@ function App() {
           <Route path='/CadastroEventoEtica' element={<CadastroEventoEtica />} />
           <Route path='/CadastroQuestoes' element={<CadastroQuestoes />} />
           <Route path='/Usuarios' element={<Usuarios />} />
-          <Route path='/CursoCEP' element={<CursoVenda />} />
+          <Route path='/CursoCEP' element={<CursoIdosa />} />
+          <Route path='/CursoIdosa' element={<CursoIdosa />} />
           <Route path='/EstatisticaSite' element={<Estatisticas />} />
           <Route path='/LeisPDF' element={<LeisPDF />} />
           <Route path="/questao/:questionId" element={<QuestaoDetalhes />} />

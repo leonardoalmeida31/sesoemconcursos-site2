@@ -1,133 +1,147 @@
-import { Box } from "@mui/material";
-import { Link } from "react-router-dom";
-import "../../App.css";
+import { Box, Typography, Link, Grid, Container } from "@mui/material";
 
 function Footer() {
     return (
-        <>
-            <Box className="Box-Rodapé">
-                <p className="Texto-Rodapé">
-                    <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-                        SESOEMCONCURSOS.COM.BR
-                    </Link>
-                </p>
+        <Box
+            sx={{
+              
+                color: "white",
+                padding: "20px 0",
+                fontFamily: 'Poppins'
+            }}
+        >
+            <Container maxWidth="xl" sx={{  }}>
+                <Grid container spacing={4}>
+                    {/* Coluna 1 */}
+                    <Grid item xs={12} sm={4}>
+                        <Typography variant="h6" gutterBottom>
+                            SESO em Concursos
+                        </Typography>
+                        <Link
+                            href="/"
+                            underline="none"
+                            color="inherit"
+                        >
+                            SESOEMCONCURSOS.COM.BR
+                        </Link>
+                        <br />
+                        <Link
+                            href="https://api.whatsapp.com/send?phone=5574981265381"
+                            underline="none"
+                            color="inherit"
+                            target="_blank"
+                        >
+                            Atendimento ao Cliente
+                        </Link>
+                        <br />
+                        <Link
+                            href="https://chat.whatsapp.com/JXLDCsz8ruK6tCxgvLb8Ar"
+                            underline="none"
+                            color="inherit"
+                            target="_blank"
+                        >
+                            Grupo no WhatsApp
+                        </Link>
+                        <br />
+                        <Link
+                            href="https://www.youtube.com/watch?v=2evADTh1FAY&t=1s"
+                            underline="none"
+                            color="inherit"
+                            target="_blank"
+                        >
+                            Como usar o SESO em Concursos
+                        </Link>
+                    </Grid>
 
-                <p className="Texto-Rodapé">
-                    <Link
-                        to="https://api.whatsapp.com/send?phone=5574981265381"
-                        target="_blank"
-                        style={{ textDecoration: "none", color: "white" }}
-                    >
-                        Atendimento ao Cliente
-                    </Link>
-                </p>
-                <p className="Texto-Rodapé">
-                    <Link
-                        to="https://chat.whatsapp.com/F2vTpLRwvPm5be8llpsdVu"
-                        target="_blank"
-                        style={{ textDecoration: "none", color: "white" }}
-                    >
-                        Grupo no WhatsApp
-                    </Link>
-                </p>
-                <p className="Texto-Rodapé">Quem Somos</p>
-                <p className="Texto-Rodapé">
-                    <Link
-                        to="https://www.youtube.com/watch?v=2evADTh1FAY&t=1s"
-                        target="_blank"
-                        style={{ textDecoration: "none", color: "white" }}
-                    >
-                        Como usar o SESO em Concursos
-                    </Link>
-                </p>
-                <p className="Texto-Rodapé">
-                    <Link
-                        to="/adm"
-                        target="_blank"
-                        style={{ textDecoration: "none", color: "white" }}
-                    >
-                        Adm
-                    </Link>
-                </p>
-            </Box>
+                    {/* Coluna 2 */}
+                    <Grid item xs={12} sm={4}>
+                        <Typography variant="h6" gutterBottom>
+                            Recursos
+                        </Typography>
+                        <Link
+                            href="/MeuPerfil"
+                            underline="none"
+                            color="inherit"
+                        >
+                            Meu Desempenho
+                        </Link>
+                        <br />
+                        <Link
+                            href="/"
+                            underline="none"
+                            color="inherit"
+                        >
+                            Questões
+                        </Link>
+                        <br />
+                        <Link
+                            href="/RankingDesempenho"
+                            underline="none"
+                            color="inherit"
+                        >
+                            Ranking de Desempenho
+                        </Link>
+                        <br />
+                      
+                    </Grid>
 
+                    {/* Coluna 3 */}
+                    <Grid item xs={12} sm={4}>
+                        <Typography variant="h6" gutterBottom>
+                            Conexões
+                        </Typography>
+                        <Link
+                            href="https://www.instagram.com/sesoemconcursos/"
+                            underline="none"
+                            color="inherit"
+                            target="_blank"
+                        >
+                            Instagram
+                        </Link>
+                        <br />
+                        <Link
+                            href="/Aulas"
+                            underline="none"
+                            color="inherit"
+                        >
+                            Aulas
+                        </Link>
+                        <br />
+                        <Link
+                            href="/EstatisticaSite"
+                            underline="none"
+                            color="inherit"
+                        >
+                            Estatísticas do Site
+                        </Link>
+                        <br />
+                        <Link
+                            href="https://www.youtube.com/watch?v=2evADTh1FAY&t=1s"
+                            underline="none"
+                            color="inherit"
+                            target="_blank"
+                        >
+                            Como usar o SESO em Concursos
+                        </Link>
+                    </Grid>
+                </Grid>
 
-
-            <Box className="Box-Rodapé">
-                <p className="Texto-Rodapé">
-                    <Link
-                        to="/MeuPerfil"
-                        target="_blank"
-                        style={{ textDecoration: "none", color: "white" }}
-                    >
-                        Meu Desempenho
-                    </Link>
-                </p>
-                <p className="Texto-Rodapé">
-                    <Link to="/" style={{ textDecoration: "none", color: "white", }}>
-                        Questões
-                    </Link>
-                </p>
-
-                <p className="Texto-Rodapé">
-                    <Link
-                        to="/RankingDesempenho"
-                        target="_blank"
-                        style={{ textDecoration: "none", color: "white" }}
-                    >
-                        Ranking de Desempenho
-                    </Link>
-                </p>
-                <p className="Texto-Rodapé">
-                    <Link
-                        to="/LeisPDF"
-                        target="_blank"
-                        style={{ textDecoration: "none", color: "white" }}
-                    >
-                        LeisPDF
-                    </Link>
-                </p>
-            </Box>
-
-            <Box className="Box-Rodapé">
-                <p className="Texto-Rodapé">
-                    <Link
-                        to="https://www.instagram.com/sesoemconcursos/"
-                        target="_blank"
-                        style={{ textDecoration: "none", color: "white" }}
-                    >
-                        Instagram
-                    </Link>
-                </p>
-                <p className="Texto-Rodapé">
-                    <Link to="/Aulas" style={{ textDecoration: "none", color: "white", }}>
-                        Aulas
-                    </Link>
-                </p>
-                <p className="Texto-Rodapé">
-                    <Link
-                        to="/EstatisticaSite"
-                        style={{ textDecoration: "none", color: "white" }}
-                    >
-                        Estatisticas do Site
-                    </Link>
-                </p>
-                <p className="Texto-Rodapé">
-                    <Link
-                        to="https://www.youtube.com/watch?v=2evADTh1FAY&t=1s"
-                        target="_blank"
-                        style={{ textDecoration: "none", color: "white" }}
-                    >
-                        Como usar o SESO em Concursos
-                    </Link>
-                </p>
-            </Box>
-
-            <Box className="Box-Rodapé1">
-                <p className="Texto-Rodapé1">© 2024 - SESO em Concursos</p>
-            </Box>
-        </>
-    )
+                {/* Rodapé inferior */}
+                <Box
+                    sx={{
+                        textAlign: "center",
+                        marginTop: "20px",
+                        borderTop: "1px solid #111",
+                        paddingTop: "10px",
+                    }}
+                >
+                    <Typography variant="body2">
+                        © 2023 - 2025 - SESO em Concursos. Todos os direitos reservados.
+                    </Typography>
+                </Box>
+            </Container>
+        </Box>
+    );
 }
 
 export default Footer;

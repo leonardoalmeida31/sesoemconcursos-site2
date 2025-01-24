@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Questao from "../../components/Questões/Questoes";
-import AnuncioCard from "../../components/Anuncios/AnuncioCard";
+import AnuncioCursos from "../../components/Anuncios/AnuncioCursos";
 import { useState } from "react";
 
 function Home() {
@@ -27,10 +27,10 @@ function Home() {
                     padding: isMobile ? '1em' : '2em'
                 }}
             >
-                <AnuncioCard />
+            
             </Grid>
-
-            <Box className="Rodapé" sx={{ marginTop: '2em' }}>
+            <AnuncioCursos />
+            <Box className="Rodapé" sx={{ marginTop: '-0.4em' }}>
                 <Footer />
             </Box>
         </Box>

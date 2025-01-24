@@ -22,7 +22,7 @@ function CadastroEventoEtica() {
 
     useEffect(() => {
         const db = getDatabase(app);
-        const membrosRef = ref(db, 'EventoEticaConatos');
+        const membrosRef = ref(db, 'EventoIdosa');
 
         onValue(membrosRef, (snapshot) => {
             const data = snapshot.val();
@@ -41,7 +41,7 @@ function CadastroEventoEtica() {
                 gutterBottom
                 sx={{ textAlign: 'center', fontFamily: 'Poppins', fontWeight: 600, color: '#333', marginBottom: '2em', textDecoration: 'none' }}
             >
-                Lista de Contatos Cadastrados no Evento do Código de Ética
+                Lista de Contatos Cadastrados no Evento do Estatuto da Pessoa Idosa
             </Typography>
             {loading ? (
                 <CircularProgress sx={{ display: 'block', margin: 'auto', color: '#1c5253;' }} />
