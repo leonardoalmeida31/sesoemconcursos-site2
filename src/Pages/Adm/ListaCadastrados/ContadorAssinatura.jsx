@@ -14,7 +14,7 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
-import { getDocs, collection, getFirestore } from "firebase/firestore";
+import { getDocs, collection, getFirestore, updateDoc, doc, Timestamp } from "firebase/firestore";
 import { auth } from "../../../firebase";
 import { useNavigate } from "react-router-dom";
 
@@ -59,7 +59,7 @@ function ContadorAssinatura() {
 
   useEffect(() => {
     const filtered = users
-      .filter((user) => user.paymentInfo) 
+      .filter((user) => user.paymentInfo)
       .filter(
         (user) =>
           user.displayName?.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -79,13 +79,13 @@ function ContadorAssinatura() {
     const expiration = new Date(expirationDate.seconds * 1000);
     const today = new Date();
     const diffTime = expiration - today;
-    return Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   };
 
   const getStatusColor = (daysRemaining) => {
-    if (daysRemaining > 30) return "green"; 
-    if (daysRemaining <= 30 && daysRemaining > 7) return "yellow"; 
-    return "red"; 
+    if (daysRemaining > 30) return "green";
+    if (daysRemaining <= 30 && daysRemaining > 7) return "yellow";
+    return "red";
   };
 
   const formatDate = (timestamp) => {
@@ -94,6 +94,40 @@ function ContadorAssinatura() {
       return date.toLocaleDateString();
     }
     return "Não disponível";
+  };
+
+  const handleCheckExpiration = async () => {
+    const today = new Date();
+    const updatedUsers = users.map(async (user) => {
+      if (user.paymentInfo !== null && user.expirationDate) {
+        const expiration = new Date(user.expirationDate.seconds * 1000);
+        if (expiration < today) { 
+          const newExpirationDate = new Date(today.getTime() + 24 * 60 * 60 * 1000); 
+  
+          const newExpirationTimestamp = Timestamp.fromDate(newExpirationDate);
+  
+          const userDocRef = doc(db, "users", user.id);
+  
+     
+          await updateDoc(userDocRef, {
+            expirationDate: newExpirationTimestamp, // Atualiza a data de expiração no formato Timestamp
+            paymentInfo: null, 
+          });
+  
+        
+          return {
+            ...user,
+            expirationDate: newExpirationTimestamp, 
+            paymentInfo: null,
+          };
+        }
+      }
+      return user; 
+    });
+  
+    const updatedUsersList = await Promise.all(updatedUsers);
+    setUsers(updatedUsersList); 
+    fetchUsers(); 
   };
 
   return (
@@ -112,9 +146,13 @@ function ContadorAssinatura() {
           onChange={(e) => setEmailSearchTerm(e.target.value)}
           style={{ marginRight: "10px" }}
         />
-       
+
         <Button variant="contained" onClick={() => setWhatsappFilter(!whatsappFilter)}>
           {whatsappFilter ? "Mostrar Todos" : "Filtrar WhatsApp"}
+        </Button>
+
+        <Button variant="contained" color="secondary" onClick={handleCheckExpiration} style={{ marginLeft: "10px" }}>
+          Verificar Expirações
         </Button>
       </div>
       {loading ? (
