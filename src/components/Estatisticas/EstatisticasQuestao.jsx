@@ -67,11 +67,11 @@ function EstatisticasQuestao({ questionId }) {
 
                 {showChart && graficosData.map((grafico, index) => (
                     <Box key={index} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', gap: '5px' }}>
-                        {/* Gráfico de Barras - Contagem de Respostas */}
+
                         <Chart
                             width={'100%'}
                             height={'100%'}
-                            chartType="ColumnChart"
+                            chartType="Line"
                             loader={<Box>Carregando Gráfico...</Box>}
                             data={grafico.data}
                             options={{
@@ -140,5 +140,4 @@ function EstatisticasQuestao({ questionId }) {
         </Box>
     );
 }
-
 export default EstatisticasQuestao;
