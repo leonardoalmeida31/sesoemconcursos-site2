@@ -24,6 +24,7 @@ import QuestaoDetalhes from './components/Questões/QuestãoDetalhes';
 import Perfil from './Pages/Perfil/Perfil';
 import ContadorAssinaturas from './Pages/Adm/ListaCadastrados/ContadorAssinatura';
 import CursoIdosa from './Pages/Cursos/CursoIdosa';
+import CursoRelatorios from './Pages/Cursos/CursoRelatorios';
 
 
 function App() {
@@ -56,6 +57,9 @@ function App() {
           <Route path='/Usuarios' element={<Usuarios />} />
           <Route path='/CursoCEP' element={<CursoIdosa />} />
           <Route path='/CursoIdosa' element={<CursoIdosa />} />
+          <Route path='/CursoRelatorios' element={<CursoRelatorios />} />
+
+          
           <Route path='/EstatisticaSite' element={<Estatisticas />} />
           <Route path='/LeisPDF' element={<LeisPDF />} />
           <Route path="/questao/:questionId" element={<QuestaoDetalhes />} />
