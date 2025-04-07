@@ -12,6 +12,11 @@ function Anuncios() {
         ? [
 
             {
+                link: '/CursoAssistenciaSocial',
+                imgSrc: 'https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/ANUNCIOS-CURSOS-FOTOS-SITE%2Fcapa-assistencia-mobile.jpg?alt=media&token=38390915-4d5e-45e0-90e9-19d0dc9c13a2',
+            },
+
+            {
                 link: '/CursoIdosa',
                 imgSrc: 'https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/ANUNCIOS-CURSOS-FOTOS-SITE%2Fcapa%20mobile%20etica%203.jpg?alt=media&token=33e96cdf-c195-4987-b154-e1043c1864a1',
             },
@@ -22,6 +27,11 @@ function Anuncios() {
               
           ]
         : [
+
+            {
+                link: '/CursoAssistenciaSocial',
+                imgSrc: 'https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/ANUNCIOS-CURSOS-FOTOS-SITE%2FASSISTENCIA-CAPA-FINA.jpg?alt=media&token=bb82622a-56f0-4d25-87d7-c0bb538a714c',
+            },
 
             {
                 link: '/CursoIdosa',
@@ -38,11 +48,11 @@ function Anuncios() {
     const settings = {
         dots: true,
         infinite: true,
-        speed: 600,
+        speed: 2000,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 15000,
         arrows: false,
     };
 

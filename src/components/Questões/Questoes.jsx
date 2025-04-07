@@ -911,7 +911,7 @@ function Questao() {
                             },
                         }}
                     >
-                        a<span style={{ fontSize: "0.8em", fontWeight: "normal" }}>-</span>
+                        a<span style={{ fontSize: "1em", fontWeight: "normal" }}>-</span>
                     </Button>
 
 
@@ -1009,6 +1009,7 @@ function Questao() {
                                         fontSize: `${fontSize}em`,
                                         fontWeight: "normal",
                                         fontFamily: "Poppins",
+                             
                                         textAlign: "left",
                                         marginLeft: "0.7em",
                                         marginRight: "0.7em",

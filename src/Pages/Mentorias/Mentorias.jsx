@@ -2,21 +2,7 @@ import { Typography, Container, Box, List, ListItem, ListItemText, Button } from
 import { styled } from '@mui/system';
 
 function Mentorias() {
-    const Modulos = [
-        'Como estudar para concursos de Serviço Social: Aquilo que os preparatórios não ensinam você aprende aqui.',
-        'Não caia em furada! Quais métodos de estudos funcionam e quais não funcionam?',
-        'Como estudar e não esquecer o que estudou - parte 1.',
-        'Como estudar e não esquecer o que estudou - parte 2.',
-        'Como estudar legislação para concursos de serviço social',
-        'Como estudar português para concursos de serviço social',
-        'Como estudar matemática e informática para concursos de serviço social',
-        'Como estudar e aprender legislação de Serviço Social',
-        'Como estudar e aprender a respeito dos artigos e livros de conhecimentos específicos de Serviço Social',
-        'Como estudar por questões e aprender de verdade.',
-        'Por que não consigo ser aprovado: Como ter disciplina, foco, estratégia e motivação para passar em qualquer concurso',
-        'Como encontrar provas anteriores de bancas que não disponibilizam provas. (Bônus)',
-        'Respondendo dúvidas e analisando os concursos dos mentorados'
-    ];
+  
 
     const StyledContainer = styled(Container)({
         textAlign: 'center',
@@ -57,7 +43,7 @@ function Mentorias() {
         <Container>
             <Box sx={{ backgroundColor: '#1c5253', justifyContent: 'center', fontFamily: 'Poppins, sans-serif', padding: '3em', borderBottomRightRadius: '3em', borderBottomStyle: 'solid', borderBottomColor: '#48c2c8', borderBottomWidth: '10px' }}>
                 <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '700', fontSize: '1.7em', color: 'white' }}>
-                    MENTORIA DE GRUPO - SESO EM CONCURSOS
+                    MENTORIA PERSONALIZADA <br></br> SESO EM CONCURSOS
                 </Typography>
                 <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', paddingTop: '2em', fontWeight: '500', fontSize: '1em', color: 'white' }}>
                     DESCUBRA COMO OS CONCURSEIROS DE ALTO DESEMPENHO QUE SÃO APROVADOS EM CONCURSOS DE SERVIÇO SOCIAL ESTUDAM
@@ -90,37 +76,48 @@ function Mentorias() {
                 borderRadius: '8px',
                 padding: '20px', marginTop: '20px', backgroundColor: '#f0f0f0', justifyContent: 'center', paddingTop: '2em', fontFamily: 'Poppins, sans-serif'
             }}>
-                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '600', fontSize: '1.2em', }}>POR QUE DEVO ME INSCREVER NA MENTORIA DE GRUPO - SESO EM CONCURSOS?</Typography>
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '600', fontSize: '1.2em', }}>POR QUE DEVO ME INSCREVER NA MENTORIA PERSONALIZADA - SESO EM CONCURSOS?</Typography>
                 <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em' }}>Esta é uma mentoria diferente de todas as outras que você possa conhecer. Não vamos te passar mais um curso de vídeo aulas. Você não vai receber mais um preparatório.Você não vai receber um plano de estudos genérico, muito menos apostilas de estudos com textos difíceis de entender.</Typography>
-                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em' }}>Na nossa mentoria vamos fazer o que os cursinhos e preparatórios de concursos não querem te ensinar e muito menos desejam que você saiba. Vamos te mostrar e te ensinar de verdade a como estudar para concursos de Serviço Social de forma autônoma sem depender nunca mais de cursos preparatórios. SIM, É ISSO MESMO! AO REALIZAR A NOSSA MENTORIA COMPLETA VOCÊ VAI APRENDER TUDO SOBRE COMO ESTUDAR PARA CONCURSOS E NUNCA MAIS VAI PRECISAR GASTAR R$ 1 REAL EM CURSOS PREPARATÓRIOS, APOSTILAS, AULAS, MAPAS MENTAIS E OUTROS MATERIAIS.</Typography>
-                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em' }}>VOCÊ TERÁ CONHECIMENTO PARA ESTUDAR SOZINHO(A) E SER CAPAZ DE PASSAR EM QUALQUER CONCURSO QUE ESTUDAR.</Typography>
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em' }}>Na nossa mentoria vamos entregar tudo que você precisa para ser aprovada no seu concurso.</Typography>
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em' }}>FAZEMOS UM PREPARATÓRIO PERSONALIZADO DE ACORDO O SEU EDITAL E O SEU NÍVEL DE CONHECIMENTO.</Typography>
             </Box>
             <Box
                 sx={{
                     borderStyle: 'solid', borderColor: '#48c2c8', borderWidth: '2px', borderRadius: '8px', padding: '20px', marginTop: '20px', backgroundColor: '#f0f0f0', justifyContent: 'center', paddingTop: '2em', fontFamily: 'Poppins, sans-serif', backgroundImage: 'linear-gradient(to right, #1c5253, #1c7475)',
                 }}  >
-                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '600', fontSize: '1.2em', color: 'white' }}>COMO FUNCIONA A MENTORIA DE GRUPO?</Typography>
-                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em', color: 'white' }}>A mentoria será realizada em 13 encontros ao vivo, nos quais traremos todo o conteúdo que você precisa para se preparar para concursos. Os encontros serão através da plataforma Google Meet. Sendo 1 encontro por semana e às vezes 2 encontros de acordo a disponibilidade</Typography>
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '600', fontSize: '1.2em', color: 'white' }}>COMO FUNCIONA A MENTORIA?</Typography>
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em', color: 'white' }}>A mentoria será realizada em vídeo aulas ao vivo com o concurseiro via google meet e também com aulas gravadas dos nossos cursos. Os encontros serão através da plataforma Google Meet. Sendo 1 encontro por semana e às vezes 2 encontros de acordo a disponibilidade</Typography>
                 <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em', color: 'white' }}>Não se preocupe! Todos os encontros ficarão gravados e você terá acesso a todos eles posteriormente para os assistir</Typography>
             </Box>
-            <StyledContainer sx={{
-                borderStyle: 'solid', borderColor: '#48c2c8', borderWidth: '2px', borderRadius: '8px', padding: '20px', marginTop: '20px', backgroundColor: '#f0f0f0', justifyContent: 'center', paddingTop: '2em', fontFamily: 'Poppins, sans-serif', backgroundImage: 'linear-gradient(to right, #1c5253, #1c7475)',
-            }}  >
-                <StyledBox sx={{
+
+            <Box
+                sx={{
                     borderStyle: 'solid', borderColor: '#48c2c8', borderWidth: '2px', borderRadius: '8px', padding: '20px', marginTop: '20px', backgroundColor: '#f0f0f0', justifyContent: 'center', paddingTop: '2em', fontFamily: 'Poppins, sans-serif', backgroundImage: 'linear-gradient(to right, #1c5253, #1c7475)',
                 }}  >
-                    <StyledList>
-                        <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '600', fontSize: '1.2em', paddingBottom: '2em', color: 'white' }}>
-                            CONFIRA OS MÓDULOS DA MENTORIA:
-                        </Typography>
-                        {Modulos.map((modulo, index) => (
-                            <StyledListItem key={index}>
-                                <StyledListItemText primary={`${index + 1}. ${modulo}`} />
-                            </StyledListItem>
-                        ))}
-                    </StyledList>
-                </StyledBox>
-            </StyledContainer>
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '600', fontSize: '1.2em', color: 'white' }}>COMO ADQUIRIR?</Typography>
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em', color: 'white' }}>MENTORIA CONHECIMENTOS ESPECIFÍCOS DE SERVIÇO SOCIAL</Typography>
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em', color: 'white' }}>PARA TODOS OS CONCURSOS DE SERVIÇO SOCIAL SOMENTE PARTE DO EDITAL DE CONHECEIMENTOS ESPECIFÍCOS DO CARGO</Typography>
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em', color: 'white' }}>ACOMPANHAMENTO DO PLANEJAMENTO DE ESTUDOS</Typography>
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em', color: 'white' }}>AULAS AO VIVO DO CONTEÚDO DO EDITAL</Typography>
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em', color: 'white' }}>MÉTODOS DE ESTUDOS PARA GABARITAR EM QUALQUER LEI OU DISCIPLINA</Typography>
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em', color: 'white' }}>A PARTIR DE R$ 299,90</Typography>
+            </Box>
+
+            <Box
+                sx={{
+                    borderStyle: 'solid', borderColor: '#48c2c8', borderWidth: '2px', borderRadius: '8px', padding: '20px', marginTop: '20px', backgroundColor: '#f0f0f0', justifyContent: 'center', paddingTop: '2em', fontFamily: 'Poppins, sans-serif', backgroundImage: 'linear-gradient(to right, #1c5253, #1c7475)',
+                }}  >
+              
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em', color: 'white' }}>MENTORIA COMPLETA PARA CONCURSOS DE SERVIÇO SOCIAL</Typography>
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em', color: 'white' }}>TODOS OS CONTEÚDOS DO SEU EDITAL (PORTUGUÊS, INFORMÁTICA E LEGISLAÇÃO)</Typography>
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em', color: 'white' }}>DESCUBRA COMO ESTUDAR PARA QUALQUER CONCURSO DE SERVIÇO SOCIAL</Typography>
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em', color: 'white' }}>TODOS OS NOSSOS CURSOS LIBERADOS DE FORMA VITALÍCIA</Typography>
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em', color: 'white' }}>ACOMPANHAMENTO DO PLANEJAMENTO DE ESTUDOS</Typography>
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em', color: 'white' }}>AULAS AO VIVO DO CONTEÚDO DO EDITAL</Typography>
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em', color: 'white' }}>MÉTODOS DE ESTUDOS PARA GABARITAR EM QUALQUER LEI OU DISCIPLINA</Typography>
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em', color: 'white' }}>A PARTIR DE R$ 599,90</Typography>
+            </Box>
+        
             <Box sx={{
                 borderStyle: 'solid',
                 borderColor: '#48c2c8',
@@ -135,10 +132,10 @@ function Mentorias() {
                 textAlign: 'center',
                 fontFamily: 'Poppins, sans-serif',
             }}>
-                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '600', fontSize: '1.2em', }}>RESTAM APENAS 11 VAGAS!</Typography>
-                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em' }}>A nossa mentoria terá um número limitado de inscritos, por isso corra para entrar no grupo e se inscrever para participar dessa turma
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '600', fontSize: '1.2em', }}>RESTAM APENAS 7 VAGAS!</Typography>
+                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em' }}>A nossa mentoria terá um número limitado de inscritos, por isso ENTRE EM CONTATO AGORA!
                 </Typography>
-                <Typography sx={{ fontFamily: 'Poppins, sans-serif', textAlign: 'center', fontWeight: '500', fontSize: '1em', paddingTop: '2em' }}>ENTRE NO GRUPO DO WHATSAPP PARA PARTICIPAR DA MENTORIA. Lá você saberá de todos os detalhes dos encontros e receberá seu acesso.</Typography>
+            
                 <Button
                     variant="contained"
                     color="primary"

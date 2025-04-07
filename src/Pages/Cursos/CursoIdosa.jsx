@@ -529,7 +529,7 @@ const CursoIdosa = () => {
 
                                         <Avatar
                                             alt="Avatar for XS"
-                                            src="https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/ANUNCIOS-CURSOS-FOTOS-SITE%2Fcurso%20c%C3%B3digo%20de%20%C3%A9tica%20600x600%20(3).png?alt=media&token=981da548-4efe-473e-a61e-99d957996088"
+                                            src="https://firebasestorage.googleapis.com/v0/b/sesoemconcursosweb.appspot.com/o/ANUNCIOS-CURSOS-FOTOS-SITE%2FCAPAS%20DE%20CURSOS%20600X600%20png2.png?alt=media&token=782e7ec0-4520-457c-a88a-70262622ac42"
                                             sx={{
                                                 width: '100%',
                                                 height: '100%',

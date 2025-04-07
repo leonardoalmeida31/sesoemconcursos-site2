@@ -17,7 +17,7 @@ import CadastradosEventoEtica from './Pages/Adm/ListaCadastrados/CadastradosEven
 import CadastroEventoEtica from "./Pages/Adm/Cadastro/CadastroEventoEtica";
 import CadastroQuestoes from './Pages/Adm/Cadastro/CadastroQuestoes';
 import Usuarios from './Pages/Adm/ListaCadastrados/Usuarios';
-import CursoVenda from './Pages/Cursos/CursosCEP';
+import CursoCEP from './Pages/Cursos/CursoCEP';
 import Estatisticas from './Pages/Estatisticas/Estatisticas';
 import LeisPDF from "./Pages/Aulas/Leis";
 import QuestaoDetalhes from './components/Questões/QuestãoDetalhes';
@@ -25,6 +25,9 @@ import Perfil from './Pages/Perfil/Perfil';
 import ContadorAssinaturas from './Pages/Adm/ListaCadastrados/ContadorAssinatura';
 import CursoIdosa from './Pages/Cursos/CursoIdosa';
 import CursoRelatorios from './Pages/Cursos/CursoRelatorios';
+import CursoAssistenciaSocial from './Pages/Cursos/CursoAssistenciaSocial';
+
+
 
 
 function App() {
@@ -55,10 +58,12 @@ function App() {
           <Route path='/CadastroEventoEtica' element={<CadastroEventoEtica />} />
           <Route path='/CadastroQuestoes' element={<CadastroQuestoes />} />
           <Route path='/Usuarios' element={<Usuarios />} />
-          <Route path='/CursoCEP' element={<CursoIdosa />} />
+          <Route path='/CursoCEP' element={<CursoCEP />} />
           <Route path='/CursoIdosa' element={<CursoIdosa />} />
           <Route path='/CursoRelatorios' element={<CursoRelatorios />} />
+          <Route path='/CursoAssistenciaSocial' element={<CursoAssistenciaSocial />} />
 
+          
           
           <Route path='/EstatisticaSite' element={<Estatisticas />} />
           <Route path='/LeisPDF' element={<LeisPDF />} />

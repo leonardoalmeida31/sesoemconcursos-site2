@@ -268,28 +268,28 @@ function Usuarios() {
 
     //exportar para excel function
     const exportToExcel = () => {
-        const worksheetData = users.map(user => ({
+        const worksheetData = filteredUsers.map(user => ({
             Nome: user.displayName || "Não informado",
             Email: user.email || "Não informado",
-            WhatsApp: user.whatsapp || "Não informado",
+            WhatsApp: formatWhatsapp(user.whatsapp),
         }));
-
+    
         const worksheet = XLSX.utils.json_to_sheet(worksheetData);
         const workbook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(workbook, worksheet, "Usuários");
-
+    
         XLSX.writeFile(workbook, "usuarios.xlsx");
     };
 
     const exportToCSV = () => {
         const header = ["Nome", "Email", "WhatsApp"];
-        const csvRows = users.map(user => [
+        const csvRows = filteredUsers.map(user => [
             `"${user.displayName || "Não informado"}"`,
             `"${user.email || "Não informado"}"`,
             `"${user.whatsapp || "Não informado"}"`,
         ]);
         const csvContent = [header, ...csvRows].map(row => row.join(",")).join("\n");
-
+    
         const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
@@ -298,6 +298,14 @@ function Usuarios() {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+    };
+
+    const formatWhatsapp = (whatsapp) => {
+        if (!whatsapp) return "WhatsApp não disponível";
+        // Remove tudo que não for número
+        const numbersOnly = whatsapp.replace(/\D/g, '');
+        // Adiciona o +55 no início, se ainda não tiver
+        return numbersOnly.startsWith('55') ? `${numbersOnly}` : `55${numbersOnly}`;
     };
 
 
@@ -408,7 +416,7 @@ function Usuarios() {
                             <TableRow key={user.id}>
                                 <TableCell>{user.displayName || "Nome não disponível"}</TableCell>
                                 <TableCell>{user.email || "Email não disponível"}</TableCell>
-                                <TableCell>{user.whatsapp || "WhatsApp não disponível"}</TableCell>
+                                <TableCell>{formatWhatsapp(user.whatsapp)}</TableCell>
                                 <TableCell>{formatDate(user.expirationDate)}</TableCell>
                                 <TableCell>
                                     {user.paymentInfo ? (
