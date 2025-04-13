@@ -14,7 +14,7 @@ function Home() {
     return (
         <Box>
             <Header />
-            <Container maxWidth="xl" sx={{ padding: isMobile ? '1em' : '2em' }} className="fundo-home">
+            <Container maxWidth="xl" sx={{ padding: isMobile ? '0.5em' : '0em' }}  className="fundo-Home" >
                 <Questao />
             </Container>
             <Grid

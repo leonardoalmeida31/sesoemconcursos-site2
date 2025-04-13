@@ -144,95 +144,6 @@ function Questao() {
         return () => unsubscribe();
     }, [auth, maxQuestionsToDisplay]);
 
-
-
-    // useEffect(() => {
-    //     const unsubscribe = auth.onAuthStateChanged(async (user) => {
-    //       if (user) {
-    //         setUser(user);
-
-    //         const userRef = doc(db, "users", user.uid);
-    //         const userDoc = await getDoc(userRef);
-
-    //         if (userDoc.exists()) {
-    //           const userData = userDoc.data();
-    //           const userDisplayName = userData.displayName;
-    //           const userPaymentInfo = userData.paymentInfo;
-    //           const expirationDate = userData.expirationDate;
-
-    //           const desempenhoSalvo = userData.desempenhoPorDisciplina;
-
-    //           setDesempenhoPorDisciplina(desempenhoSalvo);
-
-    //               const desempenhoTotalSalvo = userData.desempenhoTotal || {
-    //             acertos: 0,
-    //             erros: 0,
-    //           };
-    //               setDesempenhoTotal(desempenhoTotalSalvo);
-
-    //           setPaymentInfo(userPaymentInfo);
-
-    //           const paymentInfo = userDoc.data().paymentInfo;
-    //           let maxQuestionsToDisplay = 0;
-    //           let accessDurationDays = 0;
-
-    //           if (paymentInfo === 0 || paymentInfo === null) {
-    //             maxQuestionsToDisplay = Math.min(15, questoesPagina.length);
-    //             accessDurationDays = 1;
-    //           } else if (paymentInfo === 1) {
-    //             maxQuestionsToDisplay = questoesPagina.length;
-    //             accessDurationDays = 180;
-    //           } else if (paymentInfo === 2) {
-    //             maxQuestionsToDisplay = questoesPagina.length;
-    //             accessDurationDays = 365;
-    //           }
-
-    //           const totalPages = Math.ceil(
-    //             questoesPagina.length / maxQuestionsToDisplay
-    //           );
-
-    //           setMaxQuestionsToDisplay(maxQuestionsToDisplay);
-
-    //           const questionsToDisplay = questoesPagina.slice(
-    //             0,
-    //             maxQuestionsToDisplay
-    //           );
-    //           setQuestionsToShow(questionsToDisplay);
-
-    //           setPaginaAtual(1);
-
-
-    //           if (!expirationDate) {
-    //             const currentDate = new Date();
-    //             const expirationDate = new Date(currentDate);
-    //             expirationDate.setDate(currentDate.getDate() + accessDurationDays);
-
-
-    //             await setDoc(userRef, { expirationDate }, { merge: true });
-
-    //           }
-    //         } else {
-
-    //           await setDoc(userRef, {
-    //             expirationDate: null,
-    //             paymentInfo: null,
-    //             desempenhoTotal: {
-    //               acertos: 0,
-    //               erros: 0,
-    //             },
-    //             desempenhoPorDisciplina: {}, 
-    //             desempenhoPorBanca: {}, 
-    //             cliques: 0,
-    //           });
-    //         }
-    //       } else {
-    //         setUser(null);
-    //       }
-    //     });
-
-    //     return () => unsubscribe();
-    //   }, [auth, maxQuestionsToDisplay]);
-
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -811,7 +722,7 @@ function Questao() {
 
 
     return (
-        <Box
+        <Box  
             sx={{
                 maxWidth: '100%',
                 padding: isMobile ? '0em' : '0em',
@@ -819,9 +730,8 @@ function Questao() {
             }}
             className="fundo-Home"
         >
-
-            <Container maxWidth="xl" sx={{ padding: '0em' }}>
-                <Container maxWidth='xl'>
+            <Container maxWidth="x1" sx={{ padding: '0em' }}>
+                <Container maxWidth='x1'>
                     <Typography
                         sx={{
                             fontSize: { xs: '0.8em', md: '1.2em' },

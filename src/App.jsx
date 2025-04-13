@@ -26,6 +26,8 @@ import ContadorAssinaturas from './Pages/Adm/ListaCadastrados/ContadorAssinatura
 import CursoIdosa from './Pages/Cursos/CursoIdosa';
 import CursoRelatorios from './Pages/Cursos/CursoRelatorios';
 import CursoAssistenciaSocial from './Pages/Cursos/CursoAssistenciaSocial';
+import Privacidade from './Pages/Cursos/Privacidade';
+import PagamentoAmbos from './Pages/Pagamento/PagamentoAmbos';
 
 
 
@@ -50,7 +52,8 @@ function App() {
           <Route path='/MeuPerfil' element={<MeuPerfil />} />
           <Route path='/RankingDesempenho' element={<RankingDesempenho />} />
           <Route path='/Mentorias' element={<Mentorias />} />
-          <Route path='/Assinatura' element={<PaymentPage />} />
+          <Route path='/AssinaturaCartao' element={<PaymentPage />} />
+          <Route path='/Assinatura' element={<PagamentoAmbos />} />
           <Route path="/AssinarPix" element={<PagamentoPix />} />
           <Route path='/SuccessPage' element={<SuccessPage />} />
           <Route path='/adm' element={<Adm />} />
@@ -62,6 +65,7 @@ function App() {
           <Route path='/CursoIdosa' element={<CursoIdosa />} />
           <Route path='/CursoRelatorios' element={<CursoRelatorios />} />
           <Route path='/CursoAssistenciaSocial' element={<CursoAssistenciaSocial />} />
+          <Route path='/Privacidade' element={<Privacidade />} />
 
           
           

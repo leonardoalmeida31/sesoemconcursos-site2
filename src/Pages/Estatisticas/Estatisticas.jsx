@@ -26,6 +26,50 @@ const StyledCard = styled(Card)(({ theme }) => ({
   },
 }));
 
+// Função para aplicar o gradiente SVG
+const applyGradient = (chart) => {
+  const chartSvg = chart.getContainer().querySelector("svg");
+
+  // Adiciona o elemento <defs> com o gradiente, se ainda não existir
+  let defs = chartSvg.querySelector("defs");
+  if (!defs) {
+    defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+    chartSvg.insertBefore(defs, chartSvg.firstChild);
+  }
+
+  // Define o gradiente linear
+  const gradientId = "greenGradient";
+  let gradient = defs.querySelector(`#${gradientId}`);
+  if (!gradient) {
+    gradient = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+    gradient.setAttribute("id", gradientId);
+    gradient.setAttribute("x1", "0%");
+    gradient.setAttribute("y1", "0%");
+    gradient.setAttribute("x2", "0%");
+    gradient.setAttribute("y2", "100%");
+
+    const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+    stop1.setAttribute("offset", "0%");
+    stop1.setAttribute("stop-color", "#1C5253"); // Verde escuro
+
+    const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+    stop2.setAttribute("offset", "100%");
+    stop2.setAttribute("stop-color", "#A3D8C6"); // Verde claro
+
+    gradient.appendChild(stop1);
+    gradient.appendChild(stop2);
+    defs.appendChild(gradient);
+  }
+
+  // Aplica o gradiente às barras
+  const bars = chartSvg.querySelectorAll("rect[fill]");
+  bars.forEach((bar) => {
+    if (bar.getAttribute("fill").startsWith("#")) { // Só aplica se for uma cor sólida
+      bar.setAttribute("fill", `url(#${gradientId})`);
+    }
+  });
+};
+
 function Estatisticas() {
   const [user, setUser] = useState(null);
   const [paginaAtual, setPaginaAtual] = useState(1);
@@ -56,11 +100,15 @@ function Estatisticas() {
   const calcularEstatisticas = (key, setState) => {
     const estatisticas = {};
     questoesFiltradas.forEach((question) => {
-      const valor = question[key] || "Não especificado"; // Evita valores undefined
+      const valor = question[key] || "Não especificado";
       estatisticas[valor] = (estatisticas[valor] || 0) + 1;
     });
     const data = [["Categoria", "Quantidade"]];
-    Object.entries(estatisticas).forEach(([name, value]) => {
+    // Ordena por quantidade em ordem decrescente e limita aos 20 primeiros
+    const sortedEntries = Object.entries(estatisticas)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 20); // Limita aos 20 maiores
+    sortedEntries.forEach(([name, value]) => {
       data.push([name, value]);
     });
     setState(data);
@@ -82,12 +130,30 @@ function Estatisticas() {
     hAxis: {
       title: "Categoria",
       titleTextStyle: { color: "#333" },
-      slantedText: true, // Inclina os rótulos se forem longos
+      slantedText: true,
       slantedTextAngle: 45,
     },
     vAxis: { title: "Quantidade", minValue: 0 },
-    legend: { position: "none" }, // Remove a legenda para simplificar
-    bar: { groupWidth: "75%" }, // Define a largura das barras (75% do espaço disponível)
+    legend: { position: "none" },
+    bar: { groupWidth: "75%" },
+    colors: ["#1C5253"], // Cor sólida como fallback
+  };
+
+  const chartEvents = [
+    {
+      eventName: "ready",
+      callback: ({ chartWrapper }) => {
+        const chart = chartWrapper.getChart();
+        applyGradient(chart);
+      },
+    },
+  ];
+
+  const getTop10 = (data) => {
+    const dataSemCabecalho = data.slice(1);
+    return dataSemCabecalho
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10);
   };
 
   return (
@@ -99,7 +165,7 @@ function Estatisticas() {
             fontFamily: "Poppins",
             fontWeight: "600",
             textAlign: "center",
-            color: "#1c5253",
+            color: "#1C5253",
             mb: 2,
           }}
         >
@@ -173,8 +239,48 @@ function Estatisticas() {
                     width="100%"
                     height="400px"
                     data={questoesPorDisciplina}
-                    options={{ ...columnChartOptions, colors: ["#0088FE"] }}
+                    options={columnChartOptions}
+                    chartEvents={chartEvents}
                   />
+                  <Box
+                    sx={{
+                      mt: 3,
+                      p: 2,
+                      backgroundColor: "#fff",
+                      borderRadius: "8px",
+                      boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+                    }}
+                  >
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        fontFamily: "Poppins",
+                        fontWeight: "500",
+                        color: "#1C5253",
+                        mb: 1.5,
+                        textAlign: "center",
+                      }}
+                    >
+                      Top 10 Disciplinas
+                    </Typography>
+                    {getTop10(questoesPorDisciplina).map(([categoria, quantidade], index) => (
+                      <Typography
+                        key={index}
+                        sx={{
+                          fontFamily: "Poppins",
+                          fontSize: "0.95rem",
+                          color: "#333",
+                          py: 0.5,
+                          px: 1,
+                          borderBottom: "1px solid #eee",
+                          "&:last-child": { borderBottom: "none" },
+                          textAlign: "center",
+                        }}
+                      >
+                        <strong>{categoria}</strong>: {quantidade}
+                      </Typography>
+                    ))}
+                  </Box>
                 </CardContent>
               </StyledCard>
             </Grid>
@@ -193,8 +299,48 @@ function Estatisticas() {
                     width="100%"
                     height="400px"
                     data={questoesPorAssunto}
-                    options={{ ...columnChartOptions, colors: ["#FF8042"] }}
+                    options={columnChartOptions}
+                    chartEvents={chartEvents}
                   />
+                  <Box
+                    sx={{
+                      mt: 3,
+                      p: 2,
+                      backgroundColor: "#fff",
+                      borderRadius: "8px",
+                      boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+                    }}
+                  >
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        fontFamily: "Poppins",
+                        fontWeight: "500",
+                        color: "#1C5253",
+                        mb: 1.5,
+                        textAlign: "center",
+                      }}
+                    >
+                      Top 10 Assuntos
+                    </Typography>
+                    {getTop10(questoesPorAssunto).map(([categoria, quantidade], index) => (
+                      <Typography
+                        key={index}
+                        sx={{
+                          fontFamily: "Poppins",
+                          fontSize: "0.95rem",
+                          color: "#333",
+                          py: 0.5,
+                          px: 1,
+                          borderBottom: "1px solid #eee",
+                          "&:last-child": { borderBottom: "none" },
+                          textAlign: "center",
+                        }}
+                      >
+                        <strong>{categoria}</strong>: {quantidade}
+                      </Typography>
+                    ))}
+                  </Box>
                 </CardContent>
               </StyledCard>
             </Grid>
@@ -213,8 +359,48 @@ function Estatisticas() {
                     width="100%"
                     height="400px"
                     data={questoesPorBanca}
-                    options={{ ...columnChartOptions, colors: ["#00C49F"] }}
+                    options={columnChartOptions}
+                    chartEvents={chartEvents}
                   />
+                  <Box
+                    sx={{
+                      mt: 3,
+                      p: 2,
+                      backgroundColor: "#fff",
+                      borderRadius: "8px",
+                      boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+                    }}
+                  >
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        fontFamily: "Poppins",
+                        fontWeight: "500",
+                        color: "#1C5253",
+                        mb: 1.5,
+                        textAlign: "center",
+                      }}
+                    >
+                      Top 10 Bancas
+                    </Typography>
+                    {getTop10(questoesPorBanca).map(([categoria, quantidade], index) => (
+                      <Typography
+                        key={index}
+                        sx={{
+                          fontFamily: "Poppins",
+                          fontSize: "0.95rem",
+                          color: "#333",
+                          py: 0.5,
+                          px: 1,
+                          borderBottom: "1px solid #eee",
+                          "&:last-child": { borderBottom: "none" },
+                          textAlign: "center",
+                        }}
+                      >
+                        <strong>{categoria}</strong>: {quantidade}
+                      </Typography>
+                    ))}
+                  </Box>
                 </CardContent>
               </StyledCard>
             </Grid>
@@ -233,8 +419,48 @@ function Estatisticas() {
                     width="100%"
                     height="400px"
                     data={questoesPorAno}
-                    options={{ ...columnChartOptions, colors: ["#FFBB28"] }}
+                    options={columnChartOptions}
+                    chartEvents={chartEvents}
                   />
+                  <Box
+                    sx={{
+                      mt: 3,
+                      p: 2,
+                      backgroundColor: "#fff",
+                      borderRadius: "8px",
+                      boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+                    }}
+                  >
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        fontFamily: "Poppins",
+                        fontWeight: "500",
+                        color: "#1C5253",
+                        mb: 1.5,
+                        textAlign: "center",
+                      }}
+                    >
+                      Top 10 Anos
+                    </Typography>
+                    {getTop10(questoesPorAno).map(([categoria, quantidade], index) => (
+                      <Typography
+                        key={index}
+                        sx={{
+                          fontFamily: "Poppins",
+                          fontSize: "0.95rem",
+                          color: "#333",
+                          py: 0.5,
+                          px: 1,
+                          borderBottom: "1px solid #eee",
+                          "&:last-child": { borderBottom: "none" },
+                          textAlign: "center",
+                        }}
+                      >
+                        <strong>{categoria}</strong>: {quantidade}
+                      </Typography>
+                    ))}
+                  </Box>
                 </CardContent>
               </StyledCard>
             </Grid>
@@ -245,4 +471,4 @@ function Estatisticas() {
   );
 }
 
-export default Estatisticas;
+export default Estatisticas;  
