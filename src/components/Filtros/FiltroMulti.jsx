@@ -2,15 +2,21 @@ import React, { useState, useEffect } from "react";
 import "./FiltroMulti.css";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import { Grid, Typography, Box, Paper, Tooltip, Chip } from "@mui/material";
+import { Grid, Typography, Box, Paper, Tooltip, Chip, Snackbar, Alert } from "@mui/material"; // Adicionado Snackbar e Alert
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { getDatabase, ref, onValue } from 'firebase/database';
+import { getAuth, onAuthStateChanged } from 'firebase/auth'; // Adicionado para autenticação
+import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, deleteDoc, doc } from 'firebase/firestore'; // Adicionado para Firestore
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import SaveIcon from '@mui/icons-material/Save'; // Ícone para o botão de salvar
 import InputAdornment from '@mui/material/InputAdornment';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
+// No início da função FiltroMulti, adicione novos estados
 function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
   const [selectedDisciplinas, setSelectedDisciplinas] = useState([]);
   const [selectedAssuntos, setSelectedAssuntos] = useState([]);
@@ -26,6 +32,228 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
   const [keywords, setKeywords] = useState("");
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState(null);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarSeverity, setSnackbarSeverity] = useState("success");
+  const [savedFilters, setSavedFilters] = useState([]);
+  const [openSavedFiltersDialog, setOpenSavedFiltersDialog] = useState(false);
+  const [openNameFilterDialog, setOpenNameFilterDialog] = useState(false);
+  const [filterName, setFilterName] = useState("");
+
+  useEffect(() => {
+    const auth = getAuth(firebaseApp);
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      if (currentUser) {
+        console.log("UID do usuário logado:", currentUser.uid); // Log para depuração
+      } else {
+        console.log("Nenhum usuário logado.");
+      }
+    });
+    return () => unsubscribe();
+  }, [firebaseApp]);
+
+  // Dentro da função FiltroMulti, logo após o useEffect existente que verifica o usuário logado
+  useEffect(() => {
+    if (!user) return;
+
+    const db = getFirestore(firebaseApp);
+    const filtersRef = collection(db, `users/${user.uid}/savedFilters`);
+
+    const unsubscribe = onSnapshot(filtersRef, (snapshot) => {
+      const filtersData = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setSavedFilters(filtersData);
+    }, (error) => {
+      console.error("Erro ao buscar filtros salvos:", error);
+      setSnackbarMessage("Erro ao carregar filtros salvos.");
+      setSnackbarSeverity("error");
+      setSnackbarOpen(true);
+    });
+
+    return () => unsubscribe();
+  }, [user, firebaseApp]);
+
+  // Dentro da função FiltroMulti, antes do return
+  const applySavedFilter = (filter) => {
+    // Atualizar os estados dos filtros com base no filtro salvo
+    setSelectedDisciplinas(
+      (filter.disciplinas || []).map((value) => ({ value, label: value }))
+    );
+
+    // Atualizar assuntos e opções de assuntos
+    const filteredAssuntos = Array.from(
+      new Set(
+        questions
+          .filter((item) => (filter.disciplinas || []).includes(item.disciplina))
+          .map((item) => item.assunto)
+      )
+    );
+    setAssuntoOptions(filteredAssuntos.map((assunto) => ({ value: assunto, label: assunto })));
+    setSelectedAssuntos(
+      (filter.assuntos || []).map((value) => ({ value, label: value }))
+    );
+
+    setSelectedBancas(
+      (filter.bancas || []).map((value) => ({ value, label: value }))
+    );
+    setSelectedModalidades(
+      (filter.modalidades || []).map((value) => ({ value, label: value }))
+    );
+    setSelectedAnos(
+      (filter.anos || []).map((value) => ({ value, label: value }))
+    );
+    setSelectedAreas(
+      (filter.areas || []).map((value) => ({ value, label: value }))
+    );
+    setSelectedConcursos(
+      (filter.concursos || []).map((value) => ({ value, label: value }))
+    );
+    setSelectedIds(
+      (filter.ids || []).map((value) => ({ value, label: value }))
+    );
+    setKeywords(filter.keywords || "");
+
+    // Reaplicar a filtragem com os novos valores
+    const filteredQuestoes = questions.filter((item) => {
+      const disciplinaMatch =
+        (filter.disciplinas || []).length === 0 || (filter.disciplinas || []).includes(item.disciplina);
+      const assuntoMatch =
+        (filter.assuntos || []).length === 0 || (filter.assuntos || []).includes(item.assunto);
+      const bancaMatch =
+        (filter.bancas || []).length === 0 || (filter.bancas || []).includes(item.banca);
+      const modalidadeMatch =
+        (filter.modalidades || []).length === 0 || (filter.modalidades || []).includes(item.modalidade);
+      const anoMatch =
+        (filter.anos || []).length === 0 || (filter.anos || []).includes(item.ano);
+      const areaMatch =
+        (filter.areas || []).length === 0 || (filter.areas || []).includes(item.area);
+      const concursoMatch =
+        (filter.concursos || []).length === 0 || (filter.concursos || []).includes(item.concurso);
+      const idsMatch =
+        (filter.ids || []).length === 0 || (filter.ids || []).includes(item.ids);
+      const keywordsMatch =
+        (filter.keywords || "").trim() === "" ||
+        item.enunciado.toLowerCase().includes((filter.keywords || "").toLowerCase()) ||
+        item.ids.toString().includes(filter.keywords || "");
+
+      return (
+        disciplinaMatch &&
+        assuntoMatch &&
+        bancaMatch &&
+        modalidadeMatch &&
+        areaMatch &&
+        concursoMatch &&
+        anoMatch &&
+        idsMatch &&
+        keywordsMatch
+      );
+    });
+
+    setFilteredQuestoes(filteredQuestoes);
+    onFilterChange(filteredQuestoes);
+    setPaginaAtual(1);
+
+    // Fechar o modal
+    setOpenSavedFiltersDialog(false);
+
+    // Mostrar mensagem de sucesso
+    setSnackbarMessage(`Filtro "${filter.name || filter.id}" aplicado com sucesso!`);
+    setSnackbarSeverity("success");
+    setSnackbarOpen(true);
+  };
+
+
+  const saveFilterWithName = async () => {
+    if (!user) {
+      setSnackbarMessage("Você precisa estar logado para salvar os filtros.");
+      setSnackbarSeverity("error");
+      setSnackbarOpen(true);
+      return;
+    }
+
+    if (
+      selectedDisciplinas.length === 0 &&
+      selectedAssuntos.length === 0 &&
+      selectedBancas.length === 0 &&
+      selectedModalidades.length === 0 &&
+      selectedAnos.length === 0 &&
+      selectedAreas.length === 0 &&
+      selectedConcursos.length === 0 &&
+      selectedIds.length === 0 &&
+      keywords.trim() === ""
+    ) {
+      setSnackbarMessage("Nenhum filtro selecionado para salvar.");
+      setSnackbarSeverity("warning");
+      setSnackbarOpen(true);
+      return;
+    }
+
+    try {
+      const db = getFirestore(firebaseApp);
+      const filters = {
+        name: filterName.trim(), // Adiciona o nome do filtro
+        disciplinas: selectedDisciplinas.map((item) => item.value),
+        assuntos: selectedAssuntos.map((item) => item.value),
+        bancas: selectedBancas.map((item) => item.value),
+        modalidades: selectedModalidades.map((item) => item.value),
+        anos: selectedAnos.map((item) => item.value),
+        areas: selectedAreas.map((item) => item.value),
+        concursos: selectedConcursos.map((item) => item.value),
+        ids: selectedIds.map((item) => item.value),
+        keywords: keywords.trim(),
+        createdAt: serverTimestamp(),
+      };
+
+      const docRef = await addDoc(collection(db, `users/${user.uid}/savedFilters`), filters);
+      setSnackbarMessage(`Filtro "${filterName.trim()}" salvo com sucesso!`);
+      setSnackbarSeverity("success");
+      setSnackbarOpen(true);
+    } catch (error) {
+      console.error("Erro ao salvar filtros:", error);
+      setSnackbarMessage(`Erro ao salvar o filtro: ${error.message}`);
+      setSnackbarSeverity("error");
+      setSnackbarOpen(true);
+    }
+  };
+
+  const handleSaveFilters = () => {
+    setOpenNameFilterDialog(true); // Abre o diálogo para nomear o filtro
+  };
+
+  // Função para fechar o Snackbar
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
+
+
+
+  const handleDeleteFilter = async (filterId) => {
+    if (!user) {
+      setSnackbarMessage("Você precisa estar logado para excluir filtros.");
+      setSnackbarSeverity("error");
+      setSnackbarOpen(true);
+      return;
+    }
+
+    try {
+      const db = getFirestore(firebaseApp);
+      await deleteDoc(doc(db, `users/${user.uid}/savedFilters`, filterId));
+      setSnackbarMessage("Filtro excluído com sucesso!");
+      setSnackbarSeverity("success");
+      setSnackbarOpen(true);
+    } catch (error) {
+      console.error("Erro ao excluir filtro:", error);
+      setSnackbarMessage(`Erro ao excluir o filtro: ${error.message}`);
+      setSnackbarSeverity("error");
+      setSnackbarOpen(true);
+    }
+  };
+
+
 
   useEffect(() => {
     const questionsRef = ref(getDatabase(firebaseApp), 'questions');
@@ -235,7 +463,7 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
 
   const renderSearchField = () => (
     <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-      <TextField 
+      <TextField
         label="Filtrar por palavra-chave"
         value={keywords}
         onChange={(e) => setKeywords(e.target.value)}
@@ -243,10 +471,10 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
         fullWidth
         className="filter-input"
         InputProps={{
-          style: { fontSize: '0.975rem', color: 'black',  },
+          style: { fontSize: '0.975rem', color: 'black', },
           startAdornment: (
 
-            <InputAdornment position="start"  sx={{padding: '1.68em'}}>
+            <InputAdornment position="start" sx={{ padding: '1.68em' }}>
               <SearchIcon sx={{ color: '#94a3b8', }} />
             </InputAdornment>
           ),
@@ -276,7 +504,7 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
             },
           },
         }}
-      /> 
+      />
     </Box>
   );
 
@@ -376,6 +604,10 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
     ];
 
     if (allSelected.length === 0) return null;
+
+
+
+
 
     return (
       <Box
@@ -492,7 +724,7 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
             tooltip: "Selecione um ou mais anos"
           })}
         </Grid>
-        
+
         <Grid item xs={12} sm={6} md={4} lg={3}>
           {renderSelectFilter({
             value: selectedModalidades,
@@ -503,7 +735,7 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           })}
         </Grid>
 
-     
+
 
         <Grid item xs={12} sm={6} md={4} lg={3}>
           {renderSelectFilter({
@@ -539,16 +771,260 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           <AllChipsContainer />
         </Grid>
 
-        <Grid item xs={12} sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-end' }, gap: '12px', marginTop: '1rem' }}>
-          <button className="filter-button" onClick={() => handleFilterClick(questions)}>
-            <FilterAltIcon fontSize="small" />
-            Filtrar Questões
-          </button>
-          <button className="clear-button" onClick={handleClearFilters}>
-            <ClearIcon fontSize="small" />
-            Limpar Filtros
-          </button>
+        <Grid item xs={12}>
+          <Grid
+            container
+            spacing={2}
+            sx={{
+              justifyContent: { xs: 'center', md: 'flex-end' },
+              marginTop: '1rem',
+            }}
+          >
+            <Grid item xs={6} md={3} lg={2}>
+              <Button
+                variant="contained"
+                startIcon={<FilterAltIcon fontSize="small" />}
+                onClick={() => handleFilterClick(questions)}
+                fullWidth
+                sx={{
+                  fontFamily: 'Poppins, sans-serif',
+                  backgroundColor: '#1c5253',
+                  '&:hover': { backgroundColor: '#267c7e' },
+                  textTransform: 'none',
+                  fontSize: '0.875rem',
+                  padding: '8px 16px',
+                  height: '48px', // Altura fixa para todos os botões
+                  whiteSpace: 'normal', // Permite quebra de texto
+                  lineHeight: '1.2', // Controla o espaçamento entre linhas
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                Filtrar Questões
+              </Button>
+            </Grid>
+            <Grid item xs={6} md={3} lg={2}>
+              <Button
+                variant="outlined"
+                startIcon={<ClearIcon fontSize="small" />}
+                onClick={handleClearFilters}
+                fullWidth
+                sx={{
+                  fontFamily: 'Poppins, sans-serif',
+                  borderColor: '#ff5252',
+                  color: '#ff5252',
+                  '&:hover': { borderColor: '#e63946', color: '#e63946' },
+                  textTransform: 'none',
+                  fontSize: '0.875rem',
+                  padding: '8px 16px',
+                  height: '48px', // Altura fixa
+                  whiteSpace: 'normal',
+                  lineHeight: '1.2',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                Limpar Filtros
+              </Button>
+            </Grid>
+            <Grid item xs={6} md={3} lg={2}>
+              <Button
+                variant="contained"
+                startIcon={<SaveIcon fontSize="small" />}
+                onClick={handleSaveFilters}
+                fullWidth
+                sx={{
+                  fontFamily: 'Poppins, sans-serif',
+                  backgroundColor: '#1c5253',
+                  '&:hover': { backgroundColor: '#267c7e' },
+                  textTransform: 'none',
+                  fontSize: '0.875rem',
+                  padding: '8px 16px',
+                  height: '48px', // Altura fixa
+                  whiteSpace: 'normal',
+                  lineHeight: '1.2',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                Salvar Filtros
+              </Button>
+            </Grid>
+            <Grid item xs={6} md={3} lg={2}>
+              <Button
+                variant="contained"
+                startIcon={<VisibilityIcon fontSize="small" />}
+                onClick={() => setOpenSavedFiltersDialog(true)}
+                disabled={!user}
+                fullWidth
+                sx={{
+                  fontFamily: 'Poppins, sans-serif',
+                  backgroundColor: '#1c5253',
+                  '&:hover': { backgroundColor: '#267c7e' },
+                  textTransform: 'none',
+                  fontSize: '0.875rem',
+                  padding: '8px 16px',
+                  height: '48px', // Altura fixa
+                  whiteSpace: 'normal',
+                  lineHeight: '1.2',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  '&.Mui-disabled': {
+                    backgroundColor: '#b0bec5',
+                    color: '#ffffff',
+                  },
+                }}
+              >
+                Carregar Filtros
+              </Button>
+            </Grid>
+          </Grid>
         </Grid>
+
+
+        <Dialog
+          open={openNameFilterDialog}
+          onClose={() => setOpenNameFilterDialog(false)}
+          maxWidth="sm"
+          fullWidth
+        >
+          <DialogTitle sx={{ fontFamily: 'Poppins, sans-serif', color: '#1c5253' }}>
+            Nomear Filtro
+          </DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              label="Nome do Filtro"
+              type="text"
+              fullWidth
+              value={filterName}
+              onChange={(e) => setFilterName(e.target.value)}
+              sx={{ fontFamily: 'Poppins, sans-serif' }}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={() => setOpenNameFilterDialog(false)}
+              sx={{ fontFamily: 'Poppins, sans-serif', color: '#1c5253' }}
+            >
+              Cancelar
+            </Button>
+            <Button
+              onClick={async () => {
+                if (filterName.trim() === "") {
+                  setSnackbarMessage("O nome do filtro não pode estar vazio.");
+                  setSnackbarSeverity("warning");
+                  setSnackbarOpen(true);
+                  return;
+                }
+                await saveFilterWithName();
+                setOpenNameFilterDialog(false);
+                setFilterName("");
+              }}
+              sx={{ fontFamily: 'Poppins, sans-serif', color: '#1c5253' }}
+            >
+              Salvar
+            </Button>
+          </DialogActions>
+        </Dialog>
+        {/* Adicionar Snackbar para feedback */}
+        <Snackbar
+          open={snackbarOpen}
+          autoHideDuration={6000}
+          onClose={handleSnackbarClose}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        >
+          <Alert
+            onClose={handleSnackbarClose}
+            severity={snackbarSeverity}
+            sx={{ width: '100%', fontFamily: 'Poppins, sans-serif' }}
+          >
+            {snackbarMessage}
+          </Alert>
+        </Snackbar>
+
+        {/* Modal para exibir filtros salvos */}
+        <Dialog
+          open={openSavedFiltersDialog}
+          onClose={() => setOpenSavedFiltersDialog(false)}
+          maxWidth="lg"
+          fullWidth
+        >
+          <DialogTitle sx={{ fontFamily: 'Poppins, sans-serif', color: '#1c5253' }}>
+            Filtros Salvos
+          </DialogTitle>
+          <DialogContent>
+            {savedFilters.length === 0 ? (
+              <Typography sx={{ fontFamily: 'Poppins, sans-serif' }}>
+                Nenhum filtro salvo encontrado.
+              </Typography>
+            ) : (
+
+              //Tabela de Filtros Salvos
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell sx={{ fontFamily: 'Poppins, sans-serif', fontWeight: 600 }}>Nome</TableCell>
+              
+              
+                    <TableCell sx={{ fontFamily: 'Poppins, sans-serif', fontWeight: 600 }}>Ações</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {savedFilters.map((filter) => (
+                    <TableRow key={filter.id}>
+                      <TableCell sx={{ fontFamily: 'Poppins, sans-serif' }}>{filter.name || filter.id}</TableCell>
+                    
+
+                      <TableCell>
+                        <Button
+                          variant="contained"
+                          size="small"
+                          onClick={() => applySavedFilter(filter)}
+                          sx={{
+                            marginBottom: '1.5em',
+                            backgroundColor: '#1c5253',
+                            fontFamily: 'Poppins, sans-serif',
+                            marginRight: '8px',
+                            '&:hover': { backgroundColor: '#267c7e' },
+                          }}
+                        >
+                          Aplicar
+                        </Button>
+                        <Button
+                          variant="outlined"
+                          size="small"
+                          onClick={() => handleDeleteFilter(filter.id)}
+                          sx={{
+                            borderColor: '#ff5252',
+                            color: '#ff5252',
+                            fontFamily: 'Poppins, sans-serif',
+                            '&:hover': { borderColor: '#e63946', color: '#e63946' },
+                          }}
+                        >
+                          Excluir
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            )}
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={() => setOpenSavedFiltersDialog(false)}
+              sx={{ fontFamily: 'Poppins, sans-serif', color: '#1c5253' }}
+            >
+              Fechar
+            </Button>
+          </DialogActions>
+        </Dialog>
 
         <Grid item xs={12}>
           <Box sx={{
