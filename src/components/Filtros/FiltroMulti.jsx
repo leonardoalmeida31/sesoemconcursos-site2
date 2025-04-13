@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Select from "react-select";
 import "./FiltroMulti.css";
 import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 import { Grid, Typography, Box, Paper, Tooltip, Chip } from "@mui/material";
 import { getDatabase, ref, onValue } from 'firebase/database';
-import { components } from 'react-select';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -22,67 +21,11 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
   const [selectedAreas, setSelectedAreas] = useState([]);
   const [selectedConcursos, setSelectedConcursos] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
-
   const [questions, setQuestions] = useState([]);
   const [filteredQuestoes, setFilteredQuestoes] = useState([]);
   const [keywords, setKeywords] = useState("");
   const [totalQuestions, setTotalQuestions] = useState(0);
-
-  const [displayedIds, setDisplayedIds] = useState([]);
-  const [batchSize, setBatchSize] = useState(20);
-  const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
-
-  // Estilos comuns para Select
-  const selectStyles = {
-    control: (provided, state) => ({
-      ...provided,
-      borderColor: state.isFocused ? '#267c7e' : '#e2e8f0',
-      boxShadow: state.isFocused ? '0 0 0 2px rgba(38, 124, 126, 0.2)' : 'none',
-      borderRadius: '8px',
-      padding: '2px',
-      '&:hover': {
-        borderColor: '#cbd5e0',
-      }
-    }),
-    placeholder: (provided) => ({
-      ...provided,
-      fontFamily: 'Poppins, sans-serif',
-      fontSize: '0.875rem',
-      color: '#94a3b8'
-    }),
-    singleValue: (provided) => ({
-      ...provided,
-      fontFamily: 'Poppins, sans-serif',
-      fontSize: '0.875rem'
-    }),
-    multiValue: (provided) => ({
-      ...provided,
-      display: 'none' // Oculta os valores selecionados dentro do Select
-    }),
-    menu: (provided) => ({
-      ...provided,
-      borderRadius: '8px',
-      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-      zIndex: 10
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isFocused ? "#1C5253" : "white",
-      color: state.isFocused ? "white" : "#333",
-      fontFamily: 'Poppins, sans-serif',
-      fontSize: '0.875rem',
-      padding: '10px 12px',
-      cursor: 'pointer',
-      '&:active': {
-        backgroundColor: '#0e2c2d'
-      }
-    }),
-    menuList: (provided) => ({
-      ...provided,
-      padding: '6px'
-    })
-  };
 
   useEffect(() => {
     const questionsRef = ref(getDatabase(firebaseApp), 'questions');
@@ -111,57 +54,51 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
     fetchData();
   }, [firebaseApp]);
 
-  const handleDisciplinasChange = (selectedOptions) => {
-    setSelectedDisciplinas(selectedOptions || []);
+  const handleDisciplinasChange = (event, newValue) => {
+    const selectedValues = newValue.map((option) => option.value);
+    setSelectedDisciplinas(newValue);
 
     const filteredAssuntos = Array.from(
       new Set(
         questions
-          .filter((item) =>
-            selectedOptions && selectedOptions.some(
-              (selected) => selected.value === item.disciplina
-            )
-          )
+          .filter((item) => selectedValues.includes(item.disciplina))
           .map((item) => item.assunto)
       )
     );
 
-    setAssuntoOptions(
-      filteredAssuntos.map((assunto) => ({
-        value: assunto,
-        label: assunto,
-      }))
-    );
-
+    setAssuntoOptions(filteredAssuntos.map((assunto) => ({
+      value: assunto,
+      label: assunto,
+    })));
     setSelectedAssuntos([]);
   };
 
-  const handleAssuntosChange = (selectedOptions) => {
-    setSelectedAssuntos(selectedOptions || []);
+  const handleAssuntosChange = (event, newValue) => {
+    setSelectedAssuntos(newValue);
   };
 
-  const handleBancasChange = (selectedOptions) => {
-    setSelectedBancas(selectedOptions || []);
+  const handleBancasChange = (event, newValue) => {
+    setSelectedBancas(newValue);
   };
 
-  const handleModalidadesChange = (selectedOptions) => {
-    setSelectedModalidades(selectedOptions || []);
+  const handleModalidadesChange = (event, newValue) => {
+    setSelectedModalidades(newValue);
   };
 
-  const handleAnosChange = (selectedOptions) => {
-    setSelectedAnos(selectedOptions || []);
+  const handleAnosChange = (event, newValue) => {
+    setSelectedAnos(newValue);
   };
 
-  const handleAreasChange = (selectedOptions) => {
-    setSelectedAreas(selectedOptions || []);
+  const handleAreasChange = (event, newValue) => {
+    setSelectedAreas(newValue);
   };
 
-  const handleConcursosChange = (selectedOptions) => {
-    setSelectedConcursos(selectedOptions || []);
+  const handleConcursosChange = (event, newValue) => {
+    setSelectedConcursos(newValue);
   };
 
-  const handleIdsChange = (selectedOptions) => {
-    setSelectedIds(selectedOptions || []);
+  const handleIdsChange = (event, newValue) => {
+    setSelectedIds(newValue);
   };
 
   const handleDeleteChip = (item, filterType) => {
@@ -255,17 +192,17 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           selectedModalidades.length === 0 ||
           selectedModalidades.some((selected) => selected.value === item.modalidade);
         const anoMatch =
-          selectedAnos.length === 0 || selectedAnos.some((selected) => selected.value === item.ano);
+          selectedAnos.length === 0 ||
+          selectedAnos.some((selected) => selected.value === item.ano);
         const areaMatch =
-          selectedAreas.length === 0 || selectedAreas.some((selected) => selected.value === item.area);
+          selectedAreas.length === 0 ||
+          selectedAreas.some((selected) => selected.value === item.area);
         const concursoMatch =
-          selectedConcursos.length === 0 || selectedConcursos.some(
-            (selected) => selected.label === item.concurso
-          );
+          selectedConcursos.length === 0 ||
+          selectedConcursos.some((selected) => selected.value === item.concurso);
         const idsMatch =
-          selectedIds.length === 0 || selectedIds.some(
-            (selected) => selected.label === item.ids
-          );
+          selectedIds.length === 0 ||
+          selectedIds.some((selected) => selected.value === item.ids);
 
         const keywordsMatch =
           keywords.trim() === "" ||
@@ -296,54 +233,32 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
   const sortedDisciplinaOptions = disciplinaOptions.slice().sort((a, b) => a.label.localeCompare(b.label));
   const sortedAnoOptions = anoOptions.slice().sort((a, b) => b.label - a.label);
 
-  const loadMoreIds = () => {
-    if (displayedIds.length >= idsOptions.length) {
-      setHasMore(false);
-      return;
-    }
-    const nextBatch = idsOptions.slice(displayedIds.length, displayedIds.length + batchSize);
-    setDisplayedIds([...displayedIds, ...nextBatch]);
-  };
-
-  useEffect(() => {
-    loadMoreIds();
-  }, []);
-
-  const MenuList = (props) => {
-    const onScroll = (event) => {
-      const bottom = event.target.scrollHeight === event.target.scrollTop + event.target.clientHeight;
-      if (bottom && hasMore) {
-        loadMoreIds();
-      }
-    };
-
-    return (
-      <components.MenuList {...props} onScroll={onScroll}>
-        {props.children}
-      </components.MenuList>
-    );
-  };
-
   const renderSearchField = () => (
     <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-      <TextField
-        type="text"
-        placeholder="Filtrar por palavra-chave..."
+      <TextField 
+        label="Filtrar por palavra-chave"
         value={keywords}
         onChange={(e) => setKeywords(e.target.value)}
         size="small"
         fullWidth
+        className="filter-input"
         InputProps={{
-          style: { fontSize: '0.875rem', color: 'black' },
+          style: { fontSize: '0.975rem', color: 'black',  },
           startAdornment: (
-            <InputAdornment position="start">
-              <SearchIcon sx={{ color: '#94a3b8' }} />
+
+            <InputAdornment position="start"  sx={{padding: '1.68em'}}>
+              <SearchIcon sx={{ color: '#94a3b8', }} />
             </InputAdornment>
           ),
+        }}
+        InputLabelProps={{
+          style: { fontFamily: 'Poppins, sans-serif', fontSize: '0.875rem', color: '#94a3b8' },
         }}
         sx={{
           '& .MuiOutlinedInput-root': {
             borderRadius: '8px',
+            fontFamily: 'Poppins, sans-serif',
+            fontSize: '0.875rem',
             '&.Mui-focused fieldset': {
               borderColor: '#267c7e',
               boxShadow: '0 0 0 2px rgba(38, 124, 126, 0.2)',
@@ -352,8 +267,16 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
               borderColor: '#cbd5e0',
             },
           },
+          '& .MuiInputLabel-root': {
+            fontFamily: 'Poppins, sans-serif',
+            fontSize: '0.875rem',
+            color: '#94a3b8',
+            '&.Mui-focused': {
+              color: '#267c7e',
+            },
+          },
         }}
-      />
+      /> 
     </Box>
   );
 
@@ -367,23 +290,79 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
   }) => (
     <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
       <Tooltip title={tooltip} arrow placement="top">
-        <div>
-          <Select
-            className="filter-select"
-            value={value}
-            onChange={onChange}
-            options={options}
-            isMulti
-            placeholder={placeholder}
-            styles={selectStyles}
-            isDisabled={isDisabled}
-          />
-        </div>
+        <Autocomplete
+          multiple
+          value={value}
+          onChange={onChange}
+          options={options}
+          getOptionLabel={(option) => option.label}
+          disableCloseOnSelect
+          disabled={isDisabled}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label={placeholder}
+              variant="outlined"
+              className="filter-select"
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: '8px',
+                  fontFamily: 'Poppins, sans-serif',
+                  fontSize: '0.875rem',
+                  '& .MuiAutocomplete-input': {
+                    padding: '8px',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#267c7e',
+                    boxShadow: '0 0 0 2px rgba(38, 124, 126, 0.2)',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: '#cbd5e0',
+                  },
+                },
+                '& .MuiInputLabel-root': {
+                  fontFamily: 'Poppins, sans-serif',
+                  fontSize: '0.875rem',
+                  color: '#94a3b8',
+                  '&.Mui-focused': {
+                    color: '#267c7e',
+                  },
+                },
+              }}
+            />
+          )}
+          renderOption={(props, option) => (
+            <li {...props} style={{ whiteSpace: 'normal', wordWrap: 'break-word', padding: '10px 12px' }}>
+              {option.label}
+            </li>
+          )}
+          ListboxProps={{
+            sx: {
+              borderRadius: '8px',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+              maxHeight: '300px',
+              '& .MuiAutocomplete-option': {
+                fontFamily: 'Poppins, sans-serif',
+                fontSize: '0.875rem',
+                whiteSpace: 'normal',
+                wordWrap: 'break-word',
+                '&:hover': {
+                  backgroundColor: '#1C5253',
+                  color: 'white',
+                },
+                '&[aria-selected="true"]': {
+                  backgroundColor: '#e6f7f8',
+                  color: '#1c5253',
+                },
+              },
+            },
+          }}
+          renderTags={() => null} // Oculta chips dentro do Autocomplete
+        />
       </Tooltip>
     </Box>
   );
 
-  // Novo componente para renderizar todos os chips em um único container
   const AllChipsContainer = () => {
     const allSelected = [
       ...selectedDisciplinas.map(item => ({ ...item, type: 'disciplina', prefix: 'Disciplina:' })),
@@ -399,13 +378,11 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
     if (allSelected.length === 0) return null;
 
     return (
-    
       <Box
         sx={{
           display: 'flex',
           flexWrap: 'wrap',
           gap: '8px',
-      
           marginTop: '12px',
           marginBottom: '12px',
           padding: '10px',
@@ -414,15 +391,13 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           border: '1px solid #e2e8f0'
         }}
       >
-          <Box>
+        <Box>
           <Typography>Filtrar Por:</Typography>
-      </Box>
-    
-      
+        </Box>
         {allSelected.map((item) => (
           <Chip
             key={`${item.type}-${item.value}`}
-            label={`${item.prefix} ${item.label}`} // Adiciona o prefixo ao label
+            label={`${item.prefix} ${item.label}`}
             onDelete={() => handleDeleteChip(item, item.type)}
             size="small"
             sx={{
@@ -431,6 +406,8 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
               fontSize: '0.85rem',
               fontFamily: 'Poppins, sans-serif',
               fontWeight: 500,
+              whiteSpace: 'normal',
+              wordWrap: 'break-word',
               '& .MuiChip-deleteIcon': {
                 color: '#1c5253',
                 '&:hover': {
@@ -506,7 +483,17 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           })}
         </Grid>
 
-        <Grid item xs={12} sm={6} md={4} lg={2}>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
+          {renderSelectFilter({
+            value: selectedAnos,
+            onChange: handleAnosChange,
+            options: sortedAnoOptions,
+            placeholder: "Ano",
+            tooltip: "Selecione um ou mais anos"
+          })}
+        </Grid>
+        
+        <Grid item xs={12} sm={6} md={4} lg={3}>
           {renderSelectFilter({
             value: selectedModalidades,
             onChange: handleModalidadesChange,
@@ -516,17 +503,9 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           })}
         </Grid>
 
-        <Grid item xs={12} sm={6} md={4} lg={2}>
-          {renderSelectFilter({
-            value: selectedAnos,
-            onChange: handleAnosChange,
-            options: sortedAnoOptions,
-            placeholder: "Ano",
-            tooltip: "Selecione um ou mais anos"
-          })}
-        </Grid>
+     
 
-        <Grid item xs={12} sm={6} md={4} lg={2}>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
           {renderSelectFilter({
             value: selectedAreas,
             onChange: handleAreasChange,
@@ -536,7 +515,7 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           })}
         </Grid>
 
-        <Grid item xs={12} sm={6} md={4} lg={3}>
+        <Grid item xs={12} sm={6} md={4} lg={4}>
           {renderSelectFilter({
             value: selectedConcursos,
             onChange: handleConcursosChange,
@@ -556,7 +535,6 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
           })}
         </Grid>
 
-        {/* Novo container para todos os chips */}
         <Grid item xs={12}>
           <AllChipsContainer />
         </Grid>
