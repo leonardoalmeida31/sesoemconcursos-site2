@@ -1,143 +1,245 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { getFirestore, collection, getDocs, query, where } from 'firebase/firestore';
-import { Chart } from 'react-google-charts';
-import "../../App.css";
-import IconButton from "@mui/material/IconButton";
-import SignalCellularAltRoundedIcon from '@mui/icons-material/SignalCellularAltRounded';
-import { Box, Typography } from "@mui/material";
+import { Bar, Pie } from 'react-chartjs-2';
 import {
-} from "@mui/material";
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  ArcElement,
+  Tooltip,
+  Legend,
+  BarElement,
+} from 'chart.js';
+import { Box, Typography, Grid } from '@mui/material';
+import '../../App.css';
+
+// Register Chart.js components
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, Legend, BarElement);
 
 // eslint-disable-next-line react/prop-types
-function EstatisticasQuestao({ questionId }) {
-    const [graficosData, setGraficosData] = useState([]);
-    const [showChart, setShowChart] = useState(false);
+function EstatisticasQuestao({ questionId, showChart }) {
+  const [graficosData, setGraficosData] = React.useState(null);
 
-    useEffect(() => {
-        if (showChart && questionId) {
-            async function fetchDadosGraficos() {
-                try {
-                    const db = getFirestore();
-                    const dbRef = collection(db, 'alternativasRespondidas');
+  useEffect(() => {
+    if (showChart && questionId) {
+      async function fetchDadosGraficos() {
+        try {
+          const db = getFirestore();
+          const dbRef = collection(db, 'alternativasRespondidas');
+          const q = query(dbRef, where('questionId', '==', questionId));
+          const querySnapshot = await getDocs(q);
 
-                    const q = query(dbRef, where('questionId', '==', questionId));
-                    const querySnapshot = await getDocs(q);
+          const respostaCounts = { '0': 0, '1': 0, '2': 0, '3': 0, '4': 0 };
+          querySnapshot.forEach((doc) => {
+            const data = doc.data().respostaCounts || {};
+            Object.keys(respostaCounts).forEach((key) => {
+              respostaCounts[key] += data[key] || 0;
+            });
+          });
 
-                    const graficos = [];
+          const labels = ['A', 'B', 'C', 'D', 'E'];
+          const values = Object.values(respostaCounts);
+          const total = values.reduce((sum, val) => sum + val, 0);
 
-                    querySnapshot.forEach((doc) => {
-                        const responseData = doc.data();
+          // Calculate percentages for pie chart
+          const percentages = values.map(value => total > 0 ? (value / total) * 100 : 0);
 
-                        const respostaCounts = responseData.respostaCounts || {};
-                        const data = [
-                            ['Alternativas mais respondidas', 'Respostas'],
-                            ['A', respostaCounts['0'] || 0],
-                            ['B', respostaCounts['1'] || 0],
-                            ['C', respostaCounts['2'] || 0],
-                            ['D', respostaCounts['3'] || 0],
-                            ['E', respostaCounts['4'] || 0],
-                        ];
-
-                        graficos.push({ questionId, data });
-                    });
-                    setGraficosData(graficos);
-                } catch (error) {
-                    console.error('Erro ao buscar dados de alternativasRespondidas:', error);
-                }
-            }
-
-            fetchDadosGraficos();
+          setGraficosData({
+            barData: {
+              labels,
+              datasets: [
+                {
+                  label: 'Respostas',
+                  data: values,
+                  backgroundColor: [
+                    '#4B728A', // Azul suave
+                    '#A4C2A8', // Verde claro
+                    '#F4A261', // Laranja suave
+                    '#E76F51', // Coral
+                    '#9D8189', // Roxo acinzentado
+                  ],
+                  borderColor: '#ffffff',
+                  borderWidth: 1,
+                },
+              ],
+            },
+            pieData: {
+              labels,
+              datasets: [
+                {
+                  data: values,
+                  backgroundColor: [
+                    '#4B728A', // Azul suave
+                    '#A4C2A8', // Verde claro
+                    '#F4A261', // Laranja suave
+                    '#E76F51', // Coral
+                    '#9D8189', // Roxo acinzentado
+                  ],
+                  borderColor: '#ffffff',
+                  borderWidth: 2,
+                  hoverOffset: 20,
+                },
+              ],
+            },
+          });
+        } catch (error) {
+          console.error('Erro ao buscar dados de alternativasRespondidas:', error);
         }
-    }, [showChart, questionId]);
+      }
+      fetchDadosGraficos();
+    }
+  }, [showChart, questionId]);
 
-    return (
-        <Box sx={{ display: "flex", flexDirection: "column", color: "#1c5253", alignItems: "flex-start", justifyContent: 'flex-start', }}>
-            <Box sx={{ display: "flex", flexDirection: "column", color: "#1c5253", alignItems: "flex-start", justifyContent: 'flex-start', }}>
+  const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'right',
+        labels: {
+          font: { family: 'Poppins', size: 14, weight: '500' },
+          color: '#1c5253',
+          padding: 20,
+        },
+      },
+      tooltip: {
+        bodyFont: { family: 'Poppins', size: 12 },
+        titleFont: { family: 'Poppins', size: 14 },
+        backgroundColor: 'rgba(28, 82, 83, 0.8)',
+        cornerRadius: 8,
+      },
+      animation: {
+        duration: 1500,
+        easing: 'easeInOutQuart',
+      },
+    },
+  };
 
+  const barOptions = {
+    ...chartOptions,
+    plugins: {
+      ...chartOptions.plugins,
+      title: {
+        display: true,
+        text: 'Alternativas mais respondidas',
+        font: { family: 'Poppins', size: 16 },
+        color: '#1c5253',
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: 'Alternativas',
+          font: { family: 'Poppins', size: 12 },
+          color: '#1c5253',
+        },
+        ticks: { font: { family: 'Poppins', size: 12 } },
+      },
+      y: {
+        title: {
+          display: true,
+          text: 'Quantidade',
+          font: { family: 'Poppins', size: 12 },
+          color: '#1c5253',
+        },
+        ticks: { font: { family: 'Poppins', size: 12 } },
+        beginAtZero: true,
+      },
+    },
+  };
 
-                <IconButton sx={{ display: "flex", flexDirection: "row", color: "#1c5253", padding: "0.700em", alignItems: "flex-start" }}
-                    className="button-comentario" onClick={() => setShowChart(!showChart)}
+  const pieOptions = {
+    ...chartOptions,
+    plugins: {
+      ...chartOptions.plugins,
+      title: {
+        display: true,
+        text: 'Porcentagem de Respostas por Alternativa',
+        font: { family: 'Poppins', size: 16 },
+        color: '#1c5253',
+        padding: { top: 10, bottom: 20 },
+      },
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            const dataset = context.dataset;
+            const total = dataset.data.reduce((sum, val) => sum + val, 0);
+            const value = dataset.data[context.dataIndex];
+            const percentage = total > 0 ? ((value / total) * 100).toFixed(1) + '%' : '0%';
+            return `${context.label}: ${percentage}`;
+          }
+        }
+      },
+      datalabels: {
+        display: true,
+        formatter: (value, ctx) => {
+          const dataset = ctx.chart.data.datasets[0];
+          const total = dataset.data.reduce((sum, val) => sum + val, 0);
+          const percentage = total > 0 ? ((value / total) * 100).toFixed(1) + '%' : '0%';
+          return percentage;
+        },
+        color: '#fff',
+        font: { family: 'Poppins', size: 12, weight: 'bold' },
+      }
+    },
+    elements: {
+      arc: {
+        borderWidth: 2,
+        shadowOffsetX: 3,
+        shadowOffsetY: 3,
+        shadowBlur: 10,
+        shadowColor: 'rgba(0, 0, 0, 0.2)',
+      },
+    },
+  };
 
-                >
-                    {" "}
-                    <SignalCellularAltRoundedIcon fontSize="small" sx={{ display: "flex", flexDirection: "row", color: "#1c5253", backgroundColor: 'transparent' }} />
-                    <Typography sx={{ display: "flex", fontSize: '0.550em', color: "#1c5253", marginLeft: '0.500em', fontFamily: 'Poppins', fontWeight: '500', whiteSpace: 'nowrap' }} color="error">Estatísticas da Questão
-                    </Typography>
-                </IconButton>
-
-                {showChart && graficosData.map((grafico, index) => (
-                    <Box key={index} sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', gap: '5px' }}>
-
-                        <Chart
-                            width={'100%'}
-                            height={'100%'}
-                            chartType="Line"
-                            loader={<Box>Carregando Gráfico...</Box>}
-                            data={grafico.data}
-                            options={{
-                                title: 'Alternativas mais respondidas',
-                                colors: ['#1c5253', '#d95f02', '#7570b3', '#e7298a', '#66a61e'],
-                                hAxis: {
-                                    title: 'Alternativas',
-                                    textStyle: {
-                                        fontName: 'Poppins',
-                                        fontSize: 14,
-                                    },
-                                },
-                                vAxis: {
-                                    title: 'Números',
-                                    textStyle: {
-                                        fontName: 'Poppins',
-                                        fontSize: 14,
-
-                                    },
-                                },
-                                titleTextStyle: {
-                                    fontName: 'Poppins',
-                                    fontSize: 12,
-
-                                },
-                                legend: { position: 'none' },
-                                animation: {
-                                    duration: 1000,
-                                    easing: 'out',
-                                    startup: true,
-                                },
-                            }}
-                        />
-
-                        <Chart
-                            width={'100%'}
-                            height={'100%'}
-                            chartType="PieChart"
-                            loader={<Box>Carregando Gráfico...</Box>}
-                            data={grafico.data}
-                            options={{
-                                title: 'Porcentagem de Respostas por Alternativa',
-                                pieHole: 0.3,
-                                pieSliceText: 'percentage',
-                                colors: ['#1c5253', 'red', 'orange', 'brown', '#66a61e'],
-                                legend: 'right',
-                                animation: {
-                                    duration: 1000,
-                                    easing: 'out',
-                                    startup: true,
-                                },
-                                titleTextStyle: {
-                                    fontName: 'Poppins',
-                                    fontSize: 12,
-
-                                },
-                                pieSliceTextStyle: {
-                                    fontName: 'Poppins',
-                                    fontSize: 12,
-                                },
-                            }}
-                        />
-                    </Box>
-                ))}
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        p: 1,
+        borderRadius: 2,
+        width: '100%',
+      }}
+    >
+      {showChart && graficosData && (
+        <Grid
+          container
+          spacing={2} // Espaçamento entre os gráficos
+          sx={{
+            width: '100%',
+            mt: 2,
+            backgroundColor: '#f9fafb',
+            alignItems: 'center',
+          }}
+        >
+          <Grid item xs={12} sm={6}> {/* Cada gráfico ocupa metade da tela */}
+            <Box sx={{ height: 350, width: '100%' }}>
+              {graficosData.barData ? (
+                <Bar data={graficosData.barData} options={barOptions} />
+              ) : (
+                <Typography>Carregando Gráfico...</Typography>
+              )}
             </Box>
-        </Box>
-    );
+          </Grid>
+          <Grid item xs={12} sm={6} >
+            <Box sx={{ height: 350, width: '100%' }}>
+              {graficosData.pieData ? (
+                <Pie data={graficosData.pieData} options={pieOptions} />
+              ) : (
+                <Typography>Carregando Gráfico...</Typography>
+              )}
+            </Box>
+          </Grid>
+        </Grid>
+      )}
+    </Box>
+  );
 }
+
 export default EstatisticasQuestao;

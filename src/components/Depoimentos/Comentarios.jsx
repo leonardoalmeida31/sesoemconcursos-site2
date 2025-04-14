@@ -1,406 +1,443 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from "react";
 import {
-    collection,
-    addDoc,
-    query,
-    where,
-    getDocs,
-    serverTimestamp,
-    deleteDoc,
-    doc, getDoc, updateDoc
+  collection,
+  addDoc,
+  query,
+  where,
+  getDocs,
+  serverTimestamp,
+  deleteDoc,
+  doc,
+  getDoc,
+  updateDoc,
 } from "firebase/firestore";
 import {
-    Typography,
-    List,
-    ListItem,
-    ListItemText,
-    ListItemAvatar,
-    Avatar,
-    TextField,
-    Button,
-    Box,
-    TextareaAutosize, Container
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Avatar,
+  Button,
+  Box,
+  Container,
+  Paper,
+  Divider,
+  IconButton,
+  CircularProgress,
+  Fade,
 } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
-import { useMediaQuery } from "@mui/material";
-import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
-import ThumbDownOffAltOutlinedIcon from '@mui/icons-material/ThumbDownOffAltOutlined';
-import ReactMarkdown from 'react-markdown';
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import SendIcon from "@mui/icons-material/Send";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import './Comentarios.css';
+import { useMediaQuery, useTheme } from "@mui/material";
+import "./Comentarios.css";
 
-
-// eslint-disable-next-line react/prop-types
 const Comentarios = ({ question, db, user }) => {
-    const [comentario, setComentario] = useState("");
-    const [currentQuestionId, setCurrentQuestionId] = useState("");
-    const [comments, setComments] = useState({});
-    const [photoURL, setPhotoURL] = useState("");
+  const [comentario, setComentario] = useState("");
+  const [comments, setComments] = useState({});
+  const [likes, setLikes] = useState({});
+  const [dislikes, setDislikes] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
-    const [likes, setLikes] = useState({});
-    const [dislikes, setDislikes] = useState({});
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-    const handleCommentDelete = async (commentId) => {
-        try {
-            const comentariosRef = collection(db, "comentarios");
-            const commentDoc = doc(comentariosRef, commentId);
-            const commentSnapshot = await getDoc(commentDoc);
+  // Módulos do ReactQuill
+  const modules = {
+    toolbar: {
+      container: [
+        [{ font: ["Poppins", "Arial"] }],
+        [{ header: [1, 2, 3, false] }],
+        ["bold", "italic", "underline"],
+        [{ list: "ordered" }, { list: "bullet" }],
+        ["clean"],
+        [{ color: [] }, { background: [] }],
+      ],
+    },
+  };
 
-            if (!commentSnapshot.exists()) {
-                console.error("O comentário não existe.");
-                return;
-            }
+  // Carregar comentários
+  useEffect(() => {
+    const loadComments = async () => {
+      try {
+        setIsLoading(true);
+        if (question.id) {
+          const comentariosRef = collection(db, "comentarios");
+          const q = query(comentariosRef, where("questionsId", "==", question.id));
+          const comentariosSnapshot = await getDocs(q);
 
-            const commentData = commentSnapshot.data();
-
-
-            if (commentData.user === user.uid) {
-                await deleteDoc(commentDoc);
-                setComments((prevComments) => ({
-                    ...prevComments,
-                    [question.id]: prevComments[question.id].filter(
-                        (comentario) => comentario.id !== commentId
-                    ),
-                }));
-            } else {
-                console.error("Você não tem permissão para excluir este comentário.");
-            }
-        } catch (error) {
-            console.error("Erro ao excluir comentário:", error);
-        }
-    };
-
-
-    const handleCommentChange = (content, delta, source, editor) => {
-        setComentario(editor.getHTML());
-    };
-
-    const handleCommentSubmit = async () => {
-        if (!question.id || !comentario.trim()) {
-            console.error("O questionId não está definido ou o comentário está vazio.");
-            return;
-        }
-
-        try {
-            const comentariosRef = collection(db, "comentarios");
-            await addDoc(comentariosRef, {
-                questionsId: question.id,
-                text: comentario,
-                timestamp: serverTimestamp(),
-                user: user.uid,
-                displayName: user.displayName,
-                userPhotoURL: user.photoURL,
-                likes: 0,
-                dislikes: 0,
+          const comentarioData = [];
+          comentariosSnapshot.forEach((doc) => {
+            const data = doc.data();
+            comentarioData.push({
+              id: doc.id,
+              text: data.text,
+              timestamp: data.timestamp?.toDate(),
+              user: data.user,
+              displayName: data.displayName,
+              userPhotoURL: data.userPhotoURL,
+              likes: data.likes || 0,
+              dislikes: data.dislikes || 0,
+              likesBy: data.likesBy || [],
+              dislikesBy: data.dislikesBy || [],
             });
+          });
 
+          setComments((prev) => ({
+            ...prev,
+            [question.id]: comentarioData,
+          }));
 
-            const q = query(
-                comentariosRef,
-                where("questionsId", "==", question.id)
-            );
-            const comentariosSnapshot = await getDocs(q);
-
-            const comentarioData = [];
-
-            comentariosSnapshot.forEach((doc) => {
-                const data = doc.data();
-                comentarioData.push({
-                    id: doc.id,
-                    text: data.text,
-                    timestamp: data.timestamp.toDate(),
-                    user: data.user,
-                    displayName: data.displayName,
-                    userPhotoURL: data.userPhotoURL,
-                });
-            });
-
-            setComments((prevComments) => ({
-                ...prevComments,
-                [question.id]: comentarioData,
-            }));
-
-            setComentario("");
-        } catch (error) {
-            console.error("Erro ao adicionar comentário:", error);
+          const likesData = {};
+          const dislikesData = {};
+          comentarioData.forEach((c) => {
+            likesData[c.id] = c.likes;
+            dislikesData[c.id] = c.dislikes;
+          });
+          setLikes(likesData);
+          setDislikes(dislikesData);
         }
+      } catch (error) {
+        console.error("Erro ao carregar comentários:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
+    loadComments();
+  }, [question.id, db]);
 
-    useEffect(() => {
-        const loadComments = async () => {
-            try {
-                if (question.id) {
-                    const comentariosRef = collection(db, "comentarios");
-                    const q = query(
-                        comentariosRef,
-                        where("questionsId", "==", question.id)
-                    );
-                    const comentariosSnapshot = await getDocs(q);
+  // Manipular envio de comentário
+  const handleCommentSubmit = async () => {
+    if (!question.id || !comentario.trim()) return;
+    try {
+      const comentariosRef = collection(db, "comentarios");
+      await addDoc(comentariosRef, {
+        questionsId: question.id,
+        text: comentario,
+        timestamp: serverTimestamp(),
+        user: user.uid,
+        displayName: user.displayName,
+        userPhotoURL: user.photoURL,
+        likes: 0,
+        dislikes: 0,
+        likesBy: [],
+        dislikesBy: [],
+      });
 
-                    const comentarioData = [];
+      const q = query(comentariosRef, where("questionsId", "==", question.id));
+      const comentariosSnapshot = await getDocs(q);
+      const comentarioData = [];
+      comentariosSnapshot.forEach((doc) => {
+        const data = doc.data();
+        comentarioData.push({
+          id: doc.id,
+          text: data.text,
+          timestamp: data.timestamp?.toDate(),
+          user: data.user,
+          displayName: data.displayName,
+          userPhotoURL: data.userPhotoURL,
+          likes: data.likes || 0,
+          dislikes: data.dislikes || 0,
+          likesBy: data.likesBy || [],
+          dislikesBy: data.dislikesBy || [],
+        });
+      });
 
-                    comentariosSnapshot.forEach((doc) => {
-                        const data = doc.data();
-                        comentarioData.push({
-                            id: doc.id,
-                            text: data.text,
-                            timestamp: data.timestamp.toDate(),
-                            user: data.user,
-                            displayName: data.displayName,
-                            userPhotoURL: data.userPhotoURL,
-                            likes: data.likes || 0,
-                            dislikes: data.dislikes || 0,
-                            likesBy: data.likesBy || [],
-                            dislikesBy: data.dislikesBy || [],
-                        });
-                    });
+      setComments((prev) => ({
+        ...prev,
+        [question.id]: comentarioData,
+      }));
+      setComentario("");
+    } catch (error) {
+      console.error("Erro ao adicionar comentário:", error);
+    }
+  };
 
+  // Manipular exclusão de comentário
+  const handleCommentDelete = async (commentId) => {
+    try {
+      const commentDoc = doc(db, "comentarios", commentId);
+      const commentSnapshot = await getDoc(commentDoc);
+      if (!commentSnapshot.exists()) return;
 
-                    setComments((prevComments) => ({
-                        ...prevComments,
-                        [question.id]: comentarioData,
-                    }));
+      const commentData = commentSnapshot.data();
+      if (commentData.user === user.uid) {
+        await deleteDoc(commentDoc);
+        setComments((prev) => ({
+          ...prev,
+          [question.id]: prev[question.id].filter((c) => c.id !== commentId),
+        }));
+      }
+    } catch (error) {
+      console.error("Erro ao excluir comentário:", error);
+    }
+  };
 
-                    const likesData = {};
-                    const dislikesData = {};
+  // Manipular curtida
+  const handleLikeComment = async (commentId) => {
+    try {
+      const commentDoc = doc(db, "comentarios", commentId);
+      const commentSnapshot = await getDoc(commentDoc);
+      if (!commentSnapshot.exists()) return;
 
-                    comentarioData.forEach((comentario) => {
-                        likesData[comentario.id] = comentario.likes;
-                        dislikesData[comentario.id] = comentario.dislikes;
-                    });
-
-                    setLikes(likesData);
-                    setDislikes(dislikesData);
-                }
-            } catch (error) {
-                console.error("Erro ao carregar comentários:", error);
-            }
-        };
-
-        loadComments();
-    }, [question.id, db]);
-
-    const handleLikeComment = async (commentId) => {
-        try {
-            const comentariosRef = collection(db, "comentarios");
-            const commentDoc = doc(comentariosRef, commentId);
-            const commentSnapshot = await getDoc(commentDoc);
-
-            if (!commentSnapshot.exists()) {
-                console.error("O comentário não existe.");
-                return;
-            }
-
-            const commentData = commentSnapshot.data();
-
-
-            if (!commentData.likesBy || !commentData.likesBy.includes(user.uid)) {
-
-                await updateDoc(commentDoc, {
-                    likes: commentData.likes + 1,
-                    likesBy: [...(commentData.likesBy || []), user.uid],
-                });
-
-                setLikes((prevLikes) => ({
-                    ...prevLikes,
-                    [commentId]: (prevLikes[commentId] || 0) + 1,
-                }));
-            } else {
-                await updateDoc(commentDoc, {
-                    likes: commentData.likes - 1,
-                    likesBy: commentData.likesBy.filter((userId) => userId !== user.uid),
-                });
-
-
-                setLikes((prevLikes) => ({
-                    ...prevLikes,
-                    [commentId]: (prevLikes[commentId] || 0) - 1,
-                }));
-            }
-        } catch (error) {
-            console.error("Erro ao curtir comentário:", error);
+      const commentData = commentSnapshot.data();
+      const likesBy = commentData.likesBy || [];
+      if (!likesBy.includes(user.uid)) {
+        await updateDoc(commentDoc, {
+          likes: commentData.likes + 1,
+          likesBy: [...likesBy, user.uid],
+          dislikes: commentData.dislikesBy?.includes(user.uid)
+            ? commentData.dislikes - 1
+            : commentData.dislikes,
+          dislikesBy: commentData.dislikesBy?.filter((id) => id !== user.uid) || [],
+        });
+        setLikes((prev) => ({ ...prev, [commentId]: prev[commentId] + 1 }));
+        if (commentData.dislikesBy?.includes(user.uid)) {
+          setDislikes((prev) => ({ ...prev, [commentId]: prev[commentId] - 1 }));
         }
-    };
+      } else {
+        await updateDoc(commentDoc, {
+          likes: commentData.likes - 1,
+          likesBy: likesBy.filter((id) => id !== user.uid),
+        });
+        setLikes((prev) => ({ ...prev, [commentId]: prev[commentId] - 1 }));
+      }
+    } catch (error) {
+      console.error("Erro ao curtir comentário:", error);
+    }
+  };
 
+  // Manipular descurtida
+  const handleDislikeComment = async (commentId) => {
+    try {
+      const commentDoc = doc(db, "comentarios", commentId);
+      const commentSnapshot = await getDoc(commentDoc);
+      if (!commentSnapshot.exists()) return;
 
-    const handleDislikeComment = async (commentId) => {
-        try {
-            const comentariosRef = collection(db, "comentarios");
-            const commentDoc = doc(comentariosRef, commentId);
-            const commentSnapshot = await getDoc(commentDoc);
-
-            if (!commentSnapshot.exists()) {
-                console.error("O comentário não existe.");
-                return;
-            }
-
-            const commentData = commentSnapshot.data();
-
-
-            if (!commentData.dislikesBy || !commentData.dislikesBy.includes(user.uid)) {
-                await updateDoc(commentDoc, {
-                    dislikes: commentData.dislikes + 1,
-                    dislikesBy: [...(commentData.dislikesBy || []), user.uid],
-                });
-
-                setDislikes((prevDislikes) => ({
-                    ...prevDislikes,
-                    [commentId]: (prevDislikes[commentId] || 0) + 1,
-                }));
-            } else {
-                await updateDoc(commentDoc, {
-                    dislikes: commentData.dislikes - 1,
-                    dislikesBy: commentData.dislikesBy.filter((userId) => userId !== user.uid),
-                });
-
-                setDislikes((prevDislikes) => ({
-                    ...prevDislikes,
-                    [commentId]: (prevDislikes[commentId] || 0) - 1,
-                }));
-            }
-        } catch (error) {
-            console.error("Erro ao descurtir comentário:", error);
+      const commentData = commentSnapshot.data();
+      const dislikesBy = commentData.dislikesBy || [];
+      if (!dislikesBy.includes(user.uid)) {
+        await updateDoc(commentDoc, {
+          dislikes: commentData.dislikes + 1,
+          dislikesBy: [...dislikesBy, user.uid],
+          likes: commentData.likesBy?.includes(user.uid)
+            ? commentData.likes - 1
+            : commentData.likes,
+          likesBy: commentData.likesBy?.filter((id) => id !== user.uid) || [],
+        });
+        setDislikes((prev) => ({ ...prev, [commentId]: prev[commentId] + 1 }));
+        if (commentData.likesBy?.includes(user.uid)) {
+          setLikes((prev) => ({ ...prev, [commentId]: prev[commentId] - 1 }));
         }
-    };
+      } else {
+        await updateDoc(commentDoc, {
+          dislikes: commentData.dislikes - 1,
+          dislikesBy: dislikesBy.filter((id) => id !== user.uid),
+        });
+        setDislikes((prev) => ({ ...prev, [commentId]: prev[commentId] - 1 }));
+      }
+    } catch (error) {
+      console.error("Erro ao descurtir comentário:", error);
+    }
+  };
 
+  return (
+    <Container maxWidth="lg" sx={{ py: { xs: 2, md: 4 } }}>
+      <Paper
+        elevation={3}
+        sx={{
+          p: { xs: 2, md: 3 },
+          borderRadius: 2,
+          backgroundColor: "#fff",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+        }}
+      >
+        <Typography
+          variant={isMobile ? "h6" : "h5"}
+          sx={{
+            fontFamily: "Poppins, sans-serif",
+            fontWeight: 600,
+            color: "#1c5253",
+            mb: 2,
+          }}
+        >
+          Comentários
+        </Typography>
 
-
-
-
-
-    const modules = {
-        toolbar: {
-            container: [
-                [{ font: ['Poppins', 'Arial'] }],
-                [{ 'header': [1, 2, 3, 4, false] }],
-                ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-                [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
-                ['video'],
-                ['clean'],
-                [{ 'color': [] }, { 'background': [] }],
-            ],
-        },
-    };
-
-
-    const styles = {
-        backgroundColor: "#FFFFFF",
-        color: "#000000",
-
-        border: "1px solid #ccc",
-        borderRadius: "7px",
-        padding: "10px",
-
-    };
-
-
-    return (
-        <Box item xs={12} xl={12} className="app-container">
-            <Typography sx={{ fontFamily: 'Poppins', fontWeight: '500', backgroundColor: 'white', padding: '0.700em', borderRadius: '7px', fontSize: '1em' }}> Faça um Comentário na Questão para ajudar outros colegas. </Typography>
-
-            <List className="comment-list">
-                {comments[question.id] &&
-                    comments[question.id].map((comentario) => (
-
-                        <ListItem sx={{ width: '100%', display: 'flex', alignItems: 'flex-start' }} key={comentario.id} className="comment">
-                            <ListItemAvatar >
-                                <Avatar style={{ width: '2em', height: '2em', }} src={comentario.userPhotoURL}>{comentario.displayName[0]}</Avatar>
-                            </ListItemAvatar>
-
-                            <Box className="comment-content">
-                                <ListItemText
-                                    primary={comentario.displayName}
-                                    primaryTypographyProps={{
-                                        style: { fontSize: '1em', fontFamily: 'Poppins', color: '#1c5253' },
-                                    }}
-                                    secondary={
-                                        <Typography
-                                            variant="body1"
-                                            color="textSecondary"
-                                            sx={{
-                                                paddingTop: '1em',
-                                                fontSize: '1em',
-                                                fontFamily: 'Poppins',
-                                                color: 'black',
-                                            }}
-                                            dangerouslySetInnerHTML={{ __html: comentario.text }}
-                                        />
-                                    }
-                                />
-                                <p className="comment-time">
-                                    {new Date(comentario.timestamp).toLocaleString()}
-                                </p>
-                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'left', }}>
-                                    <IconButton
-                                        sx={{ color: "#1c5253", }}
-
-                                        aria-label="Curtir"
-                                        onClick={() => handleLikeComment(comentario.id)}
-
-                                    >
-                                        < ThumbUpOutlinedIcon fontSize="small" />
-                                    </IconButton>
-                                    <Typography sx={{ marginRight: '1em', fontSize: '0.900em', color: "#1c5253" }} color="primary"> Ajudou ({likes[comentario.id]})
-                                    </Typography>
-                                    <IconButton
-                                        sx={{ color: "#1c5253" }}
-                                        aria-label="Descurtir"
-                                        onClick={() => handleDislikeComment(comentario.id)}
-                                    >
-                                        <ThumbDownOffAltOutlinedIcon fontSize="small" />
-                                    </IconButton>
-                                    <Typography sx={{ fontSize: '0.900em', color: "#1c5253" }} color="error"> Não ajudou  ({dislikes[comentario.id]})
-                                    </Typography>
-                                </Box>
-
-                                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'left', }}>
-
-                                    <IconButton
-                                        color="error"
-                                        aria-label="Excluir Comentário"
-                                        onClick={() => handleCommentDelete(comentario.id)}
-                                        disabled={comentario.user !== user.uid}
-                                    >
-                                        <HighlightOffIcon fontSize="small" />
-                                    </IconButton >  <Typography sx={{ fontSize: '0.900em', }}  >
-                                    </Typography>
-
-                                </Box>
-
-                            </Box>
-
-                        </ListItem>
-                    ))}
-            </List>
-
-            <Box className="comment-input-container">
-                <ReactQuill
-                    theme="snow"
-                    value={comentario}
-                    onChange={handleCommentChange}
-                    modules={modules}
-                    style={styles}
-
-                />
-
-
-
-                <Box mt={1}>
-                    <Button
-                        variant="contained"
-                        style={{ backgroundColor: "#1c5253", color: "white" }}
-                        onClick={handleCommentSubmit}
-                    >
-                        Adicionar Comentário
-                    </Button>
-                </Box>
-            </Box>
+        {/* Formulário de Comentário */}
+        <Box className="comment-input-container" sx={{ mb: 3 }}>
+          <ReactQuill
+            theme="snow"
+            value={comentario}
+            onChange={(content, delta, source, editor) =>
+              setComentario(editor.getHTML())
+            }
+            modules={modules}
+            placeholder="Escreva seu comentário para ajudar outros colegas..."
+            className="comment-editor"
+          />
+          <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 1 }}>
+            <Button
+              variant="contained"
+              startIcon={<SendIcon />}
+              onClick={handleCommentSubmit}
+              disabled={!comentario.trim() || !user}
+              sx={{
+                fontFamily: "Poppins, sans-serif",
+                backgroundColor: "#1c5253",
+                "&:hover": { backgroundColor: "#267c7e" },
+                borderRadius: 1,
+                textTransform: "none",
+                px: 3,
+                py: 1,
+              }}
+            >
+              Enviar
+            </Button>
+          </Box>
         </Box>
-    );
+
+        <Divider sx={{ mb: 2 }} />
+
+        {/* Lista de Comentários */}
+        {isLoading ? (
+          <Box sx={{ display: "flex", justifyContent: "center", py: 4 }}>
+            <CircularProgress color="primary" />
+          </Box>
+        ) : comments[question.id]?.length > 0 ? (
+          <List sx={{ width: "100%" }}>
+            {comments[question.id].map((comentario) => (
+              <Fade in key={comentario.id}>
+                <ListItem
+                  alignItems="flex-start"
+                  sx={{
+                    borderBottom: "1px solid #e0e0e0",
+                    py: 2,
+                    "&:last-child": { borderBottom: "none" },
+                  }}
+                >
+                  <ListItemAvatar>
+                    <Avatar
+                      src={comentario.userPhotoURL}
+                      sx={{
+                        width: { xs: 36, sm: 48 },
+                        height: { xs: 36, sm: 48 },
+                        bgcolor: "#1c5253",
+                      }}
+                    >
+                      {comentario.displayName?.[0]}
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={
+                      <Typography
+                        variant="subtitle1"
+                        sx={{
+                          fontFamily: "Poppins, sans-serif",
+                          fontWeight: 500,
+                          color: "#1c5253",
+                        }}
+                      >
+                        {comentario.displayName}
+                      </Typography>
+                    }
+                    secondary={
+                      <>
+                        <Typography
+                          component="span"
+                          variant="body2"
+                          sx={{
+                            fontFamily: "Poppins, sans-serif",
+                            color: "#666",
+                            mb: 1,
+                            display: "block",
+                          }}
+                        >
+                          {new Date(comentario.timestamp).toLocaleString("pt-BR", {
+                            dateStyle: "short",
+                            timeStyle: "short",
+                          })}
+                        </Typography>
+                        <Box
+                          className="comment-text"
+                          dangerouslySetInnerHTML={{ __html: comentario.text }}
+                        />
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 1,
+                            mt: 1,
+                          }}
+                        >
+                          <IconButton
+                            onClick={() => handleLikeComment(comentario.id)}
+                            disabled={!user}
+                            sx={{
+                              color: comentario.likesBy?.includes(user?.uid)
+                                ? "#1c5253"
+                                : "#999",
+                            }}
+                            aria-label="Curtir comentário"
+                          >
+                            <ThumbUpIcon fontSize="small" />
+                          </IconButton>
+                          <Typography variant="caption" sx={{ color: "#1c5253" }}>
+                            {likes[comentario.id] || 0}
+                          </Typography>
+                          <IconButton
+                            onClick={() => handleDislikeComment(comentario.id)}
+                            disabled={!user}
+                            sx={{
+                              color: comentario.dislikesBy?.includes(user?.uid)
+                                ? "#1c5253"
+                                : "#999",
+                            }}
+                            aria-label="Descurtir comentário"
+                          >
+                            <ThumbDownIcon fontSize="small" />
+                          </IconButton>
+                          <Typography variant="caption" sx={{ color: "#1c5253" }}>
+                            {dislikes[comentario.id] || 0}
+                          </Typography>
+                          {comentario.user === user?.uid && (
+                            <IconButton
+                              onClick={() => handleCommentDelete(comentario.id)}
+                              sx={{ color: "#ff5252" }}
+                              aria-label="Excluir comentário"
+                            >
+                              <HighlightOffIcon fontSize="small" />
+                            </IconButton>
+                          )}
+                        </Box>
+                      </>
+                    }
+                  />
+                </ListItem>
+              </Fade>
+            ))}
+          </List>
+        ) : (
+          <Typography
+            variant="body1"
+            sx={{
+              fontFamily: "Poppins, sans-serif",
+              color: "#666",
+              textAlign: "center",
+              py: 4,
+            }}
+          >
+            Ainda não há comentários. Seja o primeiro a comentar!
+          </Typography>
+        )}
+      </Paper>
+    </Container>
+  );
 };
 
 export default Comentarios;

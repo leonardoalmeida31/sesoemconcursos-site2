@@ -458,7 +458,16 @@ function FiltroMulti({ firebaseApp, onFilterChange, setPaginaAtual }) {
   const sortedBancaOptions = bancaOptions.slice().sort((a, b) => a.label.localeCompare(b.label));
   const sortedConcursoOptions = concursoOptions.slice().sort((a, b) => a.label.localeCompare(b.label));
   const sortedIdsOptions = idsOptions.sort((a, b) => Number(a.value) - Number(b.value));
-  const sortedDisciplinaOptions = disciplinaOptions.slice().sort((a, b) => a.label.localeCompare(b.label));
+  const disciplinaCounts = uniqueDisciplinas.reduce((acc, disciplina) => {
+    acc[disciplina] = questions.filter((q) => q.disciplina === disciplina).length;
+    return acc;
+  }, {});
+  
+  const sortedDisciplinaOptions = disciplinaOptions.slice().sort((a, b) => {
+    const countA = disciplinaCounts[a.value];
+    const countB = disciplinaCounts[b.value];
+    return countB - countA; // Ordem decrescente
+  });
   const sortedAnoOptions = anoOptions.slice().sort((a, b) => b.label - a.label);
 
   const renderSearchField = () => (

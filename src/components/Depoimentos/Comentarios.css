@@ -1,13 +1,57 @@
-@media screen and (max-width: 600px) {
-  .ql-video {
-    width: 300px;
-    height: 180px;
-  }
+/* Estilizar o editor ReactQuill */
+.comment-input-container .comment-editor {
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  font-family: 'Poppins', sans-serif;
 }
 
-@media screen and (min-width: 601px) {
-  .ql-video {
-    width: 860px;
-    height: 460px;
+.comment-input-container .ql-toolbar.ql-snow {
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #f9f9f9;
+  border-radius: 8px 8px 0 0;
+}
+
+.comment-input-container .ql-container.ql-snow {
+  border: none;
+  font-size: 0.95rem;
+  min-height: 100px;
+  border-radius: 0 0 8px 8px;
+}
+
+.comment-input-container .ql-editor {
+  padding: 12px;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
+
+.comment-input-container .ql-editor::before {
+  font-style: normal;
+  color: #94a3b8;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Estilizar o texto dos comentários */
+.comment-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.comment-text p {
+  margin: 0;
+}
+
+/* Ajustes para responsividade */
+@media (max-width: 600px) {
+  .comment-input-container .ql-editor {
+    font-size: 0.9rem;
+  }
+
+  .comment-text {
+    font-size: 0.9rem;
   }
 }

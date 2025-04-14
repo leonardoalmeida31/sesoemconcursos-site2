@@ -206,10 +206,73 @@ function Questao() {
     //     questions,
     // ]);
 
+
+
+
+    //SALVAR RESPOSTAS EM ESTATISTICAS HOME
+    const saveUserResponses = async (questionId, respostaSelecionada) => {
+        try {
+          const collectionRef = collection(db, "alternativasRespondidas");
+          const userResponseRef = doc(collectionRef, questionId.toString());
+    
+          const userResponseDoc = await getDoc(userResponseRef);
+          if (userResponseDoc.exists()) {
+            const responseData = userResponseDoc.data();
+    
+            // Verifica se a alternativa já foi respondida antes
+            if (responseData.respostaCounts && responseData.respostaCounts[respostaSelecionada] !== undefined) {
+              // Se a alternativa já foi respondida, incrementa o contador
+              responseData.respostaCounts[respostaSelecionada]++;
+            } else {
+              // Se for a primeira vez que essa alternativa é respondida, inicializa o contador
+              if (!responseData.respostaCounts) {
+                responseData.respostaCounts = {};
+              }
+              responseData.respostaCounts[respostaSelecionada] = 1;
+            }
+    
+            // Atualiza o documento com os dados atualizados
+            await setDoc(userResponseRef, responseData);
+            console.log("Resposta do usuário salva com sucesso!");
+          } else {
+            // Se o documento não existe, cria um novo documento com a resposta selecionada
+            const newResponseData = {
+              questionId: questionId,
+              respostaSelecionada: respostaSelecionada,
+              respostaCounts: {
+                [respostaSelecionada]: 1,
+              },
+              // Outros dados relevantes que você queira armazenar
+            };
+    
+            await setDoc(userResponseRef, newResponseData);
+            console.log("Resposta do usuário salva com sucesso!");
+          }
+        } catch (error) {
+          console.error("Erro ao salvar a resposta do usuário:", error);
+        }
+      };
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     const questoesPagina = questoesFiltradas.slice(
         indiceInicial,
         indiceInicial + questoesPorPagina
     );
+
 
     const handleAlternativaClick = (questionId, alternativaIndex) => {
         const newAlternativaSelecionada = {
@@ -228,7 +291,12 @@ function Questao() {
 
         const respostaCorreta = question.resposta.charCodeAt(0) - 65;
         const questaoId = question.ids;
+ 
         const resultadoQuestao = respostaUsuario === respostaCorreta;
+        // Salvar as respostas do usuário no Firebase
+        saveUserResponses(questaoId, respostaUsuario);
+         // Salve o feedback do usuário no Firebase
+     
 
         setFeedbackLocal((prevFeedback) => ({
             ...prevFeedback,
@@ -237,6 +305,7 @@ function Questao() {
                 respostaCorreta: question.resposta,
             },
         }));
+        
 
         setResultados((prevResultados) => ({
             ...prevResultados,
@@ -730,8 +799,8 @@ function Questao() {
             }}
             className="fundo-Home"
         >
-            <Container maxWidth="x1" sx={{ padding: '0em' }}>
-                <Container maxWidth='x1'>
+            <Container maxWidth='xl' >
+                <Box >
                     <Typography
                         sx={{
                             fontSize: { xs: '0.8em', md: '1.2em' },
@@ -746,8 +815,11 @@ function Questao() {
                     </Typography>
 
                     <FiltroMulti onFilterChange={setQuestoesFiltradas} setPaginaAtual={setPaginaAtual} db={db} />
-                </Container>
-
+                </Box>
+                <Box>
+              
+                </Box>
+      
                 <Box
                     sx={{
                         marginTop: '2.2em',
